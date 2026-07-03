@@ -1,0 +1,776 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BHUMIPUTRA — Factory Direct Tractor & Truck Parts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/tabler-icons@1.39.1/iconfont/tabler-icons.min.css" rel="stylesheet">
+  <style>
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --earth-green: #1B4332;
+    --earth-green-mid: #2D6A4F;
+    --earth-green-light: #40916C;
+    --saffron: #E85D04;
+    --saffron-bright: #F48C06;
+    --saffron-pale: #FFF3E0;
+    --charcoal: #1A1A1A;
+    --off-white: #F8F6F1;
+    --mid-gray: #8B8B8B;
+    --border: rgba(0,0,0,0.10);
+    --badge-green-bg: #D8F3DC;
+    --badge-green-txt: #1B4332;
+  }
+
+  body { font-family: 'Noto Sans', sans-serif; background: var(--off-white); color: var(--charcoal); }
+
+  .display { font-family: 'Rajdhani', sans-serif; }
+
+  /* STICKY HEADER */
+  .header {
+    background: var(--earth-green);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .header-top {
+    display: flex; align-items: center; gap: 16px;
+    padding: 12px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .logo-block { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .logo-icon {
+    width: 42px; height: 42px; background: var(--saffron);
+    border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  }
+  .logo-icon i { font-size: 22px; color: #fff; }
+  .logo-text { color: #fff; }
+  .logo-name { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; line-height: 1; letter-spacing: 0.5px; }
+  .logo-tag { font-size: 10px; color: rgba(255,255,255,0.65); letter-spacing: 1.5px; text-transform: uppercase; }
+
+  .search-bar {
+    flex: 1; display: flex; align-items: center;
+    background: #fff; border-radius: 6px; overflow: hidden;
+    border: 2px solid var(--saffron);
+  }
+  .search-bar input {
+    flex: 1; border: none; outline: none; padding: 9px 14px;
+    font-size: 14px; font-family: 'Noto Sans', sans-serif;
+    background: transparent; color: var(--charcoal);
+  }
+  .search-btn {
+    background: var(--saffron); border: none; padding: 9px 18px;
+    cursor: pointer; color: #fff; display: flex; align-items: center;
+  }
+  .search-btn i { font-size: 18px; }
+
+  .header-utils { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+  .util-item {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    color: rgba(255,255,255,0.85); cursor: pointer; font-size: 11px;
+    transition: color 0.15s;
+  }
+  .util-item:hover { color: var(--saffron-bright); }
+  .util-item i { font-size: 20px; }
+
+  .cart-util { position: relative; }
+  .cart-badge {
+    position: absolute; top: -4px; right: -6px;
+    background: var(--saffron); color: #fff; border-radius: 50%;
+    width: 16px; height: 16px; font-size: 10px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* SEARCH SUGGESTIONS */
+  .search-suggestions {
+    background: var(--earth-green-mid);
+    padding: 8px 24px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  }
+  .sugg-label { color: rgba(255,255,255,0.6); font-size: 12px; }
+  .sugg-pill {
+    background: rgba(255,255,255,0.12); color: #fff; border-radius: 20px;
+    padding: 4px 12px; font-size: 12px; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);
+    transition: background 0.15s;
+  }
+  .sugg-pill:hover { background: var(--saffron); border-color: var(--saffron); }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--saffron); color: #fff;
+    display: flex; justify-content: center; gap: 32px;
+    padding: 8px 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.3px;
+  }
+  .trust-item { display: flex; align-items: center; gap: 6px; }
+  .trust-item i { font-size: 15px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--earth-green) 0%, var(--earth-green-mid) 60%, #1B4332 100%);
+    padding: 52px 24px; position: relative; overflow: hidden;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%);
+    background-size: 24px 24px;
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--saffron); color: #fff; border-radius: 4px;
+    padding: 5px 14px; font-size: 12px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase; margin-bottom: 18px;
+  }
+  .hero-eyebrow i { font-size: 14px; }
+  .hero-title {
+    font-family: 'Rajdhani', sans-serif; font-size: 52px; font-weight: 700;
+    color: #fff; line-height: 1.05; margin-bottom: 14px;
+  }
+  .hero-title span { color: var(--saffron-bright); }
+  .hero-sub { color: rgba(255,255,255,0.78); font-size: 16px; line-height: 1.6; max-width: 560px; margin-bottom: 28px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--saffron); color: #fff; border: none; border-radius: 6px;
+    padding: 13px 28px; font-size: 16px; font-weight: 600; cursor: pointer;
+    font-family: 'Rajdhani', sans-serif; letter-spacing: 0.5px; transition: background 0.15s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: #c94e03; }
+  .btn-secondary {
+    background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 6px; padding: 11px 24px; font-size: 15px; font-weight: 600;
+    cursor: pointer; font-family: 'Rajdhani', sans-serif; transition: border-color 0.15s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { border-color: #fff; }
+
+  .hero-stats { display: flex; gap: 32px; margin-top: 36px; }
+  .hero-stat { color: #fff; }
+  .stat-num { font-family: 'Rajdhani', sans-serif; font-size: 30px; font-weight: 700; color: var(--saffron-bright); }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* CATEGORY GRID */
+  .section { padding: 40px 24px; max-width: 1000px; margin: 0 auto; }
+  .section-head { margin-bottom: 24px; }
+  .section-eyebrow { font-size: 12px; font-weight: 600; color: var(--saffron); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .section-title { font-family: 'Rajdhani', sans-serif; font-size: 30px; font-weight: 700; color: var(--earth-green); }
+  .section-sub { color: var(--mid-gray); font-size: 14px; margin-top: 4px; }
+
+  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cat-card {
+    background: #fff; border-radius: 10px; border: 1.5px solid var(--border);
+    padding: 24px 20px; cursor: pointer; transition: all 0.18s;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .cat-card:hover { border-color: var(--earth-green-light); box-shadow: 0 4px 16px rgba(27,67,50,0.12); transform: translateY(-2px); }
+  .cat-icon {
+    width: 56px; height: 56px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 26px;
+  }
+  .cat-icon.green { background: #D8F3DC; color: var(--earth-green); }
+  .cat-icon.saffron { background: var(--saffron-pale); color: var(--saffron); }
+  .cat-icon.charcoal { background: #EBEBEB; color: #444; }
+  .cat-title { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; color: var(--earth-green); }
+  .cat-desc { font-size: 13px; color: var(--mid-gray); line-height: 1.5; }
+  .cat-count {
+    font-size: 12px; font-weight: 600; color: var(--earth-green-light);
+    display: flex; align-items: center; gap: 4px; margin-top: auto;
+  }
+  .cat-count i { font-size: 14px; }
+  .cat-badge {
+    display: inline-block; background: var(--saffron-pale); color: var(--saffron);
+    font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 4px;
+    letter-spacing: 0.3px; align-self: flex-start;
+  }
+
+  /* COMPATIBILITY BAND */
+  .compat-band {
+    background: var(--earth-green); padding: 32px 24px;
+  }
+  .compat-inner { max-width: 1000px; margin: 0 auto; }
+  .compat-inner .section-title { color: #fff; }
+  .compat-inner .section-eyebrow { color: var(--saffron-bright); }
+  .compat-inner .section-sub { color: rgba(255,255,255,0.6); }
+  .brand-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .brand-pill {
+    background: rgba(255,255,255,0.1); color: #fff; border-radius: 6px;
+    padding: 10px 18px; font-size: 14px; font-weight: 600; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.2); transition: all 0.15s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .brand-pill:hover { background: var(--saffron); border-color: var(--saffron); }
+  .brand-pill i { font-size: 16px; }
+  .compat-note {
+    margin-top: 18px; font-size: 13px; color: rgba(255,255,255,0.55);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .compat-note i { font-size: 16px; color: var(--saffron-bright); }
+
+  /* FEATURED PRODUCTS */
+  .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .product-card {
+    background: #fff; border-radius: 10px; border: 1.5px solid var(--border);
+    overflow: hidden; cursor: pointer; transition: all 0.18s;
+  }
+  .product-card:hover { border-color: var(--earth-green-light); box-shadow: 0 4px 18px rgba(27,67,50,0.1); transform: translateY(-2px); }
+
+  .product-img {
+    height: 180px; background: #F0F0EE; display: flex;
+    align-items: center; justify-content: center; position: relative;
+  }
+  .product-img i { font-size: 64px; color: #C8C8C4; }
+  .product-tag {
+    position: absolute; top: 10px; left: 10px;
+    background: var(--earth-green); color: #fff;
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .product-tag.hot { background: var(--saffron); }
+  .product-body { padding: 14px 16px; }
+  .product-brand { font-size: 11px; color: var(--mid-gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .product-name { font-family: 'Rajdhani', sans-serif; font-size: 17px; font-weight: 700; color: var(--charcoal); line-height: 1.2; margin-bottom: 8px; }
+
+  .compat-box {
+    background: #D8F3DC; border-radius: 6px; padding: 7px 10px;
+    font-size: 11px; color: var(--badge-green-txt); font-weight: 600;
+    margin-bottom: 10px; display: flex; align-items: flex-start; gap: 5px; line-height: 1.4;
+  }
+  .compat-box i { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+  .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .price-factory { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: var(--earth-green); }
+  .price-mrp { font-size: 13px; color: var(--mid-gray); text-decoration: line-through; }
+  .price-off { font-size: 12px; font-weight: 700; color: var(--saffron); }
+
+  .rating-row { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--mid-gray); }
+  .stars { color: #F48C06; font-size: 13px; }
+
+  .add-to-cart {
+    display: block; width: 100%; margin-top: 12px;
+    background: var(--earth-green); color: #fff; border: none; border-radius: 6px;
+    padding: 10px; font-size: 14px; font-weight: 700; cursor: pointer;
+    font-family: 'Rajdhani', sans-serif; letter-spacing: 0.5px; transition: background 0.15s;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .add-to-cart:hover { background: var(--earth-green-light); }
+
+  /* WHY US */
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .why-card {
+    background: #fff; border-radius: 10px; padding: 20px 16px;
+    border: 1.5px solid var(--border); text-align: center;
+  }
+  .why-icon { font-size: 28px; color: var(--earth-green); margin-bottom: 10px; display: block; }
+  .why-title { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: var(--earth-green); margin-bottom: 5px; }
+  .why-desc { font-size: 12px; color: var(--mid-gray); line-height: 1.5; }
+
+  /* TESTIMONIALS */
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .testi-card {
+    background: #fff; border-radius: 10px; padding: 18px;
+    border: 1.5px solid var(--border);
+  }
+  .testi-stars { color: #F48C06; font-size: 14px; margin-bottom: 8px; }
+  .testi-text { font-size: 13px; color: #444; line-height: 1.6; margin-bottom: 12px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 10px; }
+  .testi-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--earth-green); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+  }
+  .testi-name { font-size: 13px; font-weight: 600; color: var(--charcoal); }
+  .testi-loc { font-size: 11px; color: var(--mid-gray); }
+
+  /* FOOTER CTA */
+  .footer-cta {
+    background: var(--charcoal); padding: 40px 24px; text-align: center;
+  }
+  .footer-cta-title { font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .footer-cta-sub { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 24px; }
+  .footer-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .wa-btn {
+    background: #25D366; color: #fff; border: none; border-radius: 6px;
+    padding: 12px 24px; font-size: 15px; font-weight: 700; cursor: pointer;
+    font-family: 'Rajdhani', sans-serif; display: flex; align-items: center; gap: 8px;
+  }
+  .wa-btn i { font-size: 18px; }
+
+  /* AI CHATBOT */
+  .chatbot-bubble {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+  }
+  .chat-popup {
+    background: #fff; border-radius: 12px; padding: 16px;
+    border: 1.5px solid var(--border); width: 240px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .chat-popup-title { font-size: 13px; font-weight: 700; color: var(--earth-green); margin-bottom: 4px; }
+  .chat-popup-sub { font-size: 11px; color: var(--mid-gray); margin-bottom: 10px; line-height: 1.4; }
+  .chat-input-row { display: flex; gap: 6px; }
+  .chat-input-row input {
+    flex: 1; border: 1px solid var(--border); border-radius: 6px;
+    padding: 7px 10px; font-size: 12px; outline: none;
+  }
+  .mic-btn {
+    background: var(--saffron); border: none; border-radius: 6px;
+    width: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #fff;
+  }
+  .mic-btn i { font-size: 16px; }
+  .chat-fab {
+    width: 52px; height: 52px; background: var(--earth-green); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    border: none; box-shadow: 0 4px 12px rgba(27,67,50,0.35);
+  }
+  .chat-fab i { font-size: 24px; color: #fff; }
+
+  /* FOOTER */
+  .footer { background: #111; padding: 32px 24px; }
+  .footer-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 24px; }
+  .footer-brand-name { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .footer-brand-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 16px; }
+  .footer-col-title { font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .footer-link { display: block; font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 8px; cursor: pointer; transition: color 0.12s; }
+  .footer-link:hover { color: var(--saffron-bright); }
+  .footer-bottom { background: #0A0A0A; padding: 14px 24px; text-align: center; font-size: 12px; color: rgba(255,255,255,0.3); }
+  .footer-bottom span { color: var(--saffron); }
+
+  .divider { height: 1px; background: var(--border); margin: 0; }
+
+  .section-full { padding: 40px 24px; background: var(--off-white); }
+  .section-full .section { padding: 0; }
+
+  .make-in-india {
+    display: flex; align-items: center; gap: 6px;
+    background: #fff8e6; border: 1px solid #f0c040; border-radius: 4px;
+    padding: 5px 12px; font-size: 11px; font-weight: 700;
+    color: #7a5a00; letter-spacing: 0.5px;
+    align-self: flex-start;
+  }
+  .make-in-india i { font-size: 13px; color: #E85D04; }
+  /* Responsive rules */
+  @media (max-width: 900px) {
+    .header-top { padding: 10px 14px; }
+    .header-top { flex-wrap: wrap; }
+    .logo-block { order: 1; }
+    .search-bar { order: 2; width: 100%; margin-top: 8px; border-radius: 6px; }
+    .header-utils { order: 3; margin-top: 8px; gap: 10px; }
+    .hero { padding: 36px 18px; }
+    .hero-title { font-size: 40px; }
+    .cat-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .product-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .testi-grid { grid-template-columns: repeat(1, 1fr); }
+  }
+  @media (max-width: 520px){
+    .hero-title { font-size: 28px; }
+    .hero-sub { font-size: 14px; }
+    .search-bar input { padding: 10px; }
+    .cat-grid, .product-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  }
+</style>
+
+<script src="assets/js/site.js"></script>
+
+<!-- page title removed (was sr-only) -->
+
+<!-- STICKY HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="logo-block">
+      <div class="logo-icon"><i class="ti ti-tractor" aria-hidden="true"></i></div>
+      <div class="logo-text">
+        <div class="logo-name display">BHUMIPUTRA</div>
+        <div class="logo-tag">Factory Direct · Since 2003</div>
+      </div>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder='Search: "Eicher Tractor Seat" or "Mahindra Silencer"' />
+      <button class="search-btn"><i class="ti ti-search" aria-hidden="true"></i></button>
+    </div>
+    <div class="header-utils">
+      <div class="util-item">
+        <i class="ti ti-map-pin" aria-hidden="true"></i>
+        <span>Location</span>
+      </div>
+      <div class="util-item">
+        <i class="ti ti-language" aria-hidden="true"></i>
+        <span>हिं / EN</span>
+      </div>
+      <div class="util-item cart-util">
+        <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+        <div class="cart-badge">2</div>
+        <span>Cart</span>
+      </div>
+      <div class="util-item">
+        <i class="ti ti-truck-delivery" aria-hidden="true"></i>
+        <span>Track</span>
+      </div>
+      <div style="display:flex;align-items:center;">
+        <button id="auth-btn-top" class="util-item" style="background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;padding:6px 10px;border-radius:6px;font-size:13px;">Login / Sign up</button>
+      </div>
+    </div>
+  </div>
+  <div class="search-suggestions">
+    <span class="sugg-label">Popular:</span>
+    <span class="sugg-pill">Eicher Tractor Seat</span>
+    <span class="sugg-pill">Mahindra Silencer</span>
+    <span class="sugg-pill">John Deere Suspension Seat</span>
+    <span class="sugg-pill">Tata Truck Cabin Seat</span>
+    <span class="sugg-pill">Massey Ferguson Parts</span>
+  </div>
+</div>
+
+</body>
+</html>
+
+<script>
+  function sendPrompt(cmd){
+    console.log('sendPrompt', cmd);
+    const map = {
+      'Show me the product catalog for tractor seats': 'bhumiputra_catalog_truck_seats.html',
+      'Show me the silencer catalog for trucks and tractors': 'bhumiputra_catalog_truck_seats.html?category=silencers',
+      'Show me tractor seat options including standard, suspension, and deluxe': 'bhumiputra_catalog_truck_seats.html?category=tractor',
+      'Show me commercial vehicle and truck cabin seats': 'bhumiputra_catalog_truck_seats.html?category=commercial',
+      'Show me tractor and truck silencer options': 'bhumiputra_catalog_truck_seats.html?category=silencers',
+      'Show all products compatible with Mahindra tractors': 'bhumiputra_catalog_truck_seats.html?brand=Mahindra',
+      'Show all products compatible with Eicher tractors': 'bhumiputra_catalog_truck_seats.html?brand=Eicher',
+      'Show products for Massey Ferguson': 'bhumiputra_catalog_truck_seats.html?brand=Massey%20Ferguson',
+      'Tell me more about the Mechanical Suspension Seat for Eicher and Mahindra tractors': 'bhumiputra_product_detail_lcv_suspension_seat.html',
+      'Tell me about the oval-body tractor silencer compatible with John Deere and Mahindra': 'bhumiputra_product_detail_lcv_suspension_seat.html?product=silencer-oval',
+      'Tell me about the commercial truck cabin seat for Tata and Leyland': 'bhumiputra_product_detail_lcv_suspension_seat.html?product=truck-cabin',
+      'I need help finding a part for my vehicle': 'bhumiputra_catalog_truck_seats.html?help=1',
+      'I need help finding the right part for my vehicle': 'bhumiputra_catalog_truck_seats.html?help=1',
+      'Help me search for a specific tractor or truck part by vehicle model': 'bhumiputra_catalog_truck_seats.html',
+      'I want to place a bulk fleet order for commercial vehicle seats': 'bhumiputra_catalog_truck_seats.html?bulk=1',
+      'I want to buy the LCV Mechanical Suspension Seat — take me to checkout': 'bhumiputra_otp_login_checkout.html?checkout=mech-suspension',
+      'Add the LCV Mechanical Suspension Seat to my cart': 'bhumiputra_otp_login_checkout.html?add=mech-suspension'
+    };
+    const target = map[cmd];
+    if(!target){ alert(cmd); return; }
+    // WhatsApp/checkout placeholders handled by pages themselves where needed
+    window.location.href = target;
+  }
+
+  // ensure buttons without explicit type do not submit forms
+  document.querySelectorAll('button:not([type])').forEach(b => b.setAttribute('type','button'));
+
+  // make clickable cards keyboard-accessible (anchors already focusable)
+  document.querySelectorAll('.cat-card, .product-card, .brand-pill, .p-card').forEach(el=>{
+    if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0');
+    el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') el.click(); });
+  });
+</script>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><i class="ti ti-building-factory-2" aria-hidden="true"></i> Ground-Zero Factory Direct</div>
+  <div class="trust-item"><i class="ti ti-shield-check" aria-hidden="true"></i> OEM-Spec Fitment Guarantee</div>
+  <div class="trust-item"><i class="ti ti-cash" aria-hidden="true"></i> COD Available Pan-India</div>
+  <div class="trust-item"><i class="ti ti-replace" aria-hidden="true"></i> 30-Day Fitment Assurance</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><i class="ti ti-building-factory-2" aria-hidden="true"></i> Make in India — Factory Direct Prices</div>
+    <h1 class="hero-title display">Premium Seats &amp; Silencers.<br><span>Factory to Your Field.</span></h1>
+    <p class="hero-sub">OEM-engineered mechanical suspension seats and heavy-duty silencers for every major Indian tractor and truck brand — sold directly from our manufacturing floor, with zero middlemen.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary display" onclick="sendPrompt('Show me the product catalog for tractor seats')">
+        <i class="ti ti-tractor" aria-hidden="true"></i> Shop Tractor Seats
+      </button>
+      <button class="btn-secondary display" onclick="sendPrompt('Show me the silencer catalog for trucks and tractors')">
+        <i class="ti ti-flame" aria-hidden="true"></i> Browse Silencers
+      </button>
+      <div class="make-in-india"><i class="ti ti-flag-3" aria-hidden="true"></i> Made in India</div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="stat-num display">12,000+</div><div class="stat-label">Units Delivered</div></div>
+      <div class="hero-stat"><div class="stat-num display">47+</div><div class="stat-label">Compatible Models</div></div>
+      <div class="hero-stat"><div class="stat-num display">18 States</div><div class="stat-label">Pan-India Delivery</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY GRID -->
+<div class="section-full">
+<div class="section">
+  <div class="section-head">
+    <div class="section-eyebrow">Browse by Category</div>
+    <h2 class="section-title display">What does your vehicle need?</h2>
+    <p class="section-sub">Select your part type — compatible models are shown on every product page.</p>
+  </div>
+  <div class="cat-grid">
+    <a href="bhumiputra_catalog_truck_seats.html" class="cat-card">
+      <div class="cat-icon green"><i class="ti ti-armchair" aria-hidden="true"></i></div>
+      <div>
+        <div class="cat-badge">Best Seller</div>
+        <div class="cat-title display">Tractor Seats</div>
+        <div class="cat-desc">Standard flat, mechanical suspension, and premium deluxe models. Heavy-duty MS steel frame with water-resistant leatherette.</div>
+      </div>
+      <div class="cat-count"><i class="ti ti-package" aria-hidden="true"></i> 28 products available</div>
+    </a>
+    <a href="bhumiputra_catalog_truck_seats.html?category=commercial" class="cat-card">
+      <div class="cat-icon saffron"><i class="ti ti-steering-wheel" aria-hidden="true"></i></div>
+      <div>
+        <div class="cat-badge">New Arrivals</div>
+        <div class="cat-title display">Commercial Vehicle Seats</div>
+        <div class="cat-desc">Ergonomic cabin seats for trucks, commercial lorries, and passenger vehicles. Built for long-haul durability.</div>
+      </div>
+      <div class="cat-count"><i class="ti ti-package" aria-hidden="true"></i> 14 products available</div>
+    </a>
+    <a href="bhumiputra_catalog_truck_seats.html?category=silencers" class="cat-card">
+      <div class="cat-icon charcoal"><i class="ti ti-wind" aria-hidden="true"></i></div>
+      <div>
+        <div class="cat-badge">Factory Spec</div>
+        <div class="cat-title display">Silencers &amp; Exhausts</div>
+        <div class="cat-desc">Perforated guard, oval-body, and matte-black silencers. Precision-welded for exact OEM replacement fit across all major brands.</div>
+      </div>
+      <div class="cat-count"><i class="ti ti-package" aria-hidden="true"></i> 19 products available</div>
+    </a>
+  </div>
+</div>
+</div>
+
+<!-- BRAND COMPATIBILITY BAND -->
+<div class="compat-band">
+  <div class="compat-inner">
+    <div class="section-head">
+      <div class="section-eyebrow">Compatibility Verified</div>
+      <h2 class="section-title display">Which brand is your vehicle?</h2>
+      <p class="section-sub">Every product is cross-referenced to exact OEM model specs. Click your brand to filter.</p>
+    </div>
+    <div class="brand-row">
+      <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Mahindra"><i class="ti ti-tractor" aria-hidden="true"></i> Mahindra</a>
+      <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Eicher"><i class="ti ti-tractor" aria-hidden="true"></i> Eicher</a>
+      <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Massey%20Ferguson"><i class="ti ti-tractor" aria-hidden="true"></i> Massey Ferguson</a>
+      <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=John%20Deere"><i class="ti ti-tractor" aria-hidden="true"></i> John Deere</a>
+      <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Tata"><i class="ti ti-truck" aria-hidden="true"></i> Tata</a>
+      <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Ashok%20Leyland"><i class="ti ti-truck" aria-hidden="true"></i> Ashok Leyland</a>
+      <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Force%20Motors"><i class="ti ti-truck" aria-hidden="true"></i> Force Motors</a>
+      <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?help=1"><i class="ti ti-help" aria-hidden="true"></i> Not sure? Ask us</a>
+    </div>
+    <div class="compat-note"><i class="ti ti-info-circle" aria-hidden="true"></i> Our parts are independently manufactured to match OEM dimensions — not affiliated with these brands.</div>
+  </div>
+</div>
+
+<!-- FEATURED PRODUCTS -->
+<div class="section-full">
+<div class="section">
+  <div class="section-head">
+    <div class="section-eyebrow">Featured Products</div>
+    <h2 class="section-title display">Top-selling parts this season</h2>
+    <p class="section-sub">Real factory pricing — no retail markup, no middlemen.</p>
+  </div>
+    <div class="product-grid">
+
+    <!-- Product 1 -->
+    <a class="product-card" href="bhumiputra_product_detail_lcv_suspension_seat.html">
+      <div class="product-img">
+        <i class="ti ti-armchair" aria-hidden="true"></i>
+        <div class="product-tag hot">Best Seller</div>
+      </div>
+      <div class="product-body">
+        <div class="product-brand">Tractor Seat · Suspension Series</div>
+        <div class="product-name display">Mechanical Suspension Seat — Heavy Duty</div>
+        <div class="compat-box"><i class="ti ti-circle-check" aria-hidden="true"></i> Fits: Eicher 380, 485, 242 · Mahindra 475, 575 DI · MF 241</div>
+        <div class="price-row">
+          <span class="price-factory">₹3,850</span>
+          <span class="price-mrp">₹5,400</span>
+          <span class="price-off">-29%</span>
+        </div>
+        <div class="rating-row">
+          <span class="stars">★★★★★</span> 4.8 (312 reviews)
+        </div>
+        <button class="add-to-cart display" data-name="Mechanical Suspension Seat — Heavy Duty" data-price="₹3,850"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+      </div>
+    </a>
+
+    <!-- Product 2 -->
+    <a class="product-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=silencer-oval">
+      <div class="product-img">
+        <i class="ti ti-wind" aria-hidden="true"></i>
+        <div class="product-tag">Factory Spec</div>
+      </div>
+      <div class="product-body">
+        <div class="product-brand">Silencer · Oval Body Series</div>
+        <div class="product-name display">Oval Silencer — Matte Black Finish</div>
+        <div class="compat-box"><i class="ti ti-circle-check" aria-hidden="true"></i> Fits: John Deere 5045D, 5050D · Mahindra 575 DI · Eicher 333</div>
+        <div class="price-row">
+          <span class="price-factory">₹2,100</span>
+          <span class="price-mrp">₹3,200</span>
+          <span class="price-off">-34%</span>
+        </div>
+        <div class="rating-row">
+          <span class="stars">★★★★★</span> 4.7 (198 reviews)
+        </div>
+        <button class="add-to-cart display" data-name="Oval Silencer — Matte Black Finish" data-price="₹2,100"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+      </div>
+    </a>
+
+    <!-- Product 3 -->
+    <a class="product-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=truck-cabin">
+      <div class="product-img">
+        <i class="ti ti-steering-wheel" aria-hidden="true"></i>
+        <div class="product-tag hot">New</div>
+      </div>
+      <div class="product-body">
+        <div class="product-brand">Truck Seat · Cabin Series</div>
+        <div class="product-name display">Long-Haul Truck Cabin Seat — Foam Core</div>
+        <div class="compat-box"><i class="ti ti-circle-check" aria-hidden="true"></i> Fits: Tata 407, 608, 709 · Ashok Leyland Dost · Force Traveller</div>
+        <div class="price-row">
+          <span class="price-factory">₹4,200</span>
+          <span class="price-mrp">₹6,000</span>
+          <span class="price-off">-30%</span>
+        </div>
+        <div class="rating-row">
+          <span class="stars">★★★★☆</span> 4.5 (87 reviews)
+        </div>
+        <button class="add-to-cart display" data-name="Long-Haul Truck Cabin Seat — Foam Core" data-price="₹4,200"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+      </div>
+    </a>
+
+  </div>
+</div>
+</div>
+
+<!-- WHY BHUMIPUTRA -->
+<div style="background: #EEF6F1; padding: 40px 24px;">
+<div class="section" style="padding: 0; max-width: 1000px; margin: 0 auto;">
+  <div class="section-head">
+    <div class="section-eyebrow">Why Buy Direct</div>
+    <h2 class="section-title display">The factory advantage</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <i class="ti ti-building-factory-2 why-icon" aria-hidden="true"></i>
+      <div class="why-title display">Zero Middlemen</div>
+      <div class="why-desc">Priced from the manufacturing floor — no distributor or dealer markups ever.</div>
+    </div>
+    <div class="why-card">
+      <i class="ti ti-ruler-measure why-icon" aria-hidden="true"></i>
+      <div class="why-title display">OEM-Spec Engineered</div>
+      <div class="why-desc">Every part machined to exact factory tolerances for bolt-on replacement.</div>
+    </div>
+    <div class="why-card">
+      <i class="ti ti-truck-delivery why-icon" aria-hidden="true"></i>
+      <div class="why-title display">Pan-India Delivery</div>
+      <div class="why-desc">BlueDart-powered logistics with GPS pin-drop delivery even for rural pincode addresses.</div>
+    </div>
+    <div class="why-card">
+      <i class="ti ti-brand-whatsapp why-icon" aria-hidden="true"></i>
+      <div class="why-title display">WhatsApp Updates</div>
+      <div class="why-desc">Order confirmations, dispatch alerts, and driver contact — all on WhatsApp.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="section-full">
+<div class="section">
+  <div class="section-head">
+    <div class="section-eyebrow">Real Farmers & Drivers</div>
+    <h2 class="section-title display">What our customers say</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Eicher 380 ke liye seat liya — ekdum sahi fit aur bahut mazboot. Market se aadhe daam mein mila, seedha factory se."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">RK</div>
+        <div><div class="testi-name">Ramkishan Yadav</div><div class="testi-loc">Bareilly, Uttar Pradesh</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Ordered the Tata 407 silencer. WhatsApp pe update aaya aur driver ka number bhi. COD mein le liya, koi issue nahi."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MS</div>
+        <div><div class="testi-name">Mandeep Singh</div><div class="testi-loc">Ludhiana, Punjab</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Bought 6 seats for our fleet — bulk price was excellent and fitment was exact on John Deere 5050D. Highly recommended."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">VP</div>
+        <div><div class="testi-name">Vijay Patil</div><div class="testi-loc">Pune, Maharashtra</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta">
+  <h2 class="footer-cta-title display">Can't find the right part?</h2>
+  <p class="footer-cta-sub">Tell us your vehicle model and we'll confirm fitment before you order.</p>
+  <div class="footer-cta-btns">
+    <button class="wa-btn display" onclick="sendPrompt('I need help finding the right part for my vehicle')">
+      <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Chat on WhatsApp
+    </button>
+    <button class="btn-primary display" onclick="sendPrompt('Help me search for a specific tractor or truck part by vehicle model')">
+      <i class="ti ti-search" aria-hidden="true"></i> Search by Vehicle Model
+    </button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name display">BHUMIPUTRA</div>
+      <p class="footer-brand-desc">Ground-zero independent manufacturer of mechanical suspension seats and heavy-duty silencers. Factory-direct pricing, OEM-spec fitment, pan-India delivery.</p>
+      <div style="display: flex; gap: 10px;">
+        <span style="background: var(--saffron); color: #fff; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px;">Make in India</span>
+        <span style="background: #1A3A2A; color: rgba(255,255,255,0.6); font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px;">ISO 9001:2015</span>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Products</div>
+      <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?category=tractor">Tractor Seats</a>
+      <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?category=truck">Truck Seats</a>
+      <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?category=tractor-silencers">Tractor Silencers</a>
+      <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?category=truck-silencers">Truck Silencers</a>
+      <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?bulk=1">Fleet Bulk Orders</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Support</div>
+      <a class="footer-link" href="bhumiputra_otp_login_checkout.html">Track My Order</a>
+      <a class="footer-link" href="#">Fitment Guide</a>
+      <a class="footer-link" href="#">Return Policy</a>
+      <a class="footer-link" href="#">Contact Factory</a>
+      <a class="footer-link" href="https://api.whatsapp.com/send?text=I%20want%20help%20finding%20a%20part">WhatsApp Us</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Compatible Brands</div>
+      <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?brand=Mahindra">Mahindra</a>
+      <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?brand=Eicher">Eicher</a>
+      <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?brand=Massey%20Ferguson">Massey Ferguson</a>
+      <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?brand=John%20Deere">John Deere</a>
+      <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?brand=Tata">Tata · Leyland</a>
+    </div>
+  </div>
+</div>
+<div class="footer-bottom">© 2025 Bhumiputra.com — <span>Ground-Zero Factory Direct</span> · Ghaziabad, Uttar Pradesh · GST: 09XXXXX0000X1Z5</div>
+
+<!-- FLOATING AI CHATBOT -->
+<div class="chatbot-bubble">
+  <div class="chat-popup">
+    <div class="chat-popup-title">Bhumiputra Assistant</div>
+    <div class="chat-popup-sub">अपने vehicle का नाम बताएं — हम सही part खोज देंगे।<br><em style="font-size:10px; color: #bbb;">Tell us your vehicle, we'll find your part.</em></div>
+    <div class="chat-input-row">
+      <input type="text" placeholder="e.g. Eicher 380 seat" />
+      <button class="mic-btn" title="Voice input" aria-label="Voice input"><i class="ti ti-microphone" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <button class="chat-fab" aria-label="Open chat assistant">
+    <i class="ti ti-message-chatbot" aria-hidden="true"></i>
+  </button>
+</div>

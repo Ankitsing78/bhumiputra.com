@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bhumiputra — Checkout / OTP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/tabler-icons@1.39.1/iconfont/tabler-icons.min.css" rel="stylesheet">
+  <style>
+  .raj { font-family: 'Rajdhani', sans-serif; }
+
+  :root{
+    --color-text-primary: #1B4332;
+    --color-text-secondary: #6b6b6b;
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #F3FBF7;
+    --color-border-secondary: rgba(0,0,0,0.06);
+    --color-border-tertiary: rgba(0,0,0,0.04);
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+  }
+
+  .shell {
+    max-width: 400px;
+    margin: 1.5rem auto;
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+  }
+
+  .top-bar {
+    background: #1B4332;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .top-bar-icon { font-size: 20px; color: #F48C06; }
+  .top-bar-title { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; color: #fff; }
+  .top-bar-sub { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 1px; }
+
+  .step-bar {
+    display: flex;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    background: var(--color-background-secondary);
+  }
+  .step-pip {
+    flex: 1;
+    padding: 10px 6px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .step-pip.active {
+    color: #1B4332;
+    border-bottom-color: #1B4332;
+    font-weight: 500;
+  }
+  .step-pip.done {
+    color: #40916C;
+    border-bottom-color: #40916C;
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 500;
+    margin-right: 4px;
+    background: var(--color-border-tertiary);
+    color: var(--color-text-secondary);
+  }
+  .step-pip.active .step-num {
+    background: #1B4332;
+    color: #fff;
+  }
+  .step-pip.done .step-num {
+    background: #40916C;
+    color: #fff;
+  }
+
+  .panel { display: none; padding: 22px 20px; }
+  .panel.active { display: block; }
+
+  .panel-title { font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .panel-sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 20px; line-height: 1.5; }
+
+  /* Brand polish: larger headings and cleaner inputs for checkout/login */
+  .panel-title { font-size: 18px; font-weight: 700; color: #1B4332; }
+  .field-label { font-size: 13px; color: #4f5b52; margin-bottom: 8px; font-weight: 600; }
+  .phone-input-wrap input, input[type="text"], input[type="email"], textarea { padding: 12px; border-radius: 8px; border: 1px solid #eee; background: #fff; font-size: 14px; }
+  .phone-input-wrap input { width: 100%; box-shadow: none; }
+  .otp-box { width: 56px; height: 60px; font-size: 24px; border: 1px solid #e6e6e6; background: #fff; }
+  .otp-box:focus { border-color: #1B4332; box-shadow: 0 4px 12px rgba(27,67,50,0.08); }
+  .btn-primary-green, .btn-primary-saffron { border-radius: 10px; padding: 14px; font-size: 15px; }
+  .top-bar { border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+
+  .field-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 6px; font-weight: 500; }
+
+  .phone-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .country-code {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .phone-input-wrap { flex: 1; }
+  .phone-input-wrap input { width: 100%; }
+
+  .otp-channel-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .channel-btn {
+    flex: 1;
+    padding: 10px 8px;
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-background-secondary);
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.15s;
+    font-weight: 500;
+  }
+  .channel-btn i { font-size: 17px; }
+  .channel-btn.selected {
+    border-color: #1B4332;
+    background: #D8F3DC;
+    color: #1B4332;
+  }
+  .channel-btn:hover:not(.selected) {
+    background: var(--color-background-primary);
+  }
+
+  .btn-primary-green {
+    width: 100%;
+    background: #1B4332;
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius-md);
+    padding: 13px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-family: 'Rajdhani', sans-serif;
+  }
+  .btn-primary-green i { font-size: 18px; }
+  .btn-primary-green:hover { background: #2D6A4F; }
+
+  .btn-primary-saffron {
+    width: 100%;
+    background: #E85D04;
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius-md);
+    padding: 13px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-family: 'Rajdhani', sans-serif;
+  }
+  .btn-primary-saffron:hover { background: #c94e03; }
+
+  .otp-boxes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .otp-box {
+    width: 48px;
+    height: 52px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    background: var(--color-background-secondary);
+    color: var(--color-text-primary);
+    caret-color: #1B4332;
+  }
+  .otp-box:focus { outline: none; border-color: #1B4332; background: var(--color-background-primary); }
+
+  .otp-hint {
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-bottom: 18px;
+  }
+  .otp-hint a { color: #40916C; cursor: pointer; }
+
+</style>
+
+<style>
+  .whatsapp-preview {
+    background: #EAF7F0;
+    border-radius: var(--border-radius-md);
+    padding: 12px 14px;
+    border: 0.5px solid #95D5B2;
+    margin-bottom: 18px;
+  }
+  .wa-preview-label { font-size: 10px; color: #2D6A4F; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .wa-bubble {
+    background: #fff;
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) var(--border-radius-md);
+    padding: 10px 12px;
+    font-size: 13px;
+    color: #1A1A1A;
+    line-height: 1.6;
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+  .wa-bubble .otp-code { font-size: 22px; font-weight: 500; letter-spacing: 4px; color: #1B4332; display: block; margin: 4px 0; }
+  .wa-bubble .wa-time { font-size: 10px; color: #888; text-align: right; margin-top: 4px; }
+
+  .address-field { margin-bottom: 14px; }
+  .address-field textarea {
+    width: 100%;
+    height: 72px;
+    resize: none;
+    font-family: inherit;
+    font-size: 14px;
+  }
+
+  .gps-btn {
+    width: 100%;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 11px;
+    background: var(--color-background-secondary);
+    color: var(--color-text-primary);
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .gps-btn i { font-size: 17px; color: #E85D04; }
+  .gps-btn:hover { background: var(--color-background-primary); border-color: #E85D04; }
+
+  .map-placeholder {
+    width: 100%;
+    height: 140px;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-tertiary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 14px;
+    color: var(--color-text-secondary);
+    font-size: 13px;
+  }
+  .map-placeholder i { font-size: 28px; color: #E85D04; }
+
+  .pay-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+  .pay-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--color-background-secondary);
+  }
+  .pay-option.selected {
+    border-color: #1B4332;
+    background: #D8F3DC;
+  }
+  .pay-option:hover:not(.selected) { background: var(--color-background-primary); }
+  .pay-radio {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-border-secondary);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pay-option.selected .pay-radio {
+    border-color: #1B4332;
+    background: #1B4332;
+  }
+  .pay-option.selected .pay-radio::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .pay-icon { font-size: 20px; color: var(--color-text-secondary); }
+  .pay-option.selected .pay-icon { color: #1B4332; }
+  .pay-label { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+  .pay-sub { font-size: 11px; color: var(--color-text-secondary); }
+
+  .order-summary {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    padding: 3px 0;
+  }
+  .summary-row.total {
+    border-top: 0.5px solid var(--color-border-tertiary);
+    margin-top: 8px;
+    padding-top: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+  .summary-row.total span:last-child { color: #1B4332; }
+
+  .success-screen { padding: 28px 20px; text-align: center; }
+  .success-icon {
+    width: 64px; height: 64px;
+    background: #D8F3DC;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .success-icon i { font-size: 32px; color: #1B4332; }
+  .success-title { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: #1B4332; margin-bottom: 6px; }
+  .success-sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 20px; line-height: 1.6; }
+  .wa-confirm-card {
+    background: #EAF7F0;
+    border: 0.5px solid #95D5B2;
+    border-radius: var(--border-radius-md);
+    padding: 12px 14px;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+  .wa-confirm-label { font-size: 10px; color: #2D6A4F; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .wa-confirm-msg { font-size: 13px; color: #1A1A1A; line-height: 1.6; }
+  .wa-confirm-msg strong { color: #1B4332; }
+
+  .back-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    margin-bottom: 16px;
+  }
+</style>
+
+<style>
+  /* Checkout responsive */
+  @media (max-width:900px){
+    .shell{max-width:92%;margin:1rem auto}
+    .panel{padding:16px}
+    .otp-boxes{gap:8px}
+    .otp-box{width:40px;height:46px}
+    .top-bar{padding:10px 12px}
+    .step-bar{display:none}
+  }
+  @media (max-width:520px){
+    .shell{max-width:96%}
+    .btn-primary-green{padding:12px;font-size:14px}
+  }
+</style>
+
+<body>
+
+<!-- page title removed (was sr-only) -->
+
+<!-- Temporary header: logo linking to homepage + cart indicator -->
+<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;margin-bottom:8px;">
+  <a href="bhumiputra_homepage.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;" aria-label="Bhumiputra home">
+    <div style="width:36px;height:36px;background:#E85D04;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;"><i class="ti ti-tractor" aria-hidden="true"></i></div>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;color:#1B4332;">BHUMIPUTRA</div>
+  </a>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button id="auth-btn-top" class="btn-primary-green" style="width:auto;padding:8px 12px;display:flex;align-items:center;gap:8px;">Login / Sign up</button>
+    <button id="cart-btn-top" class="btn-primary-green" style="width:auto;padding:8px 12px;display:flex;align-items:center;gap:8px;">
+      <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+      <span id="cart-badge-top" style="background:#E85D04;color:#fff;border-radius:12px;padding:2px 8px;font-weight:700;">0</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  function sendPrompt(cmd){
+    console.log('checkout sendPrompt', cmd);
+    if(cmd && cmd.toLowerCase().includes('checkout')){
+      alert('Proceed to payment – integrate with your checkout flow.');
+      return;
+    }
+    if(cmd && cmd.toLowerCase().includes('whatsapp')){
+      const text = encodeURIComponent('Hi, I want to enquire about my order/part');
+      window.open('https://api.whatsapp.com/send?text='+text, '_blank');
+      return;
+    }
+    alert(cmd);
+  }
+</script>
+ 
+
+<div class="shell">
+
+  <div class="top-bar">
+    <i class="ti ti-shield-check top-bar-icon" aria-hidden="true"></i>
+    <div>
+      <div class="top-bar-title">Secure Checkout</div>
+      <div class="top-bar-sub">No password needed — verify by OTP in seconds</div>
+    </div>
+  </div>
+
+  <div class="step-bar" id="stepBar">
+    <div class="step-pip active" id="pip1"><span class="step-num">1</span>Profile</div>
+    <div class="step-pip" id="pip2"><span class="step-num">2</span>Verify OTP</div>
+    <div class="step-pip" id="pip3"><span class="step-num">3</span>Address</div>
+    <div class="step-pip" id="pip4"><span class="step-num">4</span>Payment</div>
+  </div>
+
+  <div class="panel active" id="panel1">
+    <p class="panel-title">Your profile</p>
+    <p class="panel-sub">Click the user icon (top-right) or the button below to add or edit the details we need to manage your orders: name, phone, email and delivery address.</p>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px 0;margin-bottom:8px;">
+      <div style="font-size:48px;color:#1B4332;">👤</div>
+      <button class="btn-primary-green raj" onclick="openProfileEditor()">Manage profile</button>
+      <div style="font-size:12px;color:var(--color-text-secondary);text-align:center;max-width:320px;">We use this information to prefill delivery and contact details at checkout. You can update anytime.</div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel2">
+    <div class="back-link" onclick="goTo(1)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Edit profile</div>
+    <p class="panel-title">Enter the OTP</p>
+    <p class="panel-sub" id="otpSentLabel">Sent via WhatsApp to +91 98765 43210</p>
+
+    <div class="whatsapp-preview" id="waPreview">
+      <div class="wa-preview-label"><i class="ti ti-brand-whatsapp" aria-hidden="true" style="font-size:12px;vertical-align:-1px;margin-right:3px;"></i> WhatsApp message preview</div>
+      <div class="wa-bubble">
+        नमस्ते! 🙏 Your <strong>Bhumiputra.com</strong> login code is:<br>
+        <span class="otp-code">4 8 2 7</span>
+        Valid for 10 minutes. Do not share this with anyone.
+        <div class="wa-time">Now · ✓✓</div>
+      </div>
+    </div>
+
+    <div class="otp-boxes">
+      <input class="otp-box" type="tel" maxlength="1" id="o1" oninput="otpNext(this,'o2')" />
+      <input class="otp-box" type="tel" maxlength="1" id="o2" oninput="otpNext(this,'o3')" />
+      <input class="otp-box" type="tel" maxlength="1" id="o3" oninput="otpNext(this,'o4')" />
+      <input class="otp-box" type="tel" maxlength="1" id="o4" oninput="otpNext(this,null)" />
+    </div>
+
+    <div class="otp-hint">Didn't receive it? <a onclick="resendOTP()">Resend OTP</a> &nbsp;|&nbsp; <a onclick="selectChannel(currentChannel==='wa'?'sms':'wa');goTo(1);">Try SMS instead</a></div>
+
+    <button class="btn-primary-green raj" onclick="verifyOTP()">
+      <i class="ti ti-shield-check" aria-hidden="true"></i> Verify & Continue ↗
+    </button>
+  </div>
+
+  <div class="panel" id="panel3">
+    <div class="back-link" onclick="goTo(2)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</div>
+    <p class="panel-title">Delivery address</p>
+    <p class="panel-sub">Rural addresses welcome — use GPS pin-drop if your address is hard to type.</p>
+
+    <div class="address-field">
+      <div class="field-label">Full name</div>
+      <input id="addr_name" type="text" placeholder="e.g. Ramji Yadav" style="width:100%;margin-bottom:12px;" />
+      <div class="field-label">Village / Town / Landmark</div>
+      <textarea id="addr_line" placeholder="e.g. Near Hanuman Mandir, Mohalla Tilak Nagar, Bareilly"></textarea>
+    </div>
+
+    <div style="display:flex;gap:8px;margin-bottom:14px;">
+      <div style="flex:1;">
+        <div class="field-label">District</div>
+        <input id="addr_district" type="text" placeholder="e.g. Bareilly" style="width:100%;" />
+      </div>
+      <div style="flex:1;">
+        <div class="field-label">PIN code</div>
+        <input id="addr_pincode" type="tel" placeholder="243001" maxlength="6" style="width:100%;" />
+      </div>
+    </div>
+
+    <button class="gps-btn" onclick="showGPS()">
+      <i class="ti ti-current-location" aria-hidden="true"></i> Locate me — use GPS pin-drop
+    </button>
+
+    <div class="map-placeholder" id="mapBox">
+      <i class="ti ti-map-pin" aria-hidden="true"></i>
+      <span>Tap "Locate me" to drop a pin at your exact location</span>
+    </div>
+
+    <button class="btn-primary-green raj" onclick="goTo(4)">
+      <i class="ti ti-arrow-right" aria-hidden="true"></i> Continue to Payment ↗
+    </button>
+  </div>
+
+  <div class="panel" id="panel4">
+    <div class="back-link" onclick="goTo(3)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</div>
+    <p class="panel-title">Choose payment</p>
+
+    <div class="order-summary">
+      <div class="summary-row"><span>Mech. Suspension Seat × 1</span><span>₹3,600</span></div>
+      <div class="summary-row"><span>Delivery</span><span style="color:#40916C;">FREE</span></div>
+      <div class="summary-row"><span>GST (18%)</span><span>₹648</span></div>
+      <div class="summary-row total"><span>Total</span><span>₹4,248</span></div>
+    </div>
+
+    <div class="pay-options">
+      <div class="pay-option selected" id="payUPI" onclick="selectPay('upi')">
+        <div class="pay-radio"></div>
+        <i class="ti ti-device-mobile-payment pay-icon" aria-hidden="true"></i>
+        <div>
+          <div class="pay-label">UPI — PhonePe / GPay / Paytm</div>
+          <div class="pay-sub">Instant · No bank details needed</div>
+        </div>
+      </div>
+      <div class="pay-option" id="payCOD" onclick="selectPay('cod')">
+        <div class="pay-radio"></div>
+        <i class="ti ti-cash pay-icon" aria-hidden="true"></i>
+        <div>
+          <div class="pay-label">Cash on Delivery</div>
+          <div class="pay-sub">Pay when your order arrives</div>
+        </div>
+      </div>
+      <div class="pay-option" id="payNet" onclick="selectPay('net')">
+        <div class="pay-radio"></div>
+        <i class="ti ti-building-bank pay-icon" aria-hidden="true"></i>
+        <div>
+          <div class="pay-label">Net banking</div>
+          <div class="pay-sub">All major Indian banks supported</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-primary-saffron raj" onclick="placeOrder()">
+      <i class="ti ti-bolt" aria-hidden="true"></i> Place Order — <span id="place-order-amount">₹4,248</span> ↗
+    </button>
+    <div style="font-size:11px;color:var(--color-text-secondary);text-align:center;margin-top:6px;">
+      <i class="ti ti-lock" aria-hidden="true" style="font-size:13px;vertical-align:-2px;"></i>
+      Secured by 256-bit SSL · No card data stored
+    </div>
+  </div>
+
+  <div class="panel" id="panel5">
+    <div class="success-screen">
+      <div class="success-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
+      <div class="success-title">Order Confirmed!</div>
+      <p class="success-sub">Your order #BPT-2024-08471 has been placed.<br>Estimated delivery: 3–5 working days.</p>
+
+      <div class="wa-confirm-card">
+            <div class="wa-confirm-label"><i class="ti ti-brand-whatsapp" aria-hidden="true" style="font-size:12px;vertical-align:-1px;margin-right:3px;"></i> WhatsApp confirmation sent</div>
+            <div class="wa-confirm-msg">
+              नमस्ते <strong id="order-customer">Customer</strong> जी! 🎉<br><br>
+              आपका order confirm हो गया है।<br>
+              <strong>Order:</strong> <span id="order-items-summary">—</span><br>
+              <strong>Order ID:</strong> <span id="order-id">#BPT-XXXX</span><br>
+              <strong>Amount:</strong> <span id="order-amount">₹0</span> (<span id="order-paymethod">COD</span>)<br><br>
+              Dispatch होने पर delivery partner का number WhatsApp पर भेजा जाएगा।<br><br>
+              Track करें 👉 <span id="order-track" style="color:#40916C;">bhumiputra.com/track/----</span>
+            </div>
+      </div>
+
+      <button class="btn-primary-green raj" onclick="sendPrompt('Track my Bhumiputra order #BPT-2024-08471')">
+        <i class="ti ti-truck-delivery" aria-hidden="true"></i> Track my order ↗
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var currentChannel = 'wa';
+
+  function selectChannel(ch) {
+    currentChannel = ch;
+    document.getElementById('chanWA').classList.toggle('selected', ch === 'wa');
+    document.getElementById('chanSMS').classList.toggle('selected', ch === 'sms');
+    document.getElementById('waPreview').style.display = ch === 'wa' ? 'block' : 'none';
+  }
+
+  function goTo(step) {
+    for (var i = 1; i <= 5; i++) {
+      var p = document.getElementById('panel' + i);
+      if (p) p.classList.toggle('active', i === step);
+    }
+    var pips = ['pip1','pip2','pip3','pip4'];
+    pips.forEach(function(id, idx) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.classList.remove('active','done');
+      if (idx + 1 === step) el.classList.add('active');
+      else if (idx + 1 < step) el.classList.add('done');
+    });
+    if (step === 2) {
+      var phoneEl = document.getElementById('phoneInput');
+      var phone = '';
+      if(phoneEl) phone = phoneEl.value || '';
+      if(!phone){ try{ var u = JSON.parse(localStorage.getItem('bp_user')||'{}')||{}; phone = u.phone || u.id || ''; }catch(e){} }
+      if(!phone) phone = '98765 43210';
+      document.getElementById('otpSentLabel').textContent =
+        'Sent via ' + (currentChannel === 'wa' ? 'WhatsApp' : 'SMS') + ' to +91 ' + phone;
+    }
+    if (step === 1) {
+      ['o1','o2','o3','o4'].forEach(function(id){ document.getElementById(id).value=''; });
+    }
+  }
+
+  function otpNext(el, nextId) {
+    if (el.value.length === 1 && nextId) {
+      document.getElementById(nextId).focus();
+    }
+  }
+
+  function verifyOTP() {
+    var code = ['o1','o2','o3','o4'].map(function(id){ return document.getElementById(id).value; }).join('');
+    if (code.length < 4) {
+      alert('Please enter the 4-digit OTP.');
+      return;
+    }
+    goTo(3);
+  }
+
+  function resendOTP() {
+    ['o1','o2','o3','o4'].forEach(function(id){ document.getElementById(id).value=''; });
+    document.getElementById('o1').focus();
+    var hint = document.querySelector('.otp-hint');
+    hint.innerHTML = '<i class="ti ti-check" style="color:#40916C;font-size:13px;vertical-align:-2px;"></i> OTP resent successfully.';
+    setTimeout(function(){
+      hint.innerHTML = 'Didn\'t receive it? <a onclick="resendOTP()">Resend OTP</a> &nbsp;|&nbsp; <a onclick="selectChannel(currentChannel===\'wa\'?\'sms\':\'wa\');goTo(1);">Try SMS instead</a>';
+    }, 3000);
+  }
+
+  function showGPS() {
+    var box = document.getElementById('mapBox');
+    box.innerHTML = '<i class="ti ti-current-location" aria-hidden="true" style="font-size:28px;color:#E85D04;"></i><span style="color:#1B4332;font-weight:500;">📍 Location captured — Bareilly, UP (28.3670° N, 79.4304° E)</span><span style="font-size:11px;color:var(--color-text-secondary);">Tap again to adjust pin</span>';
+  }
+
+  function selectPay(type) {
+    ['payUPI','payCOD','payNet'].forEach(function(id){ document.getElementById(id).classList.remove('selected'); });
+    var map = { upi: 'payUPI', cod: 'payCOD', net: 'payNet' };
+    document.getElementById(map[type]).classList.add('selected');
+  }
+</script>
+
+<script src="assets/js/site.js"></script>

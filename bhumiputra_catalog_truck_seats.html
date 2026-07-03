@@ -1,0 +1,252 @@
+    <script>
+      function sendPrompt(cmd){
+        console.log('catalog sendPrompt', cmd);
+        const map = {
+          'Show me full details for the Long-Haul Truck Cabin Seat with foam core for Tata and Leyland': 'bhumiputra_product_detail_lcv_suspension_seat.html',
+          'Tell me about the suspension cabin seat compatible with Tata Prima and Leyland Boss': 'bhumiputra_product_detail_lcv_suspension_seat.html',
+          'Details on the mini truck flat seat for Tata Ace and Mahindra Jeeto': 'bhumiputra_product_detail_lcv_suspension_seat.html',
+          'Tell me about the Force Traveller and Tempo passenger van bench seat': 'bhumiputra_product_detail_lcv_suspension_seat.html',
+          'Details on the mechanical suspension seat for Mahindra Bolero Pickup and similar vehicles': 'bhumiputra_product_detail_lcv_suspension_seat.html',
+          'Tell me about the high-back co-driver seat for heavy trucks compatible with Tata and Leyland': 'bhumiputra_product_detail_lcv_suspension_seat.html',
+          'I want to place a bulk fleet order for commercial vehicle seats': '#'
+        };
+        const target = map[cmd];
+        if(!target){ alert(cmd); return; }
+        if(target === '#'){ alert('Placeholder action — integrate with backend.'); return; }
+        window.location.href = target;
+      }
+    </script>
+
+  .price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 5px; }
+  .price-main { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; color: var(--eg); }
+  .price-mrp { font-size: 12px; color: var(--color-text-secondary); text-decoration: line-through; }
+  .price-off { font-size: 11px; font-weight: 600; color: var(--sf); }
+
+  .rating-row { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--color-text-secondary); margin-bottom: 10px; }
+  .stars { color: #F48C06; font-size: 12px; }
+
+  .p-specs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .spec-chip { background: var(--color-background-secondary); border-radius: 4px; padding: 3px 7px; font-size: 10px; color: var(--color-text-secondary); }
+
+  .btn-cart {
+    width: 100%; background: var(--eg); color: #fff; border: none; border-radius: var(--border-radius-md);
+    padding: 9px; font-size: 13px; font-weight: 700; cursor: pointer;
+    font-family: 'Rajdhani', sans-serif; letter-spacing: 0.3px;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+    transition: background 0.15s;
+  }
+  .btn-cart:hover { background: var(--egll); }
+  .btn-cart i { font-size: 15px; }
+
+  .breadcrumb { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 16px; display: flex; align-items: center; gap: 5px; }
+  .breadcrumb a { color: var(--egll); cursor: pointer; }
+  .breadcrumb i { font-size: 12px; }
+
+  .bulk-banner {
+    background: #FFF3E0; border: 0.5px solid #F48C06; border-radius: var(--border-radius-md);
+    padding: 10px 14px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .bulk-banner i { font-size: 18px; color: var(--sf); flex-shrink: 0; }
+  .bulk-banner-text { font-size: 12px; color: #7a4700; }
+  .bulk-banner-text strong { color: #5a3200; font-weight: 500; }
+  .bulk-btn { margin-left: auto; background: var(--sf); color: #fff; border: none; border-radius: 4px; padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: 'Rajdhani', sans-serif; }
+
+  /* Responsive behaviors */
+  @media (max-width: 900px){
+    .page-shell{flex-direction:column}
+    .filters{display:none}
+    .main{padding:12px}
+    .results-bar{flex-direction:column;gap:8px}
+    .sort-select{margin-left:0}
+  }
+  @media (max-width:520px){
+    .product-grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+  }
+</style>
+
+<!-- page title removed (was sr-only) -->
+
+<!-- Temporary header: small logo linking to homepage + cart indicator -->
+<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 24px;margin-bottom:8px;">
+  <a href="bhumiputra_homepage.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;" aria-label="Bhumiputra home">
+    <div style="width:36px;height:36px;background:#E85D04;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;"><i class="ti ti-tractor" aria-hidden="true"></i></div>
+    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--eg);">BHUMIPUTRA</div>
+  </a>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button id="auth-btn-top" class="btn-cart" style="width:auto;padding:8px 12px;display:flex;align-items:center;gap:8px;">Login / Sign up</button>
+    <button id="cart-btn-top" class="btn-cart" style="width:auto;padding:8px 12px;display:flex;align-items:center;gap:8px;">
+      <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+      <span id="cart-badge-top" style="background:var(--sf);color:#fff;border-radius:12px;padding:2px 8px;font-weight:700;">0</span>
+    </button>
+  </div>
+</div>
+
+<div class="page-shell">
+
+  <!-- LEFT FILTER PANEL -->
+  <div class="filters">
+    <div class="filter-head"><i class="ti ti-adjustments-horizontal" aria-hidden="true"></i> Filters</div>
+
+    <div class="active-filters-wrap">
+      <span class="active-filter">Commercial Seats <i class="ti ti-x" aria-hidden="true"></i></span>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Vehicle type</div>
+      <label class="filter-option"><input type="checkbox" checked><span class="filter-label">Trucks &amp; LCVs</span><span class="filter-count">9</span></label>
+      <label class="filter-option"><input type="checkbox" checked><span class="filter-label">Mini Trucks</span><span class="filter-count">3</span></label>
+      <label class="filter-option"><input type="checkbox"><span class="filter-label">Passenger Van</span><span class="filter-count">2</span></label>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Compatible brand</div>
+      <label class="filter-option"><input type="checkbox" checked><span class="filter-label">Tata</span><span class="filter-count">5</span></label>
+      <label class="filter-option"><input type="checkbox" checked><span class="filter-label">Ashok Leyland</span><span class="filter-count">4</span></label>
+      <label class="filter-option"><input type="checkbox"><span class="filter-label">Force Motors</span><span class="filter-count">3</span></label>
+      <label class="filter-option"><input type="checkbox"><span class="filter-label">Mahindra CV</span><span class="filter-count">2</span></label>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Seat feature</div>
+      <label class="filter-option"><input type="checkbox"><span class="filter-label">Suspension base</span></label>
+      <label class="filter-option"><input type="checkbox"><span class="filter-label">High-back rest</span></label>
+      <label class="filter-option"><input type="checkbox"><span class="filter-label">Lumbar support</span></label>
+      <label class="filter-option"><input type="checkbox"><span class="filter-label">Armrests</span></label>
+      <label class="filter-option"><input type="checkbox"><span class="filter-label">Slide-adjust rail</span></label>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Price range</div>
+      <input type="range" class="price-range" min="1500" max="8000" value="8000">
+      <div class="price-labels"><span>₹1,500</span><span>₹8,000</span></div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-title">Cushion foam</div>
+      <label class="filter-option"><input type="checkbox"><span class="filter-label">Standard (40mm)</span></label>
+      <label class="filter-option"><input type="checkbox"><span class="filter-label">Premium (60mm)</span></label>
+      <label class="filter-option"><input type="checkbox"><span class="filter-label">Memory foam</span></label>
+    </div>
+  </div>
+
+  <!-- MAIN PANEL -->
+  <div class="main">
+
+    <div class="breadcrumb">
+      <a>Home</a><i class="ti ti-chevron-right" aria-hidden="true"></i>
+      <a>Products</a><i class="ti ti-chevron-right" aria-hidden="true"></i>
+      <span>Commercial Vehicle Seats</span>
+    </div>
+
+    <div class="bulk-banner">
+      <i class="ti ti-truck-delivery" aria-hidden="true"></i>
+      <div class="bulk-banner-text"><strong>Fleet buyers:</strong> Order 5+ seats and get up to 18% bulk discount + free delivery pan-India.</div>
+      <button class="bulk-btn" onclick="sendPrompt('I want to place a bulk fleet order for commercial vehicle seats')">Get Quote ↗</button>
+    </div>
+
+    <div class="results-bar">
+      <span class="results-count">Showing <strong>14 products</strong> in Commercial Vehicle Seats</span>
+      <select class="sort-select">
+        <option>Sort: Best seller</option>
+        <option>Price: Low to high</option>
+        <option>Price: High to low</option>
+        <option>Newest first</option>
+      </select>
+    </div>
+
+    <div class="product-grid">
+
+      <!-- 1 -->
+      <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html">
+        <div class="p-img"><i class="ti ti-armchair" aria-hidden="true"></i><div class="p-tag tag-green">Best Seller</div></div>
+        <div class="p-body">
+          <div class="p-series">Cabin Series · Long Haul</div>
+          <div class="p-name d">Long-Haul Cabin Seat — Foam Core</div>
+          <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Tata 407, 608, 709 · Leyland Dost</div>
+          <div class="p-specs"><span class="spec-chip">60mm foam</span><span class="spec-chip">High-back</span><span class="spec-chip">Slide rail</span></div>
+          <div class="price-row"><span class="price-main">₹4,200</span><span class="price-mrp">₹6,000</span><span class="price-off">-30%</span></div>
+          <div class="rating-row"><span class="stars">★★★★☆</span> 4.5 (87)</div>
+          <button class="btn-cart"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+        </div>
+      </a>
+
+      <!-- 2 -->
+      <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=air-ride">
+        <div class="p-img"><i class="ti ti-armchair" aria-hidden="true"></i><div class="p-tag tag-saffron">New</div></div>
+        <div class="p-body">
+          <div class="p-series">Suspension Series · HCV</div>
+          <div class="p-name d">Air-Ride Suspension Cabin Seat</div>
+          <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Tata Prima · Leyland Boss · Eicher Pro 3015</div>
+          <div class="p-specs"><span class="spec-chip">Air susp.</span><span class="spec-chip">Lumbar adj.</span><span class="spec-chip">Armrests</span></div>
+          <div class="price-row"><span class="price-main">₹6,800</span><span class="price-mrp">₹9,500</span><span class="price-off">-28%</span></div>
+          <div class="rating-row"><span class="stars">★★★★★</span> 4.9 (34)</div>
+          <button class="btn-cart"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+        </div>
+      </a>
+
+      <!-- 3 -->
+      <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=mini-flat">
+        <div class="p-img"><i class="ti ti-armchair" aria-hidden="true"></i><div class="p-tag tag-gray">Value Pick</div></div>
+        <div class="p-body">
+          <div class="p-series">LCV Series · Mini Truck</div>
+          <div class="p-name d">Mini Truck Flat Seat — Standard</div>
+          <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Tata Ace, Ace Gold · Mahindra Jeeto</div>
+          <div class="p-specs"><span class="spec-chip">40mm foam</span><span class="spec-chip">Low-back</span><span class="spec-chip">Fixed base</span></div>
+          <div class="price-row"><span class="price-main">₹1,850</span><span class="price-mrp">₹2,800</span><span class="price-off">-34%</span></div>
+          <div class="rating-row"><span class="stars">★★★★☆</span> 4.3 (152)</div>
+          <button class="btn-cart"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+        </div>
+      </a>
+
+      <!-- 4 -->
+      <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=van-bench">
+        <div class="p-img"><i class="ti ti-armchair" aria-hidden="true"></i><div class="p-tag tag-green">Fleet Pick</div></div>
+        <div class="p-body">
+          <div class="p-series">Van Series · Passenger</div>
+          <div class="p-name d">Passenger Van Bench Seat — 3-Seater</div>
+          <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Force Traveller · Tempo 407 Van · Tata Winger</div>
+          <div class="p-specs"><span class="spec-chip">3-seat bench</span><span class="spec-chip">Leatherette</span><span class="spec-chip">Fold-flat</span></div>
+          <div class="price-row"><span class="price-main">₹5,400</span><span class="price-mrp">₹7,200</span><span class="price-off">-25%</span></div>
+          <div class="rating-row"><span class="stars">★★★★☆</span> 4.4 (61)</div>
+          <button class="btn-cart"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+        </div>
+      </a>
+
+      <!-- 5 -->
+      <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=mech-suspension">
+        <div class="p-img"><i class="ti ti-armchair" aria-hidden="true"></i><div class="p-tag tag-saffron">Popular</div></div>
+        <div class="p-body">
+          <div class="p-series">Suspension Series · LCV</div>
+          <div class="p-name d">Mech. Suspension Seat — LCV Grade</div>
+          <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Mahindra Bolero Pickup · Supro · Alfa Plus</div>
+          <div class="p-specs"><span class="spec-chip">Spring susp.</span><span class="spec-chip">50mm foam</span><span class="spec-chip">Slide rail</span></div>
+          <div class="price-row"><span class="price-main">₹3,600</span><span class="price-mrp">₹5,100</span><span class="price-off">-29%</span></div>
+          <div class="rating-row"><span class="stars">★★★★★</span> 4.7 (109)</div>
+          <button class="btn-cart"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+        </div>
+      </a>
+
+      <!-- 6 -->
+      <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=co-driver">
+        <div class="p-img"><i class="ti ti-armchair" aria-hidden="true"></i><div class="p-tag tag-gray">Co-Driver</div></div>
+        <div class="p-body">
+          <div class="p-series">Cabin Series · Co-Driver</div>
+          <div class="p-name d">High-Back Co-Driver Seat — Folding</div>
+          <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Tata LPT 1613, 2518 · Leyland 2518 · Eicher Pro</div>
+          <div class="p-specs"><span class="spec-chip">Fold-flat</span><span class="spec-chip">High-back</span><span class="spec-chip">Fixed mount</span></div>
+          <div class="price-row"><span class="price-main">₹2,900</span><span class="price-mrp">₹4,200</span><span class="price-off">-31%</span></div>
+          <div class="rating-row"><span class="stars">★★★★☆</span> 4.2 (73)</div>
+          <button class="btn-cart"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+    
+
+    <script src="assets/js/site.js"></script>
+
+    </body>
+    </html>
