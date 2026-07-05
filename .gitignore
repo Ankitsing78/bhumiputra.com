@@ -1,0 +1,11 @@
+# Temp files
+diff.txt
+catalog_diff.txt
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# OS metadata
+.DS_Store
+Thumbs.db

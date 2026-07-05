@@ -1,433 +1,599 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Product — Mechanical Suspension LCV Seat</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/tabler-icons@1.39.1/iconfont/tabler-icons.min.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mechanical Suspension Seat — LCV Grade | Bhumiputra</title>
+  <meta name="description" content="Buy Mechanical Suspension Seat for LCV vehicles — Mahindra Bolero Pickup, Supro, Alfa Plus, Imperio, Tata Xenon, Force Traveller. Factory direct ₹3,600. COD available." />
+  <meta name="keywords" content="mechanical suspension seat, tractor seat, LCV seat, driver seat, Bolero pickup seat" />
+  <meta name="author" content="Bhumiputra" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/tabler-icons@1.39.1/iconfont/tabler-icons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/bhumiputra.css" />
   <style>
-  *{box-sizing:border-box;margin:0;padding:0;}
-  :root{--eg:#1B4332;--egl:#2D6A4F;--egll:#40916C;--sf:#E85D04;--sfb:#F48C06;--sfp:#FFF3E0;}
-  body{font-family:'Noto Sans',sans-serif;color:var(--color-text-primary);background:var(--color-background-tertiary);}
-  .d{font-family:'Rajdhani',sans-serif;}
+    /* ── Product-detail-specific styles ── */
+    .price-strike { font-size: 14px; color: #999; text-decoration: line-through; margin-left: 8px; }
+    .price-off-tag { font-size: 13px; font-weight: 700; color: #E85D04; margin-left: 8px; }
 
-  .breadcrumb{font-size:12px;color:var(--color-text-secondary);padding:14px 20px 0;display:flex;align-items:center;gap:5px;}
-  .breadcrumb a{color:var(--egll);cursor:pointer;}
-  .breadcrumb i{font-size:12px;}
+    /* Fitment Guarantee Box */
+    .fitment-box {
+      background: linear-gradient(135deg, #d8f3dc 0%, #b7e4c7 100%);
+      border: 1px solid #95d5b2; border-radius: 14px; padding: 20px 22px; margin-top: 24px;
+    }
+    .fitment-box h3 { font-family: 'Rajdhani', sans-serif; font-size: 20px; color: #1B4332; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .fitment-box p { font-size: 13px; color: #2D6A4F; margin-bottom: 12px; }
+    .fitment-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .fitment-pill {
+      background: #fff; border: 1px solid #95d5b2; border-radius: 999px; padding: 6px 14px;
+      font-size: 12px; font-weight: 600; color: #1B4332; display: flex; align-items: center; gap: 6px;
+    }
+    .fitment-pill i { color: #40916C; font-size: 14px; }
 
-  .layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;}
+    /* Delivery Row */
+    .delivery-row {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; padding: 16px 18px;
+      background: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 12px;
+    }
+    .delivery-chip {
+      display: flex; align-items: center; gap: 6px; background: #f4fbf7; border: 1px solid #d6eedd;
+      border-radius: 999px; padding: 6px 14px; font-size: 12px; color: #1B4332; font-weight: 500;
+    }
+    .delivery-chip i { font-size: 16px; color: #40916C; }
 
-  /* LEFT COLUMN */
-  .left-col{padding:20px;border-right:0.5px solid var(--color-border-tertiary);}
+    /* WhatsApp Enquiry Bar */
+    .whatsapp-bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+      margin-top: 20px; padding: 16px 20px; background: #dcfce7; border: 1px solid #86efac;
+      border-radius: 12px;
+    }
+    .whatsapp-bar .wa-left { display: flex; align-items: center; gap: 10px; }
+    .whatsapp-bar .wa-icon {
+      width: 42px; height: 42px; border-radius: 50%; background: #25D366; color: #fff;
+      display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+    .whatsapp-bar .wa-text strong { display: block; font-size: 14px; color: #14532d; }
+    .whatsapp-bar .wa-text span { font-size: 12px; color: #166534; }
+    .whatsapp-bar .wa-btn {
+      background: #25D366; color: #fff; border: none; border-radius: 999px; padding: 10px 22px;
+      font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px;
+      transition: background 0.15s ease;
+    }
+    .whatsapp-bar .wa-btn:hover { background: #1da851; }
 
-  .media-main{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);height:240px;display:flex;align-items:center;justify-content:center;border:0.5px solid var(--color-border-tertiary);margin-bottom:12px;position:relative;}
-  .media-main i{font-size:96px;color:var(--color-text-secondary);}
-  .media-zoom-hint{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.5);color:#fff;font-size:10px;padding:4px 8px;border-radius:4px;display:flex;align-items:center;gap:4px;}
-  .media-zoom-hint i{font-size:12px;}
+    /* Bulk Pricing Section */
+    .bulk-section {
+      margin-top: 24px; padding: 22px; background: #fff; border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 14px;
+    }
+    .bulk-section h3 { font-family: 'Rajdhani', sans-serif; font-size: 20px; color: #1B4332; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .bulk-tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .bulk-tier {
+      border: 1px solid rgba(0,0,0,0.1); border-radius: 12px; padding: 16px; text-align: center;
+      background: #fcfcfc; transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .bulk-tier:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+    .bulk-tier .tier-qty { font-size: 13px; font-weight: 700; color: #6b6b6b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .bulk-tier .tier-price { font-size: 26px; font-weight: 700; color: #1B4332; font-family: 'Rajdhani', sans-serif; }
+    .bulk-tier .tier-save { font-size: 12px; color: #E85D04; font-weight: 600; margin-top: 4px; }
+    .bulk-tier.best { border-color: #E85D04; background: #FFF3E0; }
+    .bulk-tier.best .tier-qty::after { content: ' ★ Best Value'; color: #E85D04; }
 
-  .thumbs{display:flex;gap:8px;margin-bottom:16px;}
-  .thumb{width:60px;height:52px;border-radius:var(--border-radius-md);background:var(--color-background-secondary);border:1.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
-  .thumb.active{border-color:var(--eg);}
-  .thumb i{font-size:22px;color:var(--color-text-secondary);}
+    /* Installation Video Block */
+    .video-block {
+      margin-top: 24px; padding: 22px; background: linear-gradient(135deg, #f8f5eb, #f1efe9);
+      border: 1px solid rgba(0,0,0,0.1); border-radius: 14px;
+    }
+    .video-block h3 { font-family: 'Rajdhani', sans-serif; font-size: 20px; color: #1B4332; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .video-placeholder {
+      height: 200px; border-radius: 12px; background: #e8e4db; display: flex; align-items: center;
+      justify-content: center; flex-direction: column; gap: 8px; color: #888; margin-bottom: 12px;
+      cursor: pointer; transition: background 0.15s ease;
+    }
+    .video-placeholder:hover { background: #ddd8cd; }
+    .video-placeholder i { font-size: 48px; }
+    .video-placeholder span { font-size: 13px; font-weight: 600; }
+    .video-block .video-cta {
+      display: inline-flex; align-items: center; gap: 8px; background: #1B4332; color: #fff;
+      border: none; border-radius: 8px; padding: 10px 18px; font-weight: 700; font-size: 13px;
+      cursor: pointer; transition: background 0.15s ease;
+    }
+    .video-block .video-cta:hover { background: #2D6A4F; }
 
-  .video-block{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px;border:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:12px;cursor:pointer;}
-  .play-btn{width:36px;height:36px;background:var(--sf);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .play-btn i{font-size:18px;color:#fff;}
-  .video-meta{flex:1;}
-  .video-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px;}
-  .video-sub{font-size:11px;color:var(--color-text-secondary);}
+    /* Reviews Section */
+    .reviews-section {
+      margin-top: 28px; padding: 24px; background: #fff; border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 14px;
+    }
+    .reviews-section h3 { font-family: 'Rajdhani', sans-serif; font-size: 22px; color: #1B4332; margin-bottom: 20px; }
+    .reviews-summary { display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .big-rating { text-align: center; min-width: 100px; }
+    .big-rating .rating-num { font-size: 52px; font-weight: 700; color: #1B4332; font-family: 'Rajdhani', sans-serif; line-height: 1; }
+    .big-rating .rating-stars { color: #F48C06; font-size: 18px; margin: 6px 0 4px; }
+    .big-rating .rating-count { font-size: 12px; color: #6b6b6b; }
+    .star-breakdown { flex: 1; min-width: 200px; }
+    .star-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 12px; color: #6b6b6b; }
+    .star-row .bar-wrap { flex: 1; height: 8px; background: #eee; border-radius: 999px; overflow: hidden; }
+    .star-row .bar-fill { height: 100%; border-radius: 999px; background: #F48C06; }
 
-  /* RIGHT COLUMN */
-  .right-col{padding:20px;}
+    .review-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .review-card {
+      border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 16px; background: #fcfcfc;
+    }
+    .review-card .rc-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .review-card .rc-avatar {
+      width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #d8f3dc, #b7e4c7);
+      display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #1B4332;
+    }
+    .review-card .rc-meta { flex: 1; }
+    .review-card .rc-name { font-weight: 700; font-size: 13px; color: #1B4332; }
+    .review-card .rc-loc { font-size: 11px; color: #6b6b6b; }
+    .review-card .rc-stars { color: #F48C06; font-size: 12px; margin-bottom: 6px; }
+    .review-card .rc-text { font-size: 13px; color: #444; line-height: 1.5; }
+    .review-card .rc-date { font-size: 11px; color: #999; margin-top: 8px; }
 
-  .p-eyebrow{font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:5px;}
-  .p-title{font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;line-height:1.15;margin-bottom:10px;color:var(--color-text-primary);}
-
-  .rating-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
-  .stars{color:#F48C06;font-size:14px;}
-  .rating-num{font-size:13px;font-weight:500;color:var(--color-text-primary);}
-  .rating-count{font-size:12px;color:var(--color-text-secondary);}
-  .sold-badge{font-size:11px;font-weight:500;color:#27500A;background:#EAF3DE;padding:3px 8px;border-radius:4px;}
-
-  /* PRICING BLOCK */
-  .pricing-block{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:14px;}
-  .price-row-main{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;}
-  .price-factory{font-family:'Rajdhani',sans-serif;font-size:30px;font-weight:700;color:var(--eg);}
-  .price-mrp{font-size:14px;color:var(--color-text-secondary);text-decoration:line-through;}
-  .price-off{font-size:13px;font-weight:600;color:var(--sf);}
-  .price-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:10px;}
-  .price-divider{height:0.5px;background:var(--color-border-tertiary);margin:10px 0;}
-  .bulk-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-  .bulk-tier{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px;text-align:center;border:0.5px solid var(--color-border-tertiary);}
-  .bulk-qty{font-size:11px;color:var(--color-text-secondary);margin-bottom:3px;}
-  .bulk-price{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:var(--eg);}
-  .bulk-save{font-size:10px;color:var(--sf);font-weight:500;}
-
-  /* FITMENT GUARANTEE */
-  .fitment-box{background:#D8F3DC;border:1px solid #95D5B2;border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:14px;}
-  .fitment-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
-  .fitment-head i{font-size:20px;color:var(--eg);}
-  .fitment-title{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;color:#1B4332;}
-  .fitment-models{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
-  .model-pill{background:#fff;border:1px solid #95D5B2;border-radius:20px;padding:4px 10px;font-size:11px;font-weight:500;color:#1B4332;display:flex;align-items:center;gap:4px;}
-  .model-pill i{font-size:12px;color:var(--egll);}
-  .fitment-note{font-size:11px;color:#2D6A4F;display:flex;align-items:flex-start;gap:5px;line-height:1.5;}
-  .fitment-note i{font-size:13px;flex-shrink:0;margin-top:1px;}
-
-  /* ACTIONS */
-  .action-row{display:flex;gap:10px;margin-bottom:12px;}
-  .btn-buynow{flex:1;background:var(--sf);color:#fff;border:none;border-radius:var(--border-radius-md);padding:13px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:0.3px;display:flex;align-items:center;justify-content:center;gap:6px;}
-  .btn-buynow i{font-size:18px;}
-  .btn-cart-main{flex:1;background:var(--eg);color:#fff;border:none;border-radius:var(--border-radius-md);padding:13px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Rajdhani',sans-serif;letter-spacing:0.3px;display:flex;align-items:center;justify-content:center;gap:6px;}
-  .btn-cart-main i{font-size:18px;}
-
-  .delivery-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
-  .delivery-chip{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--color-text-secondary);background:var(--color-background-secondary);border-radius:4px;padding:5px 9px;}
-  .delivery-chip i{font-size:14px;color:var(--egll);}
-
-  /* SPEC ACCORDION */
-  .spec-section{border-top:0.5px solid var(--color-border-tertiary);padding-top:16px;margin-top:4px;}
-  .spec-section-title{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:var(--color-text-primary);margin-bottom:12px;}
-  .accordion-item{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);margin-bottom:6px;overflow:hidden;}
-  .accordion-head{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;cursor:pointer;background:var(--color-background-primary);}
-  .accordion-head-left{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--color-text-primary);}
-  .accordion-head-left i{font-size:16px;color:var(--egll);}
-  .accordion-head i.chevron{font-size:15px;color:var(--color-text-secondary);transition:transform 0.2s;}
-  .accordion-head.open i.chevron{transform:rotate(180deg);}
-  .accordion-body{padding:12px 14px;background:var(--color-background-secondary);border-top:0.5px solid var(--color-border-tertiary);display:none;}
-  .accordion-body.open{display:block;}
-  .spec-table{width:100%;font-size:12px;border-collapse:collapse;}
-  .spec-table tr td{padding:5px 0;vertical-align:top;}
-  .spec-table tr td:first-child{color:var(--color-text-secondary);width:50%;}
-  .spec-table tr td:last-child{font-weight:500;color:var(--color-text-primary);}
-  .spec-table tr+tr td{border-top:0.5px solid var(--color-border-tertiary);}
-
-  /* REVIEWS */
-  .reviews-section{padding:20px;border-top:0.5px solid var(--color-border-tertiary);}
-  .reviews-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
-  .big-rating{font-family:'Rajdhani',sans-serif;font-size:44px;font-weight:700;color:var(--eg);line-height:1;}
-  .rating-breakdown{flex:1;}
-  .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
-  .bar-label{font-size:11px;color:var(--color-text-secondary);width:30px;text-align:right;}
-  .bar-track{flex:1;height:6px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden;}
-  .bar-fill{height:100%;background:var(--sfb);border-radius:3px;}
-  .bar-count{font-size:11px;color:var(--color-text-secondary);width:24px;}
-
-  .review-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-  .review-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px 14px;}
-  .review-top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
-  .reviewer-av{width:30px;height:30px;border-radius:50%;background:var(--eg);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
-  .reviewer-name{font-size:13px;font-weight:500;color:var(--color-text-primary);}
-  .reviewer-loc{font-size:11px;color:var(--color-text-secondary);}
-  .review-stars{color:#F48C06;font-size:12px;margin-bottom:5px;}
-  .review-text{font-size:12px;color:var(--color-text-secondary);line-height:1.6;}
-  .review-tag{display:inline-block;background:var(--color-background-secondary);font-size:10px;color:var(--color-text-secondary);padding:2px 7px;border-radius:4px;margin-top:6px;}
-
-  .wa-enquiry{background:var(--color-background-primary);border:0.5px solid #25D366;border-radius:var(--border-radius-md);padding:12px 14px;display:flex;align-items:center;gap:10px;margin-top:12px;cursor:pointer;}
-  .wa-enquiry i{font-size:22px;color:#25D366;flex-shrink:0;}
-  .wa-text{font-size:13px;color:var(--color-text-primary);font-weight:500;}
-  .wa-sub{font-size:11px;color:var(--color-text-secondary);}
-  /* Responsive adjustments */
-  @media (max-width: 900px){
-    .layout{grid-template-columns:1fr}
-    .left-col{border-right:none;padding:12px}
-    .media-main{height:180px}
-    .thumb{width:48px;height:44px}
-    .right-col{padding:12px}
-    .price-factory{font-size:26px}
-    .review-cards{grid-template-columns:1fr}
-    .bulk-tiers{grid-template-columns:repeat(auto-fit,minmax(100px,1fr))}
-  }
-  @media (max-width:520px){
-    .media-main{height:160px}
-    .p-title{font-size:20px}
-    .price-factory{font-size:22px}
-  }
-</style>
-
-<!-- page title removed (was sr-only) -->
-
-<!-- Temporary header: logo linking to homepage + cart indicator -->
-<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;margin-bottom:8px;">
-  <a href="bhumiputra_homepage.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;" aria-label="Bhumiputra home">
-    <div style="width:36px;height:36px;background:#E85D04;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;"><i class="ti ti-tractor" aria-hidden="true"></i></div>
-    <div style="font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--eg);">BHUMIPUTRA</div>
-  </a>
-  <div style="display:flex;align-items:center;gap:8px;">
-    <button id="auth-btn-top" class="btn-cart-main" style="width:auto;padding:8px 12px;display:flex;align-items:center;gap:8px;">Login / Sign up</button>
-    <button id="cart-btn-top" class="btn-cart-main" style="width:auto;padding:8px 12px;display:flex;align-items:center;gap:8px;">
-      <i class="ti ti-shopping-cart" aria-hidden="true"></i>
-      <span id="cart-badge-top" style="background:var(--sf);color:#fff;border-radius:12px;padding:2px 8px;font-weight:700;">0</span>
-    </button>
-  </div>
-</div>
-
-<div class="breadcrumb">
-  <a>Home</a><i class="ti ti-chevron-right" aria-hidden="true"></i>
-  <a>Commercial Seats</a><i class="ti ti-chevron-right" aria-hidden="true"></i>
-  <span>Mech. Suspension Seat — LCV Grade</span>
-</div>
-</body>
-</html>
-
-<div class="layout">
-
-  <!-- LEFT: MEDIA -->
-  <div class="left-col">
-    <div class="media-main">
-      <i class="ti ti-armchair" aria-hidden="true"></i>
-      <div class="media-zoom-hint"><i class="ti ti-zoom-in" aria-hidden="true"></i> Zoom</div>
+    /* Specs Tabs */
+    .specs-tabs { margin-top: 24px; }
+    .tabs-nav { display: flex; gap: 0; border-bottom: 2px solid rgba(0,0,0,0.08); margin-bottom: 16px; }
+    .tab-btn {
+      background: none; border: none; border-bottom: 2px solid transparent; padding: 10px 18px;
+      font-weight: 600; font-size: 13px; color: #6b6b6b; cursor: pointer; margin-bottom: -2px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .tab-btn.active { color: #1B4332; border-bottom-color: #E85D04; }
+    .tab-btn:hover { color: #1B4332; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .spec-table { width: 100%; border-collapse: collapse; }
+    .spec-table tr { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .spec-table td { padding: 10px 12px; font-size: 13px; }
+    .spec-table td:first-child { font-weight: 600; color: #1B4332; width: 40%; }
+    .spec-table td:last-child { color: #444; }
+  </style>
+</head>
+<body>
+  <!-- ═══════ HEADER ═══════ -->
+  <header class="page-header">
+    <a class="brand-link" href="index.html" aria-label="Bhumiputra home" style="display: flex; align-items: center; height: 100%;">
+      <img src="assets/logo.png" alt="Bhumiputra Logo" style="height: 40px; object-fit: contain;">
+    </a>
+    <div class="header-actions">
+      <button id="auth-btn-top" class="btn-pill" type="button">Login / Sign up</button>
+      <button id="cart-btn-top" class="btn-pill secondary" type="button" title="Cart">
+        <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+        <span id="cart-badge-top" class="cart-badge">0</span>
+      </button>
     </div>
-    <div class="thumbs">
-      <div class="thumb active"><i class="ti ti-armchair" aria-hidden="true"></i></div>
-      <div class="thumb"><i class="ti ti-settings-2" aria-hidden="true"></i></div>
-      <div class="thumb"><i class="ti ti-tools" aria-hidden="true"></i></div>
-      <div class="thumb"><i class="ti ti-ruler-measure" aria-hidden="true"></i></div>
-      <div class="thumb"><i class="ti ti-certificate" aria-hidden="true"></i></div>
-    </div>
-    <div class="video-block" onclick="sendPrompt('Show me how to install the LCV suspension seat in a Mahindra Bolero Pickup')">
-      <div class="play-btn"><i class="ti ti-player-play" aria-hidden="true"></i></div>
-      <div class="video-meta">
-        <div class="video-title">How to install — step by step</div>
-        <div class="video-sub">Factory technician walkthrough · 4 min 22 sec</div>
+  </header>
+
+  <!-- ═══════ MAIN TWO-COLUMN LAYOUT ═══════ -->
+  <main class="detail-shell">
+
+    <!-- ── LEFT: Product Gallery ── -->
+    <section class="detail-card detail-gallery">
+      <div class="detail-main-visual" style="height: 320px; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 12px; border: 1px solid var(--border); overflow: hidden;">
+        <img id="gallery-main" src="" alt="Product Main View" style="max-width: 100%; max-height: 100%; object-fit: contain;">
       </div>
-      <i class="ti ti-chevron-right" style="color:var(--color-text-secondary);font-size:16px;" aria-hidden="true"></i>
-    </div>
+      <div class="thumb-row" id="gallery-thumbs" style="display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px;">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
 
-    <!-- SPEC ACCORDION (left column, below media) -->
-    <div class="spec-section">
-      <div class="spec-section-title d">Product specifications</div>
+    <!-- ── RIGHT: Product Info ── -->
+    <section class="detail-card">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><i class="ti ti-chevron-right" aria-hidden="true"></i>
+        <a href="bhumiputra_catalog_truck_seats.html">Commercial Seats</a><i class="ti ti-chevron-right" aria-hidden="true"></i>
+        <span id="detail-breadcrumb-current">Mechanical Suspension Seat</span>
+      </div>
 
-      <div class="accordion-item">
-        <div class="accordion-head open" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
-          <span class="accordion-head-left"><i class="ti ti-ruler-2" aria-hidden="true"></i>Dimensions &amp; weight</span>
-          <i class="ti ti-chevron-down chevron" aria-hidden="true"></i>
+      <!-- Eyebrow + Title -->
+      <div class="eyebrow" id="detail-eyebrow">Suspension Series · LCV</div>
+      <h1 class="detail-title" id="detail-title">Mechanical Suspension Seat — LCV Grade, High-Back</h1>
+
+      <!-- Rating Row -->
+      <div class="rating-row">
+        <span class="stars" id="detail-rating-stars">★★★★★</span>
+        <span id="detail-rating-avg">4.7</span>
+        <span id="detail-rating-count">(109 reviews)</span>
+        <span class="meta-chip" id="detail-sold-count">340+ sold</span>
+      </div>
+
+      <!-- Price -->
+      <div class="price-large" id="detail-price-container">
+        ₹3,600
+        <span class="price-strike">₹5,100</span>
+        <span class="price-off-tag">-29% off</span>
+      </div>
+
+      <!-- Product Description -->
+      <p id="detail-desc" style="font-size: 14px; color: #555; line-height: 1.6; margin: 16px 0;"></p>
+
+      <!-- Meta Chips -->
+      <div class="meta-row">
+        <span class="meta-chip"><i class="ti ti-building-factory-2" aria-hidden="true" style="font-size:14px;vertical-align:middle;margin-right:4px;"></i>Factory direct price</span>
+        <span class="meta-chip"><i class="ti ti-stack-2" aria-hidden="true" style="font-size:14px;vertical-align:middle;margin-right:4px;"></i>Bulk discounts available</span>
+        <span class="meta-chip"><i class="ti ti-shield-check" aria-hidden="true" style="font-size:14px;vertical-align:middle;margin-right:4px;"></i>OEM fitment guarantee</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="detail-actions">
+        <button id="btn-buynow-main" class="btn-buynow" type="button">
+          <i class="ti ti-bolt" aria-hidden="true"></i> Buy Now
+        </button>
+        <button id="btn-cart-main-action" class="btn-cart-main" type="button">
+          <i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart
+        </button>
+      </div>
+
+      <!-- Spec Grid -->
+      <div class="spec-grid">
+        <div class="spec-item">
+          <strong><i class="ti ti-shield-check" aria-hidden="true" style="margin-right:6px;color:#40916C;"></i>Fitment guarantee</strong>
+          <p>Compatible with Mahindra Bolero Pickup, Supro, Alfa Plus, Imperio, Tata Xenon, and Force Traveller LCV.</p>
         </div>
-        <div class="accordion-body open">
+        <div class="spec-item">
+          <strong><i class="ti ti-tools" aria-hidden="true" style="margin-right:6px;color:#40916C;"></i>Construction</strong>
+          <p>Mechanical coil spring suspension, powder-coated steel frame, high-resilience foam, water-resistant leatherette.</p>
+        </div>
+        <div class="spec-item">
+          <strong><i class="ti ti-truck-delivery" aria-hidden="true" style="margin-right:6px;color:#40916C;"></i>Delivery</strong>
+          <p>Ships in 24 hours, COD available, UPI / PhonePe / GPay accepted, pan-India delivery.</p>
+        </div>
+      </div>
+
+      <!-- Specs Tabs -->
+      <div class="specs-tabs">
+        <div class="tabs-nav">
+          <button class="tab-btn active" type="button" data-tab="tab-specs">Specifications</button>
+          <button class="tab-btn" type="button" data-tab="tab-features">Features</button>
+          <button class="tab-btn" type="button" data-tab="tab-shipping">Shipping</button>
+        </div>
+        <div id="tab-specs" class="tab-panel active">
           <table class="spec-table">
-            <tr><td>Seat width</td><td>480 mm</td></tr>
-            <tr><td>Back height</td><td>620 mm (high-back)</td></tr>
-            <tr><td>Cushion thickness</td><td>50 mm foam</td></tr>
-            <tr><td>Slide travel</td><td>±80 mm fore-aft</td></tr>
-            <tr><td>Mounting bolt pattern</td><td>200 × 200 mm (std. LCV)</td></tr>
-            <tr><td>Seat weight</td><td>9.4 kg</td></tr>
-            <tr><td>Max load capacity</td><td>150 kg</td></tr>
+            <tr><td>Suspension Type</td><td>Mechanical coil spring</td></tr>
+            <tr><td>Frame Material</td><td>Powder-coated steel</td></tr>
+            <tr><td>Upholstery</td><td>Water-resistant leatherette</td></tr>
+            <tr><td>Foam Type</td><td>High-resilience PU foam (50 density)</td></tr>
+            <tr><td>Back Style</td><td>High-back with lumbar support</td></tr>
+            <tr><td>Weight Capacity</td><td>120 kg</td></tr>
+            <tr><td>Seat Dimensions</td><td>W 460 × D 480 × H 580 mm</td></tr>
+            <tr><td>Adjustment</td><td>Height, fore-aft slide, backrest recline</td></tr>
+            <tr><td>Mounting</td><td>Universal 4-bolt pattern</td></tr>
+            <tr><td>Weight</td><td>12.5 kg</td></tr>
+          </table>
+        </div>
+        <div id="tab-features" class="tab-panel">
+          <table class="spec-table">
+            <tr><td>Vibration Dampening</td><td>Mechanical spring absorbs road shocks up to 80%</td></tr>
+            <tr><td>Armrest</td><td>Fold-up padded armrests (optional)</td></tr>
+            <tr><td>Headrest</td><td>Integrated contoured headrest</td></tr>
+            <tr><td>Ventilation</td><td>Side ventilation channels</td></tr>
+            <tr><td>Swivel</td><td>Optional 360° swivel base</td></tr>
+            <tr><td>Safety Belt</td><td>3-point seat belt mount provision</td></tr>
+          </table>
+        </div>
+        <div id="tab-shipping" class="tab-panel">
+          <table class="spec-table">
+            <tr><td>Dispatch Time</td><td>Within 24 hours of order confirmation</td></tr>
+            <tr><td>Delivery</td><td>Pan-India, 3-7 business days</td></tr>
+            <tr><td>Payment Options</td><td>COD, UPI, PhonePe, GPay, Bank Transfer</td></tr>
+            <tr><td>Packaging</td><td>Double-walled corrugated box with foam inserts</td></tr>
+            <tr><td>Return Policy</td><td>7-day replacement if manufacturing defect</td></tr>
+            <tr><td>Warranty</td><td>1 year against manufacturing defects</td></tr>
           </table>
         </div>
       </div>
+    </section>
 
-      <div class="accordion-item">
-        <div class="accordion-head" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
-          <span class="accordion-head-left"><i class="ti ti-layers-intersect" aria-hidden="true"></i>Materials &amp; construction</span>
-          <i class="ti ti-chevron-down chevron" aria-hidden="true"></i>
-        </div>
-        <div class="accordion-body">
-          <table class="spec-table">
-            <tr><td>Frame</td><td>MS steel, powder-coated</td></tr>
-            <tr><td>Suspension type</td><td>Mechanical coil spring</td></tr>
-            <tr><td>Damping</td><td>Adjustable — 3 settings</td></tr>
-            <tr><td>Cover material</td><td>Water-resistant leatherette</td></tr>
-            <tr><td>Foam grade</td><td>HR-40 high-resilience</td></tr>
-            <tr><td>Rust protection</td><td>Epoxy primer + zinc coat</td></tr>
-          </table>
+    <!-- ══════════════════════════════════════════════════
+         FULL-WIDTH SECTIONS BELOW THE GRID
+         ══════════════════════════════════════════════════ -->
+
+    <!-- Exact Fitment Guarantee -->
+    <section class="fitment-box" style="grid-column: 1 / -1;">
+      <h3><i class="ti ti-shield-check" aria-hidden="true"></i> Exact Fitment Guarantee</h3>
+      <p>This seat is engineered for bolt-on installation in the following LCV models — no drilling or modification required.</p>
+      <div class="fitment-pills" id="detail-fitment-pills">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+
+    <!-- Delivery Row -->
+    <section class="delivery-row" style="grid-column: 1 / -1;">
+      <div class="delivery-chip"><i class="ti ti-cash" aria-hidden="true"></i> COD Available</div>
+      <div class="delivery-chip"><i class="ti ti-device-mobile" aria-hidden="true"></i> UPI / PhonePe / GPay</div>
+      <div class="delivery-chip"><i class="ti ti-clock" aria-hidden="true"></i> Ships in 24 hrs</div>
+      <div class="delivery-chip"><i class="ti ti-map-pin" aria-hidden="true"></i> GPS pin-drop delivery</div>
+    </section>
+
+    <!-- WhatsApp Enquiry Bar -->
+    <section class="whatsapp-bar" style="grid-column: 1 / -1;">
+      <div class="wa-left">
+        <div class="wa-icon"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></div>
+        <div class="wa-text">
+          <strong>Have questions? Chat with us</strong>
+          <span>Get instant replies on WhatsApp — fitment, bulk pricing, installation help</span>
         </div>
       </div>
+      <button class="wa-btn" type="button" onclick="sendPrompt('I want to enquire on WhatsApp about the LCV suspension seat before ordering')">
+        <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Chat on WhatsApp
+      </button>
+    </section>
 
-      <div class="accordion-item">
-        <div class="accordion-head" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
-          <span class="accordion-head-left"><i class="ti ti-package" aria-hidden="true"></i>In the box</span>
-          <i class="ti ti-chevron-down chevron" aria-hidden="true"></i>
-        </div>
-        <div class="accordion-body">
-          <table class="spec-table">
-            <tr><td>Seat assembly</td><td>1 unit (fully assembled)</td></tr>
-            <tr><td>Mounting hardware</td><td>4× M10 bolts + washers</td></tr>
-            <tr><td>Installation guide</td><td>Printed (Hindi + English)</td></tr>
-            <tr><td>Warranty card</td><td>1-year fitment warranty</td></tr>
-          </table>
-        </div>
+    <!-- Installation Video Block -->
+    <section class="video-block" style="grid-column: 1 / -1;">
+      <h3><i class="ti ti-video" aria-hidden="true"></i> Installation Guide</h3>
+      <div id="detail-video-container" style="position:relative; width:100%; max-width:640px; margin: 0 auto 12px; border-radius:12px; overflow:hidden; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
+        <!-- Injected dynamically -->
       </div>
+      <button class="video-cta" type="button" onclick="sendPrompt('Show me how to install the LCV suspension seat in a Mahindra Bolero Pickup')">
+        <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Request installation video on WhatsApp
+      </button>
+    </section>
 
-      <div class="accordion-item">
-        <div class="accordion-head" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
-          <span class="accordion-head-left"><i class="ti ti-shield-check" aria-hidden="true"></i>Quality &amp; warranty</span>
-          <i class="ti ti-chevron-down chevron" aria-hidden="true"></i>
-        </div>
-        <div class="accordion-body">
-          <table class="spec-table">
-            <tr><td>Warranty</td><td>12 months / 50,000 km</td></tr>
-            <tr><td>Quality standard</td><td>ISO 9001:2015 certified</td></tr>
-            <tr><td>Load test</td><td>Tested to 2× rated load</td></tr>
-            <tr><td>Return window</td><td>30 days fitment assurance</td></tr>
-          </table>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- RIGHT: PURCHASE INFO -->
-  <div class="right-col">
-    <div class="p-eyebrow">LCV Suspension Series · Commercial Vehicle Seats</div>
-    <h1 class="p-title d">Mechanical Suspension Seat — LCV Grade, High-Back</h1>
-
-    <div class="rating-row">
-      <span class="stars">★★★★★</span>
-      <span class="rating-num">4.7</span>
-      <span class="rating-count">(109 reviews)</span>
-      <span class="sold-badge">340+ sold</span>
-    </div>
-
-    <!-- PRICING -->
-    <div class="pricing-block">
-      <div class="price-row-main">
-        <span class="price-factory d">₹3,600</span>
-        <span class="price-mrp">₹5,100</span>
-        <span class="price-off">You save 29%</span>
-      </div>
-      <div class="price-label">Factory direct price — no distributor markup</div>
-      <div class="price-divider"></div>
-      <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:8px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;">Fleet &amp; bulk pricing</div>
+    <!-- Bulk Pricing Section -->
+    <section class="bulk-section" style="grid-column: 1 / -1;">
+      <h3><i class="ti ti-packages" aria-hidden="true"></i> Bulk Pricing</h3>
       <div class="bulk-tiers">
         <div class="bulk-tier">
-          <div class="bulk-qty">1–4 units</div>
-          <div class="bulk-price d">₹3,600</div>
-          <div class="bulk-save">Standard</div>
+          <div class="tier-qty">1–4 Units</div>
+          <div class="tier-price">₹3,600</div>
+          <div class="tier-save">Standard price</div>
         </div>
-        <div class="bulk-tier" style="border-color:var(--sfb);">
-          <div class="bulk-qty">5–9 units</div>
-          <div class="bulk-price d">₹3,200</div>
-          <div class="bulk-save">Save ₹400/seat</div>
+        <div class="bulk-tier">
+          <div class="tier-qty">5–9 Units</div>
+          <div class="tier-price">₹3,200</div>
+          <div class="tier-save">Save ₹400 per seat</div>
         </div>
-        <div class="bulk-tier" style="border-color:var(--eg);">
-          <div class="bulk-qty">10+ units</div>
-          <div class="bulk-price d">₹2,850</div>
-          <div class="bulk-save">Save ₹750/seat</div>
+        <div class="bulk-tier best">
+          <div class="tier-qty">10+ Units</div>
+          <div class="tier-price">₹2,850</div>
+          <div class="tier-save">Save ₹750 per seat</div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews-section" style="grid-column: 1 / -1;">
+      <h3>Customer Reviews</h3>
+
+      <!-- Summary -->
+      <div class="reviews-summary">
+        <div class="big-rating">
+          <div class="rating-num">4.7</div>
+          <div class="rating-stars">★★★★★</div>
+          <div class="rating-count">109 reviews</div>
+        </div>
+        <div class="star-breakdown">
+          <div class="star-row">
+            <span>5 ★</span>
+            <div class="bar-wrap"><div class="bar-fill" style="width:72%;"></div></div>
+            <span>72%</span>
+          </div>
+          <div class="star-row">
+            <span>4 ★</span>
+            <div class="bar-wrap"><div class="bar-fill" style="width:18%;"></div></div>
+            <span>18%</span>
+          </div>
+          <div class="star-row">
+            <span>3 ★</span>
+            <div class="bar-wrap"><div class="bar-fill" style="width:6%;"></div></div>
+            <span>6%</span>
+          </div>
+          <div class="star-row">
+            <span>2 ★</span>
+            <div class="bar-wrap"><div class="bar-fill" style="width:3%;"></div></div>
+            <span>3%</span>
+          </div>
+          <div class="star-row">
+            <span>1 ★</span>
+            <div class="bar-wrap"><div class="bar-fill" style="width:1%;"></div></div>
+            <span>1%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review Cards -->
+      <div class="review-cards">
+        <!-- Review 1 -->
+        <div class="review-card">
+          <div class="rc-head">
+            <div class="rc-avatar">SK</div>
+            <div class="rc-meta">
+              <div class="rc-name">Suresh Kumar</div>
+              <div class="rc-loc">Nagpur, Maharashtra</div>
+            </div>
+          </div>
+          <div class="rc-stars">★★★★★</div>
+          <div class="rc-text">Installed in my Mahindra Bolero Pickup. Perfect fit — no drilling required. The suspension absorbs road bumps really well. Long drives are much more comfortable now. Highly recommended for LCV owners.</div>
+          <div class="rc-date">Purchased 3 months ago</div>
         </div>
 
-        <script>
-          function sendPrompt(cmd){
-            console.log('product sendPrompt', cmd);
-            const map = {
-              'I want to buy the LCV Mechanical Suspension Seat — take me to checkout': 'bhumiputra_otp_login_checkout.html?checkout=mech-suspension',
-              'Add the LCV Mechanical Suspension Seat to my cart': 'bhumiputra_otp_login_checkout.html?add=mech-suspension',
-              'Show me how to install the LCV suspension seat in a Mahindra Bolero Pickup': 'https://api.whatsapp.com/send?text=' + encodeURIComponent('Please share installation video for LCV Mechanical Suspension Seat'),
-              'I want to enquire on WhatsApp about the LCV suspension seat before ordering': 'https://api.whatsapp.com/send?text=' + encodeURIComponent('Hi, I want to enquire about the LCV Mechanical Suspension Seat')
-            };
-            const target = map[cmd];
-            if(!target){ alert(cmd); return; }
-            // open external WhatsApp links in new tab
-            if(target.startsWith('https://')){ window.open(target, '_blank'); return; }
-            window.location.href = target;
-          }
-        </script>
+        <!-- Review 2 -->
+        <div class="review-card">
+          <div class="rc-head">
+            <div class="rc-avatar">AJ</div>
+            <div class="rc-meta">
+              <div class="rc-name">Ajay Jaiswal</div>
+              <div class="rc-loc">Kanpur, Uttar Pradesh</div>
+            </div>
+          </div>
+          <div class="rc-stars">★★★★★</div>
+          <div class="rc-text">Bought 6 seats for my fleet of Tata Xenon trucks. Bulk pricing saved a lot. Build quality is excellent — the leatherette is water-resistant and easy to clean. My drivers are very happy.</div>
+          <div class="rc-date">Purchased 2 months ago</div>
+        </div>
 
-    <!-- FITMENT GUARANTEE -->
-    <div class="fitment-box">
-      <div class="fitment-head">
-        <i class="ti ti-circle-check" aria-hidden="true"></i>
-        <span class="fitment-title d">Exact fitment guarantee</span>
-      </div>
-      <div class="fitment-models">
-        <span class="model-pill"><i class="ti ti-check" aria-hidden="true"></i>Mahindra Bolero Pickup</span>
-        <span class="model-pill"><i class="ti ti-check" aria-hidden="true"></i>Mahindra Supro</span>
-        <span class="model-pill"><i class="ti ti-check" aria-hidden="true"></i>Mahindra Alfa Plus</span>
-        <span class="model-pill"><i class="ti ti-check" aria-hidden="true"></i>Mahindra Imperio</span>
-        <span class="model-pill"><i class="ti ti-check" aria-hidden="true"></i>Tata Xenon</span>
-        <span class="model-pill"><i class="ti ti-check" aria-hidden="true"></i>Force Traveller LCV</span>
-      </div>
-      <div class="fitment-note"><i class="ti ti-info-circle" aria-hidden="true"></i>Custom-engineered by our factory to bolt-on replace OEM seats. If fitment fails for any listed model, we collect and replace at zero cost within 30 days.</div>
-    </div>
+        <!-- Review 3 -->
+        <div class="review-card">
+          <div class="rc-head">
+            <div class="rc-avatar">RP</div>
+            <div class="rc-meta">
+              <div class="rc-name">Ravindra Patange</div>
+              <div class="rc-loc">Solapur, Maharashtra</div>
+            </div>
+          </div>
+          <div class="rc-stars">★★★★☆</div>
+          <div class="rc-text">Good quality seat for the price. Fitted in my Mahindra Supro. Suspension works well on rough roads. Only wish the headrest was adjustable. Overall very satisfied with the purchase.</div>
+          <div class="rc-date">Purchased 5 months ago</div>
+        </div>
 
-    <!-- ACTIONS -->
-    <div class="action-row">
-      <button class="btn-buynow d" onclick="sendPrompt('I want to buy the LCV Mechanical Suspension Seat — take me to checkout')">
-        <i class="ti ti-bolt" aria-hidden="true"></i> Buy Now
-      </button>
-      <button class="btn-cart-main d" onclick="addCurrentProductToCart()">
-        <i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart
-      </button>
-    </div>
-
-    <div class="delivery-row">
-      <span class="delivery-chip"><i class="ti ti-cash" aria-hidden="true"></i> Cash on Delivery</span>
-      <span class="delivery-chip"><i class="ti ti-device-mobile" aria-hidden="true"></i> UPI / PhonePe / GPay</span>
-      <span class="delivery-chip"><i class="ti ti-truck-delivery" aria-hidden="true"></i> Ships in 24 hrs</span>
-      <span class="delivery-chip"><i class="ti ti-map-pin" aria-hidden="true"></i> GPS pin-drop delivery</span>
-    </div>
-
-    <div class="wa-enquiry" onclick="sendPrompt('I want to enquire on WhatsApp about the LCV suspension seat before ordering')">
-      <i class="ti ti-brand-whatsapp" aria-hidden="true"></i>
-      <div>
-        <div class="wa-text">Not sure? Ask on WhatsApp before ordering</div>
-        <div class="wa-sub">Our factory team replies in minutes · Hindi &amp; English</div>
+        <!-- Review 4 -->
+        <div class="review-card">
+          <div class="rc-head">
+            <div class="rc-avatar">DM</div>
+            <div class="rc-meta">
+              <div class="rc-name">Dinesh Mandal</div>
+              <div class="rc-loc">Muzaffarpur, Bihar</div>
+            </div>
+          </div>
+          <div class="rc-stars">★★★★★</div>
+          <div class="rc-text">COD delivery was very convenient. Seat arrived well-packed within 4 days. Installed in Force Traveller — bolt pattern matched perfectly. Great value for money at this price point.</div>
+          <div class="rc-date">Purchased 1 month ago</div>
+        </div>
       </div>
-      <i class="ti ti-chevron-right" style="color:var(--color-text-secondary);font-size:16px;margin-left:auto;" aria-hidden="true"></i>
-    </div>
-  </div>
+    </section>
 
-</div>
+  </main>
 
-<!-- REVIEWS -->
-<div class="reviews-section">
-  <div style="font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;margin-bottom:14px;color:var(--color-text-primary);">Customer reviews</div>
-  <div class="reviews-head">
-    <div>
-      <div class="big-rating d">4.7</div>
-      <div class="stars" style="font-size:16px;">★★★★★</div>
-      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:3px;">109 verified buyers</div>
-    </div>
-    <div class="rating-breakdown">
-      <div class="bar-row"><span class="bar-label">5★</span><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div><span class="bar-count">79</span></div>
-      <div class="bar-row"><span class="bar-label">4★</span><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div><span class="bar-count">19</span></div>
-      <div class="bar-row"><span class="bar-label">3★</span><div class="bar-track"><div class="bar-fill" style="width:7%"></div></div><span class="bar-count">8</span></div>
-      <div class="bar-row"><span class="bar-label">2★</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="bar-count">2</span></div>
-      <div class="bar-row"><span class="bar-label">1★</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span class="bar-count">1</span></div>
-    </div>
-  </div>
+  <!-- ═══════ SCRIPTS ═══════ -->
+  <script src="assets/js/site.js"></script>
+  <script>
+    /* ── Tab switching ── */
+    document.querySelectorAll('.tab-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+        btn.classList.add('active');
+        document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+      });
+    });
 
-    <script src="assets/js/site.js"></script>
-  <div class="review-cards">
-    <div class="review-card">
-      <div class="review-top">
-        <div class="reviewer-av">SK</div>
-        <div><div class="reviewer-name">Suresh Kumar</div><div class="reviewer-loc">Nagpur, Maharashtra</div></div>
-      </div>
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"Bolero Pickup mein bilkul perfect fit hua. Spring suspension bahut achha hai — puri din drive karo, thakan nahi. Seedha factory se order kiya, COD mein mila."</div>
-      <span class="review-tag">Verified purchase · Mahindra Bolero Pickup</span>
-    </div>
-    <div class="review-card">
-      <div class="review-top">
-        <div class="reviewer-av">AJ</div>
-        <div><div class="reviewer-name">Ajay Jaiswal</div><div class="reviewer-loc">Kanpur, UP</div></div>
-      </div>
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"Ordered 6 seats for our Supro fleet. Bulk price was very fair and delivery came in 3 days. Fitment on all 6 vehicles was perfect — no drilling needed."</div>
-      <span class="review-tag">Verified purchase · Mahindra Supro × 6</span>
-    </div>
-    <div class="review-card">
-      <div class="review-top">
-        <div class="reviewer-av">RP</div>
-        <div><div class="reviewer-name">Ravindra Patange</div><div class="reviewer-loc">Solapur, Maharashtra</div></div>
-      </div>
-      <div class="review-stars">★★★★☆</div>
-      <div class="review-text">"Good quality seat. The spring damping adjustment works well for rough village roads. Leatherette feels premium. Only wish armrests were included."</div>
-      <span class="review-tag">Verified purchase · Mahindra Alfa Plus</span>
-    </div>
-    <div class="review-card">
-      <div class="review-top">
-        <div class="reviewer-av">DM</div>
-        <div><div class="reviewer-name">Dinesh Mandal</div><div class="reviewer-loc">Muzaffarpur, Bihar</div></div>
-      </div>
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">"WhatsApp pe message aaya jab order confirm hua, aur driver ka number bhi mila. COD collection bhi smooth tha. Product 10/10."</div>
-      <span class="review-tag">Verified purchase · Tata Xenon</span>
-    </div>
-  </div>
-</div>
+    /* ── sendPrompt ── */
+    function sendPrompt(cmd) {
+      console.log('product sendPrompt', cmd);
+      var map = {
+        'I want to buy the LCV Mechanical Suspension Seat \u2014 take me to checkout': 'bhumiputra_otp_login_checkout.html?checkout=' + currentProduct.id,
+        'Add the LCV Mechanical Suspension Seat to my cart': 'bhumiputra_otp_login_checkout.html?add=' + currentProduct.id,
+        'Show me how to install the LCV suspension seat in a Mahindra Bolero Pickup': 'https://api.whatsapp.com/send?text=' + encodeURIComponent('Please share installation video for ' + currentProduct.name),
+        'I want to enquire on WhatsApp about the LCV suspension seat before ordering': 'https://api.whatsapp.com/send?text=' + encodeURIComponent('Hi, I want to enquire about ' + currentProduct.name)
+      };
+      var target = map[cmd];
+      if (!target) { alert(cmd); return; }
+      if (target.startsWith('https://')) { window.open(target, '_blank'); return; }
+      window.location.href = target;
+    }
+
+    /* ── dynamic product loading ── */
+    let currentProduct = null;
+
+    function initDynamicProduct() {
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('product') || 'mech-suspension';
+      currentProduct = window.BP_PRODUCTS[productId] || window.BP_PRODUCTS['mech-suspension'];
+
+      // Title & Head
+      document.title = currentProduct.name + ' | Bhumiputra';
+      document.getElementById('detail-breadcrumb-current').textContent = currentProduct.name;
+      document.getElementById('detail-eyebrow').textContent = currentProduct.series;
+      document.getElementById('detail-title').textContent = currentProduct.name;
+
+      // Ratings & Popularity
+      document.getElementById('detail-rating-avg').textContent = currentProduct.rating;
+      document.getElementById('detail-rating-count').textContent = '(' + currentProduct.ratingCount + ')';
+      document.getElementById('detail-sold-count').textContent = currentProduct.soldCount;
+
+      // Price
+      const priceContainer = document.getElementById('detail-price-container');
+      priceContainer.innerHTML = currentProduct.price + 
+        ' <span class="price-strike">' + currentProduct.mrp + '</span>' +
+        ' <span class="price-off-tag">' + currentProduct.discount + ' off</span>';
+
+      // Description & Compatibility
+      document.getElementById('detail-desc').textContent = currentProduct.description;
+      const fitmentSummary = document.querySelector('.spec-item p');
+      if (fitmentSummary) fitmentSummary.textContent = currentProduct.compatText;
+
+      // Specifications Table
+      const specTable = document.querySelector('#tab-specs .spec-table');
+      if (specTable) {
+        specTable.innerHTML = '';
+        for (const [key, val] of Object.entries(currentProduct.specs)) {
+          const tr = document.createElement('tr');
+          const td1 = document.createElement('td');
+          td1.textContent = key;
+          const td2 = document.createElement('td');
+          td2.textContent = val;
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          specTable.appendChild(tr);
+        }
+      }
+
+      // Exact Fitment Pills
+      const fitmentPills = document.getElementById('detail-fitment-pills');
+      if (fitmentPills) {
+        fitmentPills.innerHTML = '';
+        currentProduct.fitment.forEach(function(fit) {
+          const span = document.createElement('span');
+          span.className = 'fitment-pill';
+          span.innerHTML = '<i class="ti ti-check" aria-hidden="true"></i> ' + fit;
+          fitmentPills.appendChild(span);
+        });
+      }
+
+      // Main image gallery
+      const mainImg = document.getElementById('gallery-main');
+      const thumbRow = document.getElementById('gallery-thumbs');
+      if (mainImg && thumbRow && currentProduct.images && currentProduct.images.length) {
+        mainImg.src = currentProduct.images[0];
+        thumbRow.innerHTML = '';
+        currentProduct.images.forEach(function(imgSrc, idx) {
+          const thumb = document.createElement('div');
+          thumb.className = 'thumb' + (idx === 0 ? ' active' : '');
+          thumb.style.cursor = 'pointer';
+          thumb.style.display = 'flex';
+          thumb.style.alignItems = 'center';
+          thumb.style.justifyContent = 'center';
+          thumb.style.overflow = 'hidden';
+          thumb.innerHTML = '<img src="' + imgSrc + '" style="width: 100%; height: 100%; object-fit: contain;">';
+          thumb.addEventListener('click', function() {
+            document.querySelectorAll('.thumb').forEach(function(t) { t.classList.remove('active'); });
+            thumb.classList.add('active');
+            mainImg.src = imgSrc;
+          });
+          thumbRow.appendChild(thumb);
+        });
+      }
+
+      // Installation Video
+      const videoContainer = document.getElementById('detail-video-container');
+      if (videoContainer) {
+        videoContainer.innerHTML = '<video controls style="width:100%; display:block; height:320px; object-fit:cover;" src="' + currentProduct.video + '"></video>';
+      }
+
+      // Action buttons handlers
+      const btnBuy = document.getElementById('btn-buynow-main');
+      if (btnBuy) {
+        btnBuy.onclick = function() {
+          window.location.href = 'bhumiputra_otp_login_checkout.html?checkout=' + currentProduct.id;
+        };
+      }
+      const btnCart = document.getElementById('btn-cart-main-action');
+      if (btnCart) {
+        btnCart.onclick = function() {
+          window.addToCart({
+            id: currentProduct.id,
+            name: currentProduct.name,
+            price: currentProduct.price,
+            qty: 1
+          });
+        };
+      }
+    }
+
+    // Initialize on DOM ready
+    document.addEventListener('DOMContentLoaded', initDynamicProduct);
+  </script>
+</body>
+</html>
