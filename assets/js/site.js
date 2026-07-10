@@ -1871,7 +1871,7 @@
       'why-f3-desc': 'महिंद्रा, टाटा, स्वराज, जॉन डियर और अशोक लेलैंड जैसे प्रमुख ब्रांडों के लिए सटीक स्पेसिफिकेशन अनुकूलता।',
       'why-f4-title': '1-साल की वारंटी',
       'why-f4-desc': 'मजबूत स्टील फ्रेम और सस्पेंशन मैकेनिज्म पर पूर्ण 1-वर्ष की फैक्ट्री वारंटी द्वारा समर्थित।',
-      'footer-text': 'फरीदाबाद (हरियाणा) में हमारी ग्राउंड-ज़ीरो फैक्ट्री से सीधे।',
+      'footer-text': 'फरीदाबाद (हरियाणा) में हमारी Ground-Zero फैक्ट्री से सीधे।',
       'back-to-home': '← होम पेज पर वापस जाएं',
       
       // Footer and Catalogs
@@ -1890,51 +1890,174 @@
       'bulk-title': 'थोक मूल्य स्तर',
       'standard-price': 'सामान्य मूल्य',
       'direct-seller': 'सीधे TracTechSpares विक्रेता',
-      'vendor-seller': 'साझेदार विक्रेता वस्तु'
+      'vendor-seller': 'साझेदार विक्रेता वस्तु',
+
+      // DOM Node Translation mappings
+      'Location': 'स्थान',
+      'Track': 'ट्रैक करें',
+      'Cart': 'कार्ट',
+      'Account': 'अकाउंट',
+      'Login / Sign up': 'लॉगिन / साइन अप',
+      'Search seats, silencers...': 'सीटें, साइलेंसर खोजें...',
+      'Search: "Eicher Tractor Seat" or "Mahindra Silencer"': 'खोजें: "आयशर ट्रैक्टर सीट" या "महिंद्रा साइलेंसर"',
+      'Category': 'श्रेणी',
+      'Brand': 'ब्रांड',
+      'Price Range': 'मूल्य सीमा',
+      'Sort By:': 'क्रमबद्ध करें:',
+      'Popularity': 'लोकप्रियता',
+      'Price: Low to High': 'कीमत: कम से अधिक',
+      'Price: High to Low': 'कीमत: अधिक से कम',
+      'Rating': 'रेटिंग',
+      'Clear Filters': 'फ़िल्टर साफ़ करें',
+      'Filters': 'फ़िल्टर',
+      'All Categories': 'सभी श्रेणियां',
+      'All Brands': 'सभी ब्रांड्स',
+      'Price range': 'मूल्य सीमा',
+      'Apply': 'लागू करें',
+      'Make in India — Factory Direct Prices': 'मेक इन इंडिया — सीधे फैक्ट्री के दाम',
+      'Made in India': 'भारत में निर्मित',
+      'Premium Seats & Silencers.': 'प्रीमियम सीटें और साइलेंसर।',
+      'Factory to Your Field.': 'सीधे फैक्ट्री से आपके खेत तक।',
+      'OEM-engineered mechanical suspension seats and heavy-duty silencers for every major Indian tractor and truck brand — sold directly from our manufacturing floor, with zero middlemen.': 'प्रमुख भारतीय ट्रैक्टर और ट्रक ब्रांडों के लिए ओईएम-इंजीनियर मैकेनिकल सस्पेंशन सीटें और भारी-ड्यूटी साइलेंसर — सीधे हमारे कारखाने से, बिना किसी बिचौलिए के।',
+      'Shop Tractor Seats': 'ट्रैक्टर सीटें खरीदें',
+      'Browse Silencers': 'साइलेंसर ब्राउज़ करें',
+      '50,000+': '५०,०००+',
+      'Seats Sold': 'सीटें बेचीं',
+      '1.5 Lakh': '१.५ लाख',
+      'Happy Farmers': 'खुश किसान',
+      '24-Hr': '२४-घंटे',
+      'Dispatch Time': 'डिस्पैच समय',
+      'Ground-Zero Factory Direct': 'ग्राउंड-ज़ीरो फैक्ट्री डायरेक्ट',
+      'OEM-Spec Fitment Guarantee': 'सटीक फिटमेंट गारंटी',
+      'COD Available Pan-India': 'पूरे भारत में सीओडी उपलब्ध',
+      '30-Day Fitment Assurance': '३०-दिन की फिटमेंट वारंटी',
+      'Browse by Category': 'श्रेणी अनुसार ब्राउज़ करें',
+      'What does your vehicle need?': 'आपके वाहन को क्या चाहिए?',
+      'Select your part type — compatible models are shown on every product page.': 'अपने पार्ट प्रकार का चयन करें — संगत मॉडल प्रत्येक उत्पाद पृष्ठ पर दिखाए गए हैं।',
+      'Tractor Seats': 'ट्रैक्टर सीटें',
+      'Standard flat, mechanical suspension, and premium deluxe models. Heavy-duty MS steel frame with water-resistant leatherette.': 'मानक फ्लैट, मैकेनिकल सस्पेंशन और प्रीमियम डीलक्स मॉडल। जल-प्रतिरोधी लेदरेट के साथ हैवी-ड्यूटी एमएस स्टील फ्रेम।',
+      '28 products available': '२८ उत्पाद उपलब्ध',
+      'Commercial Vehicle Seats': 'कमर्शियल वाहन सीटें',
+      'Ergonomic cabin seats for trucks, commercial lorries, and passenger vehicles. Built for long-haul durability.': 'ट्रक, वाणिज्यिक लॉरी और यात्री वाहनों के लिए एर्गोनोमिक केबिन सीटें। लंबी दूरी के स्थायित्व के लिए निर्मित।',
+      '14 products available': '१४ उत्पाद उपलब्ध',
+      'Silencers & Exhausts': 'साइलेंसर और एग्जॉस्ट',
+      'Perforated guard, oval-body, and matte-black silencers. Precision-welded for exact OEM replacement fit across all major brands.': 'छिद्रित गार्ड, अंडाकार-बॉडी और मैट-ब्लैक साइलेंसर। सभी प्रमुख ब्रांडों में सटीक ओईएम रिप्लेसमेंट फिट के लिए सटीक-वेल्डेड।',
+      '19 products available': '१९ उत्पाद उपलब्ध',
+      'Compatibility Verified': 'संगतता सत्यापित',
+      'Which brand is your vehicle?': 'आपका वाहन किस ब्रांड का है?',
+      'Every product is cross-referenced to exact OEM model specs. Click your brand to filter.': 'प्रत्येक उत्पाद सटीक ओईएम मॉडल विनिर्देशों के लिए क्रॉस-रेफरेंस है। फ़िल्टर करने के लिए अपने ब्रांड पर क्लिक करें।',
+      'Mahindra': 'महिंद्रा',
+      'Eicher': 'आयशर',
+      'Massey Ferguson': 'मैसी फर्ग्यूसन',
+      'Swaraj': 'स्वराज',
+      'John Deere': 'जॉन डियर',
+      'Tata': 'टाटा',
+      'Ashok Leyland': 'अशोक लेलैंड',
+      'Featured Products': 'विशेष उत्पाद',
+      'Top-selling parts this season': 'इस सीज़न के सबसे अधिक बिकने वाले उत्पाद',
+      'Real factory pricing — no retail markup, no middlemen.': 'वास्तविक फैक्ट्री मूल्य निर्धारण — कोई खुदरा मार्कअप नहीं, कोई बिचौलिया नहीं।',
+      'Best Seller': 'बेस्ट सेलर',
+      'Factory Spec': 'फैक्ट्री स्पेक',
+      'New': 'नया',
+      'Tractor Seat · Suspension Series': 'ट्रैक्टर सीट · सस्पेंशन सीरीज',
+      'Mechanical Suspension Seat — Heavy Duty': 'मैकेनिकल सस्पेंशन सीट — हैवी ड्यूटी',
+      'Fits: Eicher 380, 485, 242 · Mahindra 475, 575 DI · MF 241': 'फिट बैठता है: आयशर ३८०, ४८५, २४२ · महिंद्रा ४७५, ५७५ डीआई · मैसी फर्ग्यूसन २४१',
+      'Silencer · Oval Body Series': 'साइलेंसर · ओवल बॉडी सीरीज',
+      'Oval Silencer — Matte Black Finish': 'ओवल साइलेंसर — मैट ब्लैक फिनिश',
+      'Fits: John Deere 5045D, 5050D · Mahindra 575 DI · Eicher 333': 'फिट बैठता है: जॉन डियर ५०४५डी, ५०५०डी · महिंद्रा ५७५ डीआई · आयशर ३३३',
+      'Truck Seat · Cabin Series': 'ट्रक सीट · केबिन सीरीज',
+      'Long-Haul Truck Cabin Seat — Foam Core': 'लॉन्ग-हॉल ट्रक केबिन सीट — फोम कोर',
+      'Fits: Tata 407, 608, 709 · Ashok Leyland Dost · Force Traveller': 'फिट बैठता है: टाटा ४०७, ६०८, ७०९ · अशोक लेलैंड दोस्त · फोर्स ट्रैवलर',
+      'Why Farmers & Fleet Owners Trust TracTechSpares': 'किसान और फ्लीट मालिक TracTechSpares पर क्यों भरोसा करते हैं',
+      'Factory-Direct Prices': 'फैक्ट्री-डायरेक्ट प्राइस',
+      'Cut out middlemen markup. Direct shipping from Sector 58, Faridabad factory ensures honest bulk-rate pricing.': 'बिचौलियों का कमीशन हटाएं। सेक्टर ५८, फरीदाबाद कारखाने से सीधे शिपिंग ईमानदार थोक-दर मूल्य निर्धारण सुनिश्चित करती है।',
+      'Pan-India Delivery': 'पैन-इंडिया डिलीवरी',
+      'Reliable dispatch to cities and agricultural hubs across India. Fast tracking and transport agency coordination.': 'पूरे भारत में शहरों और कृषि केंद्रों में विश्वसनीय प्रेषण। तेज ट्रैकिंग और परिवहन एजेंसी समन्वय।',
+      'Guaranteed Fitment': 'ओरिजिनल फिटमेंट',
+      'Engineered to exact OEM mount points for Mahindra, Tata, Swaraj, John Deere, Ashok Leyland, and Eicher.': 'महिंद्रा, टाटा, स्वराज, जॉन डियर, अशोक लेलैंड और आयशर के लिए सटीक ओईएम माउंट पॉइंट्स के लिए तैयार किया गया।',
+      '1-Year Factory Warranty': '१-साल की फैक्ट्री वारंटी',
+      'All items backed by full warranty covering suspension coil springs, hydraulic dampers, and metal welds.': 'सभी आइटम निलंबन कॉइल स्प्रिंग्स, हाइड्रोलिक डैम्पर्स और धातु वेल्ड को कवर करने वाली पूर्ण वारंटी द्वारा समर्थित हैं।',
+      "Can't find the right part?": 'सही पार्ट नहीं मिल रहा है?',
+      "Tell us your vehicle model and we'll confirm fitment before you order.": 'हमें अपने वाहन का मॉडल बताएं और हम ऑर्डर करने से पहले फिटमेंट की पुष्टि करेंगे।',
+      'I need help finding the right part for my vehicle': 'मुझे अपने वाहन के लिए सही पार्ट खोजने में सहायता चाहिए',
+      'Ground-Zero Factory Direct from Faridabad, Haryana.': 'GROUND-ZERO फैक्ट्री सीधे फरीदाबाद, हरियाणा से।',
+      'Products': 'उत्पाद सूची',
+      'Support': 'सहायता एवं सेवा',
+      'Compatible Brands': 'संगत ब्रांड्स',
+      'Tractor Seats': 'ट्रैक्टर सीटें',
+      'Truck Cabin Seats': 'ट्रक केबिन सीटें',
+      'Silencer Mufflers': 'साइलेंसर मफलर',
+      'Bulk Fleet Orders': 'थोक बेड़े के आदेश',
+      'Fitment Help': 'फिटमेंट सहायता',
+      'Fitment Guide': 'फिटमेंट गाइड',
+      'Return Policy': 'वापसी नीति',
+      'Contact Factory': 'फैक्ट्री संपर्क',
+      'Privacy Policy': 'गोपनीयता नीति',
+      'Your cart': 'आपकी कार्ट',
+      'Vehicle Compatibility': 'वाहन अनुकूलता',
+      'Key Specifications': 'मुख्य विशेष विवरण',
+      'Key Features': 'मुख्य विशेषताएं',
+      'Shipping & Factory Warranty': 'शिपिंग और फैक्ट्री वारंटी',
+      'Bulk Pricing Tiers': 'थोक मूल्य स्तर',
+      'Save ₹400 per seat': '₹400 प्रति सीट बचाएं',
+      'Save ₹750 per seat': '₹750 प्रति सीट बचाएं',
+      'Enter Custom Quantity': 'कस्टम मात्रा दर्ज करें',
+      'Buy Now': 'अभी खरीदें',
+      'Add to Cart': 'कार्ट में जोड़ें',
+      'Quantity': 'मात्रा',
+      'Back to Catalog': '← कैटलॉग पर वापस जाएं',
+      'Wholesale Quote Request': 'थोक उद्धरण अनुरोध',
+      'Submit Request': 'अनुरोध भेजें',
+      'Subtotal': 'उपयोग',
+      'Delivery': 'वितरण',
+      'GST (18%)': 'जीएसटी (१८%)',
+      'Total': 'कुल योग',
+      'Checkout': 'चेकआउट',
+      'Continue': 'जारी रखें',
+      'Clear': 'साफ़ करें',
+      'Secure Checkout': 'सुरक्षित चेकआउट',
+      'No password needed — verify by OTP in seconds': 'पासवर्ड की आवश्यकता नहीं है — सेकंड में ओटीपी द्वारा सत्यापित करें',
+      'Profile': 'प्रोफ़ाइल',
+      'Verify OTP': 'ओटीपी सत्यापित करें',
+      'Address': 'पता',
+      'Payment': 'भुगतान',
+      'Your Profile & Login': 'आपकी प्रोफ़ाइल और लॉगिन',
+      'Enter your phone number to receive a secure login code via WhatsApp or SMS.': 'व्हाट्सएप या एसएमएस के माध्यम से सुरक्षित लॉगिन कोड प्राप्त करने के लिए अपना फोन नंबर दर्ज करें।',
+      'Mobile Phone Number': 'मोबाइल फोन नंबर',
+      'Send login code via:': 'लॉगिन कोड भेजें:',
+      'Or login via Email': 'या ईमेल के माध्यम से लॉगिन करें',
+      'Send Login Code': 'लॉगिन कोड भेजें',
+      'Enter the OTP': 'ओटीपी दर्ज करें',
+      'Verify & Continue': 'सत्यापित करें और जारी रखें',
+      'Didn\'t receive it?': 'प्राप्त नहीं हुआ?',
+      'Resend OTP': 'ओटीपी पुनः भेजें',
+      'Try SMS instead': 'बजाय एसएमएस आज़माएं',
+      'Shipping Address': 'शिपिंग पता',
+      'Enter your delivery address for dispatch dispatch matching.': 'प्रेषण मिलान के लिए अपना वितरण पता दर्ज करें।',
+      'Full Name': 'पूरा नाम',
+      'Delivery Address Line': 'वितरण पता पंक्ति',
+      'District / City': 'जिला / शहर',
+      'State': 'राज्य',
+      'PIN Code': 'पिन कोड',
+      'Save Address & Continue': 'पता सहेजें और जारी रखें',
+      'Choose Payment Method': 'भुगतान विधि चुनें',
+      'Select your preferred payment gateway. Cash on Delivery is supported.': 'अपनी पसंदीदा भुगतान विधि चुनें। कैश ऑन डिलीवरी समर्थित है।',
+      'Cash on Delivery (COD)': 'कैश ऑन डिलीवरी (सीओडी)',
+      'Pay with cash/UPI at the time of delivery. Free shipping.': 'डिलीवरी के समय नकद/UPI से भुगतान करें। मुफ्त शिपिंग।',
+      'Online Prepaid Payment': 'ऑनलाइन प्रीपेड भुगतान',
+      'Pay via Cards, Netbanking or UPI. Secure gateway.': 'कार्ड, नेटबैंकिंग या UPI के माध्यम से भुगतान करें। सुरक्षित गेटवे।',
+      'Order Summary': 'ऑर्डर सारांश',
+      'Coupon Code': 'कूपन कोड',
+      '1-Yr Warranty': '१-साल वारंटी',
+      'SSL Secured': 'SSL सुरक्षित',
+      'Place Order (Cash on Delivery)': 'ऑर्डर दें (कैश ऑन डिलीवरी)',
+      'Place Order (UPI/Card Prepaid)': 'ऑर्डर दें (prepaid)',
+      'Order Confirmed!': 'ऑर्डर की पुष्टि हो गई!',
+      'Your order has been placed successfully.': 'आपका ऑर्डर सफलतापूर्वक दे दिया गया है।',
+      'Track my order': 'मेरा ऑर्डर ट्रैक करें'
     },
     'en': {
-      'header-location': 'Location',
-      'header-track': 'Track',
-      'header-login': 'Login / Sign up',
-      'header-cart': 'Cart',
-      'search-placeholder': 'Search: "Eicher Tractor Seat" or "Mahindra Silencer"',
-      'search-placeholder-catalog': 'Search seats, silencers...',
-      'hero-title': 'Factory-Direct Tractor & Commercial Seats',
-      'hero-sub': 'Premium OEM Quality. Rugged Durability. Pan-India Delivery.',
-      'shop-now': 'Shop Seats & Exhausts',
-      'view-catalog': 'Browse Catalog',
-      'cat-title': 'Shop by Category',
-      'cat-desc-seats': 'Ergonomic cabin seats for trucks, commercial lorries, and passenger vehicles. Built for long-haul durability.',
-      'cat-desc-exhausts': 'Perforated guard, oval-body, and matte-black silencers. Precision-welded for exact OEM replacement fit across all major brands.',
-      'why-title': 'Why Farmers & Fleet Owners Trust TracTechSpares',
-      'why-f1-title': 'Factory-Direct Prices',
-      'why-f1-desc': 'Cut out middlemen markup. Direct shipping from Sector 58, Faridabad factory ensures honest bulk-rate pricing.',
-      'why-f2-title': 'Pan-India Delivery',
-      'why-f2-desc': 'Reliable dispatch to cities and agricultural hubs across India. Fast tracking and transport agency coordination.',
-      'why-f3-title': 'Guaranteed Fitment',
-      'why-f3-desc': 'Engineered to exact OEM mount points for Mahindra, Tata, Swaraj, John Deere, Ashok Leyland, and Eicher.',
-      'why-f4-title': '1-Year Factory Warranty',
-      'why-f4-desc': 'All items backed by full warranty covering suspension coil springs, hydraulic dampers, and metal welds.',
-      'footer-text': 'Ground-Zero Factory Direct from Faridabad, Haryana.',
-      'back-to-home': '← Back to Home',
-      
-      // Footer and Catalogs
-      'footer-cta-title': "Can't find the right part?",
-      'footer-cta-sub': "Tell us your vehicle model and we'll confirm fitment before you order.",
-      'footer-products': "Products",
-      'footer-support': "Support",
-      'footer-brands': "Compatible Brands",
-      'footer-copyright': "© 2026 Tractechspares.com — <span>Ground-Zero Factory Direct</span> · Ghaziabad, Uttar Pradesh",
-      'add-to-cart': 'Add to Cart',
-      'buy-now': 'Buy Now',
-      'tab-specs': 'Specifications',
-      'tab-features': 'Features',
-      'tab-shipping': 'Shipping & Warranty',
-      'qty-title': 'Quantity',
-      'bulk-title': 'Bulk Pricing Tiers',
-      'standard-price': 'Standard price',
-      'direct-seller': 'TracTechSpares Direct Seller',
-      'vendor-seller': 'Partner Vendor Item'
+      // Identity mapping
     }
   };
 
@@ -2023,12 +2146,31 @@
     }
   };
 
+  function translateDOM(node, dict) {
+    if (node.nodeType === 3) { // Text node
+      const txt = node.nodeValue.trim();
+      if (txt && dict[txt]) {
+        node.nodeValue = node.nodeValue.replace(txt, dict[txt]);
+      }
+    } else if (node.nodeType === 1) { // Element node
+      if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE' || node.tagName === 'TEXTAREA' || node.tagName === 'INPUT') {
+        return;
+      }
+      for (let i = 0; i < node.childNodes.length; i++) {
+        translateDOM(node.childNodes[i], dict);
+      }
+    }
+  }
+
   function toggleLanguage() {
     var cur = localStorage.getItem('bp_lang') || 'en';
     var next = cur === 'en' ? 'hi' : 'en';
     localStorage.setItem('bp_lang', next);
     applyTranslations();
     showToast(next === 'hi' ? 'भाषा बदलकर हिन्दी की गई' : 'Language set to English');
+    setTimeout(function() {
+      window.location.reload();
+    }, 150);
   }
 
   function applyTranslations() {
@@ -2066,87 +2208,24 @@
       }
     }
 
-    // Update text elements if they exist
-    const mappings = [
-      { sel: '.hero-title', key: 'hero-title' },
-      { sel: '.hero-sub', key: 'hero-sub' },
-      { sel: '.footer-logo-tag', key: 'footer-text' },
-      { sel: '.back-btn', key: 'back-to-home' },
-      
-      // Footer translation mapping
-      { sel: '.footer-cta-title', key: 'footer-cta-title' },
-      { sel: '.footer-cta-sub', key: 'footer-cta-sub' },
-      { sel: '.footer-brand-desc', key: 'footer-text' },
-      { sel: '.footer-col:nth-child(2) .footer-col-title', key: 'footer-products' },
-      { sel: '.footer-col:nth-child(3) .footer-col-title', key: 'footer-support' },
-      { sel: '.footer-col:nth-child(4) .footer-col-title', key: 'footer-brands' },
-      { sel: '.footer-bottom', key: 'footer-copyright' }
-    ];
-    
-    mappings.forEach(m => {
-      const els = document.querySelectorAll(m.sel);
-      els.forEach(el => {
-        if (m.key === 'footer-copyright') {
-          el.innerHTML = dict[m.key];
-        } else {
-          el.textContent = dict[m.key];
-        }
-      });
-    });
-
-    // Translate section headings specifically
-    const sectionTitle = document.querySelector('.section-title');
-    if (sectionTitle) {
-      if (sectionTitle.textContent.includes('Category') || sectionTitle.textContent.includes('कैटेगरी') || sectionTitle.textContent.includes('श्रेणी')) {
-        sectionTitle.textContent = dict['cat-title'];
-      }
-    }
-    const whyTitle = document.querySelector('.why-section .section-title') || document.querySelector('h2.section-title');
-    if (whyTitle && (whyTitle.textContent.includes('Trust') || whyTitle.textContent.includes('भरोसा'))) {
-      whyTitle.textContent = dict['why-title'];
+    // Translate DOM text nodes if language is Hindi
+    if (lang === 'hi') {
+      translateDOM(document.body, dict);
     }
 
-    // Search placeholders
-    const searchInputs = document.querySelectorAll('.search-bar input');
+    // Update placeholders and specific attributes
+    const searchInputs = document.querySelectorAll('.search-bar input, #catalog-search');
     searchInputs.forEach(input => {
-      if (input.id === 'catalog-search' || input.placeholder.includes('Search seats')) {
-        input.placeholder = dict['search-placeholder-catalog'];
+      if (lang === 'hi') {
+        input.setAttribute('placeholder', dict['search-placeholder'] || dict['search-placeholder-catalog']);
       } else {
-        input.placeholder = dict['search-placeholder'];
+        input.setAttribute('placeholder', input.id === 'catalog-search' ? 'Search seats, silencers...' : 'Search: "Eicher Tractor Seat" or "Mahindra Silencer"');
       }
     });
 
-    // Translate specific utility menu items in header
-    const utilItems = document.querySelectorAll('.util-item');
-    utilItems.forEach(item => {
-      const textEl = item.querySelector('span');
-      if (textEl) {
-        const text = textEl.textContent.trim();
-        if (text.includes('Location') || text.includes('स्थान') || item.dataset.isLocation) {
-          var loc = {};
-          try { loc = JSON.parse(localStorage.getItem('bp_location') || '{}') || {}; }catch(e){}
-          textEl.textContent = loc.pincode || loc.state || dict['header-location'];
-          item.dataset.isLocation = '1';
-        } else if (text.includes('Track') || text.includes('ट्रेक') || text.includes('ट्रैक') || item.dataset.isTrack) {
-          textEl.textContent = dict['header-track'];
-          item.dataset.isTrack = '1';
-        }
-      }
-    });
-
-    // Update language toggle text in header
-    utilItems.forEach(item => {
-      const textEl = item.querySelector('span');
-      if (textEl && (textEl.textContent.includes('हिं') || textEl.textContent.includes('EN') || textEl.textContent.includes('हिन्दी') || item.dataset.isLang)) {
-        textEl.textContent = lang === 'en' ? 'हिं / EN' : 'हिन्दी / EN';
-        item.dataset.isLang = '1';
-      }
-    });
-
-    // Update mobile menu language text if present
-    const mobileLangVal = document.querySelector('.mobile-lang-val');
-    if (mobileLangVal) {
-      mobileLangVal.textContent = lang === 'en' ? 'English' : 'हिन्दी';
+    const langValMobile = document.querySelector('.mobile-lang-val');
+    if (langValMobile) {
+      langValMobile.textContent = lang === 'hi' ? 'हिं' : 'EN';
     }
 
     // Translate footer links and compatible brands dynamically
