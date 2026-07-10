@@ -933,6 +933,144 @@
     }catch(e){ console.error(e); alert('Could not place order'); }
   }
 
+  // Autocomplete Smart Search Dropdown implementation
+  function setupSmartSearch() {
+    try {
+      const searchBars = document.querySelectorAll('.search-bar');
+      searchBars.forEach(bar => {
+        const input = bar.querySelector('input');
+        if (!input || input.dataset.bpSmartSearchAttached) return;
+        input.dataset.bpSmartSearchAttached = '1';
+        
+        const dropdown = document.createElement('div');
+        dropdown.className = 'search-results-dropdown';
+        bar.appendChild(dropdown);
+        
+        input.addEventListener('input', function() {
+          const val = this.value.toLowerCase().trim();
+          if (!val) {
+            dropdown.classList.remove('active');
+            dropdown.innerHTML = '';
+            return;
+          }
+          
+          const dataset = [];
+          
+          // Products search index
+          if (window.BP_PRODUCTS) {
+            for (const [id, product] of Object.entries(window.BP_PRODUCTS)) {
+              dataset.push({
+                title: product.name,
+                url: 'bhumiputra_product_detail_lcv_suspension_seat.html?product=' + id,
+                type: 'product',
+                icon: 'ti-armchair',
+                keywords: (product.series + ' ' + (product.compatText || '') + ' ' + (product.fitment || []).join(' ')).toLowerCase()
+              });
+            }
+          }
+          
+          // Static pages
+          dataset.push({
+            title: 'Contact Factory & Wholesale Desk (Faridabad)',
+            url: 'contact_factory.html',
+            type: 'info',
+            icon: 'ti-building-factory-2',
+            keywords: 'contact factory wholesale desk support phone mobile maps faridabad address enquiry'
+          });
+          dataset.push({
+            title: 'Vehicle Compatibility & Fitment Guide',
+            url: 'fitment_guide.html',
+            type: 'info',
+            icon: 'ti-tractor',
+            keywords: 'fitment guide compatibility vehicle model tractor seat silencer tata mahindra eicher force'
+          });
+          dataset.push({
+            title: 'Easy Returns & Replacement Policy (1-Year Warranty)',
+            url: 'return_policy.html',
+            type: 'info',
+            icon: 'ti-shield-check',
+            keywords: 'return policy warranty refund exchange replacement money back refund'
+          });
+          
+          const matches = dataset.filter(item => {
+            return item.title.toLowerCase().includes(val) || item.keywords.includes(val);
+          }).slice(0, 5);
+          
+          if (matches.length === 0) {
+            dropdown.innerHTML = '<div style="padding:12px; font-size:12.5px; color:#888; text-align:center;">No results found for "' + input.value + '"</div>';
+            dropdown.classList.add('active');
+            return;
+          }
+          
+          dropdown.innerHTML = '';
+          matches.forEach(item => {
+            const row = document.createElement('a');
+            row.className = 'search-result-item';
+            row.href = item.url;
+            row.innerHTML = `
+              <i class="ti ${item.icon}"></i>
+              <span class="result-title">${item.title}</span>
+              <span class="result-type">${item.type}</span>
+            `;
+            dropdown.appendChild(row);
+          });
+          dropdown.classList.add('active');
+        });
+        
+        document.addEventListener('click', function(e) {
+          if (!bar.contains(e.target)) {
+            dropdown.classList.remove('active');
+          }
+        });
+      });
+    } catch(e) { console.error('Smart search setup error:', e); }
+  }
+
+  // Cookie Consent & Data Privacy Banner compliance
+  function setupPrivacyBanner() {
+    try {
+      if (localStorage.getItem('bp_privacy_accepted') === '1') return;
+      const banner = document.createElement('div');
+      banner.style.position = 'fixed';
+      banner.style.bottom = '0';
+      banner.style.left = '0';
+      banner.style.right = '0';
+      banner.style.background = '#1b4332';
+      banner.style.color = '#fff';
+      banner.style.padding = '16px 24px';
+      banner.style.boxShadow = '0 -4px 20px rgba(0,0,0,0.15)';
+      banner.style.zIndex = '10009';
+      banner.style.fontFamily = 'Noto Sans, sans-serif';
+      banner.style.fontSize = '12.5px';
+      banner.style.display = 'flex';
+      banner.style.alignItems = 'center';
+      banner.style.justifyContent = 'space-between';
+      banner.style.flexWrap = 'wrap';
+      banner.style.gap = '12px';
+      
+      banner.innerHTML = `
+        <div style="flex:1; min-width:280px; line-height:1.5; text-align:left;">
+          <i class="ti ti-shield-lock" style="font-size:16px; margin-right:4px; vertical-align:middle; color:#e85d04;"></i>
+          <strong>Data Privacy Notice:</strong> In strict compliance with India's DPDP Act, your data is processed securely, stored locally, and never shared with third parties.
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button id="decline-privacy" class="btn-pill secondary" style="padding:6px 12px; font-size:12px; background:transparent; border:1px solid rgba(255,255,255,0.4); color:#fff; cursor:pointer; border-radius:4px;">Decline</button>
+          <button id="accept-privacy" class="btn-pill primary" style="padding:6px 16px; font-size:12px; background:#e85d04; border:none; color:#fff; cursor:pointer; font-weight:700; border-radius:4px;">I Accept</button>
+        </div>
+      `;
+      
+      document.body.appendChild(banner);
+      
+      document.getElementById('accept-privacy').onclick = function() {
+        localStorage.setItem('bp_privacy_accepted', '1');
+        banner.remove();
+      };
+      document.getElementById('decline-privacy').onclick = function() {
+        banner.remove();
+      };
+    } catch(e) { console.error('Privacy banner setup error:', e); }
+  }
+
   // Scroll reveal animation utility
   function initScrollReveal() {
     try {
@@ -969,6 +1107,8 @@
     applyTranslations();
     updateLocationUI();
     initScrollReveal();
+    setupSmartSearch();
+    setupPrivacyBanner();
   });
 
   // inject small cart toggle in header if missing
