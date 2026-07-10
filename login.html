@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TracTechSpares — Secure Login</title>
+  <meta name="description" content="Securely log into your TracTechSpares account to track orders and save shipping preferences." />
+  <meta name="author" content="TracTechSpares" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/tabler-icons@1.39.1/iconfont/tabler-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --color-eg: #1B4332;
+      --color-eg-light: #2D6A4F;
+      --color-sf: #E85D04;
+      --color-bg: #f8f6f1;
+      --color-card-bg: #ffffff;
+      --color-text-primary: #1A1A1A;
+      --color-text-secondary: #555555;
+      --border-color: rgba(0, 0, 0, 0.08);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      background: #fff;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .brand-logo {
+      height: 40px;
+      object-fit: contain;
+    }
+    .login-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .login-card {
+      background: var(--color-card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+      width: 100%;
+      max-width: 400px;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 28px;
+      color: var(--color-eg);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .subtitle {
+      font-size: 13.5px;
+      color: var(--color-text-secondary);
+      margin-bottom: 24px;
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 20px;
+    }
+    .tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 10px;
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tab-btn.active {
+      color: var(--color-eg);
+      border-bottom-color: var(--color-eg);
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+    .form-group label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+    .form-group input {
+      padding: 12px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      font-weight: 600;
+      width: 100%;
+    }
+    .form-group input:focus {
+      border-color: var(--color-eg-light);
+    }
+    .channel-select {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .channel-label {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      background: #fff;
+      user-select: none;
+    }
+    .channel-label.selected {
+      border-color: var(--color-eg);
+      background: #f3fbf7;
+      color: var(--color-eg);
+    }
+    .submit-btn {
+      width: 100%;
+      background: var(--color-eg);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      font-family: 'Rajdhani', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .submit-btn:hover {
+      background: var(--color-eg-light);
+    }
+    .otp-stage {
+      display: none;
+    }
+    .otp-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .otp-box {
+      width: 48px;
+      height: 52px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-eg);
+      outline: none;
+    }
+    .otp-box:focus {
+      border-color: var(--color-eg-light);
+    }
+    .otp-hint {
+      font-size: 12.5px;
+      color: var(--color-text-secondary);
+      margin-top: 14px;
+    }
+    .otp-hint a {
+      color: var(--color-sf);
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      border-top: 1px solid var(--border-color);
+      background: #fff;
+    }
+    /* Simulated notification */
+    #simulated-notification-gateway {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 16px;
+      z-index: 10000;
+      transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      cursor: pointer;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Simulated Secure SMS/WhatsApp Push Notification Gateway -->
+  <div id="simulated-notification-gateway" onclick="this.style.top = '-120px';">
+    <div id="notification-icon-bg" style="background: #25D366; color: white; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px; box-shadow: 0 4px 10px rgba(37,211,102,0.3);">
+      <i class="ti ti-brand-whatsapp" id="notification-icon"></i>
+    </div>
+    <div style="flex: 1;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+        <span style="font-weight: 700; font-size: 13px; color: #1a1a1a;" id="notification-title">WhatsApp Gateway</span>
+        <span style="font-size: 11px; color: #888;">Just now</span>
+      </div>
+      <p style="font-size: 13px; color: #444; margin: 0; line-height: 1.4;" id="notification-body">Your verification code is: <strong>4827</strong>.</p>
+    </div>
+  </div>
+
+  <header class="page-header" id="login-header">
+    <a class="brand-link" href="index.html" aria-label="TracTechSpares home">
+      <img src="assets/logo.png" alt="TracTechSpares Logo" class="brand-logo">
+    </a>
+  </header>
+
+  <main class="login-container">
+    <div class="login-card">
+      <div id="stage-input">
+        <h1>Welcome Back</h1>
+        <p class="subtitle">Log in to manage orders and track shipments</p>
+
+        <div class="tabs">
+          <button class="tab-btn active" id="tab-phone" onclick="switchMode('phone')">Mobile OTP</button>
+          <button class="tab-btn" id="tab-email" onclick="switchMode('email')">Email Address</button>
+        </div>
+
+        <!-- Phone Section -->
+        <div id="sec-phone">
+          <div class="form-group">
+            <label for="phoneInput">Mobile Number</label>
+            <input type="tel" id="phoneInput" placeholder="e.g. 7818870265" maxlength="10" value="7818870265">
+          </div>
+          <div class="form-group">
+            <label>Receive verification code via:</label>
+            <div class="channel-select">
+              <div class="channel-label selected" id="chanWA" onclick="selectChannel('wa')">
+                <i class="ti ti-brand-whatsapp" style="color:#25D366; font-size:16px;"></i> WhatsApp
+              </div>
+              <div class="channel-label" id="chanSMS" onclick="selectChannel('sms')">
+                <i class="ti ti-message" style="color:#0077b6; font-size:16px;"></i> SMS Text
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email Section -->
+        <div id="sec-email" style="display: none;">
+          <div class="form-group">
+            <label for="emailInput">Email Address</label>
+            <input type="email" id="emailInput" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <button class="submit-btn" onclick="sendCode()"><i class="ti ti-key"></i> Send Secure Code</button>
+      </div>
+
+      <!-- OTP stage -->
+      <div id="stage-otp" class="otp-stage">
+        <h1>Verify Code</h1>
+        <p class="subtitle" id="otpSentLabel">Sent via secure line to +91 7818870265</p>
+
+        <div class="otp-boxes">
+          <input class="otp-box" type="tel" maxlength="1" id="o1" oninput="otpNext(this,'o2')" />
+          <input class="otp-box" type="tel" maxlength="1" id="o2" oninput="otpNext(this,'o3')" />
+          <input class="otp-box" type="tel" maxlength="1" id="o3" oninput="otpNext(this,'o4')" />
+          <input class="otp-box" type="tel" maxlength="1" id="o4" oninput="otpNext(this,null)" />
+        </div>
+
+        <button class="submit-btn" onclick="verifyCode()"><i class="ti ti-circle-check"></i> Verify &amp; Login</button>
+        
+        <p class="otp-hint">
+          Didn't receive the code? <a onclick="sendCode()">Resend code</a> or <a onclick="resetLogin()">Go back</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Tractechspares.com — Ground-Zero Factory Direct. All rights reserved.</p>
+  </footer>
+
+  <script>
+    var currentMode = 'phone';
+    var currentChannel = 'wa';
+
+    function switchMode(mode) {
+      currentMode = mode;
+      document.getElementById('tab-phone').classList.toggle('active', mode === 'phone');
+      document.getElementById('tab-email').classList.toggle('active', mode === 'email');
+      document.getElementById('sec-phone').style.display = mode === 'phone' ? 'block' : 'none';
+      document.getElementById('sec-email').style.display = mode === 'email' ? 'block' : 'none';
+    }
+
+    function selectChannel(ch) {
+      currentChannel = ch;
+      document.getElementById('chanWA').classList.toggle('selected', ch === 'wa');
+      document.getElementById('chanSMS').classList.toggle('selected', ch === 'sms');
+    }
+
+    function generateSecureOTP() {
+      var array = new Uint32Array(1);
+      window.crypto.getRandomValues(array);
+      var otp = ((array[0] % 9000) + 1000).toString();
+      sessionStorage.setItem('login_otp', otp);
+      return otp;
+    }
+
+    function showSimulatedNotification(target, otp) {
+      var banner = document.getElementById('simulated-notification-gateway');
+      var iconBg = document.getElementById('notification-icon-bg');
+      var icon = document.getElementById('notification-icon');
+      var title = document.getElementById('notification-title');
+      var body = document.getElementById('notification-body');
+      if (!banner) return;
+
+      if (currentMode === 'email') {
+        iconBg.style.background = '#ea4335';
+        iconBg.style.boxShadow = '0 4px 10px rgba(234,67,53,0.3)';
+        icon.className = 'ti ti-mail';
+        title.textContent = 'Email Gateway';
+        body.innerHTML = 'Your <strong>Tractechspares.com</strong> login code is: <strong>' + otp + '</strong>. Valid for 10 minutes.';
+      } else if (currentChannel === 'wa') {
+        iconBg.style.background = '#25D366';
+        iconBg.style.boxShadow = '0 4px 10px rgba(37,211,102,0.3)';
+        icon.className = 'ti ti-brand-whatsapp';
+        title.textContent = 'WhatsApp Gateway';
+        body.innerHTML = 'नमस्ते! 🙏 Your <strong>Tractechspares.com</strong> login code is: <strong>' + otp + '</strong>. Valid for 10 minutes.';
+      } else {
+        iconBg.style.background = '#007AFF';
+        iconBg.style.boxShadow = '0 4px 10px rgba(0,122,255,0.3)';
+        icon.className = 'ti ti-message-dots';
+        title.textContent = 'SMS Gateway';
+        body.innerHTML = 'Your TracTechSpares login verification OTP is: <strong>' + otp + '</strong>. Valid for 10 minutes.';
+      }
+
+      banner.style.top = '20px';
+
+      if (window.otpTimeout) clearTimeout(window.otpTimeout);
+      window.otpTimeout = setTimeout(function() {
+        banner.style.top = '-120px';
+      }, 8000);
+    }
+
+    function sendCode() {
+      var otp = generateSecureOTP();
+
+      if (currentMode === 'phone') {
+        var phone = document.getElementById('phoneInput').value.trim();
+        if (!phone || phone.length < 10) {
+          alert('Please enter a valid 10-digit mobile number.');
+          return;
+        }
+        document.getElementById('otpSentLabel').textContent = 'Sent via ' + (currentChannel === 'wa' ? 'WhatsApp' : 'SMS') + ' to +91 ' + phone;
+        showSimulatedNotification(phone, otp);
+      } else {
+        var email = document.getElementById('emailInput').value.trim();
+        if (!email || !email.includes('@')) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+        document.getElementById('otpSentLabel').textContent = 'Sent via secure Email to ' + email;
+        showSimulatedNotification(email, otp);
+      }
+
+      document.getElementById('stage-input').style.display = 'none';
+      document.getElementById('stage-otp').style.display = 'block';
+
+      setTimeout(function() {
+        var o1 = document.getElementById('o1');
+        if (o1) o1.focus();
+      }, 100);
+    }
+
+    function otpNext(el, nextId) {
+      if (el.value.length === 1 && nextId) {
+        document.getElementById(nextId).focus();
+      }
+    }
+
+    function verifyCode() {
+      var code = ['o1','o2','o3','o4'].map(function(id){ return document.getElementById(id).value; }).join('');
+      if (code.length < 4) {
+        alert('Please enter the 4-digit code.');
+        return;
+      }
+      var correctOtp = sessionStorage.getItem('login_otp');
+      if (code === correctOtp) {
+        var user = {};
+        if (currentMode === 'phone') {
+          var phone = document.getElementById('phoneInput').value.trim();
+          user = { method: 'phone', id: phone, phone: phone, name: 'Ramji Yadav' };
+        } else {
+          var email = document.getElementById('emailInput').value.trim();
+          user = { method: 'email', id: email, email: email, name: 'Ramji Yadav' };
+        }
+        localStorage.setItem('bp_user', JSON.stringify(user));
+        alert('Login successful!');
+        // Redirect back to catalog or homepage
+        window.location.href = 'tractechspares_catalog_truck_seats.html';
+      } else {
+        alert('Incorrect code. Please enter the verification code sent to your device.');
+      }
+    }
+
+    function resetLogin() {
+      document.getElementById('stage-otp').style.display = 'none';
+      document.getElementById('stage-input').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

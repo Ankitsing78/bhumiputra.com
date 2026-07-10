@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bhumiputra — Checkout / OTP</title>
-  <meta name="description" content="Secure checkout and OTP verification for Bhumiputra commercial vehicle seats and exhausts. Fast order tracking and fleet bulk orders." />
+  <title>TracTechSpares — Checkout / OTP</title>
+  <meta name="description" content="Secure checkout and OTP verification for TracTechSpares commercial vehicle seats and exhausts. Fast order tracking and fleet bulk orders." />
   <meta name="keywords" content="checkout, OTP, verification, order tracking, tractor seat purchase" />
-  <meta name="author" content="Bhumiputra" />
+  <meta name="author" content="TracTechSpares" />
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/bhumiputra.css">
+  <link rel="stylesheet" href="assets/css/tractechspares.css">
   <style>
   .raj { font-family: 'Rajdhani', sans-serif; }
 
@@ -458,21 +458,142 @@
       display: none;
     }
   }
+
+  /* Desktop split layout styling for checkout */
+  @media (min-width: 901px) {
+    .shell {
+      max-width: 1100px !important;
+      width: 95% !important;
+      margin: 2rem auto !important;
+    }
+    .checkout-layout {
+      display: flex !important;
+      gap: 32px !important;
+      align-items: flex-start !important;
+      margin-top: 16px !important;
+    }
+    .checkout-main {
+      flex: 1 !important;
+      min-width: 0 !important;
+    }
+    .checkout-sidebar {
+      width: 360px !important;
+      flex-shrink: 0 !important;
+      display: block !important;
+      position: sticky !important;
+      top: 24px !important;
+    }
+    #panel4 .order-summary {
+      display: none !important;
+    }
+  }
+  @media (max-width: 900px) {
+    .checkout-layout {
+      display: block !important;
+    }
+    .checkout-sidebar {
+      display: none !important;
+    }
+    #panel4 .order-summary {
+      display: block !important;
+    }
+  }
+
+  .sidebar-summary-card {
+    background: #fdfdfb;
+    border: 1px solid #eeede8;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  }
+  .sidebar-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1B4332;
+    margin-top: 0;
+    margin-bottom: 16px;
+    border-bottom: 1.5px solid #eee;
+    padding-bottom: 10px;
+  }
+  .coupon-section {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 16px;
+  }
+  .coupon-input {
+    flex: 1;
+    padding: 10px;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    font-size: 13.5px;
+    outline: none;
+    font-family: inherit;
+  }
+  .coupon-btn {
+    background: #1B4332;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .coupon-btn:hover {
+    background: #2d5a44;
+  }
+  .trust-badge-row {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 12px;
+  }
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #666;
+    font-weight: 600;
+  }
+  .trust-badge i {
+    color: #25D366;
+    font-size: 15px;
+  }
+  #waPreview {
+    display: none !important;
+  }
 </style>
 </head>
 <body>
 
-<!-- page title removed (was sr-only) -->
+<!-- Simulated Secure SMS/WhatsApp Push Notification Gateway -->
+<div id="simulated-notification-gateway" style="position: fixed; top: -120px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 420px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); padding: 16px; z-index: 10000; transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: start; gap: 12px; cursor: pointer;" onclick="this.style.top = '-120px';">
+  <div id="notification-icon-bg" style="background: #25D366; color: white; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px; box-shadow: 0 4px 10px rgba(37,211,102,0.3);">
+    <i class="ti ti-brand-whatsapp" id="notification-icon"></i>
+  </div>
+  <div style="flex: 1;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+      <span style="font-weight: 700; font-size: 13px; color: #1a1a1a;" id="notification-title">WhatsApp Gateway</span>
+      <span style="font-size: 11px; color: #888;">Just now</span>
+    </div>
+    <p style="font-size: 13px; color: #444; margin: 0; line-height: 1.4;" id="notification-body">Your login code is <strong>4827</strong>. Do not share this with anyone.</p>
+  </div>
+</div>
 
 <!-- Temporary header: logo linking to homepage + cart indicator -->
 <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;margin-bottom:8px;">
-  <a href="index.html" class="brand-link" style="display:flex;align-items:center;text-decoration:none;color:inherit;" aria-label="Bhumiputra home">
-    <img src="assets/logo.png" alt="Bhumiputra Logo" style="height: 40px; object-fit: contain;">
+  <a href="index.html" class="brand-link" style="display:flex;align-items:center;text-decoration:none;color:inherit;" aria-label="TracTechSpares home">
+    <img src="assets/logo.png" alt="TracTechSpares Logo" style="height: 40px; object-fit: contain;">
   </a>
   
-  <div class="search-bar" style="flex: 1; max-width: 400px; display: flex; align-items: center; background: #f3fbf7; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--eg); margin: 0 20px;">
+  <div class="search-bar" style="flex: 1; max-width: 400px; display: flex; align-items: stretch; background: #f3fbf7; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--eg); margin: 0 20px;">
     <input type="text" placeholder="Search seats, silencers..." style="flex: 1; border: none; outline: none; padding: 10px 14px; font-size: 14px; background: transparent; color: var(--text);" />
-    <button class="search-btn" style="background: var(--eg); border: none; padding: 10px 16px; cursor: pointer; color: #fff; display: flex; align-items: center;" type="button"><i class="ti ti-search" style="font-size: 16px;"></i></button>
+    <button class="search-btn" style="background: var(--eg); border: none; padding: 10px 16px; cursor: pointer; color: #fff; display: flex; align-items: center; justify-content: center;" type="button"><i class="ti ti-search" style="font-size: 16px;"></i></button>
   </div>
 
   <div class="header-actions" style="display:flex;align-items:center;gap:8px;">
@@ -493,7 +614,7 @@
     }
     if(cmd && cmd.toLowerCase().includes('whatsapp')){
       const text = encodeURIComponent('Hi, I want to enquire about my order/part');
-      window.open('https://api.whatsapp.com/send?text='+text, '_blank');
+      window.open('https://api.whatsapp.com/send?phone=917818870265&text='+text, '_blank');
       return;
     }
     alert(cmd);
@@ -511,24 +632,28 @@
     </div>
   </div>
 
-  <div class="step-bar" id="stepBar">
-    <div class="step-pip active" id="pip1"><span class="step-num">1</span>Profile</div>
-    <div class="step-pip" id="pip2"><span class="step-num">2</span>Verify OTP</div>
-    <div class="step-pip" id="pip3"><span class="step-num">3</span>Address</div>
-    <div class="step-pip" id="pip4"><span class="step-num">4</span>Payment</div>
-  </div>
+  <div class="checkout-layout">
+    <div class="checkout-main">
+      <div class="step-bar" id="stepBar">
+        <div class="step-pip active" id="pip1"><span class="step-num">1</span>Profile</div>
+        <div class="step-pip" id="pip2"><span class="step-num">2</span>Verify OTP</div>
+        <div class="step-pip" id="pip3"><span class="step-num">3</span>Address</div>
+        <div class="step-pip" id="pip4"><span class="step-num">4</span>Payment</div>
+      </div>
 
-  <div class="panel active" id="panel1">
+      <div class="panel active" id="panel1">
     <p class="panel-title">Your Profile &amp; Login</p>
     <p class="panel-sub">Enter your phone number to receive a secure login code via WhatsApp or SMS.</p>
     
     <div style="display:flex; flex-direction:column; gap:14px; max-width:320px; margin: 20px auto 0 auto; text-align:left;">
-      <div style="display:flex; flex-direction:column; gap:4px;">
+      
+      <!-- Phone Login Fields -->
+      <div id="phone-login-section" style="display:flex; flex-direction:column; gap:4px;">
         <label for="phoneInput" style="font-size:12.5px; font-weight:600; color:#333;">Mobile Phone Number</label>
         <input type="tel" id="phoneInput" placeholder="e.g. 9876543210" maxlength="10" style="padding:12px; border:1.5px solid #ddd; border-radius:8px; font-size:16px; width:100%; box-sizing:border-box; outline:none; font-weight:600;" value="9876543210">
       </div>
       
-      <div style="display:flex; flex-direction:column; gap:4px; margin-top:4px;">
+      <div id="channel-selection-section" style="display:flex; flex-direction:column; gap:4px; margin-top:4px;">
         <span style="font-size:12.5px; font-weight:600; color:#333; margin-bottom:4px;">Send login code via:</span>
         <div style="display:flex; gap:12px;">
           <label style="flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border:1.5px solid #ddd; border-radius:8px; cursor:pointer; font-weight:600; font-size:13px; background:#fff;" id="chanWA" class="selected" onclick="selectChannel('wa')">
@@ -538,6 +663,17 @@
             <i class="ti ti-message" style="color:#0077b6; font-size:16px;"></i> SMS Text
           </label>
         </div>
+      </div>
+
+      <!-- Email Login Fields -->
+      <div id="email-login-section" style="display:none; flex-direction:column; gap:4px;">
+        <label for="emailInput" style="font-size:12.5px; font-weight:600; color:#333;">Email Address</label>
+        <input type="email" id="emailInput" placeholder="e.g. you@example.com" style="padding:12px; border:1.5px solid #ddd; border-radius:8px; font-size:16px; width:100%; box-sizing:border-box; outline:none; font-weight:600;">
+      </div>
+
+      <!-- Mode Toggle Switch Link -->
+      <div style="text-align: center; margin-top: 4px;">
+        <a href="#" id="toggle-login-mode" style="font-size: 13px; color: var(--egl); font-weight: 600; text-decoration: underline;" onclick="toggleLoginMode(event)">Or login via Email</a>
       </div>
       
       <button class="btn-primary-green raj" onclick="sendLoginOTP()" type="button" style="margin-top:12px; display:flex; align-items:center; justify-content:center; gap:8px; width:100%;">
@@ -555,7 +691,7 @@
       <div class="wa-preview-label"><i class="ti ti-brand-whatsapp" aria-hidden="true" style="font-size:12px;vertical-align:-1px;margin-right:3px;"></i> WhatsApp message preview</div>
       <div class="wa-bubble">
         नमस्ते! 🙏 Your <strong>Tractechspares.com</strong> login code is:<br>
-        <span class="otp-code">4 8 2 7</span>
+        <span class="otp-code" id="waPreviewOTP">4 8 2 7</span>
         Valid for 10 minutes. Do not share this with anyone.
         <div class="wa-time">Now · ✓✓</div>
       </div>
@@ -690,7 +826,7 @@
               <strong>Order ID:</strong> <span id="order-id">#BPT-XXXX</span><br>
               <strong>Amount:</strong> <span id="order-amount">₹0</span> (<span id="order-paymethod">COD</span>)<br><br>
               Dispatch होने पर delivery partner का number WhatsApp पर भेजा जाएगा।<br><br>
-              Track करें 👉 <span id="order-track" style="color:#40916C;">bhumiputra.com/track/----</span>
+              Track करें 👉 <span id="order-track" style="color:#40916C;">tractechspares.com/track/----</span>
             </div>
       </div>
  
@@ -700,10 +836,33 @@
     </div>
   </div>
 
+    </div> <!-- end checkout-main -->
+
+    <!-- Right Column: Sidebar (PC/Desktop only) -->
+    <div class="checkout-sidebar">
+      <div class="sidebar-summary-card">
+        <h3 class="sidebar-title">Order Summary</h3>
+        <div class="order-summary">
+          <!-- Prefilled dynamically -->
+        </div>
+        <div class="coupon-section">
+          <input type="text" placeholder="Coupon Code" class="coupon-input">
+          <button class="coupon-btn" type="button" onclick="alert('Coupon applied successfully!')">Apply</button>
+        </div>
+        <div class="trust-badge-row">
+          <div class="trust-badge"><i class="ti ti-shield-check"></i> 1-Yr Warranty</div>
+          <div class="trust-badge"><i class="ti ti-lock"></i> SSL Secured</div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- end checkout-layout -->
+
 </div>
 
 <script>
   var currentChannel = 'wa';
+  var loginMode = 'phone';
 
   document.addEventListener('DOMContentLoaded', function() {
     var user = getStoredUser();
@@ -714,6 +873,28 @@
     }
   });
 
+  function toggleLoginMode(e) {
+    if (e) e.preventDefault();
+    var toggleLink = document.getElementById('toggle-login-mode');
+    var phoneSec = document.getElementById('phone-login-section');
+    var channelSec = document.getElementById('channel-selection-section');
+    var emailSec = document.getElementById('email-login-section');
+
+    if (loginMode === 'phone') {
+      loginMode = 'email';
+      if (phoneSec) phoneSec.style.display = 'none';
+      if (channelSec) channelSec.style.display = 'none';
+      if (emailSec) emailSec.style.display = 'flex';
+      if (toggleLink) toggleLink.textContent = 'Or login via Phone OTP';
+    } else {
+      loginMode = 'phone';
+      if (phoneSec) phoneSec.style.display = 'flex';
+      if (channelSec) channelSec.style.display = 'flex';
+      if (emailSec) emailSec.style.display = 'none';
+      if (toggleLink) toggleLink.textContent = 'Or login via Email';
+    }
+  }
+
   function selectChannel(ch) {
     currentChannel = ch;
     document.getElementById('chanWA').classList.toggle('selected', ch === 'wa');
@@ -721,19 +902,90 @@
     document.getElementById('waPreview').style.display = ch === 'wa' ? 'block' : 'none';
   }
 
-  function sendLoginOTP() {
-    var phoneInput = document.getElementById('phoneInput');
-    var phone = phoneInput ? phoneInput.value.trim() : '';
-    if (!phone || phone.length < 10) {
-      alert('Please enter a valid 10-digit mobile number.');
-      return;
+  function generateSecureOTP() {
+    var array = new Uint32Array(1);
+    window.crypto.getRandomValues(array);
+    var otp = ((array[0] % 9000) + 1000).toString();
+    sessionStorage.setItem('bp_current_otp', otp);
+    return otp;
+  }
+
+  function showSimulatedNotification(target, otp) {
+    var banner = document.getElementById('simulated-notification-gateway');
+    var iconBg = document.getElementById('notification-icon-bg');
+    var icon = document.getElementById('notification-icon');
+    var title = document.getElementById('notification-title');
+    var body = document.getElementById('notification-body');
+    if (!banner) return;
+
+    if (loginMode === 'email') {
+      iconBg.style.background = '#ea4335';
+      iconBg.style.boxShadow = '0 4px 10px rgba(234,67,53,0.3)';
+      icon.className = 'ti ti-mail';
+      title.textContent = 'Email Gateway';
+      body.innerHTML = 'Your <strong>Tractechspares.com</strong> login code is: <strong>' + otp + '</strong>. Valid for 10 minutes.';
+    } else if (currentChannel === 'wa') {
+      iconBg.style.background = '#25D366';
+      iconBg.style.boxShadow = '0 4px 10px rgba(37,211,102,0.3)';
+      icon.className = 'ti ti-brand-whatsapp';
+      title.textContent = 'WhatsApp Gateway';
+      body.innerHTML = 'नमस्ते! 🙏 Your <strong>Tractechspares.com</strong> login code is: <strong>' + otp + '</strong>. Valid for 10 minutes.';
+    } else {
+      iconBg.style.background = '#007AFF';
+      iconBg.style.boxShadow = '0 4px 10px rgba(0,122,255,0.3)';
+      icon.className = 'ti ti-message-dots';
+      title.textContent = 'SMS Gateway';
+      body.innerHTML = 'Your TracTechSpares login verification OTP is: <strong>' + otp + '</strong>. Valid for 10 minutes.';
     }
-    // Store temporary phone info
-    var addr = { phone: phone };
-    localStorage.setItem('bp_address', JSON.stringify(addr));
+
+    banner.style.top = '20px';
+
+    if (window.otpTimeout) clearTimeout(window.otpTimeout);
+    window.otpTimeout = setTimeout(function() {
+      banner.style.top = '-120px';
+    }, 8000);
+  }
+
+  function sendLoginOTP() {
+    var otp = generateSecureOTP();
     
-    goTo(2);
-    // Focus first OTP field
+    if (loginMode === 'phone') {
+      var phoneInput = document.getElementById('phoneInput');
+      var phone = phoneInput ? phoneInput.value.trim() : '';
+      if (!phone || phone.length < 10) {
+        alert('Please enter a valid 10-digit mobile number.');
+        return;
+      }
+      var addr = { phone: phone };
+      localStorage.setItem('bp_address', JSON.stringify(addr));
+
+      var previewOtp = document.getElementById('waPreviewOTP');
+      if (previewOtp) {
+        previewOtp.textContent = otp.split('').join(' ');
+      }
+
+      goTo(2);
+
+      setTimeout(function() {
+        showSimulatedNotification(phone, otp);
+      }, 800);
+    } else {
+      var emailInput = document.getElementById('emailInput');
+      var email = emailInput ? emailInput.value.trim() : '';
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      var addr = { email: email };
+      localStorage.setItem('bp_address', JSON.stringify(addr));
+
+      goTo(2);
+
+      setTimeout(function() {
+        showSimulatedNotification(email, otp);
+      }, 800);
+    }
+
     setTimeout(function() {
       var o1 = document.getElementById('o1');
       if (o1) o1.focus();
@@ -754,13 +1006,22 @@
       else if (idx + 1 < step) el.classList.add('done');
     });
     if (step === 2) {
-      var phoneEl = document.getElementById('phoneInput');
-      var phone = '';
-      if(phoneEl) phone = phoneEl.value || '';
-      if(!phone){ try{ var u = JSON.parse(localStorage.getItem('bp_user')||'{}')||{}; phone = u.phone || u.id || ''; }catch(e){} }
-      if(!phone) phone = '98765 43210';
-      document.getElementById('otpSentLabel').textContent =
-        'Sent via ' + (currentChannel === 'wa' ? 'WhatsApp' : 'SMS') + ' to +91 ' + phone;
+      var previewBlock = document.getElementById('waPreview');
+      if (loginMode === 'email') {
+        if (previewBlock) previewBlock.style.display = 'none';
+        var emailInput = document.getElementById('emailInput');
+        var email = emailInput ? emailInput.value.trim() : 'user@example.com';
+        document.getElementById('otpSentLabel').textContent = 'Sent via secure Email to ' + email;
+      } else {
+        if (previewBlock) previewBlock.style.display = currentChannel === 'wa' ? 'block' : 'none';
+        var phoneEl = document.getElementById('phoneInput');
+        var phone = '';
+        if(phoneEl) phone = phoneEl.value || '';
+        if(!phone){ try{ var u = JSON.parse(localStorage.getItem('bp_user')||'{}')||{}; phone = u.phone || u.id || ''; }catch(e){} }
+        if(!phone) phone = '98765 43210';
+        document.getElementById('otpSentLabel').textContent =
+          'Sent via ' + (currentChannel === 'wa' ? 'WhatsApp' : 'SMS') + ' to +91 ' + phone;
+      }
     }
     if (step === 1) {
       ['o1','o2','o3','o4'].forEach(function(id){ document.getElementById(id).value=''; });
@@ -786,19 +1047,31 @@
       alert('Please enter the 4-digit OTP.');
       return;
     }
-    if (code === '4827') {
-      var phoneEl = document.getElementById('phoneInput');
-      var phone = phoneEl ? phoneEl.value.trim() : '9876543210';
-      localStorage.setItem('bp_user', JSON.stringify({
-        method: 'phone',
-        id: phone,
-        phone: phone,
-        name: 'Ramji Yadav'
-      }));
+    var correctOtp = sessionStorage.getItem('bp_current_otp') || '4827';
+    if (code === correctOtp) {
+      if (loginMode === 'phone') {
+        var phoneEl = document.getElementById('phoneInput');
+        var phone = phoneEl ? phoneEl.value.trim() : '9876543210';
+        localStorage.setItem('bp_user', JSON.stringify({
+          method: 'phone',
+          id: phone,
+          phone: phone,
+          name: 'Ramji Yadav'
+        }));
+      } else {
+        var emailEl = document.getElementById('emailInput');
+        var email = emailEl ? emailEl.value.trim() : 'user@example.com';
+        localStorage.setItem('bp_user', JSON.stringify({
+          method: 'email',
+          id: email,
+          email: email,
+          name: 'Ramji Yadav'
+        }));
+      }
       if (window.updateAuthUI) window.updateAuthUI();
       goTo(3);
     } else {
-      alert('Incorrect OTP. Please enter 4827 (as shown in the WhatsApp message preview).');
+      alert('Incorrect OTP. Please enter the OTP sent to your number.');
     }
   }
 
@@ -807,6 +1080,18 @@
     document.getElementById('o1').focus();
     var hint = document.querySelector('.otp-hint');
     hint.innerHTML = '<i class="ti ti-check" style="color:#40916C;font-size:13px;vertical-align:-2px;"></i> OTP resent successfully.';
+    
+    var phoneInput = document.getElementById('phoneInput');
+    var phone = phoneInput ? phoneInput.value.trim() : '9876543210';
+    var otp = generateSecureOTP();
+    
+    var previewOtp = document.getElementById('waPreviewOTP');
+    if (previewOtp) {
+      previewOtp.textContent = otp.split('').join(' ');
+    }
+    
+    showSimulatedNotification(phone, otp);
+    
     setTimeout(function(){
       hint.innerHTML = 'Didn\'t receive it? <a onclick="resendOTP()">Resend OTP</a> &nbsp;|&nbsp; <a onclick="selectChannel(currentChannel===\'wa\'?\'sms\':\'wa\');goTo(1);">Try SMS instead</a>';
     }, 3000);
@@ -841,19 +1126,62 @@
   }
 
   function saveAddressDetails() {
+    var inputs = ['addr_name', 'addr_line', 'addr_district', 'addr_state', 'addr_pincode'];
+    var hasError = false;
+
+    inputs.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('has-error');
+        var errLabel = el.parentNode.querySelector('.error-message');
+        if (errLabel) errLabel.remove();
+      }
+    });
+
+    inputs.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        var val = el.value.trim();
+        if (!val) {
+          el.classList.add('has-error');
+          var err = document.createElement('span');
+          err.className = 'error-message';
+          err.textContent = 'This field is required.';
+          el.parentNode.appendChild(err);
+          hasError = true;
+
+          el.oninput = function() {
+            el.classList.remove('has-error');
+            var msg = el.parentNode.querySelector('.error-message');
+            if (msg) msg.remove();
+          };
+        }
+      }
+    });
+
+    if (hasError) return false;
+
+    var pinEl = document.getElementById('addr_pincode');
+    var pin = pinEl ? pinEl.value.trim() : '';
+    if (pin && !/^[0-9]{6}$/.test(pin)) {
+      pinEl.classList.add('has-error');
+      var err = document.createElement('span');
+      err.className = 'error-message';
+      err.textContent = 'Please enter a valid 6-digit PIN code.';
+      pinEl.parentNode.appendChild(err);
+
+      pinEl.oninput = function() {
+        pinEl.classList.remove('has-error');
+        var msg = pinEl.parentNode.querySelector('.error-message');
+        if (msg) msg.remove();
+      };
+      return false;
+    }
+
     var name = document.getElementById('addr_name').value.trim();
     var line = document.getElementById('addr_line').value.trim();
     var dist = document.getElementById('addr_district').value.trim();
     var state = document.getElementById('addr_state').value;
-    var pin = document.getElementById('addr_pincode').value.trim();
-    if (!name || !line || !dist || !state || !pin) {
-      alert('Please fill out all address fields, including State.');
-      return false;
-    }
-    if (pin && !/^[0-9]{6}$/.test(pin)) {
-      alert('Please enter a valid 6-digit Indian PIN code.');
-      return false;
-    }
     
     var phone = '';
     try {

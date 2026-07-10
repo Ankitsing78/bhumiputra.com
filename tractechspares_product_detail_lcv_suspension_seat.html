@@ -4,16 +4,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mechanical Suspension Seat — LCV Grade | Bhumiputra</title>
+  <title>Mechanical Suspension Seat — LCV Grade | TracTechSpares</title>
   <meta name="description"
-    content="Mechanical suspension seat designed for LCVs like Mahindra Bolero, Tata Ace, and Leyland Dost. Factory-direct commercial seating from Bhumiputra." />
+    content="Mechanical suspension seat designed for LCVs like Mahindra Bolero, Tata Ace, and Leyland Dost. Factory-direct commercial seating from TracTechSpares." />
   <meta name="keywords" content="mechanical suspension seat, tractor seat, truck cabin seat, Bolero pickup seat" />
-  <meta name="author" content="Bhumiputra" />
+  <meta name="author" content="TracTechSpares" />
   <link
     href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans:wght@400;500;600&display=swap"
     rel="stylesheet" />
   <link href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/bhumiputra.css" />
+  <link rel="stylesheet" href="assets/css/tractechspares.css" />
   <style>
     /* ── Product-detail-specific styles ── */
     /* FLOATING CONTACT US BUTTON */
@@ -568,14 +568,14 @@
 <body>
   <!-- ═══════ HEADER ═══════ -->
   <header class="page-header">
-    <a class="brand-link" href="index.html" aria-label="Bhumiputra home"
+    <a class="brand-link" href="index.html" aria-label="TracTechSpares home"
       style="display: flex; align-items: center; height: 100%;">
-      <img src="assets/logo.png" alt="Bhumiputra Logo" style="height: 40px; object-fit: contain;">
+      <img src="assets/logo.png" alt="TracTechSpares Logo" style="height: 40px; object-fit: contain;">
     </a>
 
-    <div class="search-bar" style="flex: 1; max-width: 400px; display: flex; align-items: center; background: #f3fbf7; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--eg); margin: 0 20px;">
+    <div class="search-bar" style="flex: 1; max-width: 400px; display: flex; align-items: stretch; background: #f3fbf7; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--eg); margin: 0 20px;">
       <input type="text" placeholder="Search seats, silencers..." style="flex: 1; border: none; outline: none; padding: 10px 14px; font-size: 14px; background: transparent; color: var(--text);" />
-      <button class="search-btn" style="background: var(--eg); border: none; padding: 10px 16px; cursor: pointer; color: #fff; display: flex; align-items: center;" type="button"><i class="ti ti-search" style="font-size: 16px;"></i></button>
+      <button class="search-btn" style="background: var(--eg); border: none; padding: 10px 16px; cursor: pointer; color: #fff; display: flex; align-items: center; justify-content: center;" type="button"><i class="ti ti-search" style="font-size: 16px;"></i></button>
     </div>
 
     <div class="header-actions">
@@ -608,7 +608,7 @@
       <!-- Breadcrumb -->
       <div class="breadcrumb">
         <a href="index.html">Home</a><i class="ti ti-chevron-right" aria-hidden="true"></i>
-        <a href="bhumiputra_catalog_truck_seats.html">Commercial Seats</a><i class="ti ti-chevron-right"
+        <a href="tractechspares_catalog_truck_seats.html">Commercial Seats</a><i class="ti ti-chevron-right"
           aria-hidden="true"></i>
         <span id="detail-breadcrumb-current">Mechanical Suspension Seat</span>
       </div>
@@ -979,10 +979,10 @@
     function sendPrompt(cmd) {
       console.log('product sendPrompt', cmd);
       var map = {
-        'I want to buy the LCV Mechanical Suspension Seat \u2014 take me to checkout': 'bhumiputra_otp_login_checkout.html?checkout=' + currentProduct.id,
-        'Add the LCV Mechanical Suspension Seat to my cart': 'bhumiputra_otp_login_checkout.html?add=' + currentProduct.id,
-        'Show me how to install the LCV suspension seat in a Mahindra Bolero Pickup': 'https://api.whatsapp.com/send?text=' + encodeURIComponent('Please share installation video for ' + currentProduct.name),
-        'I want to enquire on WhatsApp about the LCV suspension seat before ordering': 'https://api.whatsapp.com/send?text=' + encodeURIComponent('Hi, I want to enquire about ' + currentProduct.name)
+        'I want to buy the LCV Mechanical Suspension Seat \u2014 take me to checkout': 'tractechspares_otp_login_checkout.html?checkout=' + currentProduct.id,
+        'Add the LCV Mechanical Suspension Seat to my cart': 'tractechspares_otp_login_checkout.html?add=' + currentProduct.id,
+        'Show me how to install the LCV suspension seat in a Mahindra Bolero Pickup': 'https://api.whatsapp.com/send?phone=917818870265&text=' + encodeURIComponent('Please share installation video for ' + currentProduct.name),
+        'I want to enquire on WhatsApp about the LCV suspension seat before ordering': 'https://api.whatsapp.com/send?phone=917818870265&text=' + encodeURIComponent('Hi, I want to enquire about ' + currentProduct.name)
       };
       var target = map[cmd];
       if (!target) { alert(cmd); return; }
@@ -999,7 +999,7 @@
       currentProduct = window.BP_PRODUCTS[productId] || window.BP_PRODUCTS['mech-suspension'];
 
       // Title & Head
-      document.title = currentProduct.name + ' | Bhumiputra';
+      document.title = currentProduct.name + ' | TracTechSpares';
       document.getElementById('detail-breadcrumb-current').textContent = currentProduct.name;
       document.getElementById('detail-eyebrow').textContent = currentProduct.series;
       document.getElementById('detail-title').textContent = currentProduct.name;
@@ -1014,7 +1014,7 @@
       if (currentProduct.sellerType === 'direct') {
         sellerLabel.className = 'badge-direct';
         sellerLabel.style.cssText = "font-size:11px; font-weight:700; color:#1B4332; background:#D8F3DC; padding:4px 8px; border-radius:6px; margin:4px 0 12px 0; display:inline-flex; align-items:center; gap:4px; font-family:'Rajdhani',sans-serif; text-transform:uppercase;";
-        sellerLabel.innerHTML = '<i class="ti ti-building-factory-2"></i> Bhumiputra Direct Seller';
+        sellerLabel.innerHTML = '<i class="ti ti-building-factory-2"></i> TracTechSpares Direct Seller';
       } else {
         sellerLabel.className = 'badge-vendor';
         sellerLabel.style.cssText = "font-size:11px; font-weight:700; color:#6b6b6b; background:#f0f0ee; padding:4px 8px; border-radius:6px; margin:4px 0 12px 0; display:inline-flex; align-items:center; gap:4px; font-family:'Rajdhani',sans-serif; text-transform:uppercase;";
@@ -1038,25 +1038,69 @@
       const tier2 = basePrice - 400;
       const tier3 = basePrice - 750;
       
+      let selectedPrice = tier1;
+      let selectedQty = 1;
+
       const bulkTiersContainer = document.getElementById('detail-bulk-tiers');
       if (bulkTiersContainer) {
         bulkTiersContainer.innerHTML = `
-          <div class="bulk-tier" style="padding: 12px; text-align: center; border-radius: 8px; border: 1px solid #ddd; background: #fff; transition: transform 0.15s ease;">
+          <div class="bulk-tier active" data-tier="1" style="cursor: pointer; padding: 12px; text-align: center; border-radius: 8px; border: 2px solid #1B4332; background: #E8F5E9; transition: transform 0.15s ease;">
             <div class="tier-qty" style="font-size: 10px; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">1–4 Units</div>
             <div class="tier-price" style="font-size: 18px; font-weight: 700; color: #1B4332; font-family: 'Rajdhani', sans-serif;">₹${tier1.toLocaleString('en-IN')}</div>
             <div class="tier-save" style="font-size: 9px; color: #E85D04; font-weight: 600; margin-top: 2px;">Standard price</div>
           </div>
-          <div class="bulk-tier" style="padding: 12px; text-align: center; border-radius: 8px; border: 1px solid #ddd; background: #fff; transition: transform 0.15s ease;">
+          <div class="bulk-tier" data-tier="2" style="cursor: pointer; padding: 12px; text-align: center; border-radius: 8px; border: 1px solid #ddd; background: #fff; transition: transform 0.15s ease;">
             <div class="tier-qty" style="font-size: 10px; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">5–9 Units</div>
             <div class="tier-price" style="font-size: 18px; font-weight: 700; color: #1B4332; font-family: 'Rajdhani', sans-serif;">₹${tier2.toLocaleString('en-IN')}</div>
             <div class="tier-save" style="font-size: 9px; color: #E85D04; font-weight: 600; margin-top: 2px;">Save ₹400 per seat</div>
           </div>
-          <div class="bulk-tier best" style="padding: 12px; text-align: center; border-radius: 8px; border: 1px solid #E85D04; background: #FFF3E0; transition: transform 0.15s ease;">
+          <div class="bulk-tier best" data-tier="3" style="cursor: pointer; padding: 12px; text-align: center; border-radius: 8px; border: 1px solid #E85D04; background: #FFF3E0; transition: transform 0.15s ease;">
             <div class="tier-qty" style="font-size: 9px; font-weight: 700; color: #E85D04; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 6px;">10+ Units ★ BEST</div>
             <div class="tier-price" style="font-size: 18px; font-weight: 700; color: #1B4332; font-family: 'Rajdhani', sans-serif;">₹${tier3.toLocaleString('en-IN')}</div>
             <div class="tier-save" style="font-size: 9px; color: #E85D04; font-weight: 700; margin-top: 2px;">Save ₹750 per seat</div>
           </div>
         `;
+
+        const tiers = bulkTiersContainer.querySelectorAll('.bulk-tier');
+        tiers.forEach(tier => {
+          tier.onclick = function() {
+            tiers.forEach(t => {
+              t.classList.remove('active');
+              if (t.dataset.tier === '3') {
+                t.style.border = '1px solid #E85D04';
+                t.style.background = '#FFF3E0';
+              } else {
+                t.style.border = '1px solid #ddd';
+                t.style.background = '#fff';
+              }
+            });
+
+            this.classList.add('active');
+            const tierNum = this.dataset.tier;
+            if (tierNum === '1') {
+              selectedPrice = tier1;
+              selectedQty = 1;
+              this.style.border = '2px solid #1B4332';
+              this.style.background = '#E8F5E9';
+            } else if (tierNum === '2') {
+              selectedPrice = tier2;
+              selectedQty = 5;
+              this.style.border = '2px solid #1B4332';
+              this.style.background = '#E8F5E9';
+            } else if (tierNum === '3') {
+              selectedPrice = tier3;
+              selectedQty = 10;
+              this.style.border = '2px solid #E85D04';
+              this.style.background = '#FFF3E0';
+            }
+
+            const mrpValue = parseInt(currentProduct.mrp.replace(/[^0-9]/g, '')) || 5100;
+            const computedDiscount = Math.round((1 - selectedPrice / mrpValue) * 100);
+            priceContainer.innerHTML = '₹' + selectedPrice.toLocaleString('en-IN') +
+              ' <span class="price-strike">' + currentProduct.mrp + '</span>' +
+              ' <span class="price-off-tag">-' + computedDiscount + '% off</span>';
+          };
+        });
       }
 
       // Description & Compatibility
@@ -1174,18 +1218,39 @@
       const btnBuy = document.getElementById('btn-buynow-main');
       if (btnBuy) {
         btnBuy.onclick = function () {
-          window.location.href = 'bhumiputra_otp_login_checkout.html?checkout=' + currentProduct.id;
+          // Put single item with active tier configuration into checkout cart
+          localStorage.setItem('bp_cart', JSON.stringify([
+            {
+              id: currentProduct.id,
+              name: currentProduct.name,
+              price: '₹' + selectedPrice.toLocaleString('en-IN'),
+              qty: selectedQty,
+              image: currentProduct.images ? currentProduct.images[0] : 'assets/images/mahindra_seat.jpeg'
+            }
+          ]));
+          if (window.bp_site && window.bp_site.updateCartBadge) {
+            window.bp_site.updateCartBadge();
+          }
+          window.location.href = 'tractechspares_otp_login_checkout.html';
         };
       }
       const btnCart = document.getElementById('btn-cart-main-action');
       if (btnCart) {
         btnCart.onclick = function () {
           if (window.bp_site && window.bp_site.addToCart) {
+            // Clear existing duplicate item to prevent compounding
+            const arr = window.bp_site.getCart();
+            const idx = arr.findIndex(i => i.id === currentProduct.id);
+            if (idx > -1) {
+              arr.splice(idx, 1);
+              localStorage.setItem('bp_cart', JSON.stringify(arr));
+            }
+            // Add custom tier configuration
             window.bp_site.addToCart({
               id: currentProduct.id,
               name: currentProduct.name,
-              price: currentProduct.price,
-              qty: 1
+              price: '₹' + selectedPrice.toLocaleString('en-IN'),
+              qty: selectedQty
             });
           }
         };

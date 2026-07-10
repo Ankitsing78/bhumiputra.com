@@ -1,7 +1,7 @@
 {
-  "name": "bhumiputra-frontend",
+  "name": "tractechspares-frontend",
   "version": "1.0.0",
-  "description": "Front-end showcase for Bhumiputra - Factory Direct Tractor & Truck Parts",
+  "description": "Front-end showcase for TracTechSpares - Factory Direct Tractor & Truck Parts",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -15,11 +15,11 @@
     "node": ">=18.0.0"
   },
   "keywords": [
-    "bhumiputra",
+    "tractechspares",
     "e-commerce",
     "frontend",
     "showcase"
   ],
-  "author": "Bhumiputra Dev Team",
+  "author": "TracTechSpares Dev Team",
   "license": "ISC"
 }

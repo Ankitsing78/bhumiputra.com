@@ -4,17 +4,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bhumiputra — Factory Direct Tractor &amp; Truck Parts</title>
+  <title>TracTechSpares — Factory Direct Tractor &amp; Truck Parts</title>
   <meta name="description"
-    content="Bhumiputra offers premium factory-direct tractor and commercial vehicle seats, exhausts, silencers, and agricultural spare parts. High quality, best prices, pan-India delivery." />
+    content="TracTechSpares offers premium factory-direct tractor and commercial vehicle seats, exhausts, silencers, and agricultural spare parts. High quality, best prices, pan-India delivery." />
   <meta name="keywords"
     content="tractor seat, truck cabin seat, mechanical suspension seat, air suspension seat, tractor silencer, Swaraj silencer, Mahindra tractor parts, Eicher, John Deere, Tata Prima" />
-  <meta name="author" content="Bhumiputra" />
+  <meta name="author" content="TracTechSpares" />
   <link
     href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans:wght@400;500;600&display=swap"
     rel="stylesheet">
   <link href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/bhumiputra.css">
+  <link rel="stylesheet" href="assets/css/tractechspares.css">
   <style>
     * {
       box-sizing: border-box;
@@ -59,6 +59,7 @@
     .header-top {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 16px;
       padding: 12px 24px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
@@ -108,7 +109,7 @@
     .search-bar {
       flex: 1;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       background: #fff;
       border-radius: 6px;
       overflow: hidden;
@@ -580,6 +581,8 @@
       overflow: hidden;
       cursor: pointer;
       transition: all 0.18s;
+      display: flex;
+      flex-direction: column;
     }
 
     .product-card:hover {
@@ -621,6 +624,9 @@
 
     .product-body {
       padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
 
     .product-brand {
@@ -702,7 +708,8 @@
     .add-to-cart {
       display: block;
       width: 100%;
-      margin-top: 12px;
+      margin-top: auto;
+      padding-top: 12px;
       background: var(--earth-green);
       color: #fff;
       border: none;
@@ -1015,26 +1022,24 @@
     @media (max-width: 900px) {
       .header-top {
         padding: 10px 14px;
-      }
-
-      .header-top {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
       }
 
       .logo-block {
         order: 1;
+        flex: 0 0 auto;
       }
 
       .search-bar {
         order: 2;
-        width: 100%;
-        margin-top: 8px;
+        flex: 1;
+        margin-top: 0;
         border-radius: 6px;
       }
 
       .header-utils {
         order: 3;
-        margin-top: 8px;
+        margin-top: 0;
         gap: 10px;
       }
 
@@ -1120,7 +1125,7 @@
     <div class="header-top">
       <div class="logo-block">
         <a href="index.html" style="display: block; line-height: 0;">
-          <img src="assets/logo.png" alt="Bhumiputra Logo" style="height: 44px; object-fit: contain;">
+          <img src="assets/logo.png" alt="TracTechSpares Logo" style="height: 44px; object-fit: contain;">
         </a>
       </div>
       <div class="search-bar">
@@ -1147,8 +1152,10 @@
         </div>
         <div style="display:flex;align-items:center;">
           <button id="auth-btn-top" class="util-item"
-            style="background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;padding:6px 10px;border-radius:6px;font-size:13px;">Login
-            / Sign up</button>
+            style="background:transparent;border:none;color:rgba(255,255,255,0.9);cursor:pointer;padding:0;font-family:inherit;">
+            <i class="ti ti-user" aria-hidden="true" style="font-size:20px;"></i>
+            <span class="auth-btn-text" style="font-size:11px;font-weight:600;margin-top:2px;">Login / Sign up</span>
+          </button>
         </div>
       </div>
     </div>
@@ -1215,7 +1222,7 @@
         <p class="section-sub">Select your part type — compatible models are shown on every product page.</p>
       </div>
       <div class="cat-grid">
-        <a href="bhumiputra_catalog_truck_seats.html" class="cat-card">
+        <a href="tractechspares_catalog_truck_seats.html" class="cat-card">
           <div class="cat-icon green"><i class="ti ti-armchair" aria-hidden="true"></i></div>
           <div>
             <div class="cat-badge">Best Seller</div>
@@ -1225,7 +1232,7 @@
           </div>
           <div class="cat-count"><i class="ti ti-package" aria-hidden="true"></i> 28 products available</div>
         </a>
-        <a href="bhumiputra_catalog_truck_seats.html?category=commercial" class="cat-card">
+        <a href="tractechspares_catalog_truck_seats.html?category=commercial" class="cat-card">
           <div class="cat-icon saffron"><i class="ti ti-steering-wheel" aria-hidden="true"></i></div>
           <div>
             <div class="cat-badge">New Arrivals</div>
@@ -1235,7 +1242,7 @@
           </div>
           <div class="cat-count"><i class="ti ti-package" aria-hidden="true"></i> 14 products available</div>
         </a>
-        <a href="bhumiputra_catalog_truck_seats.html?category=silencers" class="cat-card">
+        <a href="tractechspares_catalog_truck_seats.html?category=silencers" class="cat-card">
           <div class="cat-icon charcoal"><i class="ti ti-wind" aria-hidden="true"></i></div>
           <div>
             <div class="cat-badge">Factory Spec</div>
@@ -1259,21 +1266,21 @@
         </p>
       </div>
       <div class="brand-row">
-        <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Mahindra"><i class="ti ti-tractor"
+        <a class="brand-pill" href="tractechspares_catalog_truck_seats.html?brand=Mahindra"><i class="ti ti-tractor"
             aria-hidden="true"></i> Mahindra</a>
-        <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Eicher"><i class="ti ti-tractor"
+        <a class="brand-pill" href="tractechspares_catalog_truck_seats.html?brand=Eicher"><i class="ti ti-tractor"
             aria-hidden="true"></i> Eicher</a>
-        <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Massey%20Ferguson"><i
+        <a class="brand-pill" href="tractechspares_catalog_truck_seats.html?brand=Massey%20Ferguson"><i
             class="ti ti-tractor" aria-hidden="true"></i> Massey Ferguson</a>
-        <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=John%20Deere"><i class="ti ti-tractor"
+        <a class="brand-pill" href="tractechspares_catalog_truck_seats.html?brand=John%20Deere"><i class="ti ti-tractor"
             aria-hidden="true"></i> John Deere</a>
-        <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Tata"><i class="ti ti-truck"
+        <a class="brand-pill" href="tractechspares_catalog_truck_seats.html?brand=Tata"><i class="ti ti-truck"
             aria-hidden="true"></i> Tata</a>
-        <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Ashok%20Leyland"><i class="ti ti-truck"
+        <a class="brand-pill" href="tractechspares_catalog_truck_seats.html?brand=Ashok%20Leyland"><i class="ti ti-truck"
             aria-hidden="true"></i> Ashok Leyland</a>
-        <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?brand=Force%20Motors"><i class="ti ti-truck"
+        <a class="brand-pill" href="tractechspares_catalog_truck_seats.html?brand=Force%20Motors"><i class="ti ti-truck"
             aria-hidden="true"></i> Force Motors</a>
-        <a class="brand-pill" href="bhumiputra_catalog_truck_seats.html?help=1"><i class="ti ti-help"
+        <a class="brand-pill" href="tractechspares_catalog_truck_seats.html?help=1"><i class="ti ti-help"
             aria-hidden="true"></i> Not sure? Ask us</a>
       </div>
       <div class="compat-note"><i class="ti ti-info-circle" aria-hidden="true"></i> Our parts are independently
@@ -1292,7 +1299,7 @@
       <div class="product-grid">
 
         <!-- Product 1 -->
-        <a class="product-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=mech-suspension">
+        <a class="product-card" href="tractechspares_product_detail_lcv_suspension_seat.html?product=mech-suspension">
           <div class="product-img">
             <img src="assets/images/mahindra_seat.jpeg" alt="Mechanical Suspension Seat"
               style="width: 100%; height: 100%; object-fit: contain; padding: 10px;">
@@ -1317,7 +1324,7 @@
         </a>
 
         <!-- Product 2 -->
-        <a class="product-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=silencer-oval">
+        <a class="product-card" href="tractechspares_product_detail_lcv_suspension_seat.html?product=silencer-oval">
           <div class="product-img">
             <img src="assets/images/oval_silencer_matte_black.png?v=2" alt="Matte Black Oval Silencer"
               style="width: 100%; height: 100%; object-fit: contain; padding: 10px;">
@@ -1342,7 +1349,7 @@
         </a>
 
         <!-- Product 3 -->
-        <a class="product-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=long-haul">
+        <a class="product-card" href="tractechspares_product_detail_lcv_suspension_seat.html?product=long-haul">
           <div class="product-img">
             <img src="assets/images/long_haul_front.png" alt="Long-Haul Truck Cabin Seat"
               style="width: 100%; height: 100%; object-fit: contain; padding: 10px;">
@@ -1484,29 +1491,29 @@
       </div>
       <div>
         <div class="footer-col-title">Products</div>
-        <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?category=tractor">Tractor Seats</a>
-        <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?category=truck">Truck Seats</a>
-        <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?category=tractor-silencers">Tractor
+        <a class="footer-link" href="tractechspares_catalog_truck_seats.html?category=tractor">Tractor Seats</a>
+        <a class="footer-link" href="tractechspares_catalog_truck_seats.html?category=truck">Truck Seats</a>
+        <a class="footer-link" href="tractechspares_catalog_truck_seats.html?category=tractor-silencers">Tractor
           Silencers</a>
-        <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?category=truck-silencers">Truck Silencers</a>
-        <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?bulk=1">Fleet Bulk Orders</a>
+        <a class="footer-link" href="tractechspares_catalog_truck_seats.html?category=truck-silencers">Truck Silencers</a>
+        <a class="footer-link" href="tractechspares_catalog_truck_seats.html?bulk=1">Fleet Bulk Orders</a>
       </div>
       <div>
         <div class="footer-col-title">Support</div>
-        <a class="footer-link" href="bhumiputra_otp_login_checkout.html">Track My Order</a>
+        <a class="footer-link" href="tractechspares_otp_login_checkout.html">Track My Order</a>
         <a class="footer-link" href="fitment_guide.html">Fitment Guide</a>
         <a class="footer-link" href="return_policy.html">Return Policy</a>
         <a class="footer-link" href="contact_factory.html">Contact Factory</a>
-        <a class="footer-link" href="https://api.whatsapp.com/send?text=I%20want%20help%20finding%20a%20part">WhatsApp
-          Us</a>
+        <a class="footer-link" href="https://wa.me/917818870265?text=I%20want%20help%20finding%20a%20part">WhatsApp Us</a>
+        <a class="footer-link" href="mailto:tractechspares@gmail.com">Email Support</a>
       </div>
       <div>
         <div class="footer-col-title">Compatible Brands</div>
-        <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?brand=Mahindra">Mahindra</a>
-        <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?brand=Eicher">Eicher</a>
-        <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?brand=Massey%20Ferguson">Massey Ferguson</a>
-        <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?brand=John%20Deere">John Deere</a>
-        <a class="footer-link" href="bhumiputra_catalog_truck_seats.html?brand=Tata">Tata · Leyland</a>
+        <a class="footer-link" href="tractechspares_catalog_truck_seats.html?brand=Mahindra">Mahindra</a>
+        <a class="footer-link" href="tractechspares_catalog_truck_seats.html?brand=Eicher">Eicher</a>
+        <a class="footer-link" href="tractechspares_catalog_truck_seats.html?brand=Massey%20Ferguson">Massey Ferguson</a>
+        <a class="footer-link" href="tractechspares_catalog_truck_seats.html?brand=John%20Deere">John Deere</a>
+        <a class="footer-link" href="tractechspares_catalog_truck_seats.html?brand=Tata">Tata · Leyland</a>
       </div>
     </div>
   </div>
@@ -1524,28 +1531,28 @@
   <script>
     function sendPrompt(cmd) {
       console.log('sendPrompt', cmd);
-      const m ap = {
-        'Show me the product catalog for tractor seats': 'bhumiputra_catalog_truck_seats.html',
-        'Show me the silencer catalog for trucks and tractors': 'bhumiputra_catalog_truck_seats.html?category=silencers',
-        'Show me tractor seat options including standard, suspension, and deluxe': 'bhumiputra_catalog_truck_seats.html?category=tractor',
-        'Show me commercial vehicle and truck cabin seats': 'bhumiputra_catalog_truck_seats.html?category=commercial',
-        'Show me tractor and truck silencer options': 'bhumiputra_catalog_truck_seats.html?category=silencers',
-        'Show all products compatible with Mahindra tractors': 'bhumiputra_catalog_truck_seats.html?brand=Mahindra',
-        'Show all products compatible with Eicher tractors': 'bhumiputra_catalog_truck_seats.html?brand=Eicher',
-        'Show products for Massey Ferguson': 'bhumiputra_catalog_truck_seats.html?brand=Massey%20Ferguson',
-        'Tell me more about the Mechanical Suspension Seat for Eicher and Mahindra tractors': 'bhumiputra_product_detail_lcv_suspension_seat.html',
-        'Tell me about the oval-body tractor silencer compatible with John Deere and Mahindra': 'bhumiputra_product_detail_lcv_suspension_seat.html?product=silencer-oval',
-        'Tell me about the commercial truck cabin seat for Tata and Leyland': 'bhumiputra_product_detail_lcv_suspension_seat.html?product=truck-cabin',
-        'I need help finding a part for my vehicle': 'bhumiputra_catalog_truck_seats.html?help=1',
-        'I need help finding the right part for my vehicle': 'bhumiputra_catalog_truck_seats.html?help=1',
-        'Help me search for a specific tractor or truck part by vehicle model': 'bhumiputra_catalog_truck_seats.html',
-        'I want to place a bulk fleet order for commercial vehicle seats': 'bhumiputra_catalog_truck_seats.html?bulk=1',
-        'I want to buy the LCV Mechanical Suspension Seat — take me to checkout': 'bhumiputra_otp_login_checkout.html?checkout=mech-suspension',
-        'Add the LCV Mechanical Suspension Seat to my cart': 'bhumiputra_otp_login_checkout.html?add=mech-suspension'
+      const map = {
+        'Show me the product catalog for tractor seats': 'tractechspares_catalog_truck_seats.html',
+        'Show me the silencer catalog for trucks and tractors': 'tractechspares_catalog_truck_seats.html?category=silencers',
+        'Show me tractor seat options including standard, suspension, and deluxe': 'tractechspares_catalog_truck_seats.html?category=tractor',
+        'Show me commercial vehicle and truck cabin seats': 'tractechspares_catalog_truck_seats.html?category=commercial',
+        'Show me tractor and truck silencer options': 'tractechspares_catalog_truck_seats.html?category=silencers',
+        'Show all products compatible with Mahindra tractors': 'tractechspares_catalog_truck_seats.html?brand=Mahindra',
+        'Show all products compatible with Eicher tractors': 'tractechspares_catalog_truck_seats.html?brand=Eicher',
+        'Show products for Massey Ferguson': 'tractechspares_catalog_truck_seats.html?brand=Massey%20Ferguson',
+        'Tell me more about the Mechanical Suspension Seat for Eicher and Mahindra tractors': 'tractechspares_product_detail_lcv_suspension_seat.html',
+        'Tell me about the oval-body tractor silencer compatible with John Deere and Mahindra': 'tractechspares_product_detail_lcv_suspension_seat.html?product=silencer-oval',
+        'Tell me about the commercial truck cabin seat for Tata and Leyland': 'tractechspares_product_detail_lcv_suspension_seat.html?product=truck-cabin',
+        'I need help finding a part for my vehicle': 'tractechspares_catalog_truck_seats.html?help=1',
+        'I need help finding the right part for my vehicle': 'https://wa.me/917818870265?text=' + encodeURIComponent('Hi, I need help finding the right part for my vehicle'),
+        'Help me search for a specific tractor or truck part by vehicle model': 'tractechspares_catalog_truck_seats.html',
+        'I want to place a bulk fleet order for commercial vehicle seats': 'tractechspares_catalog_truck_seats.html?bulk=1',
+        'I want to buy the LCV Mechanical Suspension Seat — take me to checkout': 'tractechspares_otp_login_checkout.html?checkout=mech-suspension',
+        'Add the LCV Mechanical Suspension Seat to my cart': 'tractechspares_otp_login_checkout.html?add=mech-suspension'
       };
       const target = map[cmd];
       if (!target) { alert(cmd); return; }
-      // WhatsApp/checkout placeholders handled by pages themselves where needed
+      if (target.startsWith('https://')) { window.open(target, '_blank'); return; }
       window.location.href = target;
     }
 

@@ -3,8 +3,8 @@
   const BP_PRODUCTS = {
     'mech-suspension': {
       id: 'mech-suspension',
-      name: 'Mechanical Suspension Seat — LCV Grade',
-      series: 'Suspension Series · LCV Grade',
+      name: 'Mechanical Suspension Seat — Heavy Duty',
+      series: 'Tractor & LCV Suspension Seat',
       price: '₹3,600',
       mrp: '₹5,100',
       discount: '-29%',
@@ -12,8 +12,8 @@
       ratingCount: '109 reviews',
       soldCount: '340+ sold',
       badge: 'Popular',
-      description: 'High-comfort mechanical suspension driver\'s seat designed for Light Commercial Vehicles (LCVs). Featuring premium contoured polyurethane foam, adjustable mechanical spring suspension, and a heavy-duty sliding rail. Protects the driver from spinal fatigue and road shocks during long-haul routes.',
-      compatText: 'Fits: Mahindra Bolero Pickup · Supro · Alfa Plus · Tata Ace Gold · Leyland Dost',
+      description: 'High-comfort universal mechanical suspension driver\'s seat designed for agricultural tractors and Light Commercial Vehicles (LCVs). Featuring premium contoured polyurethane foam, adjustable mechanical spring suspension, and a heavy-duty sliding rail. Protects the driver from spinal fatigue and road shocks. Perfect fit for Mahindra, Eicher, Massey Ferguson, Swaraj, and John Deere tractors.',
+      compatText: 'Fits: Eicher 380, 485, 242 · Mahindra 475, 575 DI · John Deere · Massey Ferguson · Tata Ace Gold · Bolero Pickup',
       specs: {
         'Suspension Type': 'Mechanical Spring with Shock Absorber',
         'Cushion Material': 'Contoured Polyurethane Foam (50mm)',
@@ -29,7 +29,7 @@
         'assets/images/compliance_certificate.png'
       ],
       video: 'assets/videos/suspension_demo_7.mp4',
-      fitment: ['Mahindra Bolero Pickup', 'Tata Ace Gold', 'Ashok Leyland Dost', 'Force Traveller'],
+      fitment: ['Mahindra Bolero Pickup', 'Tata Ace Gold', 'Ashok Leyland Dost', 'Force Traveller', 'Eicher 380', 'Mahindra 575 DI', 'John Deere', 'Massey Ferguson', 'Swaraj', 'Tractor', 'Seat'],
       sellerType: 'direct'
     },
     'silencer-short': {
@@ -544,11 +544,23 @@
         .bp-cart-drawer .cart-item .item-controls button:hover {
           background: #eeede8;
         }
-        .bp-cart-drawer .cart-item .item-controls span {
+        .bp-cart-drawer .cart-item .item-controls input.bp-qty-input {
           font-size: 12px;
           font-weight: 600;
-          min-width: 14px;
+          width: 38px;
+          height: 24px;
           text-align: center;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          background: #fff;
+          outline: none;
+          box-sizing: border-box;
+          -moz-appearance: textfield;
+        }
+        .bp-cart-drawer .cart-item .item-controls input.bp-qty-input::-webkit-outer-spin-button,
+        .bp-cart-drawer .cart-item .item-controls input.bp-qty-input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
         }
         .bp-cart-drawer .cart-item .bp-remove {
           background: transparent;
@@ -634,6 +646,17 @@
           text-align: center;
           text-decoration: underline;
         }
+        .has-error {
+          border-color: #d90429 !important;
+          background-color: #fff8f8 !important;
+        }
+        .error-message {
+          color: #d90429;
+          font-size: 11px;
+          margin-top: 4px;
+          display: block;
+          font-weight: 500;
+        }
       `;
       document.head.appendChild(style);
     }
@@ -661,7 +684,7 @@
       html += '    <div class="item-price">' + (it.price||'') + '</div>';
       html += '    <div class="item-controls">';
       html += '      <button class="bp-qty" data-id="'+it.id+'" data-op="-">−</button>';
-      html += '      <span>'+ (it.qty||1) +'</span>';
+      html += '      <input type="number" class="bp-qty-input" data-id="'+it.id+'" value="'+(it.qty||1)+'" min="1" max="999">';
       html += '      <button class="bp-qty" data-id="'+it.id+'" data-op="+">+</button>';
       html += '    </div>';
       html += '  </div>';
@@ -686,9 +709,22 @@
     html += '</div>';
     root.innerHTML = html;
     root.querySelectorAll('.bp-qty').forEach(b=>{ b.addEventListener('click', function(e){ const id=this.dataset.id; const op=this.dataset.op; const arr=getCart(); const idx=arr.findIndex(i=>i.id===id); if(idx>-1){ const newQty = (arr[idx].qty||1) + (op==='+'?1:-1); setQty(id, newQty); } }); });
+    root.querySelectorAll('.bp-qty-input').forEach(input => {
+      input.addEventListener('change', function() {
+        let val = parseInt(this.value);
+        if (isNaN(val) || val < 1) val = 1;
+        this.value = val;
+        setQty(this.dataset.id, val);
+      });
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          this.blur();
+        }
+      });
+    });
     root.querySelectorAll('.bp-remove').forEach(b=> b.addEventListener('click', function(){ removeItem(this.dataset.id); }));
     const close = root.querySelector('#bp-cart-close'); if(close) close.addEventListener('click', hideCartDrawer);
-    const checkout = root.querySelector('#bp-checkout'); if(checkout) checkout.addEventListener('click', ()=>{ window.location.href='bhumiputra_otp_login_checkout.html'; });
+    const checkout = root.querySelector('#bp-checkout'); if(checkout) checkout.addEventListener('click', ()=>{ window.location.href='tractechspares_otp_login_checkout.html'; });
     const clear = root.querySelector('#bp-clear'); if(clear) clear.addEventListener('click', ()=>{ saveCart([]); updateCartBadge(); renderCartDrawer(); });
     const cont = root.querySelector('#bp-continue'); if(cont) cont.addEventListener('click', hideCartDrawer);
     if(shouldShow){ root.style.display='block'; overlay.style.display='block'; }
@@ -700,12 +736,12 @@
 
   function hideCartDrawer(){ var root=document.getElementById('bp-cart-drawer'); var overlay=document.getElementById('bp-cart-overlay'); if(root) root.style.display='none'; if(overlay) overlay.style.display='none'; }
 
-  function toggleCartDrawer(){ if(getCartCount()===0){ showToast('Your cart is empty.', {label:'Shop seats', href:'bhumiputra_catalog_truck_seats.html'}); return; } var root=document.getElementById('bp-cart-drawer'); if(root && root.style.display !== 'none' && root.style.display !== ''){ hideCartDrawer(); } else { renderCartDrawer(true); } }
+  function toggleCartDrawer(){ if(getCartCount()===0){ showToast('Your cart is empty.', {label:'Shop seats', href:'tractechspares_catalog_truck_seats.html'}); return; } var root=document.getElementById('bp-cart-drawer'); if(root && root.style.display !== 'none' && root.style.display !== ''){ hideCartDrawer(); } else { renderCartDrawer(true); } }
 
   // Modify toggle to do nothing when cart is empty
   (function(){
     var _origToggle = toggleCartDrawer;
-    toggleCartDrawer = function(){ if(getCartCount()===0){ showToast('Your cart is empty.', {label:'Shop seats', href:'bhumiputra_catalog_truck_seats.html'}); return; } _origToggle(); };
+    toggleCartDrawer = function(){ if(getCartCount()===0){ showToast('Your cart is empty.', {label:'Shop seats', href:'tractechspares_catalog_truck_seats.html'}); return; } _origToggle(); };
   })();
 
   // show a small toast message
@@ -799,6 +835,25 @@
   function attachHandlers(){
     // cart open buttons
     document.querySelectorAll('#cart-btn-top, .cart-util, .cart-badge, .cart-toggle').forEach(el=>{ if(!el.dataset.bpCartAttached){ el.addEventListener('click', function(e){ e.preventDefault(); toggleCartDrawer(); }); el.dataset.bpCartAttached = '1'; } });
+    
+    // desktop header utility items (Location, Language, Track)
+    document.querySelectorAll('.util-item').forEach(item => {
+      if (item.dataset.bpUtilAttached) return;
+      const icon = item.querySelector('i');
+      if (icon) {
+        if (icon.classList.contains('ti-map-pin')) {
+          item.addEventListener('click', function(e) { e.preventDefault(); openLocationPicker(); });
+          item.dataset.bpUtilAttached = '1';
+        } else if (icon.classList.contains('ti-language')) {
+          item.addEventListener('click', function(e) { e.preventDefault(); toggleLanguage(); });
+          item.dataset.bpUtilAttached = '1';
+        } else if (icon.classList.contains('ti-truck-delivery')) {
+          item.addEventListener('click', function(e) { e.preventDefault(); openOrderTracker(); });
+          item.dataset.bpUtilAttached = '1';
+        }
+      }
+    });
+
     // add to cart buttons
     document.querySelectorAll('.add-to-cart, .product-grid .btn-cart, .p-card .btn-cart, .btn-cart-main').forEach(b=>{
       if(b.dataset.bpAttached) return;
@@ -817,7 +872,7 @@
         var text = this.textContent.trim();
         var searchInput = document.querySelector('.search-bar input');
         if(searchInput){ searchInput.value = text; searchInput.focus(); }
-        window.location.href = 'bhumiputra_catalog_truck_seats.html?q=' + encodeURIComponent(text);
+        window.location.href = 'tractechspares_catalog_truck_seats.html?q=' + encodeURIComponent(text);
       });
     });
 
@@ -829,7 +884,7 @@
         input.dataset.bpSearchAttached = '1';
         input.addEventListener('keydown', function(e) {
           if (e.key === 'Enter' && this.value.trim()) {
-            window.location.href = 'bhumiputra_catalog_truck_seats.html?q=' + encodeURIComponent(this.value.trim());
+            window.location.href = 'tractechspares_catalog_truck_seats.html?q=' + encodeURIComponent(this.value.trim());
           }
         });
       }
@@ -839,7 +894,7 @@
           e.preventDefault();
           const val = input ? input.value.trim() : '';
           if (val) {
-            window.location.href = 'bhumiputra_catalog_truck_seats.html?q=' + encodeURIComponent(val);
+            window.location.href = 'tractechspares_catalog_truck_seats.html?q=' + encodeURIComponent(val);
           }
         });
       }
@@ -850,13 +905,13 @@
   function prefillCheckout(){ try{
     if(!/otp_login_checkout|checkout|otp_login_checkout/.test(location.pathname) && !location.href.includes('otp_login_checkout')) return;
     addCheckoutProductFromQuery();
-    const root = document.querySelector('.order-summary'); if(!root) return; const t = calcTotals();
-    let html=''; const arr=getCart(); if(!arr.length){ html='<div style="padding:12px;color:#666">No items in cart</div>'; root.innerHTML = html; return; }
+    const roots = document.querySelectorAll('.order-summary'); if(!roots.length) return; const t = calcTotals();
+    let html=''; const arr=getCart(); if(!arr.length){ html='<div style="padding:12px;color:#666">No items in cart</div>'; roots.forEach(r => r.innerHTML = html); return; }
     arr.forEach(it=>{ html += '<div class="summary-row"><span>'+escapeHtml(it.name)+' × '+(it.qty||1)+'</span><span>'+ (it.price||'') +'</span></div>'; });
     html += '<div class="summary-row"><span>Delivery</span><span style="color:#40916C;">'+(t.delivery?formatCurrency(t.delivery):'FREE')+'</span></div>';
     html += '<div class="summary-row"><span>GST (18%)</span><span>'+formatCurrency(t.gst)+'</span></div>';
     html += '<div class="summary-row total"><span>Total</span><span>'+formatCurrency(t.total)+'</span></div>';
-    root.innerHTML = html;
+    roots.forEach(r => r.innerHTML = html);
     // update place order amount if present
     var amtEl = document.getElementById('place-order-amount'); if(amtEl) amtEl.textContent = formatCurrency(t.total);
     // prefill address fields from storage
@@ -886,7 +941,7 @@
   // place order -> build JSON payload, store mock order and show success
   function placeOrder(){
     try{
-      var items = getCart(); if(!items.length){ showToast('Your cart is empty. Add a seat to continue.', {label:'Shop seats', href:'bhumiputra_catalog_truck_seats.html'}); return null; }
+      var items = getCart(); if(!items.length){ showToast('Your cart is empty. Add a seat to continue.', {label:'Shop seats', href:'tractechspares_catalog_truck_seats.html'}); return null; }
 
       var user = getStoredUser();
       if(!user){
@@ -926,7 +981,7 @@
         var itemsSummary = document.getElementById('order-items-summary'); if(itemsSummary) itemsSummary.textContent = items.map(i=>i.name+' × '+i.qty).join(', ');
         var camt = document.getElementById('order-amount'); if(camt) camt.textContent = formatCurrency(order.totals.total);
         var cpay = document.getElementById('order-paymethod'); if(cpay) cpay.textContent = order.payment.method;
-        var ctrack = document.getElementById('order-track'); if(ctrack) ctrack.textContent = 'bhumiputra.com/track/'+order.id;
+        var ctrack = document.getElementById('order-track'); if(ctrack) ctrack.textContent = 'tractechspares.com/track/'+order.id;
       }catch(e){}
       saveCart([]); updateCartBadge(); renderCartDrawer();
       try{ if(typeof goTo==='function') goTo(5); else location.href = '#panel5'; }catch(e){}
@@ -963,7 +1018,7 @@
             for (const [id, product] of Object.entries(window.BP_PRODUCTS)) {
               dataset.push({
                 title: product.name,
-                url: 'bhumiputra_product_detail_lcv_suspension_seat.html?product=' + id,
+                url: 'tractechspares_product_detail_lcv_suspension_seat.html?product=' + id,
                 type: 'product',
                 icon: 'ti-armchair',
                 keywords: (product.series + ' ' + (product.compatText || '') + ' ' + (product.fitment || []).join(' ')).toLowerCase()
@@ -995,7 +1050,10 @@
           });
           
           const matches = dataset.filter(item => {
-            return item.title.toLowerCase().includes(val) || item.keywords.includes(val);
+            const words = val.split(/\s+/).filter(w => w.length > 0);
+            return words.every(word => {
+              return item.title.toLowerCase().includes(word) || item.keywords.includes(word);
+            });
           }).slice(0, 5);
           
           if (matches.length === 0) {
@@ -1175,7 +1233,15 @@
       try{ localStorage.setItem('bp_user', JSON.stringify({method:'profile', id: phone||email, name:name, phone:phoneNorm, email:email})); }catch(e){}
       try{ localStorage.setItem('bp_address', JSON.stringify({name:name, line:line, district:district, pincode:pincode})); }catch(e){}
       // update UI
-      var btn = document.getElementById('auth-btn-top') || document.querySelector('.auth-btn'); if(btn){ btn.textContent = name || phoneNorm || 'My account'; }
+      var btn = document.getElementById('auth-btn-top') || document.querySelector('.auth-btn');
+      if(btn){
+        var textEl = btn.querySelector('.auth-btn-text');
+        if(textEl){
+          textEl.textContent = name || phoneNorm || 'My account';
+        } else {
+          btn.textContent = name || phoneNorm || 'My account';
+        }
+      }
       closeProfileEditor(); showToast('Profile saved');
     });
   }
@@ -1224,6 +1290,9 @@
           <input id="auth-email" type="email" placeholder="you@example.com" style="width:100%;padding:10px;margin-bottom:8px;border:1px solid #ddd;border-radius:6px;" />
           <div style="display:flex;gap:8px;"><button data-auth-email-signup class="btn-primary" style="flex:1;">Sign up / Sign in</button><button data-auth-email-show-phone class="btn-secondary" style="flex:1;">Use phone</button></div>
         </div>
+        <div style="text-align:center;margin-top:14px;font-size:12px;border-top:1px dashed #eee;padding-top:10px;">
+          <a href="login.html" style="color:#E85D04;font-weight:600;text-decoration:underline;">Or open secure login page ↗</a>
+        </div>
       </div>
     `;
     document.body.appendChild(root);
@@ -1241,9 +1310,9 @@
   function hideAuth(){ var m=document.getElementById('auth-modal'); if(!m) return; m.style.display='none'; }
   function showEmail(){ var a=document.getElementById('auth-step-phone'), c=document.getElementById('auth-step-email'); if(a) a.style.display='none'; if(c) c.style.display='block'; }
   function showPhone(){ var a=document.getElementById('auth-step-phone'), c=document.getElementById('auth-step-email'); if(a) a.style.display='block'; if(c) c.style.display='none'; }
-  function sendOTP(){ var phone = (document.getElementById('auth-phone')||{}).value||''; phone = phone.replace(/\D/g,''); if(!phone || phone.length!==10) return showToast('Enter a 10-digit phone number'); var code = Math.floor(100000+Math.random()*900000).toString(); sessionStorage.setItem('bp_otp', code); sessionStorage.setItem('bp_otp_phone', phone); showToast('Mock OTP sent'); var a=document.getElementById('auth-step-phone'), b=document.getElementById('auth-step-verify'); if(a) a.style.display='none'; if(b) b.style.display='block'; }
+  function sendOTP(){ var phone = (document.getElementById('auth-phone')||{}).value||''; phone = phone.replace(/\D/g,''); if(!phone || phone.length!==10) return showToast('Enter a 10-digit phone number'); var code = Math.floor(1000+Math.random()*9000).toString(); sessionStorage.setItem('bp_otp', code); sessionStorage.setItem('bp_otp_phone', phone); showToast('SMS sent! Your verification OTP is: ' + code); var a=document.getElementById('auth-step-phone'), b=document.getElementById('auth-step-verify'); if(a) a.style.display='none'; if(b) b.style.display='block'; }
   function resendOTP(){ sendOTP(); }
-  function verifyOTP(){ var v=(document.getElementById('auth-otp')||{}).value||''; if(v===sessionStorage.getItem('bp_otp')){ var phone=sessionStorage.getItem('bp_otp_phone'); try{ localStorage.setItem('bp_user', JSON.stringify({method:'phone', id:phone, phone:phone})); }catch(e){} updateAuthUI(); hideAuth(); showToast('Signed in as '+phone); } else showToast('Incorrect OTP'); }
+  function verifyOTP(){ var v=(document.getElementById('auth-otp')||{}).value||''; if(v===sessionStorage.getItem('bp_otp')){ var phone=sessionStorage.getItem('bp_otp_phone'); try{ localStorage.setItem('bp_user', JSON.stringify({method:'phone', id:phone, phone:phone})); }catch(e){} updateAuthUI(); hideAuth(); showToast('Signed in as '+phone); } else showToast('Incorrect OTP. Try again.'); }
   function emailSignup(){ var email=(document.getElementById('auth-email')||{}).value||''; var name=(document.getElementById('auth-name')||{}).value||''; if(!email) return showToast('Enter email'); try{ localStorage.setItem('bp_user', JSON.stringify({method:'email', id:email, name:name, email:email})); }catch(e){} updateAuthUI(); hideAuth(); showToast('Signed in'); }
   function logout(){ localStorage.removeItem('bp_user'); updateAuthUI(); showToast('Logged out'); }
   function updateAuthUI(){
@@ -1259,7 +1328,12 @@
         var dispName = u.name || u.id || u.phone || 'User';
         
         if (btn) {
-          btn.textContent = dispName;
+          var textEl = btn.querySelector('.auth-btn-text');
+          if (textEl) {
+            textEl.textContent = dispName;
+          } else {
+            btn.textContent = dispName;
+          }
           btn.onclick = function(e){ e.preventDefault(); openProfileEditor(); };
           if(!document.getElementById('auth-logout')){
             var lo=document.createElement('button');
@@ -1282,20 +1356,32 @@
           `;
         }
       }catch(e){
-        if (btn) btn.textContent='Account';
+        if (btn) {
+          var textEl = btn.querySelector('.auth-btn-text');
+          if (textEl) {
+            textEl.textContent = 'Account';
+          } else {
+            btn.textContent = 'Account';
+          }
+        }
       }
       return;
     }
     
     if (btn) {
-      btn.textContent='Login / Sign up';
+      var textEl = btn.querySelector('.auth-btn-text');
+      if (textEl) {
+        textEl.textContent = 'Login / Sign up';
+      } else {
+        btn.textContent = 'Login / Sign up';
+      }
       btn.onclick = function(e){ e.preventDefault(); showAuth(); };
       if(document.getElementById('auth-logout')) document.getElementById('auth-logout').remove();
     }
     
     if (mobAuth) {
       mobAuth.innerHTML = `
-        <div class="mobile-nav-auth-user">Welcome to Bhumiputra</div>
+        <div class="mobile-nav-auth-user">Welcome to TracTechSpares</div>
         <div class="mobile-nav-auth-actions">
           <button class="mobile-nav-auth-btn primary" style="width:100%;" onclick="showAuth(); toggleMobileNav(false);">Login / Sign up</button>
         </div>
@@ -1353,7 +1439,7 @@
       
       drawer.innerHTML = `
         <div class="mobile-nav-header">
-          <img src="assets/logo.png" alt="Bhumiputra Logo" class="mobile-nav-logo">
+          <img src="assets/logo.png" alt="TracTechSpares Logo" class="mobile-nav-logo">
           <button class="mobile-nav-close" aria-label="Close menu"><i class="ti ti-x"></i></button>
         </div>
         <div class="mobile-nav-body">
@@ -1379,15 +1465,15 @@
           
           <div class="mobile-nav-section">
             <span class="mobile-nav-section-title">Explore Store</span>
-            <a href="bhumiputra_catalog_truck_seats.html?category=seats" class="mobile-nav-link"><i class="ti ti-armchair"></i> Truck & Tractor Seats</a>
-            <a href="bhumiputra_catalog_truck_seats.html?category=silencers" class="mobile-nav-link"><i class="ti ti-wind"></i> Silencers & Exhausts</a>
+            <a href="tractechspares_catalog_truck_seats.html?category=seats" class="mobile-nav-link"><i class="ti ti-armchair"></i> Truck & Tractor Seats</a>
+            <a href="tractechspares_catalog_truck_seats.html?category=silencers" class="mobile-nav-link"><i class="ti ti-wind"></i> Silencers & Exhausts</a>
             <a href="fitment_guide.html" class="mobile-nav-link"><i class="ti ti-settings-automation"></i> Vehicle Fitment Guide</a>
             <a href="contact_factory.html" class="mobile-nav-link"><i class="ti ti-building-factory-2"></i> Contact Faridabad Factory</a>
             <a href="return_policy.html" class="mobile-nav-link"><i class="ti ti-shield-check"></i> Return & Warranty Policy</a>
           </div>
         </div>
         <div class="mobile-nav-footer">
-          <strong>Bhumiputra India</strong>
+          <strong>TracTechSpares India</strong>
           <div style="font-size:10px;color:#888;margin-top:4px;">Direct Factory Shipping across all states</div>
         </div>
       `;
@@ -1805,7 +1891,7 @@
       'cat-title': 'Shop by Category',
       'cat-desc-seats': 'Ergonomic cabin seats for trucks, commercial lorries, and passenger vehicles. Built for long-haul durability.',
       'cat-desc-exhausts': 'Perforated guard, oval-body, and matte-black silencers. Precision-welded for exact OEM replacement fit across all major brands.',
-      'why-title': 'Why Farmers & Fleet Owners Trust Bhumiputra',
+      'why-title': 'Why Farmers & Fleet Owners Trust TracTechSpares',
       'why-f1-title': 'Factory-Direct Prices',
       'why-f1-desc': 'Cut out middlemen markup. Direct shipping from Sector 58, Faridabad factory ensures honest bulk-rate pricing.',
       'why-f2-title': 'Pan-India Delivery',

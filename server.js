@@ -12,7 +12,7 @@ app.use((req, res, next) => {
 // Serve static assets from assets directory
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-// Serve root static files (index.html, bhumiputra_*.html)
+// Serve root static files (index.html, tractechspares_*.html)
 app.use(express.static(__dirname));
 
 // Route for homepage
@@ -27,7 +27,7 @@ app.use((req, res) => {
 
 app.listen(PORT, () => {
   console.log('==================================================');
-  console.log(` Bhumiputra Showcase Server running on port ${PORT}`);
+  console.log(` TracTechSpares Showcase Server running on port ${PORT}`);
   console.log(` Local URL: http://localhost:${PORT}`);
   console.log('==================================================');
 });

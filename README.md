@@ -1,6 +1,6 @@
-# Bhumiputra — Factory Direct Tractor & Truck Parts
+# TracTechSpares — Factory Direct Tractor & Truck Parts
 
-Bhumiputra is a high-performance, modern, mobile-responsive front-end web application built for showcasing factory-direct commercial vehicle seating, exhausts, and tractor spare parts directly to fleet operators and agricultural buyers.
+TracTechSpares is a high-performance, modern, mobile-responsive front-end web application built for showcasing factory-direct commercial vehicle seating, exhausts, and tractor spare parts directly to fleet operators and agricultural buyers.
 
 This project is fully deployable, containerized, and structured to integrate seamlessly into production environments.
 
@@ -42,11 +42,11 @@ This application is fully containerized. To build and run the Docker container l
 
 1.  **Build the Docker image:**
     ```bash
-    docker build -t bhumiputra-frontend .
+    docker build -t tractechspares-frontend .
     ```
 2.  **Run the container:**
     ```bash
-    docker run -d -p 8080:8080 --name bhumiputra-showcase bhumiputra-frontend
+    docker run -d -p 8080:8080 --name tractechspares-showcase tractechspares-frontend
     ```
 3.  Open [http://localhost:8080](http://localhost:8080) to view the running container app.
 
@@ -64,7 +64,7 @@ Because this is a high-performance static SPA layout, you can deploy it directly
 *   Deploy using the provided `Dockerfile`. This is the most secure and robust option for enterprise deployment.
 *   For **Google Cloud Run**, run:
     ```bash
-    gcloud run deploy bhumiputra-showcase --source .
+    gcloud run deploy tractechspares-showcase --source .
     ```
 
 ### 3. Node.js Hosting (Render, Heroku)
