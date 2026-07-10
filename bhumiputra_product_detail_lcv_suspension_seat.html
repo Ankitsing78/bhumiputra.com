@@ -4,18 +4,62 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mechanical Suspension Seat — LCV Grade | Bhumiputra</title>
+  <title>Mechanical Suspension Seat — LCV Grade | TracTechSpares</title>
   <meta name="description"
-    content="Buy Mechanical Suspension Seat for LCV vehicles — Mahindra Bolero Pickup, Supro, Alfa Plus, Imperio, Tata Xenon, Force Traveller. Factory direct ₹3,600. COD available." />
-  <meta name="keywords" content="mechanical suspension seat, tractor seat, LCV seat, driver seat, Bolero pickup seat" />
-  <meta name="author" content="Bhumiputra" />
+    content="Mechanical suspension seat designed for LCVs like Mahindra Bolero, Tata Ace, and Leyland Dost. Factory-direct commercial seating from TracTechSpares." />
+  <meta name="keywords" content="mechanical suspension seat, tractor seat, truck cabin seat, Bolero pickup seat" />
+  <meta name="author" content="TracTechSpares" />
   <link
     href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link href="https://unpkg.com/tabler-icons@1.39.1/iconfont/tabler-icons.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/bhumiputra.css" />
   <style>
     /* ── Product-detail-specific styles ── */
+    /* FLOATING CONTACT US BUTTON */
+    .contact-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--sf);
+      color: #fff !important;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 16px rgba(232, 93, 4, 0.35);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .contact-fab:hover {
+      background: var(--sfb);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232, 93, 4, 0.5);
+      color: #fff !important;
+    }
+
+    .contact-fab i {
+      font-size: 18px;
+    }
+
+    @media (max-width: 480px) {
+      .contact-fab {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px;
+        border-radius: 50%;
+      }
+      .contact-fab span {
+        display: none;
+      }
+    }
     .price-strike {
       font-size: 14px;
       color: #999;
@@ -524,9 +568,9 @@
 <body>
   <!-- ═══════ HEADER ═══════ -->
   <header class="page-header">
-    <a class="brand-link" href="index.html" aria-label="Bhumiputra home"
+    <a class="brand-link" href="index.html" aria-label="TracTechSpares home"
       style="display: flex; align-items: center; height: 100%;">
-      <img src="assets/logo.png" alt="Bhumiputra Logo" style="height: 40px; object-fit: contain;">
+      <img src="assets/logo.png" alt="TracTechSpares Logo" style="height: 40px; object-fit: contain;">
     </a>
     <div class="header-actions">
       <button id="auth-btn-top" class="btn-pill" type="button">Login / Sign up</button>
@@ -580,6 +624,14 @@
         ₹3,600
         <span class="price-strike">₹5,100</span>
         <span class="price-off-tag">-29% off</span>
+      </div>
+
+      <!-- Bulk Pricing Section -->
+      <div class="bulk-section-wrap" style="margin: 20px 0;">
+        <h4 style="font-family: 'Rajdhani', sans-serif; font-size: 15px; color: #1B4332; margin-bottom: 8px; font-weight: 700;">Bulk Pricing</h4>
+        <div class="bulk-tiers" id="detail-bulk-tiers" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+          <!-- Injected dynamically -->
+        </div>
       </div>
 
       <!-- Product Description -->
@@ -785,27 +837,7 @@
       </button>
     </section>
 
-    <!-- Bulk Pricing Section -->
-    <section class="bulk-section" style="grid-column: 1 / -1;">
-      <h3><i class="ti ti-packages" aria-hidden="true"></i> Bulk Pricing</h3>
-      <div class="bulk-tiers">
-        <div class="bulk-tier">
-          <div class="tier-qty">1–4 Units</div>
-          <div class="tier-price">₹3,600</div>
-          <div class="tier-save">Standard price</div>
-        </div>
-        <div class="bulk-tier">
-          <div class="tier-qty">5–9 Units</div>
-          <div class="tier-price">₹3,200</div>
-          <div class="tier-save">Save ₹400 per seat</div>
-        </div>
-        <div class="bulk-tier best">
-          <div class="tier-qty">10+ Units</div>
-          <div class="tier-price">₹2,850</div>
-          <div class="tier-save">Save ₹750 per seat</div>
-        </div>
-      </div>
-    </section>
+    <!-- Bulk Pricing Section Removed (moved to top below price) -->
 
     <!-- Customer Reviews Section -->
     <section class="reviews-section" style="grid-column: 1 / -1;">
@@ -961,10 +993,27 @@
       currentProduct = window.BP_PRODUCTS[productId] || window.BP_PRODUCTS['mech-suspension'];
 
       // Title & Head
-      document.title = currentProduct.name + ' | Bhumiputra';
+      document.title = currentProduct.name + ' | TracTechSpares';
       document.getElementById('detail-breadcrumb-current').textContent = currentProduct.name;
       document.getElementById('detail-eyebrow').textContent = currentProduct.series;
       document.getElementById('detail-title').textContent = currentProduct.name;
+
+      // Seller badge next to title
+      let sellerLabel = document.getElementById('detail-seller-badge');
+      if (!sellerLabel) {
+        sellerLabel = document.createElement('span');
+        sellerLabel.id = 'detail-seller-badge';
+        document.getElementById('detail-title').insertAdjacentElement('afterend', sellerLabel);
+      }
+      if (currentProduct.sellerType === 'direct') {
+        sellerLabel.className = 'badge-direct';
+        sellerLabel.style.cssText = "font-size:11px; font-weight:700; color:#1B4332; background:#D8F3DC; padding:4px 8px; border-radius:6px; margin:4px 0 12px 0; display:inline-flex; align-items:center; gap:4px; font-family:'Rajdhani',sans-serif; text-transform:uppercase;";
+        sellerLabel.innerHTML = '<i class="ti ti-building-factory-2"></i> Bhumiputra Direct Seller';
+      } else {
+        sellerLabel.className = 'badge-vendor';
+        sellerLabel.style.cssText = "font-size:11px; font-weight:700; color:#6b6b6b; background:#f0f0ee; padding:4px 8px; border-radius:6px; margin:4px 0 12px 0; display:inline-flex; align-items:center; gap:4px; font-family:'Rajdhani',sans-serif; text-transform:uppercase;";
+        sellerLabel.innerHTML = '<i class="ti ti-users"></i> Partner Vendor Item';
+      }
 
       // Ratings & Popularity
       document.getElementById('detail-rating-avg').textContent = currentProduct.rating;
@@ -977,10 +1026,68 @@
         ' <span class="price-strike">' + currentProduct.mrp + '</span>' +
         ' <span class="price-off-tag">' + currentProduct.discount + ' off</span>';
 
+      // Update Bulk Pricing Tiers dynamically
+      const basePrice = parseInt(currentProduct.price.replace(/[^0-9]/g, '')) || 3600;
+      const tier1 = basePrice;
+      const tier2 = basePrice - 400;
+      const tier3 = basePrice - 750;
+      
+      const bulkTiersContainer = document.getElementById('detail-bulk-tiers');
+      if (bulkTiersContainer) {
+        bulkTiersContainer.innerHTML = `
+          <div class="bulk-tier" style="padding: 12px; text-align: center; border-radius: 8px; border: 1px solid #ddd; background: #fff; transition: transform 0.15s ease;">
+            <div class="tier-qty" style="font-size: 10px; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">1–4 Units</div>
+            <div class="tier-price" style="font-size: 18px; font-weight: 700; color: #1B4332; font-family: 'Rajdhani', sans-serif;">₹\${tier1.toLocaleString('en-IN')}</div>
+            <div class="tier-save" style="font-size: 9px; color: #E85D04; font-weight: 600; margin-top: 2px;">Standard price</div>
+          </div>
+          <div class="bulk-tier" style="padding: 12px; text-align: center; border-radius: 8px; border: 1px solid #ddd; background: #fff; transition: transform 0.15s ease;">
+            <div class="tier-qty" style="font-size: 10px; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">5–9 Units</div>
+            <div class="tier-price" style="font-size: 18px; font-weight: 700; color: #1B4332; font-family: 'Rajdhani', sans-serif;">₹\${tier2.toLocaleString('en-IN')}</div>
+            <div class="tier-save" style="font-size: 9px; color: #E85D04; font-weight: 600; margin-top: 2px;">Save ₹400 per seat</div>
+          </div>
+          <div class="bulk-tier best" style="padding: 12px; text-align: center; border-radius: 8px; border: 1px solid #E85D04; background: #FFF3E0; transition: transform 0.15s ease;">
+            <div class="tier-qty" style="font-size: 9px; font-weight: 700; color: #E85D04; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 6px;">10+ Units ★ BEST</div>
+            <div class="tier-price" style="font-size: 18px; font-weight: 700; color: #1B4332; font-family: 'Rajdhani', sans-serif;">₹\${tier3.toLocaleString('en-IN')}</div>
+            <div class="tier-save" style="font-size: 9px; color: #E85D04; font-weight: 700; margin-top: 2px;">Save ₹750 per seat</div>
+          </div>
+        `;
+      }
+
       // Description & Compatibility
       document.getElementById('detail-desc').textContent = currentProduct.description;
       const fitmentSummary = document.querySelector('.spec-item p');
       if (fitmentSummary) fitmentSummary.textContent = currentProduct.compatText;
+
+      // Dynamic delivery specs override
+      const deliverySpec = document.querySelector('.spec-item strong i.ti-truck-delivery')?.closest('.spec-item');
+      if (deliverySpec) {
+        const p = deliverySpec.querySelector('p');
+        if (currentProduct.sellerType === 'direct') {
+          p.textContent = 'Ships in 24 hours, COD available, UPI / PhonePe / GPay accepted, pan-India delivery.';
+        } else {
+          p.innerHTML = 'Ships in 3-5 days, <strong style="color:#C53030;">Prepaid Only</strong> (COD disabled), UPI / Netbanking accepted.';
+        }
+      }
+
+      // Dynamic delivery row chips override
+      const deliveryRow = document.querySelector('.delivery-row');
+      if (deliveryRow) {
+        if (currentProduct.sellerType === 'direct') {
+          deliveryRow.innerHTML = `
+            <div class="delivery-chip"><i class="ti ti-cash" aria-hidden="true"></i> COD Available</div>
+            <div class="delivery-chip"><i class="ti ti-device-mobile" aria-hidden="true"></i> UPI / PhonePe / GPay</div>
+            <div class="delivery-chip"><i class="ti ti-clock" aria-hidden="true"></i> Ships in 24 hrs</div>
+            <div class="delivery-chip"><i class="ti ti-map-pin" aria-hidden="true"></i> GPS pin-drop delivery</div>
+          `;
+        } else {
+          deliveryRow.innerHTML = `
+            <div class="delivery-chip" style="background:#FFF5F5; border-color:#FED7D7; color:#C53030;"><i class="ti ti-credit-card" aria-hidden="true"></i> Prepaid Only</div>
+            <div class="delivery-chip"><i class="ti ti-device-mobile" aria-hidden="true"></i> UPI / Netbanking</div>
+            <div class="delivery-chip"><i class="ti ti-clock" aria-hidden="true"></i> Ships in 3-5 Days</div>
+            <div class="delivery-chip"><i class="ti ti-map-pin" aria-hidden="true"></i> GPS pin-drop delivery</div>
+          `;
+        }
+      }
 
       // Specifications Table
       const specTable = document.querySelector('#tab-specs .spec-table');
@@ -996,6 +1103,23 @@
           tr.appendChild(td2);
           specTable.appendChild(tr);
         }
+      }
+
+      // Dynamic Shipping & Warranty tab table details override
+      const shippingTab = document.getElementById('tab-shipping');
+      if (shippingTab) {
+        const rows = shippingTab.querySelectorAll('tr');
+        rows.forEach(tr => {
+          const key = tr.querySelector('td:nth-child(1)')?.textContent.trim();
+          const valCell = tr.querySelector('td:nth-child(2)');
+          if (key === 'Dispatch Time') {
+            valCell.textContent = currentProduct.sellerType === 'direct' ? 'Within 24 hours of order confirmation' : 'Within 3-5 business days';
+          } else if (key === 'Payment Options') {
+            valCell.textContent = currentProduct.sellerType === 'direct' ? 'COD, UPI, PhonePe, GPay, Bank Transfer' : 'UPI, Cards, Netbanking (Prepaid-only)';
+          } else if (key === 'Warranty') {
+            valCell.textContent = currentProduct.sellerType === 'direct' ? '1 year against manufacturing defects' : '6 months against manufacturing defects';
+          }
+        });
       }
 
       // Exact Fitment Pills
@@ -1050,12 +1174,14 @@
       const btnCart = document.getElementById('btn-cart-main-action');
       if (btnCart) {
         btnCart.onclick = function () {
-          window.addToCart({
-            id: currentProduct.id,
-            name: currentProduct.name,
-            price: currentProduct.price,
-            qty: 1
-          });
+          if (window.bp_site && window.bp_site.addToCart) {
+            window.bp_site.addToCart({
+              id: currentProduct.id,
+              name: currentProduct.name,
+              price: currentProduct.price,
+              qty: 1
+            });
+          }
         };
       }
     }
@@ -1063,6 +1189,11 @@
     // Initialize on DOM ready
     document.addEventListener('DOMContentLoaded', initDynamicProduct);
   </script>
+  <!-- FLOATING CONTACT US BUTTON -->
+  <a href="contact_factory.html" class="contact-fab" aria-label="Contact Us">
+    <i class="ti ti-phone" aria-hidden="true"></i>
+    <span>Contact Us</span>
+  </a>
 </body>
 
 </html>

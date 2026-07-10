@@ -4,16 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BHUMIPUTRA — Factory Direct Tractor & Truck Parts</title>
+  <title>TracTechSpares — Factory Direct Tractor & Truck Parts</title>
   <meta name="description"
-    content="Bhumiputra offers premium factory-direct tractor and commercial vehicle seats, exhausts, silencers, and agricultural spare parts. High quality, best prices, pan-India delivery." />
+    content="TracTechSpares offers premium factory-direct tractor and commercial vehicle seats, exhausts, silencers, and agricultural spare parts. High quality, best prices, pan-India delivery." />
   <meta name="keywords"
     content="tractor seat, truck cabin seat, mechanical suspension seat, air suspension seat, tractor silencer, Swaraj silencer, Mahindra tractor parts, Eicher, John Deere, Tata Prima" />
-  <meta name="author" content="Bhumiputra" />
+  <meta name="author" content="TracTechSpares" />
   <link
     href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans:wght@400;500;600&display=swap"
     rel="stylesheet">
-  <link href="https://unpkg.com/tabler-icons@1.39.1/iconfont/tabler-icons.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -863,87 +863,50 @@
       font-size: 18px;
     }
 
-    /* AI CHATBOT */
-    .chatbot-bubble {
+    /* FLOATING CONTACT US BUTTON */
+    .contact-fab {
       position: fixed;
       bottom: 28px;
       right: 28px;
       z-index: 999;
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 12px;
-    }
-
-    .chat-popup {
-      background: #fff;
-      border-radius: 12px;
-      padding: 16px;
-      border: 1.5px solid var(--border);
-      width: 240px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    }
-
-    .chat-popup-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--earth-green);
-      margin-bottom: 4px;
-    }
-
-    .chat-popup-sub {
-      font-size: 11px;
-      color: var(--mid-gray);
-      margin-bottom: 10px;
-      line-height: 1.4;
-    }
-
-    .chat-input-row {
-      display: flex;
-      gap: 6px;
-    }
-
-    .chat-input-row input {
-      flex: 1;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 7px 10px;
-      font-size: 12px;
-      outline: none;
-    }
-
-    .mic-btn {
+      align-items: center;
+      gap: 8px;
       background: var(--saffron);
-      border: none;
-      border-radius: 6px;
-      width: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: #fff;
+      color: #fff !important;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 16px rgba(232, 93, 4, 0.35);
+      transition: all 0.2s ease-in-out;
     }
 
-    .mic-btn i {
-      font-size: 16px;
+    .contact-fab:hover {
+      background: var(--saffron-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232, 93, 4, 0.5);
+      color: #fff !important;
     }
 
-    .chat-fab {
-      width: 52px;
-      height: 52px;
-      background: var(--earth-green);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 4px 12px rgba(27, 67, 50, 0.35);
+    .contact-fab i {
+      font-size: 18px;
     }
 
-    .chat-fab i {
-      font-size: 24px;
-      color: #fff;
+    @media (max-width: 480px) {
+      .contact-fab {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px;
+        border-radius: 50%;
+      }
+
+      .contact-fab span {
+        display: none;
+      }
     }
 
     /* FOOTER */
@@ -1127,7 +1090,7 @@
     <div class="header-top">
       <div class="logo-block">
         <a href="index.html" style="display: block; line-height: 0;">
-          <img src="assets/logo.png" alt="Bhumiputra Logo" style="height: 44px; object-fit: contain;">
+          <img src="assets/logo.png" alt="TracTechSpares Logo" style="height: 44px; object-fit: contain;">
         </a>
       </div>
       <div class="search-bar">
@@ -1477,7 +1440,7 @@
   <div class="footer">
     <div class="footer-inner">
       <div>
-        <div class="footer-brand-name display">BHUMIPUTRA</div>
+        <div class="footer-brand-name display">TRACTECHSPARES</div>
         <p class="footer-brand-desc">Ground-zero independent manufacturer of mechanical suspension seats and heavy-duty
           silencers. Factory-direct pricing, OEM-spec fitment, pan-India delivery.</p>
         <div style="display: flex; gap: 10px;">
@@ -1501,9 +1464,9 @@
       <div>
         <div class="footer-col-title">Support</div>
         <a class="footer-link" href="bhumiputra_otp_login_checkout.html">Track My Order</a>
-        <a class="footer-link" href="#">Fitment Guide</a>
-        <a class="footer-link" href="#">Return Policy</a>
-        <a class="footer-link" href="#">Contact Factory</a>
+        <a class="footer-link" href="fitment_guide.html">Fitment Guide</a>
+        <a class="footer-link" href="return_policy.html">Return Policy</a>
+        <a class="footer-link" href="contact_factory.html">Contact Factory</a>
         <a class="footer-link" href="https://api.whatsapp.com/send?text=I%20want%20help%20finding%20a%20part">WhatsApp
           Us</a>
       </div>
@@ -1517,31 +1480,21 @@
       </div>
     </div>
   </div>
-  <div class="footer-bottom">© 2025 Bhumiputra.com — <span>Ground-Zero Factory Direct</span> · Ghaziabad, Uttar Pradesh
+  <div class="footer-bottom">© 2026 Tractechspares.com — <span>Ground-Zero Factory Direct</span> · Ghaziabad, Uttar
+    Pradesh
     · GST: 09XXXXX0000X1Z5</div>
 
-  <!-- FLOATING AI CHATBOT -->
-  <div class="chatbot-bubble">
-    <div class="chat-popup">
-      <div class="chat-popup-title">Bhumiputra Assistant</div>
-      <div class="chat-popup-sub">अपने vehicle का नाम बताएं — हम सही part खोज देंगे।<br><em
-          style="font-size:10px; color: #bbb;">Tell us your vehicle, we'll find your part.</em></div>
-      <div class="chat-input-row">
-        <input type="text" placeholder="e.g. Eicher 380 seat" />
-        <button class="mic-btn" title="Voice input" aria-label="Voice input"><i class="ti ti-microphone"
-            aria-hidden="true"></i></button>
-      </div>
-    </div>
-    <button class="chat-fab" aria-label="Open chat assistant">
-      <i class="ti ti-message-chatbot" aria-hidden="true"></i>
-    </button>
-  </div>
+  <!-- FLOATING CONTACT US BUTTON -->
+  <a href="contact_factory.html" class="contact-fab" aria-label="Contact Us">
+    <i class="ti ti-phone" aria-hidden="true"></i>
+    <span>Contact Us</span>
+  </a>
 
   <!-- SCRIPTS -->
   <script>
     function sendPrompt(cmd) {
       console.log('sendPrompt', cmd);
-      const map = {
+      const m ap = {
         'Show me the product catalog for tractor seats': 'bhumiputra_catalog_truck_seats.html',
         'Show me the silencer catalog for trucks and tractors': 'bhumiputra_catalog_truck_seats.html?category=silencers',
         'Show me tractor seat options including standard, suspension, and deluxe': 'bhumiputra_catalog_truck_seats.html?category=tractor',

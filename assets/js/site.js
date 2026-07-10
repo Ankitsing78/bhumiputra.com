@@ -28,8 +28,155 @@
         'assets/images/seat_drawing_ribbed.png',
         'assets/images/compliance_certificate.png'
       ],
+      video: 'assets/videos/suspension_demo_7.mp4',
+      fitment: ['Mahindra Bolero Pickup', 'Tata Ace Gold', 'Ashok Leyland Dost', 'Force Traveller'],
+      sellerType: 'direct'
+    },
+    'silencer-short': {
+      id: 'silencer-short',
+      name: 'Short Silencer — Heavy Duty Agri Grade',
+      series: 'Silencer · Short Series',
+      price: '₹1,650',
+      mrp: '₹2,500',
+      discount: '-34%',
+      rating: '4.6',
+      ratingCount: '142 reviews',
+      soldCount: '290+ sold',
+      badge: 'Best Seller',
+      description: 'Heavy-duty short-body agricultural exhaust silencer. Precision manufactured with high-gauge carbon steel for superior heat dissipation. Offers original tractor exhaust rhythm with minimized backpressure.',
+      compatText: 'Fits: Massey Ferguson 1035 · Swaraj 735 DI · Mahindra 275 DI DI',
+      specs: {
+        'Exhaust Type': 'Short Body Vertical Silencer',
+        'Material': 'High-Gauge Carbon Steel',
+        'Coating': 'Anti-rust protective paint',
+        'Inlet Diameter': '48mm vertical slip-on',
+        'Mounting': 'Single clamp vertical mount',
+        'Dimensions': '520mm x 140mm x 100mm'
+      },
+      images: [
+        'assets/images/short_silencer.jpeg',
+        'assets/images/silencer_stock.jpeg'
+      ],
+      video: 'assets/videos/suspension_demo_12.mp4',
+      fitment: ['Massey Ferguson 1035', 'Swaraj 735 DI', 'Mahindra 275 DI'],
+      sellerType: 'direct'
+    },
+    'silencer-long': {
+      id: 'silencer-long',
+      name: 'Long Silencer — Premium Chrome Guard',
+      series: 'Silencer · Long Series',
+      price: '₹2,350',
+      mrp: '₹3,500',
+      discount: '-32%',
+      rating: '4.8',
+      ratingCount: '175 reviews',
+      soldCount: '480+ sold',
+      badge: 'Top Choice',
+      description: 'Premium long-body tractor silencer equipped with a chrome-plated outer heat shield. Double-insulated core ensures quiet operation and long structural life. Highly recommended for commercial tractor operations.',
+      compatText: 'Fits: Swaraj 744 FE · Mahindra 575 DI · Eicher 380 · Sonalika DI 750',
+      specs: {
+        'Exhaust Type': 'Long Body Insulated Silencer',
+        'Material': 'Aluminized Steel with Chrome Shield',
+        'Coating': 'High-Temp Silver / Chrome Coating',
+        'Inlet Diameter': '50mm',
+        'Heat Shield': 'Full length perforated chrome guard',
+        'Dimensions': '720mm x 160mm x 110mm'
+      },
+      images: [
+        'assets/images/long_silencer.jpeg',
+        'assets/images/long_silencer_2.jpeg',
+        'assets/images/silenders_stock.jpeg'
+      ],
+      video: 'assets/videos/suspension_demo_2.mp4',
+      fitment: ['Swaraj 744 FE', 'Mahindra 575 DI', 'Eicher 380', 'Sonalika DI 750'],
+      sellerType: 'direct'
+    },
+    'silencer-netted': {
+      id: 'silencer-netted',
+      name: 'Matte Black Netted Silencer — Heat Shield',
+      series: 'Silencer · Netted Series',
+      price: '₹2,150',
+      mrp: '₹3,200',
+      discount: '-32%',
+      rating: '4.7',
+      ratingCount: '89 reviews',
+      soldCount: '150+ sold',
+      badge: 'Safety Pick',
+      description: 'Modern matte-black exhaust silencer wrapped in an outer protective steel wire mesh. The netted mesh prevents direct accidental skin contact with the hot silencer body, making it ideal for agricultural workers.',
+      compatText: 'Fits: John Deere 5050D · Swaraj 855 FE · New Holland 3630',
+      specs: {
+        'Exhaust Type': 'Netted Safety Mesh Silencer',
+        'Material': 'Gauge 16 Steel with Protective Wire Mesh',
+        'Coating': 'Matte Black heat-resistant powder (up to 650°C)',
+        'Inlet Diameter': '50mm vertical clamp',
+        'Safety Feature': 'Outer cool-touch wire grid',
+        'Dimensions': '650mm x 150mm x 150mm'
+      },
+      images: [
+        'assets/images/silencer_matte_netted.jpeg',
+        'assets/images/types_of_silencer.jpeg'
+      ],
+      video: 'assets/videos/suspension_demo_3.mp4',
+      fitment: ['John Deere 5050D', 'Swaraj 855 FE', 'New Holland 3630'],
+      sellerType: 'direct'
+    },
+    'silencer-wide': {
+      id: 'silencer-wide',
+      name: 'Wide Body Silencer — Maximum Baffle',
+      series: 'Silencer · Wide Series',
+      price: '₹2,550',
+      mrp: '₹3,800',
+      discount: '-33%',
+      rating: '4.6',
+      ratingCount: '63 reviews',
+      soldCount: '110+ sold',
+      badge: 'High Performance',
+      description: 'Extra-wide chamber agricultural exhaust silencer. Built with a high-capacity internal multi-baffle system that minimizes tractor engine noise while maintaining high airflow and combustion efficiency.',
+      compatText: 'Fits: Sonalika Rx 750 · John Deere 5310 · Farmtrac 60 Powermaxx',
+      specs: {
+        'Exhaust Type': 'Wide Chamber Multi-Baffle Silencer',
+        'Material': 'Double-walled Aluminized Steel',
+        'Coating': 'Heat-treated Silver Finish',
+        'Inlet Diameter': '52mm slip joint',
+        'Internal Structure': '4-stage baffle acoustic core',
+        'Dimensions': '680mm x 200mm x 150mm'
+      },
+      images: [
+        'assets/images/wide_silencer.jpeg',
+        'assets/images/width_silencer.jpeg'
+      ],
+      video: 'assets/videos/suspension_demo_4.mp4',
+      fitment: ['Sonalika Rx 750', 'John Deere 5310', 'Farmtrac 60'],
+      sellerType: 'direct'
+    },
+    'silencer-oval': {
+      id: 'silencer-oval',
+      name: 'Oval Silencer — Matte Black Finish',
+      series: 'Silencer · Oval Body Series',
+      price: '₹2,100',
+      mrp: '₹3,200',
+      discount: '-34%',
+      rating: '4.7',
+      ratingCount: '198 reviews',
+      soldCount: '410+ sold',
+      badge: 'Factory Spec',
+      description: 'Matte black premium exhaust silencer designed for modern tractors and utility trucks. Built using high-gauge aluminized steel with high-temperature resistance coating. Engineered for exact backpressure match and noise-reduction specs.',
+      compatText: 'Fits: John Deere 5045D, 5050D · Mahindra 575 DI · Eicher 333',
+      specs: {
+        'Exhaust Type': 'Oval Chambered Silencer',
+        'Material': 'High-Gauge Aluminized Steel',
+        'Coating': 'Heat-resistant Matte Black (up to 600°C)',
+        'Connection Dia': '50mm Inlet / Outlet',
+        'Bolt pattern': 'Standard vertical/horizontal bolt clamp',
+        'Dimensions': '620mm x 180mm x 120mm'
+      },
+      images: [
+        'assets/images/oval_silencer_matte_black.png',
+        'assets/images/silencer_standard.jpeg'
+      ],
       video: 'assets/videos/suspension_demo_1.mp4',
-      fitment: ['Mahindra Bolero Pickup', 'Tata Ace Gold', 'Ashok Leyland Dost', 'Force Traveller']
+      fitment: ['John Deere 5045D', 'Mahindra 575 DI', 'Eicher 333'],
+      sellerType: 'direct'
     },
     'long-haul': {
       id: 'long-haul',
@@ -57,11 +204,12 @@
         'assets/images/long_haul_side.png',
         'assets/images/compliance_certificate.png'
       ],
-      video: 'assets/videos/suspension_demo_2.mp4',
-      fitment: ['Tata 407', 'Ashok Leyland Dost', 'Eicher Pro series', 'Force Traveller']
+      video: 'assets/videos/suspension_demo_7.mp4',
+      fitment: ['Tata 407', 'Ashok Leyland Dost', 'Eicher Pro series', 'Force Traveller'],
+      sellerType: 'vendor'
     },
     'truck-cabin': {
-      id: 'long-haul',
+      id: 'truck-cabin',
       name: 'Long-Haul Cabin Seat — Foam Core',
       series: 'Cabin Series · Long Haul',
       price: '₹4,200',
@@ -86,8 +234,9 @@
         'assets/images/long_haul_side.png',
         'assets/images/compliance_certificate.png'
       ],
-      video: 'assets/videos/suspension_demo_2.mp4',
-      fitment: ['Tata 407', 'Ashok Leyland Dost', 'Eicher Pro series', 'Force Traveller']
+      video: 'assets/videos/suspension_demo_7.mp4',
+      fitment: ['Tata 407', 'Ashok Leyland Dost', 'Eicher Pro series', 'Force Traveller'],
+      sellerType: 'vendor'
     },
     'air-ride': {
       id: 'air-ride',
@@ -116,8 +265,9 @@
         'assets/images/seat_drawing_seamed.png',
         'assets/images/compliance_certificate.png'
       ],
-      video: 'assets/videos/suspension_demo_3.mp4',
-      fitment: ['Tata Prima', 'Ashok Leyland Boss', 'Eicher Pro HCVs']
+      video: 'assets/videos/suspension_demo_7.mp4',
+      fitment: ['Tata Prima', 'Ashok Leyland Boss', 'Eicher Pro HCVs'],
+      sellerType: 'vendor'
     },
     'mini-flat': {
       id: 'mini-flat',
@@ -144,8 +294,9 @@
         'assets/images/mini_flat_seat.png',
         'assets/images/mini_flat_seat_side.png'
       ],
-      video: 'assets/videos/suspension_demo_4.mp4',
-      fitment: ['Tata Ace', 'Mahindra Jeeto', 'Maruti Suzuki Super Carry']
+      video: 'assets/videos/suspension_demo_7.mp4',
+      fitment: ['Tata Ace', 'Mahindra Jeeto', 'Maruti Suzuki Super Carry'],
+      sellerType: 'vendor'
     },
     'van-bench': {
       id: 'van-bench',
@@ -172,8 +323,9 @@
         'assets/images/van_bench_seat.png',
         'assets/images/van_bench_seat_side.png'
       ],
-      video: 'assets/videos/suspension_demo_5.mp4',
-      fitment: ['Force Traveller', 'Tata Winger', 'Tempo 407 Van']
+      video: 'assets/videos/suspension_demo_7.mp4',
+      fitment: ['Force Traveller', 'Tata Winger', 'Tempo 407 Van'],
+      sellerType: 'vendor'
     },
     'co-driver': {
       id: 'co-driver',
@@ -200,35 +352,9 @@
         'assets/images/co_driver_seat.png',
         'assets/images/co_driver_seat_side.png'
       ],
-      video: 'assets/videos/suspension_demo_6.mp4',
-      fitment: ['Tata LPT 1613', 'Ashok Leyland 2518', 'Eicher Pro Cabin Trucks']
-    },
-    'silencer-oval': {
-      id: 'silencer-oval',
-      name: 'Oval Silencer — Matte Black Finish',
-      series: 'Silencer · Oval Body Series',
-      price: '₹2,100',
-      mrp: '₹3,200',
-      discount: '-34%',
-      rating: '4.7',
-      ratingCount: '198 reviews',
-      soldCount: '410+ sold',
-      badge: 'Factory Spec',
-      description: 'Matte black premium exhaust silencer designed for modern tractors and utility trucks. Built using high-gauge aluminized steel with high-temperature resistance coating. Engineered for exact backpressure match and noise-reduction specs.',
-      compatText: 'Fits: John Deere 5045D, 5050D · Mahindra 575 DI · Eicher 333',
-      specs: {
-        'Exhaust Type': 'Oval Chambered Silencer',
-        'Material': 'High-Gauge Aluminized Steel',
-        'Coating': 'Heat-resistant Matte Black (up to 600°C)',
-        'Connection Dia': '50mm Inlet / Outlet',
-        'Bolt pattern': 'Standard vertical/horizontal bolt clamp',
-        'Dimensions': '620mm x 180mm x 120mm'
-      },
-      images: [
-        'assets/images/oval_silencer_matte_black.png'
-      ],
       video: 'assets/videos/suspension_demo_7.mp4',
-      fitment: ['John Deere 5045D', 'Mahindra 575 DI', 'Eicher 333']
+      fitment: ['Tata LPT 1613', 'Ashok Leyland 2518', 'Eicher Pro Cabin Trucks'],
+      sellerType: 'vendor'
     }
   };
   window.BP_PRODUCTS = BP_PRODUCTS;
@@ -247,7 +373,11 @@
     const id = item.id || slugify(item.name||'item');
     const idx = arr.findIndex(i=>i.id===id);
     if(idx>-1){ arr[idx].qty = (arr[idx].qty||1) + (item.qty||1); }
-    else { arr.push(Object.assign({qty:1}, item, {id:id})); }
+    else {
+      const productObj = BP_PRODUCTS[id];
+      const img = item.image || (productObj && productObj.images ? productObj.images[0] : 'assets/images/mahindra_seat.jpeg');
+      arr.push(Object.assign({qty:1, image: img}, item, {id:id}));
+    }
     saveCart(arr); updateCartBadge(); renderCartDrawer(true);
     return true;
   }catch(e){ console.error(e); return false; }}
@@ -259,32 +389,282 @@
   // Cart drawer UI
   function createCartDrawerElements(){
     var overlay = document.getElementById('bp-cart-overlay');
-    if(!overlay){ overlay = document.createElement('div'); overlay.id='bp-cart-overlay'; overlay.style.position='fixed'; overlay.style.inset='0'; overlay.style.background='rgba(0,0,0,0.36)'; overlay.style.zIndex='9998'; overlay.style.display='none'; overlay.addEventListener('click', hideCartDrawer); document.body.appendChild(overlay); }
+    if(!overlay){ overlay = document.createElement('div'); overlay.id='bp-cart-overlay'; overlay.style.position='fixed'; overlay.style.inset='0'; overlay.style.background='rgba(0,0,0,0.45)'; overlay.style.zIndex='9998'; overlay.style.display='none'; overlay.addEventListener('click', hideCartDrawer); document.body.appendChild(overlay); }
     var root = document.getElementById('bp-cart-drawer');
-    if(!root){ root = document.createElement('div'); root.id = 'bp-cart-drawer'; root.style.position='fixed'; root.style.right='16px'; root.style.top='16px'; root.style.width='360px'; root.style.maxHeight='80vh'; root.style.overflow='auto'; root.style.background='#fff'; root.style.boxShadow='0 18px 50px rgba(0,0,0,0.18)'; root.style.borderRadius='20px'; root.style.padding='18px'; root.style.zIndex='9999'; root.style.fontFamily='Noto Sans, sans-serif'; root.style.display='none'; root.style.transition='transform 0.25s ease, opacity 0.25s ease'; document.body.appendChild(root); }
+    if(!root){ 
+      root = document.createElement('div'); root.id = 'bp-cart-drawer';
+      root.style.display = 'none';
+      document.body.appendChild(root); 
+    }
+    
+    // Inject cart styles dynamically
+    if (!document.getElementById('bp-cart-styles')) {
+      const style = document.createElement('style');
+      style.id = 'bp-cart-styles';
+      style.textContent = `
+        .bp-cart-drawer {
+          position: fixed;
+          background: #fff;
+          box-shadow: 0 20px 48px rgba(0, 0, 0, 0.15);
+          border-radius: 16px;
+          padding: 20px;
+          z-index: 9999;
+          font-family: 'Noto Sans', sans-serif;
+          transition: transform 0.25s ease, opacity 0.25s ease, right 0.25s ease, bottom 0.25s ease;
+          border: 1px solid rgba(0,0,0,0.06);
+          box-sizing: border-box;
+        }
+        .bp-cart-drawer.desktop {
+          top: 16px;
+          right: 16px;
+          width: 380px;
+          max-height: calc(100vh - 32px);
+          overflow-y: auto;
+        }
+        .bp-cart-drawer.mobile {
+          left: 12px;
+          right: 12px;
+          bottom: 12px;
+          width: auto;
+          max-height: 85vh;
+          overflow-y: auto;
+        }
+        .bp-cart-drawer .drawer-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 16px;
+          border-bottom: 1.5px solid #eaeae8;
+          padding-bottom: 10px;
+        }
+        .bp-cart-drawer .drawer-header strong {
+          font-size: 18px;
+          color: #1B4332;
+          font-family: 'Rajdhani', sans-serif;
+          font-weight: 700;
+        }
+        .bp-cart-drawer .drawer-close {
+          background: transparent;
+          border: none;
+          color: #8B8B8B;
+          font-size: 18px;
+          cursor: pointer;
+          transition: color 0.15s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .bp-cart-drawer .drawer-close:hover {
+          color: #c53030;
+        }
+        .bp-cart-drawer .drawer-items {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-bottom: 16px;
+        }
+        .bp-cart-drawer .cart-item {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          background: #fafaf9;
+          padding: 10px;
+          border-radius: 12px;
+          border: 1px solid #eeede8;
+          position: relative;
+        }
+        .bp-cart-drawer .cart-item img {
+          width: 54px;
+          height: 54px;
+          object-fit: contain;
+          border-radius: 8px;
+          background: #fff;
+          border: 1px solid #ddd;
+          flex-shrink: 0;
+        }
+        .bp-cart-drawer .cart-item .item-details {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          overflow: hidden;
+        }
+        .bp-cart-drawer .cart-item .item-name {
+          font-weight: 600;
+          font-size: 13px;
+          color: #1B4332;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .bp-cart-drawer .cart-item .item-meta {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 8px;
+        }
+        .bp-cart-drawer .cart-item .item-price {
+          font-size: 13px;
+          font-weight: 700;
+          color: #E85D04;
+        }
+        .bp-cart-drawer .cart-item .item-controls {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+        .bp-cart-drawer .cart-item .item-controls button {
+          width: 24px;
+          height: 24px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          background: #fff;
+          color: #333;
+          font-weight: 700;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.15s;
+          padding: 0;
+        }
+        .bp-cart-drawer .cart-item .item-controls button:hover {
+          background: #eeede8;
+        }
+        .bp-cart-drawer .cart-item .item-controls span {
+          font-size: 12px;
+          font-weight: 600;
+          min-width: 14px;
+          text-align: center;
+        }
+        .bp-cart-drawer .cart-item .bp-remove {
+          background: transparent;
+          border: none;
+          color: #8B8B8B;
+          cursor: pointer;
+          font-size: 12px;
+          padding: 4px;
+          transition: color 0.15s;
+          font-weight: 600;
+        }
+        .bp-cart-drawer .cart-item .bp-remove:hover {
+          color: #c53030;
+        }
+        .bp-cart-drawer .drawer-summary {
+          border-top: 1.5px solid #eaeae8;
+          padding-top: 14px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .bp-cart-drawer .summary-row {
+          display: flex;
+          justify-content: space-between;
+          font-size: 13px;
+          color: #666;
+        }
+        .bp-cart-drawer .summary-row.total-row {
+          font-size: 16px;
+          font-weight: 700;
+          color: #1B4332;
+          border-top: 1px dashed #ddd;
+          padding-top: 8px;
+          margin-top: 4px;
+        }
+        .bp-cart-drawer .drawer-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-top: 12px;
+        }
+        .bp-cart-drawer .btn-primary {
+          background: #E85D04;
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          padding: 12px;
+          font-weight: 700;
+          font-family: 'Rajdhani', sans-serif;
+          font-size: 16px;
+          cursor: pointer;
+          text-align: center;
+          box-shadow: 0 4px 12px rgba(232, 93, 4, 0.2);
+          transition: background 0.15s;
+        }
+        .bp-cart-drawer .btn-primary:hover {
+          background: #c94e03;
+        }
+        .bp-cart-drawer .btn-secondary {
+          background: #fff;
+          color: #1B4332;
+          border: 1.5px solid #1B4332;
+          border-radius: 8px;
+          padding: 10px;
+          font-weight: 700;
+          font-family: 'Rajdhani', sans-serif;
+          font-size: 15px;
+          cursor: pointer;
+          text-align: center;
+          transition: background 0.15s;
+        }
+        .bp-cart-drawer .btn-secondary:hover {
+          background: #f3fbf7;
+        }
+        .bp-cart-drawer .btn-tertiary {
+          background: transparent;
+          color: #c53030;
+          border: none;
+          padding: 6px;
+          font-size: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          text-align: center;
+          text-decoration: underline;
+        }
+      `;
+      document.head.appendChild(style);
+    }
     return { root: root, overlay: overlay };
   }
 
   function renderCartDrawer(open){
     var els = createCartDrawerElements(); var root = els.root; var overlay = els.overlay;
     const t = calcTotals();
-    var badge = document.querySelector('#cart-badge-top, .cart-badge'); if(badge) badge.textContent = t.items.reduce((sum,i)=>(sum+(i.qty||1)),0) || 0;
+    updateCartBadge();
     if(!t.items.length){ root.style.display = 'none'; overlay.style.display = 'none'; return; }
     var shouldShow = typeof open !== 'undefined' ? open : (root.style.display !== 'none' && root.style.display !== '');
     var drawerClass = (window.innerWidth < 900 ? 'mobile' : 'desktop');
     root.className = 'bp-cart-drawer ' + drawerClass;
-    if(window.innerWidth < 900){ root.style.left = '4%'; root.style.right = '4%'; root.style.top = 'auto'; root.style.bottom = '12px'; root.style.width = 'auto'; root.style.maxHeight = '82vh'; }
-    else { root.style.left='auto'; root.style.right='16px'; root.style.top='16px'; root.style.bottom='auto'; root.style.width='360px'; root.style.maxHeight='80vh'; }
+    root.style.cssText = ""; // clear older inline styles to use responsive class styling
     let html = '<div class="drawer-header"><strong>Your cart</strong><button id="bp-cart-close" class="drawer-close">✕</button></div>';
     html += '<div class="drawer-items">';
     t.items.forEach(it=>{
+      const img = it.image || (BP_PRODUCTS[it.id] && BP_PRODUCTS[it.id].images ? BP_PRODUCTS[it.id].images[0] : 'assets/images/mahindra_seat.jpeg');
       html += '<div class="cart-item">';
-      html += '<div class="item-info"><div class="item-name">'+escapeHtml(it.name)+'</div><div class="item-price">'+(it.price||'')+'</div><div class="item-controls"><button class="bp-qty" data-id="'+it.id+'" data-op="-">−</button><span>'+ (it.qty||1) +'</span><button class="bp-qty" data-id="'+it.id+'" data-op="+">+</button></div></div>';
-      html += '<button class="bp-remove" data-id="'+it.id+'">Remove</button>';
+      html += '<img src="' + img + '" alt="' + escapeHtml(it.name) + '">';
+      html += '<div class="item-details">';
+      html += '  <div class="item-name">' + escapeHtml(it.name) + '</div>';
+      html += '  <div class="item-meta">';
+      html += '    <div class="item-price">' + (it.price||'') + '</div>';
+      html += '    <div class="item-controls">';
+      html += '      <button class="bp-qty" data-id="'+it.id+'" data-op="-">−</button>';
+      html += '      <span>'+ (it.qty||1) +'</span>';
+      html += '      <button class="bp-qty" data-id="'+it.id+'" data-op="+">+</button>';
+      html += '    </div>';
+      html += '  </div>';
+      html += '</div>';
+      html += '<button class="bp-remove" data-id="'+it.id+'" title="Remove item">✕</button>';
       html += '</div>';
     });
     html += '</div>';
     html += '<div class="drawer-summary">';
+    
+    // Warn if cart has vendor items
+    const hasVendorItem = t.items.some(i => BP_PRODUCTS[i.id] && BP_PRODUCTS[i.id].sellerType === 'vendor');
+    if (hasVendorItem) {
+      html += '<div style="font-size: 11px; color: #9B2C2C; background: #FFF5F5; border: 1px solid #FED7D7; border-radius: 8px; padding: 8px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 6px; line-height: 1.4;"><i class="ti ti-alert-triangle" style="font-size:14px; margin-top:1px; flex-shrink:0;"></i> <span>Partner items in cart. <strong>Prepaid only</strong> at checkout (COD disabled).</span></div>';
+    }
+    
     html += '<div class="summary-row"><span>Subtotal</span><strong>'+formatCurrency(t.subtotal)+'</strong></div>';
     html += '<div class="summary-row"><span>GST (18%)</span><span>'+formatCurrency(t.gst)+'</span></div>';
     html += '<div class="summary-row"><span>Delivery</span><span>'+(t.delivery?formatCurrency(t.delivery):'<span class="free-label">FREE</span>')+'</span></div>';
@@ -300,6 +680,9 @@
     const cont = root.querySelector('#bp-continue'); if(cont) cont.addEventListener('click', hideCartDrawer);
     if(shouldShow){ root.style.display='block'; overlay.style.display='block'; }
     else { root.style.display='none'; overlay.style.display='none'; }
+    
+    // Sync checkout summary on changes
+    try { prefillCheckout(); } catch(e) {}
   }
 
   function hideCartDrawer(){ var root=document.getElementById('bp-cart-drawer'); var overlay=document.getElementById('bp-cart-overlay'); if(root) root.style.display='none'; if(overlay) overlay.style.display='none'; }
@@ -341,7 +724,7 @@
     const lookup = {
       'mech-suspension': {id:'mech-suspension',name:'Mechanical Suspension Seat — LCV Grade',price:'₹3,600',qty:1},
       'long-haul': {id:'long-haul',name:'Long-Haul Cabin Seat — Foam Core',price:'₹4,200',qty:1},
-      'truck-cabin': {id:'long-haul',name:'Long-Haul Cabin Seat — Foam Core',price:'₹4,200',qty:1},
+      'truck-cabin': {id:'truck-cabin',name:'Long-Haul Cabin Seat — Foam Core',price:'₹4,200',qty:1},
       'air-ride': {id:'air-ride',name:'Air-Ride Suspension Cabin Seat',price:'₹6,800',qty:1},
       'mini-flat': {id:'mini-flat',name:'Mini Truck Flat Seat — Standard',price:'₹1,850',qty:1},
       'van-bench': {id:'van-bench',name:'Passenger Van Bench Seat — 3-Seater',price:'₹5,400',qty:1},
@@ -424,6 +807,28 @@
         window.location.href = 'bhumiputra_catalog_truck_seats.html?q=' + encodeURIComponent(text);
       });
     });
+
+    // main search bar handlers
+    const mainSearchInput = document.querySelector('.search-bar input');
+    const mainSearchBtn = document.querySelector('.search-btn');
+    if (mainSearchInput && !mainSearchInput.dataset.bpSearchAttached) {
+      mainSearchInput.dataset.bpSearchAttached = '1';
+      mainSearchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && this.value.trim()) {
+          window.location.href = 'bhumiputra_catalog_truck_seats.html?q=' + encodeURIComponent(this.value.trim());
+        }
+      });
+    }
+    if (mainSearchBtn && !mainSearchBtn.dataset.bpSearchAttached) {
+      mainSearchBtn.dataset.bpSearchAttached = '1';
+      mainSearchBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const val = mainSearchInput ? mainSearchInput.value.trim() : '';
+        if (val) {
+          window.location.href = 'bhumiputra_catalog_truck_seats.html?q=' + encodeURIComponent(val);
+        }
+      });
+    }
   }
 
   // checkout prefill
@@ -499,7 +904,7 @@
         var itemsSummary = document.getElementById('order-items-summary'); if(itemsSummary) itemsSummary.textContent = items.map(i=>i.name+' × '+i.qty).join(', ');
         var camt = document.getElementById('order-amount'); if(camt) camt.textContent = formatCurrency(order.totals.total);
         var cpay = document.getElementById('order-paymethod'); if(cpay) cpay.textContent = order.payment.method;
-        var ctrack = document.getElementById('order-track'); if(ctrack) ctrack.textContent = 'bhumiputra.com/track/'+order.id;
+        var ctrack = document.getElementById('order-track'); if(ctrack) ctrack.textContent = 'tractechspares.com/track/'+order.id;
       }catch(e){}
       saveCart([]); updateCartBadge(); renderCartDrawer();
       try{ if(typeof goTo==='function') goTo(5); else location.href = '#panel5'; }catch(e){}
@@ -649,35 +1054,7 @@
   // expose auth helpers
   window.showAuth = showAuth; window.hideAuth = hideAuth; window.sendOTP = sendOTP; window.verifyOTP = verifyOTP; window.emailSignup = emailSignup; window.logout = logout; window.updateAuthUI = updateAuthUI; window.getStoredUser = getStoredUser; window.handleAuthButtonClick = function(e){ if(e) e.preventDefault(); var u=getStoredUser(); if(u){ openProfileEditor(); } else { showAuth(); } };
 
-  // Chat assistant: keep popup hidden and toggle on button click (show/hide on subsequent clicks)
-  document.addEventListener('DOMContentLoaded', function(){
-    try{
-      var cb = document.querySelector('.chatbot-bubble');
-      if(!cb) return;
-      var popup = cb.querySelector('.chat-popup');
-      var fab = cb.querySelector('.chat-fab');
-      if(popup) popup.style.display = 'none';
-      if(fab){
-        fab.setAttribute('aria-pressed','false');
-        fab.addEventListener('click', function(e){
-          e.preventDefault();
-          if(!popup) return;
-          var showing = popup.style.display !== 'none' && popup.style.display !== '';
-          popup.style.display = showing ? 'none' : 'block';
-          fab.setAttribute('aria-pressed', showing ? 'false' : 'true');
-        });
-      }
 
-      var chatInput = cb.querySelector('.chat-input-row input');
-      if(chatInput){
-        chatInput.addEventListener('keydown', function(e){
-          if(e.key === 'Enter' && this.value.trim()){
-            window.location.href = 'bhumiputra_catalog_truck_seats.html?q=' + encodeURIComponent(this.value.trim());
-          }
-        });
-      }
-    }catch(e){/*ignore*/}
-  });
 
   // expose
   window.addToCart = addToCart;

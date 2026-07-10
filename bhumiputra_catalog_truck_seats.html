@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bhumiputra — Commercial Vehicle Seats</title>
-  <meta name="description" content="Explore Bhumiputra's wide range of commercial vehicle seats, truck cabin seats, mechanical and air ride suspension seats. Factory direct prices and pan-India delivery." />
+  <title>TracTechSpares — Commercial Vehicle Seats</title>
+  <meta name="description" content="Explore TracTechSpares's wide range of commercial vehicle seats, truck cabin seats, mechanical and air ride suspension seats. Factory direct prices and pan-India delivery." />
   <meta name="keywords" content="commercial vehicle seat, truck cabin seat, air-ride seat, mini truck seat, van bench seat, co-driver seat" />
-  <meta name="author" content="Bhumiputra" />
+  <meta name="author" content="TracTechSpares" />
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://unpkg.com/tabler-icons@1.39.1/iconfont/tabler-icons.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/bhumiputra.css" />
   <style>
     .p-card {
@@ -16,13 +16,63 @@
       opacity: 1;
       transform: scale(1);
     }
+    /* FLOATING CONTACT US BUTTON */
+    .contact-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--sf);
+      color: #fff !important;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 16px rgba(232, 93, 4, 0.35);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .contact-fab:hover {
+      background: var(--sfb);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232, 93, 4, 0.5);
+      color: #fff !important;
+    }
+
+    .contact-fab i {
+      font-size: 18px;
+    }
+
+    @media (max-width: 480px) {
+      .contact-fab {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px;
+        border-radius: 50%;
+      }
+      .contact-fab span {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
   <header class="page-header">
-    <a class="brand-link" href="index.html" aria-label="Bhumiputra home" style="display: flex; align-items: center; height: 100%;">
-      <img src="assets/logo.png" alt="Bhumiputra Logo" style="height: 40px; object-fit: contain;">
+    <a class="brand-link" href="index.html" aria-label="TracTechSpares home" style="display: flex; align-items: center; height: 100%;">
+      <img src="assets/logo.png" alt="TracTechSpares Logo" style="height: 40px; object-fit: contain;">
     </a>
+    
+    <div class="search-bar" style="flex: 1; max-width: 400px; display: flex; align-items: center; background: #f3fbf7; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--eg); margin: 0 20px;">
+      <input type="text" id="catalog-search" placeholder="Search seats, silencers..." style="flex: 1; border: none; outline: none; padding: 10px 14px; font-size: 14px; background: transparent; color: var(--text);" />
+      <button id="catalog-search-btn" style="background: var(--eg); border: none; padding: 10px 16px; cursor: pointer; color: #fff; display: flex; align-items: center;" type="button"><i class="ti ti-search" style="font-size: 16px;"></i></button>
+    </div>
+
     <div class="header-actions">
       <button id="auth-btn-top" class="btn-pill" type="button">Login / Sign up</button>
       <button id="cart-btn-top" class="btn-pill secondary" type="button" title="Cart">
@@ -35,29 +85,49 @@
   <main class="catalog-shell">
     <aside class="filters">
       <div class="filter-head"><i class="ti ti-adjustments-horizontal" aria-hidden="true"></i> Filters</div>
-      <div class="active-filters-wrap">
-        <span class="active-filter">Commercial Seats <i class="ti ti-x" aria-hidden="true"></i></span>
+      
+      <!-- Product Type Filter (Seats vs Silencers) -->
+      <div class="filter-group">
+        <div class="filter-group-title">Product type</div>
+        <label class="filter-option">
+          <span style="display:flex; align-items:center; gap:8px;">
+            <input type="checkbox" checked data-type="seats">
+            <span class="filter-label">Seats</span>
+          </span>
+          <span class="filter-count">7</span>
+        </label>
+        <label class="filter-option">
+          <span style="display:flex; align-items:center; gap:8px;">
+            <input type="checkbox" checked data-type="silencers">
+            <span class="filter-label">Silencers &amp; Exhausts</span>
+          </span>
+          <span class="filter-count">5</span>
+        </label>
       </div>
+
       <div class="filter-group">
         <div class="filter-group-title">Vehicle type</div>
-        <label class="filter-option"><input type="checkbox" checked><span class="filter-label">Trucks &amp; LCVs</span><span class="filter-count">9</span></label>
-        <label class="filter-option"><input type="checkbox" checked><span class="filter-label">Mini Trucks</span><span class="filter-count">3</span></label>
-        <label class="filter-option"><input type="checkbox"><span class="filter-label">Passenger Van</span><span class="filter-count">2</span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox" checked><span class="filter-label">Trucks &amp; LCVs</span></span><span class="filter-count">5</span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox" checked><span class="filter-label">Mini Trucks</span></span><span class="filter-count">1</span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox"><span class="filter-label">Passenger Van</span></span><span class="filter-count">1</span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox" checked><span class="filter-label">Tractors &amp; Agri</span></span><span class="filter-count">6</span></label>
       </div>
       <div class="filter-group">
         <div class="filter-group-title">Compatible brand</div>
-        <label class="filter-option"><input type="checkbox" checked><span class="filter-label">Tata</span><span class="filter-count">5</span></label>
-        <label class="filter-option"><input type="checkbox" checked><span class="filter-label">Ashok Leyland</span><span class="filter-count">4</span></label>
-        <label class="filter-option"><input type="checkbox"><span class="filter-label">Force Motors</span><span class="filter-count">3</span></label>
-        <label class="filter-option"><input type="checkbox"><span class="filter-label">Mahindra CV</span><span class="filter-count">2</span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox" checked><span class="filter-label">Tata</span></span><span class="filter-count">5</span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox" checked><span class="filter-label">Ashok Leyland</span></span><span class="filter-count">4</span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox"><span class="filter-label">Force Motors</span></span><span class="filter-count">2</span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox"><span class="filter-label">Mahindra CV</span></span><span class="filter-count">4</span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox" checked><span class="filter-label">Eicher</span></span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox" checked><span class="filter-label">John Deere</span></span></label>
       </div>
       <div class="filter-group">
         <div class="filter-group-title">Seat feature</div>
-        <label class="filter-option"><input type="checkbox"><span class="filter-label">Suspension base</span></label>
-        <label class="filter-option"><input type="checkbox"><span class="filter-label">High-back rest</span></label>
-        <label class="filter-option"><input type="checkbox"><span class="filter-label">Lumbar support</span></label>
-        <label class="filter-option"><input type="checkbox"><span class="filter-label">Armrests</span></label>
-        <label class="filter-option"><input type="checkbox"><span class="filter-label">Slide-adjust rail</span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox"><span class="filter-label">Suspension base</span></span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox"><span class="filter-label">High-back rest</span></span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox"><span class="filter-label">Lumbar support</span></span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox"><span class="filter-label">Armrests</span></span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox"><span class="filter-label">Slide-adjust rail</span></span></label>
       </div>
       <div class="filter-group">
         <div class="filter-group-title">Price range</div>
@@ -66,9 +136,9 @@
       </div>
       <div class="filter-group">
         <div class="filter-group-title">Cushion foam</div>
-        <label class="filter-option"><input type="checkbox"><span class="filter-label">Standard (40mm)</span></label>
-        <label class="filter-option"><input type="checkbox"><span class="filter-label">Premium (60mm)</span></label>
-        <label class="filter-option"><input type="checkbox"><span class="filter-label">Memory foam</span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox"><span class="filter-label">Standard (40mm)</span></span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox"><span class="filter-label">Premium (60mm)</span></span></label>
+        <label class="filter-option"><span style="display:flex; align-items:center; gap:8px;"><input type="checkbox"><span class="filter-label">Memory foam</span></span></label>
       </div>
     </aside>
 
@@ -83,11 +153,11 @@
       <div class="bulk-banner">
         <i class="ti ti-truck-delivery" aria-hidden="true"></i>
         <div><strong>Fleet buyers:</strong> Order 5+ seats and get up to 18% bulk discount + free delivery pan-India.</div>
-        <button class="bulk-btn" type="button" onclick="sendPrompt('I want to place a bulk fleet order for commercial vehicle seats')">Get Quote ↗</button>
+        <button class="bulk-btn" type="button">Get Quote ↗</button>
       </div>
 
       <div class="results-bar">
-        <span>Showing <strong>14 products</strong> in Commercial Vehicle Seats</span>
+        <span>Showing <strong>0 products</strong> in Commercial Vehicle Seats</span>
         <select class="sort-select">
           <option>Sort: Best seller</option>
           <option>Price: Low to high</option>
@@ -96,103 +166,39 @@
         </select>
       </div>
 
+      <!-- Empty container where cards are dynamically injected -->
       <div class="product-grid">
-        <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=long-haul">
-          <div class="p-img">
-            <img src="assets/images/long_haul_front.png" alt="Long-Haul Cabin Seat" style="width:100%;height:100%;object-fit:contain;padding:10px;">
-            <div class="p-tag tag-green">Best Seller</div>
-          </div>
-          <div class="p-body">
-            <div class="p-series">Cabin Series · Long Haul</div>
-            <div class="p-name">Long-Haul Cabin Seat — Foam Core</div>
-            <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Tata 407, 608, 709 · Leyland Dost</div>
-            <div class="p-specs"><span class="spec-chip">60mm foam</span><span class="spec-chip">High-back</span><span class="spec-chip">Slide rail</span></div>
-            <div class="price-row"><span class="price-main">₹4,200</span><span class="price-mrp">₹6,000</span><span class="price-off">-30%</span></div>
-            <div class="rating-row"><span class="stars">★★★★☆</span> 4.5 (87)</div>
-            <button class="btn-cart" type="button" data-id="long-haul" data-name="Long-Haul Cabin Seat — Foam Core" data-price="₹4,200"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
-          </div>
-        </a>
-
-        <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=air-ride">
-          <div class="p-img">
-            <img src="assets/images/air_ride_front.png" alt="Air-Ride Suspension Cabin Seat" style="width:100%;height:100%;object-fit:contain;padding:10px;">
-            <div class="p-tag tag-saffron">New</div>
-          </div>
-          <div class="p-body">
-            <div class="p-series">Suspension Series · HCV</div>
-            <div class="p-name">Air-Ride Suspension Cabin Seat</div>
-            <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Tata Prima · Leyland Boss · Eicher Pro 3015</div>
-            <div class="p-specs"><span class="spec-chip">Air susp.</span><span class="spec-chip">Lumbar adj.</span><span class="spec-chip">Armrests</span></div>
-            <div class="price-row"><span class="price-main">₹6,800</span><span class="price-mrp">₹9,500</span><span class="price-off">-28%</span></div>
-            <div class="rating-row"><span class="stars">★★★★★</span> 4.9 (34)</div>
-            <button class="btn-cart" type="button" data-id="air-ride" data-name="Air-Ride Suspension Cabin Seat" data-price="₹6,800"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
-          </div>
-        </a>
-
-        <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=mini-flat">
-          <div class="p-img">
-            <img src="assets/images/mini_flat_seat.png" alt="Mini Truck Flat Seat" style="width:100%;height:100%;object-fit:contain;padding:10px;">
-            <div class="p-tag tag-gray">Value Pick</div>
-          </div>
-          <div class="p-body">
-            <div class="p-series">LCV Series · Mini Truck</div>
-            <div class="p-name">Mini Truck Flat Seat — Standard</div>
-            <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Tata Ace, Ace Gold · Mahindra Jeeto</div>
-            <div class="p-specs"><span class="spec-chip">40mm foam</span><span class="spec-chip">Low-back</span><span class="spec-chip">Fixed base</span></div>
-            <div class="price-row"><span class="price-main">₹1,850</span><span class="price-mrp">₹2,800</span><span class="price-off">-34%</span></div>
-            <div class="rating-row"><span class="stars">★★★★☆</span> 4.3 (152)</div>
-            <button class="btn-cart" type="button" data-id="mini-flat" data-name="Mini Truck Flat Seat — Standard" data-price="₹1,850"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
-          </div>
-        </a>
-
-        <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=van-bench">
-          <div class="p-img">
-            <img src="assets/images/van_bench_seat.png" alt="Passenger Van Bench Seat" style="width:100%;height:100%;object-fit:contain;padding:10px;">
-            <div class="p-tag tag-green">Fleet Pick</div>
-          </div>
-          <div class="p-body">
-            <div class="p-series">Van Series · Passenger</div>
-            <div class="p-name">Passenger Van Bench Seat — 3-Seater</div>
-            <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Force Traveller · Tempo 407 Van · Tata Winger</div>
-            <div class="p-specs"><span class="spec-chip">3-seat bench</span><span class="spec-chip">Leatherette</span><span class="spec-chip">Fold-flat</span></div>
-            <div class="price-row"><span class="price-main">₹5,400</span><span class="price-mrp">₹7,200</span><span class="price-off">-25%</span></div>
-            <div class="rating-row"><span class="stars">★★★★☆</span> 4.4 (61)</div>
-            <button class="btn-cart" type="button" data-id="van-bench" data-name="Passenger Van Bench Seat — 3-Seater" data-price="₹5,400"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
-          </div>
-        </a>
-
-        <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=mech-suspension">
-          <div class="p-img">
-            <img src="assets/images/mahindra_seat.jpeg" alt="Mechanical Suspension Seat" style="width:100%;height:100%;object-fit:contain;padding:10px;">
-            <div class="p-tag tag-saffron">Popular</div>
-          </div>
-          <div class="p-body">
-            <div class="p-series">Suspension Series · LCV</div>
-            <div class="p-name">Mech. Suspension Seat — LCV Grade</div>
-            <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Mahindra Bolero Pickup · Supro · Alfa Plus</div>
-            <div class="p-specs"><span class="spec-chip">Spring susp.</span><span class="spec-chip">50mm foam</span><span class="spec-chip">Slide rail</span></div>
-            <div class="price-row"><span class="price-main">₹3,600</span><span class="price-mrp">₹5,100</span><span class="price-off">-29%</span></div>
-            <div class="rating-row"><span class="stars">★★★★★</span> 4.7 (109)</div>
-            <button class="btn-cart" type="button" data-id="mech-suspension" data-name="Mechanical Suspension Seat — LCV Grade" data-price="₹3,600"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
-          </div>
-        </a>
-
-        <a class="p-card" href="bhumiputra_product_detail_lcv_suspension_seat.html?product=co-driver">
-          <div class="p-img">
-            <img src="assets/images/co_driver_seat.png" alt="High-Back Co-Driver Seat" style="width:100%;height:100%;object-fit:contain;padding:10px;">
-            <div class="p-tag tag-gray">Co-Driver</div>
-          </div>
-          <div class="p-body">
-            <div class="p-series">Cabin Series · Co-Driver</div>
-            <div class="p-name">High-Back Co-Driver Seat — Folding</div>
-            <div class="compat-pill"><i class="ti ti-circle-check" aria-hidden="true"></i>Tata LPT 1613, 2518 · Leyland 2518 · Eicher Pro</div>
-            <div class="p-specs"><span class="spec-chip">Fold-flat</span><span class="spec-chip">High-back</span><span class="spec-chip">Fixed mount</span></div>
-            <div class="price-row"><span class="price-main">₹2,900</span><span class="price-mrp">₹4,200</span><span class="price-off">-31%</span></div>
-            <div class="rating-row"><span class="stars">★★★★☆</span> 4.2 (73)</div>
-            <button class="btn-cart" type="button" data-id="co-driver" data-name="High-Back Co-Driver Seat — Folding" data-price="₹2,900"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
-          </div>
-        </a>
       </div>
+    </section>
+  </main>
+
+  <!-- HTML5 Native Dialog overlay for fleet quote -->
+  <dialog id="bulkQuoteDialog" style="border: none; border-radius: 16px; padding: 24px; max-width: 440px; width: 90%; box-shadow: 0 20px 48px rgba(0,0,0,0.18); position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); margin: 0; background: #fff; z-index: 10002;">
+    <form method="dialog" style="display: flex; flex-direction: column; gap: 14px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #eee; padding-bottom: 10px;">
+        <h3 style="font-family: 'Rajdhani', sans-serif; font-size: 22px; color: #1B4332; font-weight: 700; margin: 0;">Fleet Bulk Inquiry</h3>
+        <button value="close" style="background: transparent; border: none; font-size: 18px; cursor: pointer; color: #888;">✕</button>
+      </div>
+      <p style="font-size: 13px; color: #666; line-height: 1.4; margin: 0;">Submit your fleet requirements directly to our factory wholesale desk for custom discount quotes.</p>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <label for="bulk_name" style="font-size: 12px; font-weight: 600; color: #333;">Your Name</label>
+        <input type="text" id="bulk_name" required placeholder="e.g. Ramji Yadav" style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none;">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <label for="bulk_phone" style="font-size: 12px; font-weight: 600; color: #333;">Phone / WhatsApp</label>
+        <input type="tel" id="bulk_phone" required placeholder="e.g. 9876543210" style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none;">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <label for="bulk_qty" style="font-size: 12px; font-weight: 600; color: #333;">Required Quantity</label>
+        <input type="number" id="bulk_qty" required min="5" placeholder="Minimum 5 seats" style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; outline: none;">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <label for="bulk_notes" style="font-size: 12px; font-weight: 600; color: #333;">Notes / Vehicle Model</label>
+        <textarea id="bulk_notes" placeholder="e.g. Need 10 suspension seats for Bolero fleet in Kanpur" style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; height: 70px; resize: none; font-family: inherit; outline: none;"></textarea>
+      </div>
+      <button type="submit" style="background: #E85D04; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 700; font-family: 'Rajdhani', sans-serif; font-size: 16px; cursor: pointer; text-transform: uppercase;" onclick="handleBulkSubmit(event)">Submit Quote Request</button>
+    </form>
+  </dialog>
     </section>
   </main>
 
@@ -200,40 +206,114 @@
     function sendPrompt(cmd){
       console.log('catalog sendPrompt', cmd);
       const map = {
-        'Show me full details for the Long-Haul Truck Cabin Seat with foam core for Tata and Leyland': 'bhumiputra_product_detail_lcv_suspension_seat.html',
-        'Tell me about the suspension cabin seat compatible with Tata Prima and Leyland Boss': 'bhumiputra_product_detail_lcv_suspension_seat.html',
-        'Details on the mini truck flat seat for Tata Ace and Mahindra Jeeto': 'bhumiputra_product_detail_lcv_suspension_seat.html',
-        'Tell me about the Force Traveller and Tempo passenger van bench seat': 'bhumiputra_product_detail_lcv_suspension_seat.html',
-        'Details on the mechanical suspension seat for Mahindra Bolero Pickup and similar vehicles': 'bhumiputra_product_detail_lcv_suspension_seat.html',
-        'Tell me about the high-back co-driver seat for heavy trucks compatible with Tata and Leyland': 'bhumiputra_product_detail_lcv_suspension_seat.html',
-        'I want to place a bulk fleet order for commercial vehicle seats': '#'
+        'Show me full details for the Long-Haul Truck Cabin Seat with foam core for Tata and Leyland': 'bhumiputra_product_detail_lcv_suspension_seat.html?product=long-haul',
+        'Tell me about the suspension cabin seat compatible with Tata Prima and Leyland Boss': 'bhumiputra_product_detail_lcv_suspension_seat.html?product=air-ride',
+        'Details on the mini truck flat seat for Tata Ace and Mahindra Jeeto': 'bhumiputra_product_detail_lcv_suspension_seat.html?product=mini-flat',
+        'Tell me about the Force Traveller and Tempo passenger van bench seat': 'bhumiputra_product_detail_lcv_suspension_seat.html?product=van-bench',
+        'Details on the mechanical suspension seat for Mahindra Bolero Pickup and similar vehicles': 'bhumiputra_product_detail_lcv_suspension_seat.html?product=mech-suspension',
+        'Tell me about the high-back co-driver seat for heavy trucks compatible with Tata and Leyland': 'bhumiputra_product_detail_lcv_suspension_seat.html?product=co-driver'
       };
       const target = map[cmd];
-      if(!target){ alert(cmd); return; }
-      if(target === '#'){ alert('Placeholder action — integrate with backend.'); return; }
+      if(!target){ return; }
       window.location.href = target;
     }
 
+    function renderCatalog() {
+      const grid = document.querySelector('.product-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      
+      for (const [id, product] of Object.entries(window.BP_PRODUCTS)) {
+        const card = document.createElement('a');
+        card.className = 'p-card';
+        card.href = 'bhumiputra_product_detail_lcv_suspension_seat.html?product=' + id;
+        
+        let tagHtml = '';
+        if (product.badge) {
+          const tagClass = product.sellerType === 'direct' ? 'tag-green' : 'tag-saffron';
+          tagHtml = `<div class="p-tag ${tagClass}">${product.badge}</div>`;
+        }
+        
+        const sellerBadgeHtml = product.sellerType === 'direct' 
+          ? `<span style="font-size:10.5px; color:#1B4332; font-weight:700; background:#D8F3DC; padding:4px 8px; border-radius:6px; margin-bottom:4px; display:inline-flex; align-items:center; gap:4px; align-self:flex-start; font-family:'Rajdhani',sans-serif; text-transform:uppercase;"><i class="ti ti-building-factory-2" style="font-size:12px;"></i> Bhumiputra Direct</span>`
+          : `<span style="font-size:10.5px; color:#6b6b6b; font-weight:700; background:#f0f0ee; padding:4px 8px; border-radius:6px; margin-bottom:4px; display:inline-flex; align-items:center; gap:4px; align-self:flex-start; font-family:'Rajdhani',sans-serif; text-transform:uppercase;"><i class="ti ti-users" style="font-size:12px;"></i> Partner Vendor</span>`;
+
+        const img = product.images && product.images[0] ? product.images[0] : 'assets/images/mahindra_seat.jpeg';
+        
+        let specsChips = '';
+        if (product.specs) {
+          const firstThreeSpecs = Object.values(product.specs).slice(0, 3);
+          specsChips = firstThreeSpecs.map(s => `<span class="spec-chip">${s.split(',')[0].split(' ')[0]}</span>`).join('');
+        }
+        
+        card.innerHTML = `
+          <div class="p-img">
+            <img src="${img}" alt="${product.name}" style="width:100%;height:100%;object-fit:contain;padding:10px;">
+            ${tagHtml}
+          </div>
+          <div class="p-body" style="padding:14px; display:flex; flex-direction:column; gap:8px;">
+            <div class="p-series" style="font-size:11px; text-transform:uppercase; letter-spacing:0.6px; color:#6b6b6b; margin-bottom:2px;">${product.series}</div>
+            <div class="p-name" style="font-size:17px; font-weight:700; color:#1B4332; margin-bottom:2px; font-family:'Rajdhani',sans-serif; line-height:1.2;">${product.name}</div>
+            ${sellerBadgeHtml}
+            <div class="compat-pill" style="display:flex; align-items:flex-start; gap:6px; background:#f4fbf7; border-radius:8px; padding:6px 8px; font-size:11.5px; color:#555; margin-bottom:4px;"><i class="ti ti-circle-check" aria-hidden="true" style="color:#40916C; margin-top:2px; flex-shrink:0;"></i> <span>${product.compatText || ''}</span></div>
+            <div class="p-specs" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:4px;">${specsChips}</div>
+            <div class="price-row" style="display:flex; align-items:baseline; gap:6px; margin-bottom:4px;"><span class="price-main" style="font-size:20px; font-weight:700; color:#1B4332;">${product.price}</span><span class="price-mrp" style="font-size:12px; color:#6b6b6b; text-decoration:line-through;">${product.mrp}</span><span class="price-off" style="font-size:11px; font-weight:600; color:#E85D04;">${product.discount}</span></div>
+            <div class="rating-row" style="display:flex; align-items:center; gap:6px; font-size:12px; color:#6b6b6b; margin-bottom:8px;"><span class="stars" style="color:#F48C06;">★★★★★</span> ${product.rating} (${product.ratingCount})</div>
+            <button class="btn-cart" type="button" data-id="${id}" data-name="${product.name}" data-price="${product.price}" style="width:100%; display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border:none; border-radius:8px; background:#1B4332; color:#fff; font-weight:700; cursor:pointer; font-family:'Rajdhani',sans-serif; transition: background 0.15s;"><i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+      
+      grid.querySelectorAll('.btn-cart').forEach(b => {
+        b.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (window.bp_site && window.bp_site.addToCart) {
+            window.bp_site.addToCart({
+              id: this.dataset.id,
+              name: this.dataset.name,
+              price: this.dataset.price,
+              qty: 1
+            });
+          }
+        });
+      });
+      
+      grid.querySelectorAll('.p-card').forEach(el => {
+        el.setAttribute('tabindex', '0');
+        el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } });
+      });
+    }
+
     function applyFilters() {
+      const groups = document.querySelectorAll('.filters .filter-group');
+      if (groups.length < 6) return;
+
+      const productTypes = [];
+      groups[0].querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+        productTypes.push(cb.getAttribute('data-type'));
+      });
+
       const vehicleTypes = [];
-      document.querySelectorAll('.filters .filter-group:nth-of-type(1) input[type="checkbox"]:checked').forEach(cb => {
+      groups[1].querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
         vehicleTypes.push(cb.nextElementSibling.textContent.trim());
       });
 
       const brands = [];
-      document.querySelectorAll('.filters .filter-group:nth-of-type(2) input[type="checkbox"]:checked').forEach(cb => {
+      groups[2].querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
         brands.push(cb.nextElementSibling.textContent.trim());
       });
 
       const features = [];
-      document.querySelectorAll('.filters .filter-group:nth-of-type(3) input[type="checkbox"]:checked').forEach(cb => {
+      groups[3].querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
         features.push(cb.nextElementSibling.textContent.trim());
       });
 
       const maxPrice = parseInt(document.querySelector('.price-range').value) || 8000;
 
       const foams = [];
-      document.querySelectorAll('.filters .filter-group:nth-of-type(5) input[type="checkbox"]:checked').forEach(cb => {
+      groups[5].querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
         foams.push(cb.nextElementSibling.textContent.trim());
       });
 
@@ -256,22 +336,49 @@
           show = false;
         }
 
+        const query = (document.getElementById('catalog-search')?.value || '').toLowerCase().trim();
+        if (query) {
+          const matchQuery = 
+            product.name.toLowerCase().includes(query) ||
+            product.description.toLowerCase().includes(query) ||
+            product.series.toLowerCase().includes(query) ||
+            (product.compatText && product.compatText.toLowerCase().includes(query)) ||
+            Object.values(product.specs).some(val => val.toLowerCase().includes(query)) ||
+            (product.fitment && product.fitment.some(f => f.toLowerCase().includes(query)));
+          
+          if (!matchQuery) show = false;
+        }
+
+        if (productTypes.length > 0) {
+          const isSeat = ['mech-suspension', 'long-haul', 'truck-cabin', 'air-ride', 'mini-flat', 'van-bench', 'co-driver'].includes(productId);
+          const isSilencer = productId.startsWith('silencer');
+          let matchesType = false;
+          if (productTypes.includes('seats') && isSeat) matchesType = true;
+          if (productTypes.includes('silencers') && isSilencer) matchesType = true;
+          if (!matchesType) show = false;
+        }
+
         if (vehicleTypes.length > 0) {
           let matchesType = false;
-          if (vehicleTypes.includes('Trucks & LCVs') && ['long-haul', 'air-ride', 'mech-suspension', 'co-driver'].includes(productId)) matchesType = true;
+          if (vehicleTypes.includes('Trucks & LCVs') && ['long-haul', 'air-ride', 'mech-suspension', 'co-driver', 'truck-cabin'].includes(productId)) matchesType = true;
           if (vehicleTypes.includes('Mini Trucks') && ['mini-flat'].includes(productId)) matchesType = true;
           if (vehicleTypes.includes('Passenger Van') && ['van-bench'].includes(productId)) matchesType = true;
+          if (vehicleTypes.includes('Tractors & Agri') && (productId.startsWith('silencer') || ['mech-suspension'].includes(productId))) matchesType = true;
           if (!matchesType) show = false;
         }
 
         if (brands.length > 0) {
           let matchesBrand = false;
-          product.fitment.forEach(f => {
-            if (brands.includes('Tata') && f.toLowerCase().includes('tata')) matchesBrand = true;
-            if (brands.includes('Ashok Leyland') && (f.toLowerCase().includes('leyland') || f.toLowerCase().includes('ashok'))) matchesBrand = true;
-            if (brands.includes('Force Motors') && (f.toLowerCase().includes('force') || f.toLowerCase().includes('traveller') || f.toLowerCase().includes('winger'))) matchesBrand = true;
-            if (brands.includes('Mahindra CV') && f.toLowerCase().includes('mahindra')) matchesBrand = true;
-          });
+          if (product.fitment) {
+            product.fitment.forEach(f => {
+              if (brands.includes('Tata') && f.toLowerCase().includes('tata')) matchesBrand = true;
+              if (brands.includes('Ashok Leyland') && (f.toLowerCase().includes('leyland') || f.toLowerCase().includes('ashok'))) matchesBrand = true;
+              if (brands.includes('Force Motors') && (f.toLowerCase().includes('force') || f.toLowerCase().includes('traveller') || f.toLowerCase().includes('winger'))) matchesBrand = true;
+              if (brands.includes('Mahindra CV') && f.toLowerCase().includes('mahindra')) matchesBrand = true;
+              if (brands.includes('Eicher') && f.toLowerCase().includes('eicher')) matchesBrand = true;
+              if (brands.includes('John Deere') && f.toLowerCase().includes('john deere')) matchesBrand = true;
+            });
+          }
           if (!matchesBrand) show = false;
         }
 
@@ -299,7 +406,7 @@
         if (show) {
           if (card._timeoutId) clearTimeout(card._timeoutId);
           card.style.display = 'flex';
-          card.offsetHeight; // force layout reflow
+          card.offsetHeight;
           card.style.opacity = '1';
           card.style.transform = 'scale(1)';
         } else {
@@ -320,17 +427,123 @@
       }
     }
 
+    function parseURLParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const brandParam = urlParams.get('brand');
+      const categoryParam = urlParams.get('category');
+      const searchParam = urlParams.get('q');
+
+      if (searchParam) {
+        const searchInput = document.getElementById('catalog-search');
+        if (searchInput) searchInput.value = searchParam;
+      }
+
+      if (brandParam) {
+        const brandMap = {
+          'mahindra': 'Mahindra CV',
+          'eicher': 'Eicher',
+          'tata': 'Tata',
+          'ashok leyland': 'Ashok Leyland',
+          'leyland': 'Ashok Leyland',
+          'force': 'Force Motors',
+          'force motors': 'Force Motors',
+          'john deere': 'John Deere',
+          'massey ferguson': 'Eicher'
+        };
+        const targetBrand = brandMap[brandParam.toLowerCase()];
+        if (targetBrand) {
+          document.querySelectorAll('.filters .filter-group:nth-of-type(3) input[type="checkbox"]').forEach(cb => {
+            const labelText = cb.nextElementSibling.textContent.trim();
+            cb.checked = (labelText === targetBrand);
+          });
+        }
+      }
+
+      if (categoryParam) {
+        const catMap = {
+          'commercial': 'Trucks & LCVs',
+          'truck': 'Trucks & LCVs',
+          'mini': 'Mini Trucks',
+          'passenger': 'Passenger Van',
+          'van': 'Passenger Van',
+          'silencers': 'Tractors & Agri',
+          'tractor': 'Tractors & Agri',
+          'tractor-silencers': 'Tractors & Agri',
+          'truck-silencers': 'Tractors & Agri'
+        };
+        const targetCat = catMap[categoryParam.toLowerCase()];
+        if (targetCat) {
+          document.querySelectorAll('.filters .filter-group:nth-of-type(2) input[type="checkbox"]').forEach(cb => {
+            const labelText = cb.nextElementSibling.textContent.trim();
+            cb.checked = (labelText === targetCat);
+          });
+          if (categoryParam.includes('silencer')) {
+            document.querySelector('.filters input[data-type="seats"]').checked = false;
+            document.querySelector('.filters input[data-type="silencers"]').checked = true;
+          } else if (categoryParam.includes('seat') || ['truck', 'mini', 'passenger', 'van', 'commercial'].some(k => categoryParam.includes(k))) {
+            document.querySelector('.filters input[data-type="seats"]').checked = true;
+            document.querySelector('.filters input[data-type="silencers"]').checked = false;
+          }
+        }
+      }
+    }
+
+    function handleBulkSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('bulk_name').value.trim();
+      const phone = document.getElementById('bulk_phone').value.trim();
+      const qty = document.getElementById('bulk_qty').value.trim();
+      if (!name || !phone || !qty) {
+        alert('Please fill out all fields.');
+        return;
+      }
+      alert('Thank you, ' + name + '! We have received your inquiry for ' + qty + ' seats. Our factory wholesale desk will contact you at +91 ' + phone + ' within 2 hours.');
+      const dialog = document.getElementById('bulkQuoteDialog');
+      if (dialog) dialog.close();
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+      renderCatalog();
+
       document.querySelectorAll('.filters input').forEach(input => {
         input.addEventListener('change', applyFilters);
         if (input.type === 'range') {
           input.addEventListener('input', applyFilters);
         }
       });
-      // also hook up custom container clicks (site.js filter attachment)
+
+      const searchInput = document.getElementById('catalog-search');
+      const searchBtn = document.getElementById('catalog-search-btn');
+      if (searchInput) {
+        searchInput.addEventListener('input', applyFilters);
+        searchInput.addEventListener('keydown', e => {
+          if (e.key === 'Enter') {
+            applyFilters();
+          }
+        });
+      }
+      if (searchBtn) {
+        searchBtn.addEventListener('click', applyFilters);
+      }
+
+      const bulkBtn = document.querySelector('.bulk-btn');
+      if (bulkBtn) {
+        bulkBtn.onclick = function(e) {
+          e.preventDefault();
+          const dialog = document.getElementById('bulkQuoteDialog');
+          if (dialog) dialog.showModal();
+        };
+      }
+
+      parseURLParams();
       setTimeout(applyFilters, 100);
     });
   </script>
   <script src="assets/js/site.js"></script>
+  <!-- FLOATING CONTACT US BUTTON -->
+  <a href="contact_factory.html" class="contact-fab" aria-label="Contact Us">
+    <i class="ti ti-phone" aria-hidden="true"></i>
+    <span>Contact Us</span>
+  </a>
 </body>
 </html>

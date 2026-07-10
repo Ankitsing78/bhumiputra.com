@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TracTechSpares — Contact Factory</title>
+  <meta name="description" content="Get in touch with the TracTechSpares factory in Sector 58, Faridabad. Submit wholesale inquiries or product support questions directly." />
+  <meta name="keywords" content="contact TracTechSpares, Faridabad factory address, wholesale queries, customer support" />
+  <meta name="author" content="TracTechSpares" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --color-eg: #1B4332;
+      --color-eg-light: #2D6A4F;
+      --color-sf: #E85D04;
+      --color-bg: #f8f6f1;
+      --color-card-bg: #ffffff;
+      --color-text-primary: #1A1A1A;
+      --color-text-secondary: #555555;
+      --border-color: rgba(0, 0, 0, 0.08);
+    }
+    /* FLOATING CONTACT US BUTTON */
+    .contact-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-sf);
+      color: #fff !important;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 16px rgba(232, 93, 4, 0.35);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .contact-fab:hover {
+      background: #F48C06;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232, 93, 4, 0.5);
+      color: #fff !important;
+    }
+
+    .contact-fab i {
+      font-size: 18px;
+    }
+
+    @media (max-width: 480px) {
+      .contact-fab {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px;
+        border-radius: 50%;
+      }
+      .contact-fab span {
+        display: none;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+    }
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      background: #fff;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .brand-logo {
+      height: 40px;
+      object-fit: contain;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 30px;
+    }
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      background: var(--color-card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+      padding: 30px;
+    }
+    h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 32px;
+      color: var(--color-eg);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .subtitle {
+      color: var(--color-text-secondary);
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--color-eg-light);
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 20px;
+      transition: color 0.15s;
+    }
+    .back-btn:hover {
+      color: var(--color-eg);
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--color-text-primary);
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--color-eg-light);
+    }
+    .submit-btn {
+      width: 100%;
+      background: var(--color-eg);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      font-family: 'Rajdhani', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: background 0.15s;
+    }
+    .submit-btn:hover {
+      background: var(--color-eg-light);
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .info-item {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+    .info-icon {
+      background: #f3fbf7;
+      color: var(--color-eg);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .info-text h3 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-eg);
+      margin-bottom: 4px;
+    }
+    .info-text p {
+      font-size: 13.5px;
+      color: var(--color-text-secondary);
+    }
+    .whatsapp-card {
+      background: #E8F5E9;
+      border: 1px solid rgba(76, 175, 80, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+    .whatsapp-btn {
+      background: #25D366;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .whatsapp-btn:hover {
+      background: #128C7E;
+    }
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      border-top: 1px solid var(--border-color);
+      background: #fff;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header" id="contact-header">
+    <a class="brand-link" href="index.html" aria-label="TracTechSpares home">
+      <img src="assets/logo.png" alt="TracTechSpares Logo" class="brand-logo">
+    </a>
+  </header>
+
+  <main class="container">
+    <a href="index.html" class="back-btn"><i class="ti ti-arrow-left"></i> Back to Home</a>
+    
+    <div class="grid">
+      <section class="card" id="form-section">
+        <h1>Send an Inquiry</h1>
+        <p class="subtitle">Looking for bulk distribution rates or customized fleet solutions? Drop us a message.</p>
+
+        <form id="inquiryForm" onsubmit="event.preventDefault(); alert('Thank you! Our factory representative will reach out shortly.'); this.reset();">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" required placeholder="Enter your full name">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp Number</label>
+            <input type="tel" id="phone" required placeholder="Enter mobile number">
+          </div>
+          <div class="form-group">
+            <label for="vehicle">Vehicle / Fleet Model</label>
+            <input type="text" id="vehicle" placeholder="e.g. Mahindra Bolero, Swaraj 744">
+          </div>
+          <div class="form-group">
+            <label for="message">Detailed Inquiry / Required Quantity</label>
+            <textarea id="message" rows="4" required placeholder="Describe your requirement (seating model, quantity, delivery location)"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Submit Inquiry</button>
+        </form>
+      </section>
+
+      <section class="contact-info">
+        <div class="card">
+          <div class="info-item">
+            <div class="info-icon"><i class="ti ti-map-pin"></i></div>
+            <div class="info-text">
+              <h3>Factory Address</h3>
+              <p>Plot No. 12, Phase-II, Industrial Area, Sector 58, Faridabad, Haryana, 121004</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="info-item">
+            <div class="info-icon"><i class="ti ti-phone"></i></div>
+            <div class="info-text">
+              <h3>Direct Factory Line</h3>
+              <p>+91 9999 5555 12 (Direct Support)</p>
+              <p>+91 9999 5555 13 (Wholesale Desk)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="whatsapp-card">
+          <div>
+            <h3 style="font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: #1B4332;">WhatsApp Support</h3>
+            <p style="font-size: 12px; color: #555;">Get instant fitment advice & price quotes</p>
+          </div>
+          <a href="https://wa.me/919999555512" target="_blank" class="whatsapp-btn"><i class="ti ti-brand-whatsapp"></i> Chat Now</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Tractechspares.com — Ground-Zero Factory Direct. All rights reserved.</p>
+  </footer>
+  <!-- FLOATING CONTACT US BUTTON -->
+  <a href="#inquiryForm" class="contact-fab" aria-label="Contact Us">
+    <i class="ti ti-phone" aria-hidden="true"></i>
+    <span>Contact Us</span>
+  </a>
+</body>
+</html>

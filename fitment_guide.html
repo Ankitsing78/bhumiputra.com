@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TracTechSpares — Fitment Guide</title>
+  <meta name="description" content="Official fitment guide for TracTechSpares tractor seats, commercial vehicle cabins, and exhaust silencers. Find the exact match for your vehicle model." />
+  <meta name="keywords" content="fitment guide, tractor seat compatability, Mahindra parts, Eicher spares, John Deere silencer" />
+  <meta name="author" content="TracTechSpares" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --color-eg: #1B4332;
+      --color-eg-light: #2D6A4F;
+      --color-sf: #E85D04;
+      --color-bg: #f8f6f1;
+      --color-card-bg: #ffffff;
+      --color-text-primary: #1A1A1A;
+      --color-text-secondary: #555555;
+      --border-color: rgba(0, 0, 0, 0.08);
+    }
+    /* FLOATING CONTACT US BUTTON */
+    .contact-fab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-sf);
+      color: #fff !important;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 16px rgba(232, 93, 4, 0.35);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .contact-fab:hover {
+      background: #F48C06;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232, 93, 4, 0.5);
+      color: #fff !important;
+    }
+
+    .contact-fab i {
+      font-size: 18px;
+    }
+
+    @media (max-width: 480px) {
+      .contact-fab {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px;
+        border-radius: 50%;
+      }
+      .contact-fab span {
+        display: none;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+    }
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      background: #fff;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .brand-logo {
+      height: 40px;
+      object-fit: contain;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 20px;
+    }
+    .card {
+      background: var(--color-card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+      padding: 30px;
+    }
+    h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 32px;
+      color: var(--color-eg);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .subtitle {
+      color: var(--color-text-secondary);
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+    .search-box {
+      display: flex;
+      border: 1.5px solid var(--color-eg);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      background: #fff;
+    }
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 14px;
+      font-size: 15px;
+      font-family: inherit;
+    }
+    .search-box button {
+      background: var(--color-eg);
+      border: none;
+      color: #fff;
+      padding: 0 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .table-responsive {
+      overflow-x: auto;
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    th {
+      background: #f3fbf7;
+      color: var(--color-eg);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    td {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+    tr:hover {
+      background: #fdfdfc;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-seat {
+      background: #FFF3E0;
+      color: var(--color-sf);
+      border: 1px solid rgba(232, 93, 4, 0.15);
+    }
+    .badge-exhaust {
+      background: #D8F3DC;
+      color: var(--color-eg);
+      border: 1px solid rgba(27, 67, 50, 0.15);
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--color-eg-light);
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 20px;
+      transition: color 0.15s;
+    }
+    .back-btn:hover {
+      color: var(--color-eg);
+    }
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      border-top: 1px solid var(--border-color);
+      background: #fff;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header" id="fitment-header">
+    <a class="brand-link" href="index.html" aria-label="TracTechSpares home">
+      <img src="assets/logo.png" alt="TracTechSpares Logo" class="brand-logo">
+    </a>
+  </header>
+
+  <main class="container">
+    <a href="index.html" class="back-btn"><i class="ti ti-arrow-left"></i> Back to Home</a>
+    
+    <article class="card">
+      <h1 id="fitment-title">TracTechSpares Fitment Guide</h1>
+      <p class="subtitle">Search your vehicle model below to find compatible TracTechSpares seating and exhaust parts.</p>
+
+      <div class="search-box">
+        <input type="text" id="fitmentSearch" placeholder="Type your vehicle, e.g., Mahindra 575, Eicher 380, Tata Ace..." oninput="filterTable()">
+        <button type="button" aria-label="Search"><i class="ti ti-search"></i></button>
+      </div>
+
+      <div class="table-responsive">
+        <table id="fitmentTable">
+          <thead>
+            <tr>
+              <th>Vehicle Model</th>
+              <th>Category</th>
+              <th>Compatible Product</th>
+              <th>Part SKU</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mahindra Bolero Pickup / Maxx</strong></td>
+              <td><span class="badge badge-seat">Seat</span></td>
+              <td>Mechanical Suspension Seat — LCV Grade</td>
+              <td>TTS-SEAT-MS01</td>
+            </tr>
+            <tr>
+              <td><strong>Tata Ace / Ace Gold</strong></td>
+              <td><span class="badge badge-seat">Seat</span></td>
+              <td>Mini Truck Flat Seat — Standard</td>
+              <td>TTS-SEAT-MF03</td>
+            </tr>
+            <tr>
+              <td><strong>Mahindra 575 DI / 475 DI</strong></td>
+              <td><span class="badge badge-seat">Seat</span></td>
+              <td>Mechanical Suspension Seat (Agri Config)</td>
+              <td>TTS-SEAT-MS01</td>
+            </tr>
+            <tr>
+              <td><strong>John Deere 5045D / 5050D</strong></td>
+              <td><span class="badge badge-exhaust">Exhaust</span></td>
+              <td>Oval Silencer — Matte Black Finish</td>
+              <td>TTS-EXH-OV08</td>
+            </tr>
+            <tr>
+              <td><strong>Eicher 380 / 485 / 242</strong></td>
+              <td><span class="badge badge-seat">Seat</span></td>
+              <td>Mechanical Suspension Seat — Heavy Duty</td>
+              <td>TTS-SEAT-MS01</td>
+            </tr>
+            <tr>
+              <td><strong>Force Traveller / Tempo</strong></td>
+              <td><span class="badge badge-seat">Seat</span></td>
+              <td>Passenger Van Bench Seat — 3-Seater</td>
+              <td>TTS-SEAT-VB04</td>
+            </tr>
+            <tr>
+              <td><strong>Tata 407 / 608 / 709</strong></td>
+              <td><span class="badge badge-seat">Seat</span></td>
+              <td>Long-Haul Cabin Seat — Foam Core</td>
+              <td>TTS-SEAT-LH02</td>
+            </tr>
+            <tr>
+              <td><strong>Ashok Leyland Dost / Bada Dost</strong></td>
+              <td><span class="badge badge-seat">Seat</span></td>
+              <td>Long-Haul Cabin Seat — Foam Core</td>
+              <td>TTS-SEAT-LH02</td>
+            </tr>
+            <tr>
+              <td><strong>Mahindra Jeeto</strong></td>
+              <td><span class="badge badge-seat">Seat</span></td>
+              <td>Mini Truck Flat Seat — Standard</td>
+              <td>TTS-SEAT-MF03</td>
+            </tr>
+            <tr>
+              <td><strong>Tata Prima / Leyland Boss</strong></td>
+              <td><span class="badge badge-seat">Seat</span></td>
+              <td>Air-Ride Suspension Cabin Seat</td>
+              <td>TTS-SEAT-AR05</td>
+            </tr>
+            <tr>
+              <td><strong>Tata LPT 1613 / 2518</strong></td>
+              <td><span class="badge badge-seat">Seat</span></td>
+              <td>High-Back Co-Driver Seat — Folding</td>
+              <td>TTS-SEAT-CD06</td>
+            </tr>
+            <tr>
+              <td><strong>Mahindra 575 DI / Eicher 333</strong></td>
+              <td><span class="badge badge-exhaust">Exhaust</span></td>
+              <td>Oval Silencer — Matte Black Finish</td>
+              <td>TTS-EXH-OV08</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Tractechspares.com — Ground-Zero Factory Direct. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function filterTable() {
+      const input = document.getElementById("fitmentSearch");
+      const filter = input.value.toUpperCase();
+      const table = document.getElementById("fitmentTable");
+      const tr = table.getElementsByTagName("tr");
+
+      for (let i = 1; i < tr.length; i++) {
+        const tdVehicle = tr[i].getElementsByTagName("td")[0];
+        const tdProduct = tr[i].getElementsByTagName("td")[2];
+        if (tdVehicle || tdProduct) {
+          const txtValueVehicle = tdVehicle.textContent || tdVehicle.innerText;
+          const txtValueProduct = tdProduct.textContent || tdProduct.innerText;
+          if (txtValueVehicle.toUpperCase().indexOf(filter) > -1 || txtValueProduct.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+  <!-- FLOATING CONTACT US BUTTON -->
+  <a href="contact_factory.html" class="contact-fab" aria-label="Contact Us">
+    <i class="ti ti-phone" aria-hidden="true"></i>
+    <span>Contact Us</span>
+  </a>
+</body>
+</html>
