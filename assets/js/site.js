@@ -672,14 +672,15 @@
     var drawerClass = (window.innerWidth < 900 ? 'mobile' : 'desktop');
     root.className = 'bp-cart-drawer ' + drawerClass;
     root.style.cssText = ""; // clear older inline styles to use responsive class styling
-    let html = '<div class="drawer-header"><strong>Your cart</strong><button id="bp-cart-close" class="drawer-close">✕</button></div>';
+    const cartHeader = lang === 'hi' ? 'आपकी कार्ट' : 'Your cart';
+    let html = '<div class="drawer-header"><strong>' + cartHeader + '</strong><button id="bp-cart-close" class="drawer-close">✕</button></div>';
     html += '<div class="drawer-items">';
     t.items.forEach(it=>{
       const img = it.image || (BP_PRODUCTS[it.id] && BP_PRODUCTS[it.id].images ? BP_PRODUCTS[it.id].images[0] : 'assets/images/mahindra_seat.jpeg');
       html += '<div class="cart-item">';
-      html += '<img src="' + img + '" alt="' + escapeHtml(it.name) + '">';
+      html += '<img src="' + img + '" alt="' + escapeHtml(BP_PRODUCTS[it.id] ? BP_PRODUCTS[it.id].name : it.name) + '">';
       html += '<div class="item-details">';
-      html += '  <div class="item-name">' + escapeHtml(it.name) + '</div>';
+      html += '  <div class="item-name">' + escapeHtml(BP_PRODUCTS[it.id] ? BP_PRODUCTS[it.id].name : it.name) + '</div>';
       html += '  <div class="item-meta">';
       html += '    <div class="item-price">' + (it.price||'') + '</div>';
       html += '    <div class="item-controls">';
@@ -1846,10 +1847,6 @@
   window.closeOrderTracker = closeOrderTracker;
   window.trackOrder = trackOrder;
 
-  // ==========================================
-  // ENGLISH / HINDI TRANSLATION SYSTEM
-  // ==========================================
-
   const translations = {
     'hi': {
       'header-location': 'स्थान',
@@ -1862,20 +1859,38 @@
       'hero-sub': 'प्रीमियम OEM गुणवत्ता। मजबूत स्थायित्व। पूरे भारत में डिलीवरी।',
       'shop-now': 'अभी खरीदें',
       'view-catalog': 'कैटलॉग देखें',
-      'cat-title': 'कैटेगरी अनुसार खरीदें',
+      'cat-title': 'कैटलॉग: कैटेगरी अनुसार खरीदें',
       'cat-desc-seats': 'ट्रक, कमर्शियल लॉरी और यात्री वाहनों के लिए एर्गोनोमिक केबिन सीटें। लंबे समय तक चलने के लिए निर्मित।',
       'cat-desc-exhausts': 'छिद्रित गार्ड, अंडाकार-बॉडी और मैट-ब्लैक साइलेंसर। सभी प्रमुख ब्रांडों में सटीक OEM रिप्लेसमेंट फिट।',
       'why-title': 'किसान और फ्लीट मालिक भूमिपुत्र पर क्यों भरोसा करते हैं',
       'why-f1-title': 'फैक्ट्री-डायरेक्ट प्राइस',
       'why-f1-desc': 'बिचौलियों को हटाकर सीधे फरीदाबाद फैक्ट्री से खरीदें। सबसे कम कीमत और 100% पारदर्शिता।',
-      'why-f2-title': 'पैन-इंडिया डिलीवरी',
+      'why-f2-title': 'पैन-INDIA डिलीवरी',
       'why-f2-desc': 'तेज और विश्वसनीय शिपिंग। ट्रांसपोर्टर नेटवर्क के माध्यम से सीधे आपके पते या निकटतम हब पर डिलीवरी।',
       'why-f3-title': 'ओरिजिनल फिटमेंट',
       'why-f3-desc': 'महिंद्रा, टाटा, स्वराज, जॉन डियर और अशोक लेलैंड जैसे प्रमुख ब्रांडों के लिए सटीक स्पेसिफिकेशन अनुकूलता।',
       'why-f4-title': '1-साल की वारंटी',
       'why-f4-desc': 'मजबूत स्टील फ्रेम और सस्पेंशन मैकेनिज्म पर पूर्ण 1-वर्ष की फैक्ट्री वारंटी द्वारा समर्थित।',
       'footer-text': 'फरीदाबाद (हरियाणा) में हमारी ग्राउंड-ज़ीरो फैक्ट्री से सीधे।',
-      'back-to-home': '← होम पेज पर वापस जाएं'
+      'back-to-home': '← होम पेज पर वापस जाएं',
+      
+      // Footer and Catalogs
+      'footer-cta-title': 'सही पार्ट नहीं मिल रहा है?',
+      'footer-cta-sub': 'हमें अपने वाहन का मॉडल बताएं और हम ऑर्डर करने से पहले फिटमेंट की पुष्टि करेंगे।',
+      'footer-products': 'उत्पाद सूची',
+      'footer-support': 'सहायता एवं सेवा',
+      'footer-brands': 'संगत ब्रांड्स',
+      'footer-copyright': '© 2026 Tractechspares.com — <span>सीधे फरीदाबाद फैक्ट्री से</span> · हरियाणा',
+      'add-to-cart': 'कार्ट में जोड़ें',
+      'buy-now': 'अभी खरीदें',
+      'tab-specs': 'विशेष विवरण',
+      'tab-features': 'विशेषताएं',
+      'tab-shipping': 'शिपिंग और वारंटी',
+      'qty-title': 'मात्रा',
+      'bulk-title': 'थोक मूल्य स्तर',
+      'standard-price': 'सामान्य मूल्य',
+      'direct-seller': 'सीधे TracTechSpares विक्रेता',
+      'vendor-seller': 'साझेदार विक्रेता वस्तु'
     },
     'en': {
       'header-location': 'Location',
@@ -1901,7 +1916,110 @@
       'why-f4-title': '1-Year Factory Warranty',
       'why-f4-desc': 'All items backed by full warranty covering suspension coil springs, hydraulic dampers, and metal welds.',
       'footer-text': 'Ground-Zero Factory Direct from Faridabad, Haryana.',
-      'back-to-home': '← Back to Home'
+      'back-to-home': '← Back to Home',
+      
+      // Footer and Catalogs
+      'footer-cta-title': "Can't find the right part?",
+      'footer-cta-sub': "Tell us your vehicle model and we'll confirm fitment before you order.",
+      'footer-products': "Products",
+      'footer-support': "Support",
+      'footer-brands': "Compatible Brands",
+      'footer-copyright': "© 2026 Tractechspares.com — <span>Ground-Zero Factory Direct</span> · Ghaziabad, Uttar Pradesh",
+      'add-to-cart': 'Add to Cart',
+      'buy-now': 'Buy Now',
+      'tab-specs': 'Specifications',
+      'tab-features': 'Features',
+      'tab-shipping': 'Shipping & Warranty',
+      'qty-title': 'Quantity',
+      'bulk-title': 'Bulk Pricing Tiers',
+      'standard-price': 'Standard price',
+      'direct-seller': 'TracTechSpares Direct Seller',
+      'vendor-seller': 'Partner Vendor Item'
+    }
+  };
+
+  const productTranslationsHi = {
+    'mech-suspension': {
+      name: 'मैकेनिकल सस्पेंशन सीट — हैवी ड्यूटी LCV ग्रेड',
+      series: 'ट्रैक्टर और एलसीवी सस्पेंशन सीट',
+      description: 'उच्च आराम वाली यूनिवर्सल मैकेनिकल सस्पेंशन ड्राइवर सीट कृषि ट्रैक्टरों और हल्के वाणिज्यिक वाहनों (एलसीवी) के लिए डिज़ाइन की गई है। महिंद्रा, आयशर, मैसी फर्ग्यूसन, स्वराज और जॉन डियर ट्रैक्टरों के लिए बिल्कुल उपयुक्त फिट।',
+      compatText: 'फिट बैठता है: आयशर 380, 485, 242 · महिंद्रा 475, 575 डीआई · जॉन डियर · मैसी फर्ग्यूसन · टाटा एस गोल्ड · बोलेरो पिकअप',
+      badge: 'लोकप्रिय',
+      specs: {
+        'Suspension Type': 'मैकेनिकल स्प्रिंग शॉक एब्जॉर्बर के साथ',
+        'Cushion Material': 'कन्टूर्ड पॉलीयुरेथेन फोम (50 मिमी)',
+        'Cover Material': 'वाटर-रेसिस्टेंट ब्लैक विनाइल',
+        'Base Adjustment': 'आगे-पीछे खिसकने की रेंज: 150 मिमी',
+        'Weight Capacity': '130 किलोग्राम तक',
+        'Dimensions': '810 मिमी x 500 मिमी x 560 मिमी'
+      }
+    },
+    'silencer-short': {
+      name: 'शॉर्ट साइलेंसर — हैवी ड्यूटी कृषि ग्रेड',
+      series: 'साइलेंसर · शॉर्ट सीरीज',
+      description: 'कृषि उपयोग के लिए हैवी-ड्यूटी शॉर्ट-बॉडी एग्जॉस्ट साइलेंसर। मूल ट्रैक्टर एग्जॉस्ट साउंड और न्यूनतम बैकप्रेशर के साथ।',
+      compatText: 'फिट बैठता है: मैसी फर्ग्यूसन 1035 · स्वराज 735 डीआई · महिंद्रा 275 डीआई',
+      badge: 'बेस्ट सेलर'
+    },
+    'silencer-long': {
+      name: 'लॉन्ग साइलेंसर — हैवी ड्यूटी क्लासिक',
+      series: 'साइलेंसर · लॉन्ग सीरीज',
+      description: 'शास्त्रीय लंबा ट्रैक्टर साइलेंसर जो शोर को कम करता है और प्रदर्शन को बढ़ाता है।',
+      compatText: 'फिट बैठता है: आयशर 242, 380 · महिंद्रा 575 डीआई'
+    },
+    'silencer-netted': {
+      name: 'जालीदार साइलेंसर — हैवी ड्यूटी क्रोम गार्ड',
+      series: 'साइलेंसर · जालीदार सीरीज',
+      description: 'अधिक सुरक्षा के लिए जालीदार सुरक्षा गार्ड से लैस क्रोम-प्लेटेड प्रीमियम साइलेंसर।',
+      compatText: 'फिट बैठता है: स्वराज 744, 855 · जॉन डियर 5050'
+    },
+    'silencer-wide': {
+      name: 'वाइड-माउथ साइलेंसर — हैवी ड्यूटी मैट ब्लैक',
+      series: 'साइलेंसर · वाइड सीरीज',
+      description: 'शानदार लुक और लाउड ओरिजनल आवाज के लिए चौड़े मुंह वाला ब्लैक मैट एग्जॉस्ट।',
+      compatText: 'फिट बैठता है: महिंद्रा अर्जुन 555 · स्वराज 855 डीआई'
+    },
+    'silencer-oval': {
+      name: 'ओवल साइलेंसर — मैट ब्लैक फिनिश',
+      series: 'साइलेंसर · ओवल सीरीज',
+      description: 'आधुनिक ओवल-बॉडी डिज़ाइन जो ट्रैक्टर की ईंधन दक्षता और केबिन लुक को बेहतर बनाता है।',
+      compatText: 'फिट बैठता है: एस्कॉर्ट्स फार्मट्रैक · मैसी फर्ग्यूसन 241'
+    },
+    'long-haul': {
+      name: 'लॉन्ग-हॉल केबिन सीट — फोम कोर',
+      series: 'ट्रक और एलसीवी केबिन सीट',
+      description: 'भारी कमर्शियल ट्रकों के ड्राइवरों के लिए एर्गोनोमिक फोम केबिन सीट। टाटा और अशोक लेलैंड के लिए आदर्श।',
+      compatText: 'फिट बैठता है: टाटा 1613, 2518 · अशोक लेलैंड 3718'
+    },
+    'truck-cabin': {
+      name: 'डिलक्स ट्रक केबिन सीट — सस्पेंशन',
+      series: 'प्रीमियम ट्रक केबिन सीट',
+      description: 'लंबी दूरी की यात्रा के लिए आरामदायक डबल-स्प्रिंग सस्पेंशन वाली केबिन सीट।',
+      compatText: 'फिट बैठता है: भारतबेंज · वोल्वो एफएम · टाटा प्राइमा'
+    },
+    'air-ride': {
+      name: 'एयर-राइड सस्पेंशन केबिन सीट',
+      series: 'न्यूमैटिक ट्रक सीट',
+      description: 'सक्रिय एयर सस्पेंशन मैकेनिज्म जो सड़क के कंपन को 99% तक अवशोषित करता है।',
+      compatText: 'फिट बैठता है: वोल्वो · स्कैनिया · भारतबेंज लक्ज़री ट्रक'
+    },
+    'mini-flat': {
+      name: 'मिनी ट्रक फ्लैट सीट — Standard',
+      series: 'मिनी कमर्शियल सीट',
+      description: 'टाटा एस (छोटा हाथी) और महिंद्रा जीतो जैसे छोटे वाणिज्यिक वाहनों के लिए फ्लैट एर्गोनोमिक सीट।',
+      compatText: 'फिट बैठता है: टाटा एस गोल्ड · महिंद्रा जीतो · मारुति सुपर कैरी'
+    },
+    'van-bench': {
+      name: 'पैसेंजर वैन बेंच सीट — 3-सीटर',
+      series: 'विंगर और ट्रैवलर रियर सीट',
+      description: 'टैम्पो ट्रैवलर और यात्री वैन के लिए 3 यात्रियों वाली कनवर्टिबल बेंच सीट।',
+      compatText: 'फिट बैठता है: फ़ोर्स ट्रैवलर · टाटा विंगर · महिंद्रा मैजिक'
+    },
+    'co-driver': {
+      name: 'सह-चालक फोल्डिंग सीट — हाई-बैक',
+      series: 'सह-चालक फोल्डिंग सीट',
+      description: 'केबिन के अंदर जगह बचाने के लिए फोल्डिंग डिज़ाइन वाली आरामदायक सह-चालक सीट।',
+      compatText: 'फिट बैठता है: टाटा एलपीटी · अशोक लेलैंड डोस्ट · आयशर प्रो'
     }
   };
 
@@ -1918,23 +2036,68 @@
     const dict = translations[lang];
     if (!dict) return;
     
+    // Backup original product records to avoid destructive mutations
+    if (!window.BP_PRODUCTS_ORIGINAL) {
+      window.BP_PRODUCTS_ORIGINAL = JSON.parse(JSON.stringify(BP_PRODUCTS));
+    }
+
+    // Mutate internal database values dynamically
+    for (const [id, product] of Object.entries(BP_PRODUCTS)) {
+      const orig = window.BP_PRODUCTS_ORIGINAL[id];
+      if (lang === 'hi') {
+        const trans = productTranslationsHi[id];
+        if (trans) {
+          product.name = trans.name || orig.name;
+          product.series = trans.series || orig.series;
+          product.description = trans.description || orig.description;
+          product.compatText = trans.compatText || orig.compatText;
+          product.badge = trans.badge || orig.badge;
+          if (trans.specs) {
+            product.specs = { ...orig.specs, ...trans.specs };
+          }
+        }
+      } else {
+        product.name = orig.name;
+        product.series = orig.series;
+        product.description = orig.description;
+        product.compatText = orig.compatText;
+        product.badge = orig.badge;
+        product.specs = { ...orig.specs };
+      }
+    }
+
     // Update text elements if they exist
     const mappings = [
       { sel: '.hero-title', key: 'hero-title' },
       { sel: '.hero-sub', key: 'hero-sub' },
       { sel: '.footer-logo-tag', key: 'footer-text' },
-      { sel: '.back-btn', key: 'back-to-home' }
+      { sel: '.back-btn', key: 'back-to-home' },
+      
+      // Footer translation mapping
+      { sel: '.footer-cta-title', key: 'footer-cta-title' },
+      { sel: '.footer-cta-sub', key: 'footer-cta-sub' },
+      { sel: '.footer-brand-desc', key: 'footer-text' },
+      { sel: '.footer-col:nth-child(2) .footer-col-title', key: 'footer-products' },
+      { sel: '.footer-col:nth-child(3) .footer-col-title', key: 'footer-support' },
+      { sel: '.footer-col:nth-child(4) .footer-col-title', key: 'footer-brands' },
+      { sel: '.footer-bottom', key: 'footer-copyright' }
     ];
     
     mappings.forEach(m => {
       const els = document.querySelectorAll(m.sel);
-      els.forEach(el => { el.textContent = dict[m.key]; });
+      els.forEach(el => {
+        if (m.key === 'footer-copyright') {
+          el.innerHTML = dict[m.key];
+        } else {
+          el.textContent = dict[m.key];
+        }
+      });
     });
 
     // Translate section headings specifically
     const sectionTitle = document.querySelector('.section-title');
     if (sectionTitle) {
-      if (sectionTitle.textContent.includes('Category') || sectionTitle.textContent.includes('कैटेगरी')) {
+      if (sectionTitle.textContent.includes('Category') || sectionTitle.textContent.includes('कैटेगरी') || sectionTitle.textContent.includes('श्रेणी')) {
         sectionTitle.textContent = dict['cat-title'];
       }
     }
@@ -1984,6 +2147,182 @@
     const mobileLangVal = document.querySelector('.mobile-lang-val');
     if (mobileLangVal) {
       mobileLangVal.textContent = lang === 'en' ? 'English' : 'हिन्दी';
+    }
+
+    // Translate footer links and compatible brands dynamically
+    const footerLinks = document.querySelectorAll('.footer-link');
+    footerLinks.forEach(link => {
+      const href = link.getAttribute('href') || '';
+      if (lang === 'hi') {
+        if (href.includes('category=tractor') && !href.includes('silencer')) {
+          link.textContent = 'ट्रैक्टर सीटें';
+        } else if (href.includes('category=truck') && !href.includes('silencer')) {
+          link.textContent = 'ट्रक सीटें';
+        } else if (href.includes('category=tractor-silencers')) {
+          link.textContent = 'ट्रैक्टर साइलेंसर';
+        } else if (href.includes('category=truck-silencers')) {
+          link.textContent = 'ट्रक साइलेंसर';
+        } else if (href.includes('bulk=1')) {
+          link.textContent = 'थोक बल्क ऑर्डर';
+        } else if (href.includes('otp_login_checkout')) {
+          link.textContent = 'अपना ऑर्डर ट्रैक करें';
+        } else if (href.includes('fitment_guide')) {
+          link.textContent = 'फिटमेंट गाइड';
+        } else if (href.includes('return_policy')) {
+          link.textContent = 'वापसी नीति';
+        } else if (href.includes('contact_factory')) {
+          link.textContent = 'फैक्ट्री संपर्क';
+        } else if (href.includes('wa.me')) {
+          link.textContent = 'व्हाट्सएप करें';
+        } else if (href.includes('brand=Mahindra')) {
+          link.textContent = 'महिंद्रा';
+        } else if (href.includes('brand=Eicher')) {
+          link.textContent = 'आयशर';
+        } else if (href.includes('brand=Massey')) {
+          link.textContent = 'मैसी फर्ग्यूसन';
+        } else if (href.includes('brand=John')) {
+          link.textContent = 'जॉन डियर';
+        } else if (href.includes('brand=Tata')) {
+          link.textContent = 'टाटा · लेलैंड';
+        }
+      } else {
+        if (href.includes('category=tractor') && !href.includes('silencer')) {
+          link.textContent = 'Tractor Seats';
+        } else if (href.includes('category=truck') && !href.includes('silencer')) {
+          link.textContent = 'Truck Seats';
+        } else if (href.includes('category=tractor-silencers')) {
+          link.textContent = 'Tractor Silencers';
+        } else if (href.includes('category=truck-silencers')) {
+          link.textContent = 'Truck Silencers';
+        } else if (href.includes('bulk=1')) {
+          link.textContent = 'Fleet Bulk Orders';
+        } else if (href.includes('otp_login_checkout')) {
+          link.textContent = 'Track My Order';
+        } else if (href.includes('fitment_guide')) {
+          link.textContent = 'Fitment Guide';
+        } else if (href.includes('return_policy')) {
+          link.textContent = 'Return Policy';
+        } else if (href.includes('contact_factory')) {
+          link.textContent = 'Contact Factory';
+        } else if (href.includes('wa.me')) {
+          link.textContent = 'WhatsApp Us';
+        } else if (href.includes('brand=Mahindra')) {
+          link.textContent = 'Mahindra';
+        } else if (href.includes('brand=Eicher')) {
+          link.textContent = 'Eicher';
+        } else if (href.includes('brand=Massey')) {
+          link.textContent = 'Massey Ferguson';
+        } else if (href.includes('brand=John')) {
+          link.textContent = 'John Deere';
+        } else if (href.includes('brand=Tata')) {
+          link.textContent = 'Tata · Leyland';
+        }
+      }
+    });
+
+    // Translate add-to-cart buttons on catalog/grids
+    const cartBtns = document.querySelectorAll('.btn-cart');
+    cartBtns.forEach(btn => {
+      btn.innerHTML = `<i class="ti ti-shopping-cart-plus" aria-hidden="true"></i> ${dict['add-to-cart']}`;
+    });
+
+    // Translate product details tabs and buttons
+    const tabSpecs = document.querySelector('.tab-btn[data-tab="tab-specs"]');
+    if (tabSpecs) tabSpecs.textContent = dict['tab-specs'];
+    const tabFeatures = document.querySelector('.tab-btn[data-tab="tab-features"]');
+    if (tabFeatures) tabFeatures.textContent = dict['tab-features'];
+    const tabShipping = document.querySelector('.tab-btn[data-tab="tab-shipping"]');
+    if (tabShipping) tabShipping.textContent = dict['tab-shipping'];
+
+    const detailCartBtn = document.querySelector('.btn-add-cart');
+    if (detailCartBtn) {
+      detailCartBtn.innerHTML = `<i class="ti ti-shopping-cart" aria-hidden="true"></i> ${dict['add-to-cart']}`;
+    }
+    const detailBuyBtn = document.querySelector('.btn-buy-now');
+    if (detailBuyBtn) {
+      detailBuyBtn.innerHTML = `<i class="ti ti-bolt" aria-hidden="true"></i> ${dict['buy-now']}`;
+    }
+
+    const deliveryNotice = document.querySelector('.delivery-info p');
+    if (deliveryNotice) {
+      if (lang === 'hi') {
+        deliveryNotice.textContent = '24 घंटे में शिपिंग, सीओडी उपलब्ध, यूपीआई / फोनपे / जीपे स्वीकार्य, पूरे भारत में डिलीवरी।';
+      } else {
+        deliveryNotice.textContent = 'Ships in 24 hours, COD available, UPI / PhonePe / GPay accepted, pan-India delivery.';
+      }
+    }
+    const deliveryTitle = document.querySelector('.delivery-info strong');
+    if (deliveryTitle) {
+      deliveryTitle.innerHTML = `<i class="ti ti-truck-delivery" aria-hidden="true" style="margin-right:6px;color:#40916C;"></i>${lang === 'hi' ? 'डिलीवरी' : 'Delivery'}`;
+    }
+
+    // Dynamic Delivery Chips translation post-rendering
+    const chips = document.querySelectorAll('.delivery-chip');
+    chips.forEach(chip => {
+      const txt = chip.textContent.trim();
+      if (lang === 'hi') {
+        if (txt.includes('Prepaid Only') || txt.includes('केवल प्रीपेड')) {
+          chip.innerHTML = '<i class="ti ti-credit-card"></i> केवल प्रीपेड';
+        } else if (txt.includes('UPI / Netbanking') || txt.includes('यूपीआई / नेटबैंकिंग')) {
+          chip.innerHTML = '<i class="ti ti-device-mobile"></i> यूपीआई / नेटबैंकिंग';
+        } else if (txt.includes('Ships in 3-5 Days') || txt.includes('3-5 दिनों में')) {
+          chip.innerHTML = '<i class="ti ti-clock"></i> 3-5 दिनों में शिपिंग';
+        } else if (txt.includes('GPS pin-drop delivery') || txt.includes('जीपीएस पिन-ड्रॉप')) {
+          chip.innerHTML = '<i class="ti ti-map-pin"></i> जीपीएस पिन-ड्रॉप डिलीवरी';
+        } else if (txt.includes('COD Available') || txt.includes('सीओडी उपलब्ध')) {
+          chip.innerHTML = '<i class="ti ti-cash"></i> सीओडी उपलब्ध';
+        } else if (txt.includes('Ships in 24 Hours') || txt.includes('24 घंटे में')) {
+          chip.innerHTML = '<i class="ti ti-clock"></i> 24 घंटे में शिपिंग';
+        }
+      }
+    });
+
+    // Translate dynamic Shipping and Warranty table contents
+    const shippingTabRows = document.querySelectorAll('#tab-shipping tr');
+    shippingTabRows.forEach(tr => {
+      const keyCell = tr.querySelector('td:nth-child(1)');
+      const valCell = tr.querySelector('td:nth-child(2)');
+      if (keyCell && valCell) {
+        const key = keyCell.textContent.trim();
+        const val = valCell.textContent.trim();
+        if (lang === 'hi') {
+          if (key === 'Dispatch Time' || key === 'प्रेषण का समय') {
+            keyCell.textContent = 'प्रेषण का समय';
+            valCell.textContent = val.includes('24') || val.includes('पुष्टि') ? 'ऑर्डर की पुष्टि के 24 घंटे के भीतर' : '3-5 व्यावसायिक दिनों के भीतर';
+          } else if (key === 'Payment Options' || key === 'भुगतान के विकल्प') {
+            keyCell.textContent = 'भुगतान के विकल्प';
+            valCell.textContent = val.includes('COD') || val.includes('सीओडी') ? 'सीओडी, यूपीआई, फोनपे, जीपे, बैंक ट्रांसफर' : 'यूपीआई, कार्ड, नेटबैंकिंग (केवल प्रीपेड)';
+          } else if (key === 'Warranty' || key === 'वारंटी') {
+            keyCell.textContent = 'वारंटी';
+            valCell.textContent = val.includes('1 year') || val.includes('1 वर्ष') ? 'विनिर्माण दोषों के खिलाफ 1 वर्ष' : 'विनिर्माण दोषों के खिलाफ 6 महीने';
+          } else if (key === 'Shipping Partner' || key === 'शिपिंग पार्टनर') {
+            keyCell.textContent = 'शिपिंग पार्टनर';
+            valCell.textContent = 'दिल्लीवरी, एक्सप्रेसबीज, वी-ट्रांस (बल्क)';
+          }
+        } else {
+          if (key === 'प्रेषण का समय') {
+            keyCell.textContent = 'Dispatch Time';
+            valCell.textContent = val.includes('24') || val.includes('घंटे') ? 'Within 24 hours of order confirmation' : 'Within 3-5 business days';
+          } else if (key === 'भुगतान के विकल्प') {
+            keyCell.textContent = 'Payment Options';
+            valCell.textContent = val.includes('सीओडी') || val.includes('COD') ? 'COD, UPI, PhonePe, GPay, Bank Transfer' : 'UPI, Cards, Netbanking (Prepaid-only)';
+          } else if (key === 'वारंटी') {
+            keyCell.textContent = 'Warranty';
+            valCell.textContent = val.includes('1 वर्ष') || val.includes('1 year') ? '1 year against manufacturing defects' : '6 months against manufacturing defects';
+          } else if (key === 'शिपिंग पार्टनर') {
+            keyCell.textContent = 'Shipping Partner';
+            valCell.textContent = 'Delhivery, Xpressbees, V-Trans (Bulk)';
+          }
+        }
+      }
+    });
+
+    // Re-render pages that contain custom catalog render cycles
+    if (typeof window.renderCatalog === 'function') {
+      window.renderCatalog();
+    }
+    if (typeof window.initDynamicProduct === 'function') {
+      window.initDynamicProduct();
     }
   }
 
