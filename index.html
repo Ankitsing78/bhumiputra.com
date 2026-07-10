@@ -4,16 +4,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TracTechSpares — Factory Direct Tractor & Truck Parts</title>
+  <title>Bhumiputra — Factory Direct Tractor &amp; Truck Parts</title>
   <meta name="description"
-    content="TracTechSpares offers premium factory-direct tractor and commercial vehicle seats, exhausts, silencers, and agricultural spare parts. High quality, best prices, pan-India delivery." />
+    content="Bhumiputra offers premium factory-direct tractor and commercial vehicle seats, exhausts, silencers, and agricultural spare parts. High quality, best prices, pan-India delivery." />
   <meta name="keywords"
     content="tractor seat, truck cabin seat, mechanical suspension seat, air suspension seat, tractor silencer, Swaraj silencer, Mahindra tractor parts, Eicher, John Deere, Tata Prima" />
-  <meta name="author" content="TracTechSpares" />
+  <meta name="author" content="Bhumiputra" />
   <link
     href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans:wght@400;500;600&display=swap"
     rel="stylesheet">
   <link href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/bhumiputra.css">
   <style>
     * {
       box-sizing: border-box;
@@ -193,6 +194,7 @@
       gap: 10px;
       align-items: center;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .sugg-label {
@@ -523,6 +525,7 @@
       gap: 12px;
       flex-wrap: wrap;
       margin-top: 20px;
+      justify-content: center;
     }
 
     .brand-pill {
@@ -1037,6 +1040,29 @@
 
       .hero {
         padding: 36px 18px;
+        text-align: center !important;
+      }
+
+      .hero-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-sub {
+        margin-inline: auto !important;
+      }
+
+      .hero-ctas {
+        justify-content: center !important;
+        width: 100%;
+      }
+
+      .hero-stats {
+        justify-content: center !important;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 16px 32px;
       }
 
       .hero-title {
@@ -1077,6 +1103,10 @@
       .product-grid {
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       }
+
+      .why-grid {
+        grid-template-columns: 1fr !important;
+      }
     }
   </style>
 </head>
@@ -1090,7 +1120,7 @@
     <div class="header-top">
       <div class="logo-block">
         <a href="index.html" style="display: block; line-height: 0;">
-          <img src="assets/logo.png" alt="TracTechSpares Logo" style="height: 44px; object-fit: contain;">
+          <img src="assets/logo.png" alt="Bhumiputra Logo" style="height: 44px; object-fit: contain;">
         </a>
       </div>
       <div class="search-bar">
@@ -1177,7 +1207,7 @@
   </div>
 
   <!-- CATEGORY GRID -->
-  <div class="section-full">
+  <div class="section-full scroll-reveal">
     <div class="section">
       <div class="section-head">
         <div class="section-eyebrow">Browse by Category</div>
@@ -1220,7 +1250,7 @@
   </div>
 
   <!-- BRAND COMPATIBILITY BAND -->
-  <div class="compat-band">
+  <div class="compat-band scroll-reveal">
     <div class="compat-inner">
       <div class="section-head">
         <div class="section-eyebrow">Compatibility Verified</div>
@@ -1252,7 +1282,7 @@
   </div>
 
   <!-- FEATURED PRODUCTS -->
-  <div class="section-full">
+  <div class="section-full scroll-reveal">
     <div class="section">
       <div class="section-head">
         <div class="section-eyebrow">Featured Products</div>
@@ -1341,7 +1371,7 @@
   </div>
 
   <!-- WHY BHUMIPUTRA -->
-  <div style="background: #EEF6F1; padding: 40px 24px;">
+  <div class="scroll-reveal" style="background: #EEF6F1; padding: 40px 24px;">
     <div class="section" style="padding: 0; max-width: 1000px; margin: 0 auto;">
       <div class="section-head">
         <div class="section-eyebrow">Why Buy Direct</div>
@@ -1374,7 +1404,7 @@
   </div>
 
   <!-- TESTIMONIALS -->
-  <div class="section-full">
+  <div class="section-full scroll-reveal">
     <div class="section">
       <div class="section-head">
         <div class="section-eyebrow">Real Farmers & Drivers</div>

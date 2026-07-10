@@ -365,7 +365,20 @@
   function saveCart(arr){ localStorage.setItem('bp_cart', JSON.stringify(arr)); }
   function getStoredUser(){ try{ return JSON.parse(localStorage.getItem('bp_user')||'null')||null; }catch(e){ return null; } }
   function getCartCount(){ const arr = getCart(); return arr.reduce((s,i)=>s+(i.qty||1),0); }
-  function updateCartBadge(){ const cnt = getCartCount(); const els = Array.from(document.querySelectorAll('#cart-badge-top, .cart-badge')); els.forEach(el=>el.textContent = cnt||0); }
+  function updateCartBadge(){
+    const cnt = getCartCount();
+    const els = Array.from(document.querySelectorAll('#cart-badge-top, .cart-badge'));
+    els.forEach(el => {
+      el.textContent = cnt||0;
+      el.classList.remove('cart-bounce');
+      void el.offsetWidth;
+      el.classList.add('cart-bounce');
+      el.addEventListener('animationend', function() {
+        el.classList.remove('cart-bounce');
+      }, { once: true });
+    });
+  }
+
 
   function findItemIndex(id){ const arr=getCart(); return arr.findIndex(i=>i.id===id); }
   function addToCart(item){ try{
@@ -850,17 +863,20 @@
       if(addr.name) document.getElementById('addr_name').value = addr.name;
       if(addr.line) document.getElementById('addr_line').value = addr.line;
       if(addr.district) document.getElementById('addr_district').value = addr.district;
+      if(addr.state && document.getElementById('addr_state')) document.getElementById('addr_state').value = addr.state;
       if(addr.pincode) document.getElementById('addr_pincode').value = addr.pincode;
     }catch(e){/*ignore*/}
   }catch(e){ console.error(e); } }
+
 
   // persist address helper
   function saveAddressFromForm(){ try{
     var name = (document.getElementById('addr_name')||{}).value||'';
     var line = (document.getElementById('addr_line')||{}).value||'';
     var district = (document.getElementById('addr_district')||{}).value||'';
+    var state = (document.getElementById('addr_state')||{}).value||'';
     var pincode = (document.getElementById('addr_pincode')||{}).value||'';
-    var obj = { name:name.trim(), line:line.trim(), district:district.trim(), pincode:pincode.trim() };
+    var obj = { name:name.trim(), line:line.trim(), district:district.trim(), state:state.trim(), pincode:pincode.trim() };
     localStorage.setItem('bp_address', JSON.stringify(obj));
     return obj;
   }catch(e){ return {}; } }
@@ -878,11 +894,15 @@
       }
 
       var addr = saveAddressFromForm();
-      if(!addr.name || !addr.line || !addr.district || !addr.pincode){
-        openProfileEditor();
-        showToast('Please complete your delivery address.');
+      if(!addr.name || !addr.line || !addr.district || !addr.state || !addr.pincode){
+        showToast('Please complete your delivery address, including State.');
         return null;
       }
+      if(addr.pincode && !/^[0-9]{6}$/.test(addr.pincode)){
+        showToast('Please enter a valid 6-digit Indian PIN code.');
+        return null;
+      }
+
 
       var totals = calcTotals();
       var payMethod = document.querySelector('.pay-option.selected')? document.querySelector('.pay-option.selected').querySelector('.pay-label')?.textContent || 'COD' : 'COD';
@@ -904,7 +924,7 @@
         var itemsSummary = document.getElementById('order-items-summary'); if(itemsSummary) itemsSummary.textContent = items.map(i=>i.name+' × '+i.qty).join(', ');
         var camt = document.getElementById('order-amount'); if(camt) camt.textContent = formatCurrency(order.totals.total);
         var cpay = document.getElementById('order-paymethod'); if(cpay) cpay.textContent = order.payment.method;
-        var ctrack = document.getElementById('order-track'); if(ctrack) ctrack.textContent = 'tractechspares.com/track/'+order.id;
+        var ctrack = document.getElementById('order-track'); if(ctrack) ctrack.textContent = 'bhumiputra.com/track/'+order.id;
       }catch(e){}
       saveCart([]); updateCartBadge(); renderCartDrawer();
       try{ if(typeof goTo==='function') goTo(5); else location.href = '#panel5'; }catch(e){}
@@ -913,8 +933,43 @@
     }catch(e){ console.error(e); alert('Could not place order'); }
   }
 
+  // Scroll reveal animation utility
+  function initScrollReveal() {
+    try {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('revealed'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+      document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    } catch(e) { console.error('Scroll reveal error:', e); }
+  }
+
   // initialize
-  document.addEventListener('DOMContentLoaded', function(){ renderAuthModal(); updateCartBadge(); attachHandlers(); renderCartDrawer(false); prefillCheckout(); updateAuthUI(); });
+  document.addEventListener('DOMContentLoaded', function(){
+    renderAuthModal();
+    renderLocationModal();
+    renderTrackerModal();
+    setupMobileNav();
+    updateCartBadge();
+    attachHandlers();
+    renderCartDrawer(false);
+    prefillCheckout();
+    updateAuthUI();
+    applyTranslations();
+    updateLocationUI();
+    initScrollReveal();
+  });
 
   // inject small cart toggle in header if missing
   document.addEventListener('DOMContentLoaded', function(){
@@ -1049,12 +1104,667 @@
   function verifyOTP(){ var v=(document.getElementById('auth-otp')||{}).value||''; if(v===sessionStorage.getItem('bp_otp')){ var phone=sessionStorage.getItem('bp_otp_phone'); try{ localStorage.setItem('bp_user', JSON.stringify({method:'phone', id:phone, phone:phone})); }catch(e){} updateAuthUI(); hideAuth(); showToast('Signed in as '+phone); } else showToast('Incorrect OTP'); }
   function emailSignup(){ var email=(document.getElementById('auth-email')||{}).value||''; var name=(document.getElementById('auth-name')||{}).value||''; if(!email) return showToast('Enter email'); try{ localStorage.setItem('bp_user', JSON.stringify({method:'email', id:email, name:name, email:email})); }catch(e){} updateAuthUI(); hideAuth(); showToast('Signed in'); }
   function logout(){ localStorage.removeItem('bp_user'); updateAuthUI(); showToast('Logged out'); }
-  function updateAuthUI(){ var btn=document.getElementById('auth-btn-top') || document.querySelector('.auth-btn'); if(!btn) return; var raw=localStorage.getItem('bp_user'); if(raw){ try{ var u=JSON.parse(raw); btn.textContent = u.name||u.id||'My account'; btn.onclick = function(e){ e.preventDefault(); openProfileEditor(); }; if(!document.getElementById('auth-logout')){ var lo=document.createElement('button'); lo.id='auth-logout'; lo.textContent='Logout'; lo.style.marginLeft='8px'; lo.className='btn-secondary'; lo.onclick=logout; btn.parentNode.appendChild(lo); } }catch(e){ btn.textContent='Account'; } return; } btn.textContent='Login / Sign up'; btn.onclick = function(e){ e.preventDefault(); showAuth(); }; if(document.getElementById('auth-logout')) document.getElementById('auth-logout').remove(); }
+  function updateAuthUI(){
+    var btn=document.getElementById('auth-btn-top') || document.querySelector('.auth-btn');
+    var raw=localStorage.getItem('bp_user');
+    
+    // Sync mobile nav auth section if it exists
+    var mobAuth = document.querySelector('.mobile-nav-auth');
+    
+    if(raw){
+      try{
+        var u=JSON.parse(raw);
+        var dispName = u.name || u.id || u.phone || 'User';
+        
+        if (btn) {
+          btn.textContent = dispName;
+          btn.onclick = function(e){ e.preventDefault(); openProfileEditor(); };
+          if(!document.getElementById('auth-logout')){
+            var lo=document.createElement('button');
+            lo.id='auth-logout';
+            lo.textContent='Logout';
+            lo.style.marginLeft='8px';
+            lo.className='btn-secondary';
+            lo.onclick=logout;
+            btn.parentNode.appendChild(lo);
+          }
+        }
+        
+        if (mobAuth) {
+          mobAuth.innerHTML = `
+            <div class="mobile-nav-auth-user">Namaste, ${dispName}</div>
+            <div class="mobile-nav-auth-actions">
+              <button class="mobile-nav-auth-btn secondary" onclick="openProfileEditor(); toggleMobileNav(false);">My Profile</button>
+              <button class="mobile-nav-auth-btn primary" onclick="logout(); toggleMobileNav(false);">Logout</button>
+            </div>
+          `;
+        }
+      }catch(e){
+        if (btn) btn.textContent='Account';
+      }
+      return;
+    }
+    
+    if (btn) {
+      btn.textContent='Login / Sign up';
+      btn.onclick = function(e){ e.preventDefault(); showAuth(); };
+      if(document.getElementById('auth-logout')) document.getElementById('auth-logout').remove();
+    }
+    
+    if (mobAuth) {
+      mobAuth.innerHTML = `
+        <div class="mobile-nav-auth-user">Welcome to Bhumiputra</div>
+        <div class="mobile-nav-auth-actions">
+          <button class="mobile-nav-auth-btn primary" style="width:100%;" onclick="showAuth(); toggleMobileNav(false);">Login / Sign up</button>
+        </div>
+      `;
+    }
+  }
+
+  // ==========================================
+  // MOBILE NAVIGATION DRAWER IMPLEMENTATION
+  // ==========================================
+  
+  function setupMobileNav() {
+    // 1. Create hamburger button in headers if not already there
+    var header = document.querySelector('.header-top') || document.querySelector('.page-header') || document.querySelector('header');
+    if (header && !document.querySelector('.hamburger-btn')) {
+      var btn = document.createElement('button');
+      btn.className = 'hamburger-btn';
+      btn.setAttribute('aria-label', 'Open navigation menu');
+      btn.innerHTML = '<i class="ti ti-menu-2"></i>';
+      
+      // We also bundle a mobile actions wrapper so cart and menu stay accessible
+      var mobileActions = document.createElement('div');
+      mobileActions.className = 'mobile-header-actions';
+      mobileActions.style.display = 'none'; // Controlled by media query
+      mobileActions.style.alignItems = 'center';
+      mobileActions.style.gap = '8px';
+      
+      var mobileCart = document.createElement('button');
+      mobileCart.className = 'cart-toggle';
+      mobileCart.style.border = '0';
+      mobileCart.style.background = 'transparent';
+      mobileCart.style.cursor = 'pointer';
+      mobileCart.style.color = 'inherit';
+      mobileCart.innerHTML = '<span style="position:relative;display:inline-block;font-size:20px;">🛒<span id="cart-badge-mobile" class="cart-badge" style="position:absolute;top:-8px;right:-10px;background:#E85D04;color:#fff;border-radius:999px;padding:2px 6px;font-size:10px;min-width:18px;text-align:center;">0</span></span>';
+      mobileCart.addEventListener('click', function(e){ e.preventDefault(); toggleCartDrawer(); });
+      
+      mobileActions.appendChild(mobileCart);
+      mobileActions.appendChild(btn);
+      header.appendChild(mobileActions);
+      
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        toggleMobileNav(true);
+      });
+    }
+
+    // 2. Inject mobile menu structures in body if not present
+    if (!document.querySelector('.mobile-nav-drawer')) {
+      var overlay = document.createElement('div');
+      overlay.className = 'mobile-nav-overlay';
+      overlay.addEventListener('click', function() { toggleMobileNav(false); });
+      
+      var drawer = document.createElement('div');
+      drawer.className = 'mobile-nav-drawer';
+      
+      drawer.innerHTML = `
+        <div class="mobile-nav-header">
+          <img src="assets/logo.png" alt="Bhumiputra Logo" class="mobile-nav-logo">
+          <button class="mobile-nav-close" aria-label="Close menu"><i class="ti ti-x"></i></button>
+        </div>
+        <div class="mobile-nav-body">
+          <div class="mobile-nav-auth">
+            <!-- Dynamically populated by updateAuthUI -->
+          </div>
+          
+          <div class="mobile-nav-section">
+            <span class="mobile-nav-section-title">Utilities</span>
+            <div class="mobile-nav-util mobile-loc-toggle">
+              <span class="mobile-nav-util-info"><i class="ti ti-map-pin"></i> Location</span>
+              <span class="mobile-nav-util-val location-val">Select</span>
+            </div>
+            <div class="mobile-nav-util mobile-lang-toggle" style="margin-top:8px;">
+              <span class="mobile-nav-util-info"><i class="ti ti-language"></i> Language / भाषा</span>
+              <span class="mobile-nav-util-val mobile-lang-val">English</span>
+            </div>
+            <div class="mobile-nav-util mobile-track-toggle" style="margin-top:8px;">
+              <span class="mobile-nav-util-info"><i class="ti ti-truck-delivery"></i> Track Shipment</span>
+              <span class="mobile-nav-util-val"><i class="ti ti-chevron-right"></i></span>
+            </div>
+          </div>
+          
+          <div class="mobile-nav-section">
+            <span class="mobile-nav-section-title">Explore Store</span>
+            <a href="bhumiputra_catalog_truck_seats.html?category=seats" class="mobile-nav-link"><i class="ti ti-armchair"></i> Truck & Tractor Seats</a>
+            <a href="bhumiputra_catalog_truck_seats.html?category=silencers" class="mobile-nav-link"><i class="ti ti-wind"></i> Silencers & Exhausts</a>
+            <a href="fitment_guide.html" class="mobile-nav-link"><i class="ti ti-settings-automation"></i> Vehicle Fitment Guide</a>
+            <a href="contact_factory.html" class="mobile-nav-link"><i class="ti ti-building-factory-2"></i> Contact Faridabad Factory</a>
+            <a href="return_policy.html" class="mobile-nav-link"><i class="ti ti-shield-check"></i> Return & Warranty Policy</a>
+          </div>
+        </div>
+        <div class="mobile-nav-footer">
+          <strong>Bhumiputra India</strong>
+          <div style="font-size:10px;color:#888;margin-top:4px;">Direct Factory Shipping across all states</div>
+        </div>
+      `;
+      
+      drawer.querySelector('.mobile-nav-close').addEventListener('click', function() { toggleMobileNav(false); });
+      
+      // Wire menu items
+      drawer.querySelector('.mobile-loc-toggle').addEventListener('click', function() { openLocationPicker(); toggleMobileNav(false); });
+      drawer.querySelector('.mobile-lang-toggle').addEventListener('click', function() { toggleLanguage(); });
+      drawer.querySelector('.mobile-track-toggle').addEventListener('click', function() { openOrderTracker(); toggleMobileNav(false); });
+      
+      document.body.appendChild(overlay);
+      document.body.appendChild(drawer);
+      
+      updateAuthUI();
+    }
+  }
+
+  function toggleMobileNav(open) {
+    var drawer = document.querySelector('.mobile-nav-drawer');
+    var overlay = document.querySelector('.mobile-nav-overlay');
+    if (drawer && overlay) {
+      if (open) {
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+      } else {
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+      }
+    }
+  }
+
+  window.toggleMobileNav = toggleMobileNav;
+
+  // ==========================================
+  // LOCATION SELECTOR MODAL IMPLEMENTATION
+  // ==========================================
+
+  function renderLocationModal() {
+    if (document.getElementById('bp-location-modal')) return;
+    var root = document.createElement('div');
+    root.id = 'bp-location-modal';
+    root.style.position = 'fixed';
+    root.style.inset = '0';
+    root.style.display = 'none';
+    root.style.alignItems = 'center';
+    root.style.justifyContent = 'center';
+    root.style.background = 'rgba(0,0,0,0.55)';
+    root.style.backdropFilter = 'blur(4px)';
+    root.style.padding = '20px';
+    root.style.zIndex = '11000';
+    
+    root.innerHTML = `
+      <div style="background:#fff;max-width:400px;width:100%;border-radius:16px;padding:24px;box-shadow:0 12px 36px rgba(0,0,0,0.15);display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding-bottom:12px;">
+          <h3 style="font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:#1B4332;display:flex;align-items:center;gap:8px;margin:0;"><i class="ti ti-map-pin"></i> Select Delivery Location</h3>
+          <button id="loc-close-btn" style="background:transparent;border:none;font-size:20px;cursor:pointer;color:#888;">✕</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <label style="font-size:13px;font-weight:600;color:#555;">Select Indian State (for local deliveries)</label>
+          <select id="location-state-select" style="padding:10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none;background:#fff;width:100%;">
+            <option value="">-- Choose Indian State --</option>
+            <option value="Delhi NCR">Delhi NCR</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Bihar">Bihar</option>
+            <option value="West Bengal">West Bengal</option>
+          </select>
+          
+          <div style="text-align:center;color:#aaa;font-size:12px;margin:4px 0;">— OR —</div>
+          
+          <label style="font-size:13px;font-weight:600;color:#555;">Enter 6-Digit Indian PIN Code</label>
+          <input type="text" id="location-pincode-input" placeholder="e.g. 110001, 141001, 400001" maxlength="6" style="padding:10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none;" />
+        </div>
+        <button id="loc-save-btn" style="background:#1B4332;color:#fff;border:none;padding:12px;border-radius:8px;font-weight:700;font-family:'Rajdhani',sans-serif;font-size:15px;cursor:pointer;margin-top:8px;">Save Location</button>
+      </div>
+    `;
+    
+    document.body.appendChild(root);
+    
+    document.getElementById('loc-close-btn').addEventListener('click', closeLocationPicker);
+    document.getElementById('loc-save-btn').addEventListener('click', saveLocation);
+  }
+
+  function openLocationPicker() {
+    renderLocationModal();
+    document.getElementById('bp-location-modal').style.display = 'flex';
+    try {
+      var loc = JSON.parse(localStorage.getItem('bp_location') || '{}') || {};
+      if(loc.state) document.getElementById('location-state-select').value = loc.state;
+      if(loc.pincode) document.getElementById('location-pincode-input').value = loc.pincode;
+    } catch(e){}
+  }
+
+  function closeLocationPicker() {
+    var modal = document.getElementById('bp-location-modal');
+    if (modal) modal.style.display = 'none';
+  }
+
+  function saveLocation() {
+    var state = document.getElementById('location-state-select').value;
+    var pincode = document.getElementById('location-pincode-input').value.trim();
+    
+    if (!state && !pincode) {
+      return showToast('Please select a state or enter a PIN code');
+    }
+    
+    if (pincode && !/^[0-9]{6}$/.test(pincode)) {
+      return showToast('Enter a valid 6-digit PIN code');
+    }
+    
+    // Auto-resolve state if pincode is entered (simple mock mapping)
+    if (pincode && !state) {
+      var digit = pincode[0];
+      if (digit === '1') state = 'Delhi/Punjab/Haryana';
+      else if (digit === '2') state = 'Uttar Pradesh';
+      else if (digit === '3') state = 'Gujarat/Rajasthan';
+      else if (digit === '4') state = 'Maharashtra/MP';
+      else if (digit === '5') state = 'Karnataka/Andhra';
+      else if (digit === '6') state = 'Tamil Nadu/Kerala';
+      else state = 'India';
+    }
+
+    var loc = { state: state || 'India', pincode: pincode };
+    localStorage.setItem('bp_location', JSON.stringify(loc));
+    
+    updateLocationUI();
+    closeLocationPicker();
+    showToast('Delivery location set to: ' + (loc.pincode || loc.state));
+  }
+
+  function updateLocationUI() {
+    var loc = {};
+    try {
+      loc = JSON.parse(localStorage.getItem('bp_location') || '{}') || {};
+    }catch(e){}
+    
+    var dispName = loc.pincode || loc.state || '';
+    
+    // Update elements
+    var headerLocs = document.querySelectorAll('.util-item');
+    headerLocs.forEach(item => {
+      var textEl = item.querySelector('span');
+      if (textEl && (textEl.textContent.includes('Location') || textEl.textContent.includes('स्थान') || item.dataset.isLocation)) {
+        textEl.textContent = dispName || (localStorage.getItem('bp_lang') === 'hi' ? 'स्थान' : 'Location');
+        item.dataset.isLocation = '1';
+      }
+    });
+
+    var mobLocVal = document.querySelector('.location-val');
+    if (mobLocVal) {
+      mobLocVal.textContent = dispName || 'Select';
+    }
+  }
+
+  window.openLocationPicker = openLocationPicker;
+  window.closeLocationPicker = closeLocationPicker;
+  window.saveLocation = saveLocation;
+
+  // ==========================================
+  // SHIPMENT TRACKER IMPLEMENTATION
+  // ==========================================
+
+  function renderTrackerModal() {
+    if (document.getElementById('bp-tracker-modal')) return;
+    var root = document.createElement('div');
+    root.id = 'bp-tracker-modal';
+    root.style.position = 'fixed';
+    root.style.inset = '0';
+    root.style.display = 'none';
+    root.style.alignItems = 'center';
+    root.style.justifyContent = 'center';
+    root.style.background = 'rgba(0,0,0,0.55)';
+    root.style.backdropFilter = 'blur(4px)';
+    root.style.padding = '20px';
+    root.style.zIndex = '11000';
+    
+    root.innerHTML = `
+      <div style="background:#fff;max-width:500px;width:100%;border-radius:16px;padding:24px;box-shadow:0 12px 36px rgba(0,0,0,0.15);display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding-bottom:12px;">
+          <h3 style="font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:#1B4332;display:flex;align-items:center;gap:8px;margin:0;"><i class="ti ti-truck-delivery"></i> Track Shipment</h3>
+          <button id="track-close-btn" style="background:transparent;border:none;font-size:20px;cursor:pointer;color:#888;">✕</button>
+        </div>
+        
+        <div style="display:flex;gap:8px;">
+          <input type="text" id="tracker-id-input" placeholder="Enter Order ID (e.g. BPT-923481) or Phone" style="flex:1;padding:12px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none;" />
+          <button id="track-submit-btn" style="background:#1B4332;color:#fff;border:none;padding:12px 18px;border-radius:8px;font-weight:700;font-family:'Rajdhani',sans-serif;cursor:pointer;">Track</button>
+        </div>
+
+        <div id="tracker-results-section" style="display:none;flex-direction:column;gap:16px;max-height:350px;overflow-y:auto;padding-right:4px;">
+          <div style="background:#f8f6f1;border:1px solid rgba(0,0,0,0.05);border-radius:10px;padding:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <div>
+              <span style="font-size:10px;color:#888;text-transform:uppercase;display:block;">Order ID</span>
+              <strong id="track-order-id" style="font-size:13px;color:#1B4332;">#BPT-234891</strong>
+            </div>
+            <div>
+              <span style="font-size:10px;color:#888;text-transform:uppercase;display:block;">Customer</span>
+              <strong id="track-customer" style="font-size:13px;color:#1B4332;">Amit Kumar</strong>
+            </div>
+            <div>
+              <span style="font-size:10px;color:#888;text-transform:uppercase;display:block;">Status</span>
+              <strong id="track-status-summary" style="font-size:13px;color:#E85D04;">In Transit</strong>
+            </div>
+          </div>
+
+          <!-- Stepper -->
+          <div style="position:relative;padding-left:30px;display:flex;flex-direction:column;gap:20px;margin-top:10px;">
+            <div style="position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:#e2e8f0;z-index:1;"></div>
+            <div id="tracker-line-progress" style="position:absolute;left:8px;top:8px;width:2px;background:#2D6A4F;z-index:2;height:0%;transition:height 0.4s ease;"></div>
+            
+            <div class="track-step" style="position:relative;z-index:3;">
+              <div class="step-dot" style="position:absolute;left:-27px;top:3px;width:12px;height:12px;border-radius:50%;background:#cbd5e1;border:2px solid #fff;box-shadow:0 0 0 1px #cbd5e1;"></div>
+              <strong class="step-title" style="font-size:13.5px;color:#333;display:block;margin:0;">Order Confirmed</strong>
+              <span class="step-desc" style="font-size:11.5px;color:#666;display:block;margin:0;">Order verified at Faridabad corporate office.</span>
+              <span class="step-time" style="font-size:10px;color:#999;display:block;margin:0;">-</span>
+            </div>
+            
+            <div class="track-step" style="position:relative;z-index:3;">
+              <div class="step-dot" style="position:absolute;left:-27px;top:3px;width:12px;height:12px;border-radius:50%;background:#cbd5e1;border:2px solid #fff;box-shadow:0 0 0 1px #cbd5e1;"></div>
+              <strong class="step-title" style="font-size:13.5px;color:#333;display:block;margin:0;">Dispatched from Faridabad Factory</strong>
+              <span class="step-desc" style="font-size:11.5px;color:#666;display:block;margin:0;">Handed over to Transport Corporation of India.</span>
+              <span class="step-time" style="font-size:10px;color:#999;display:block;margin:0;">-</span>
+            </div>
+            
+            <div class="track-step" style="position:relative;z-index:3;">
+              <div class="step-dot" style="position:absolute;left:-27px;top:3px;width:12px;height:12px;border-radius:50%;background:#cbd5e1;border:2px solid #fff;box-shadow:0 0 0 1px #cbd5e1;"></div>
+              <strong class="step-title" style="font-size:13.5px;color:#333;display:block;margin:0;">In Transit (Regional Hub)</strong>
+              <span class="step-desc" style="font-size:11.5px;color:#666;display:block;margin:0;">Arrived at regional delivery center near customer.</span>
+              <span class="step-time" style="font-size:10px;color:#999;display:block;margin:0;">-</span>
+            </div>
+            
+            <div class="track-step" style="position:relative;z-index:3;">
+              <div class="step-dot" style="position:absolute;left:-27px;top:3px;width:12px;height:12px;border-radius:50%;background:#cbd5e1;border:2px solid #fff;box-shadow:0 0 0 1px #cbd5e1;"></div>
+              <strong class="step-title" style="font-size:13.5px;color:#333;display:block;margin:0;">Out for Delivery / Ready for Pickup</strong>
+              <span class="step-desc" style="font-size:11.5px;color:#666;display:block;margin:0;">Dispatched on delivery loader or ready at factory desk.</span>
+              <span class="step-time" style="font-size:10px;color:#999;display:block;margin:0;">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(root);
+    
+    document.getElementById('track-close-btn').addEventListener('click', closeOrderTracker);
+    document.getElementById('track-submit-btn').addEventListener('click', function() {
+      var id = document.getElementById('tracker-id-input').value.trim();
+      trackOrder(id);
+    });
+    document.getElementById('tracker-id-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        trackOrder(this.value.trim());
+      }
+    });
+  }
+
+  function openOrderTracker(orderId) {
+    renderTrackerModal();
+    document.getElementById('bp-tracker-modal').style.display = 'flex';
+    document.getElementById('tracker-results-section').style.display = 'none';
+    
+    if (orderId) {
+      document.getElementById('tracker-id-input').value = orderId;
+      trackOrder(orderId);
+    } else {
+      // Prefill with last order if available
+      try {
+        var last = JSON.parse(localStorage.getItem('bp_last_order') || '{}') || {};
+        if (last.id) document.getElementById('tracker-id-input').value = last.id;
+      }catch(e){}
+    }
+  }
+
+  function closeOrderTracker() {
+    var modal = document.getElementById('bp-tracker-modal');
+    if (modal) modal.style.display = 'none';
+  }
+
+  function trackOrder(idOrPhone) {
+    if (!idOrPhone) {
+      idOrPhone = document.getElementById('tracker-id-input').value.trim();
+    }
+    
+    if (!idOrPhone) {
+      return showToast('Please enter an Order ID or phone number');
+    }
+    
+    // Find order
+    var order = null;
+    var last = null;
+    try {
+      last = JSON.parse(localStorage.getItem('bp_last_order') || '{}') || {};
+      if (last.id && (last.id === idOrPhone || last.id.replace('#','') === idOrPhone || (last.customer && last.customer.phone === idOrPhone))) {
+        order = last;
+      }
+    }catch(e){}
+    
+    // Default mock order if not found
+    if (!order) {
+      var digits = idOrPhone.replace(/\D/g,'');
+      order = {
+        id: idOrPhone.toUpperCase().startsWith('BPT-') ? idOrPhone.toUpperCase() : 'BPT-384910',
+        customer: { name: digits.length === 10 ? 'Customer (' + digits + ')' : 'Rajesh Singh' },
+        created: new Date(Date.now() - 48*3600*1000).toISOString(),
+        mockMode: true
+      };
+    }
+    
+    // Calculate tracking steps progress based on order date
+    var orderDate = new Date(order.created);
+    var diffHours = (Date.now() - orderDate.getTime()) / (3600*1000);
+    
+    var stepIndex = 0; // 0 to 4
+    if (diffHours < 2) stepIndex = 1;
+    else if (diffHours < 12) stepIndex = 2;
+    else if (diffHours < 36) stepIndex = 3;
+    else stepIndex = 4;
+    
+    // Display results
+    document.getElementById('track-order-id').textContent = '#' + order.id;
+    document.getElementById('track-customer').textContent = order.customer.name;
+    
+    var statuses = ['Confirmed', 'Dispatched', 'In Transit', 'Out for Delivery', 'Delivered'];
+    var statusText = statuses[stepIndex - 1] || 'Confirmed';
+    document.getElementById('track-status-summary').textContent = statusText;
+    
+    var steps = document.querySelectorAll('.track-step');
+    var progressLine = document.getElementById('tracker-line-progress');
+    
+    steps.forEach((step, index) => {
+      var dot = step.querySelector('.step-dot');
+      var title = step.querySelector('.step-title');
+      var time = step.querySelector('.step-time');
+      
+      if (index < stepIndex) {
+        dot.style.background = '#2D6A4F';
+        dot.style.boxShadow = '0 0 0 1px #2D6A4F';
+        title.style.color = '#1B4332';
+        title.style.fontWeight = '700';
+        
+        // Mock timestamps
+        var timeOffset = index * 8 * 3600 * 1000;
+        var stepDate = new Date(orderDate.getTime() + timeOffset);
+        time.textContent = stepDate.toLocaleString('en-IN', { hour12: true, month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      } else {
+        dot.style.background = '#cbd5e1';
+        dot.style.boxShadow = '0 0 0 1px #cbd5e1';
+        title.style.color = '#888';
+        title.style.fontWeight = '500';
+        time.textContent = 'Pending';
+      }
+    });
+    
+    // Set line progress
+    var progressPercentage = ((stepIndex - 1) / (steps.length - 1)) * 100;
+    progressLine.style.height = progressPercentage + '%';
+    
+    document.getElementById('tracker-results-section').style.display = 'flex';
+  }
+
+  window.openOrderTracker = openOrderTracker;
+  window.closeOrderTracker = closeOrderTracker;
+  window.trackOrder = trackOrder;
+
+  // ==========================================
+  // ENGLISH / HINDI TRANSLATION SYSTEM
+  // ==========================================
+
+  const translations = {
+    'hi': {
+      'header-location': 'स्थान',
+      'header-track': 'ट्रैक करें',
+      'header-login': 'लॉगिन / साइन अप',
+      'header-cart': 'कार्ट',
+      'search-placeholder': 'खोजें: "आयशर ट्रैक्टर सीट" या "महिंद्रा साइलेंसर"',
+      'search-placeholder-catalog': 'सीटें, साइलेंसर खोजें...',
+      'hero-title': 'फैक्ट्री-डायरेक्ट ट्रैक्टर और कमर्शियल सीटें',
+      'hero-sub': 'प्रीमियम OEM गुणवत्ता। मजबूत स्थायित्व। पूरे भारत में डिलीवरी।',
+      'shop-now': 'अभी खरीदें',
+      'view-catalog': 'कैटलॉग देखें',
+      'cat-title': 'कैटेगरी अनुसार खरीदें',
+      'cat-desc-seats': 'ट्रक, कमर्शियल लॉरी और यात्री वाहनों के लिए एर्गोनोमिक केबिन सीटें। लंबे समय तक चलने के लिए निर्मित।',
+      'cat-desc-exhausts': 'छिद्रित गार्ड, अंडाकार-बॉडी और मैट-ब्लैक साइलेंसर। सभी प्रमुख ब्रांडों में सटीक OEM रिप्लेसमेंट फिट।',
+      'why-title': 'किसान और फ्लीट मालिक भूमिपुत्र पर क्यों भरोसा करते हैं',
+      'why-f1-title': 'फैक्ट्री-डायरेक्ट प्राइस',
+      'why-f1-desc': 'बिचौलियों को हटाकर सीधे फरीदाबाद फैक्ट्री से खरीदें। सबसे कम कीमत और 100% पारदर्शिता।',
+      'why-f2-title': 'पैन-इंडिया डिलीवरी',
+      'why-f2-desc': 'तेज और विश्वसनीय शिपिंग। ट्रांसपोर्टर नेटवर्क के माध्यम से सीधे आपके पते या निकटतम हब पर डिलीवरी।',
+      'why-f3-title': 'ओरिजिनल फिटमेंट',
+      'why-f3-desc': 'महिंद्रा, टाटा, स्वराज, जॉन डियर और अशोक लेलैंड जैसे प्रमुख ब्रांडों के लिए सटीक स्पेसिफिकेशन अनुकूलता।',
+      'why-f4-title': '1-साल की वारंटी',
+      'why-f4-desc': 'मजबूत स्टील फ्रेम और सस्पेंशन मैकेनिज्म पर पूर्ण 1-वर्ष की फैक्ट्री वारंटी द्वारा समर्थित।',
+      'footer-text': 'फरीदाबाद (हरियाणा) में हमारी ग्राउंड-ज़ीरो फैक्ट्री से सीधे।',
+      'back-to-home': '← होम पेज पर वापस जाएं'
+    },
+    'en': {
+      'header-location': 'Location',
+      'header-track': 'Track',
+      'header-login': 'Login / Sign up',
+      'header-cart': 'Cart',
+      'search-placeholder': 'Search: "Eicher Tractor Seat" or "Mahindra Silencer"',
+      'search-placeholder-catalog': 'Search seats, silencers...',
+      'hero-title': 'Factory-Direct Tractor & Commercial Seats',
+      'hero-sub': 'Premium OEM Quality. Rugged Durability. Pan-India Delivery.',
+      'shop-now': 'Shop Seats & Exhausts',
+      'view-catalog': 'Browse Catalog',
+      'cat-title': 'Shop by Category',
+      'cat-desc-seats': 'Ergonomic cabin seats for trucks, commercial lorries, and passenger vehicles. Built for long-haul durability.',
+      'cat-desc-exhausts': 'Perforated guard, oval-body, and matte-black silencers. Precision-welded for exact OEM replacement fit across all major brands.',
+      'why-title': 'Why Farmers & Fleet Owners Trust Bhumiputra',
+      'why-f1-title': 'Factory-Direct Prices',
+      'why-f1-desc': 'Cut out middlemen markup. Direct shipping from Sector 58, Faridabad factory ensures honest bulk-rate pricing.',
+      'why-f2-title': 'Pan-India Delivery',
+      'why-f2-desc': 'Reliable dispatch to cities and agricultural hubs across India. Fast tracking and transport agency coordination.',
+      'why-f3-title': 'Guaranteed Fitment',
+      'why-f3-desc': 'Engineered to exact OEM mount points for Mahindra, Tata, Swaraj, John Deere, Ashok Leyland, and Eicher.',
+      'why-f4-title': '1-Year Factory Warranty',
+      'why-f4-desc': 'All items backed by full warranty covering suspension coil springs, hydraulic dampers, and metal welds.',
+      'footer-text': 'Ground-Zero Factory Direct from Faridabad, Haryana.',
+      'back-to-home': '← Back to Home'
+    }
+  };
+
+  function toggleLanguage() {
+    var cur = localStorage.getItem('bp_lang') || 'en';
+    var next = cur === 'en' ? 'hi' : 'en';
+    localStorage.setItem('bp_lang', next);
+    applyTranslations();
+    showToast(next === 'hi' ? 'भाषा बदलकर हिन्दी की गई' : 'Language set to English');
+  }
+
+  function applyTranslations() {
+    const lang = localStorage.getItem('bp_lang') || 'en';
+    const dict = translations[lang];
+    if (!dict) return;
+    
+    // Update text elements if they exist
+    const mappings = [
+      { sel: '.hero-title', key: 'hero-title' },
+      { sel: '.hero-sub', key: 'hero-sub' },
+      { sel: '.footer-logo-tag', key: 'footer-text' },
+      { sel: '.back-btn', key: 'back-to-home' }
+    ];
+    
+    mappings.forEach(m => {
+      const els = document.querySelectorAll(m.sel);
+      els.forEach(el => { el.textContent = dict[m.key]; });
+    });
+
+    // Translate section headings specifically
+    const sectionTitle = document.querySelector('.section-title');
+    if (sectionTitle) {
+      if (sectionTitle.textContent.includes('Category') || sectionTitle.textContent.includes('कैटेगरी')) {
+        sectionTitle.textContent = dict['cat-title'];
+      }
+    }
+    const whyTitle = document.querySelector('.why-section .section-title') || document.querySelector('h2.section-title');
+    if (whyTitle && (whyTitle.textContent.includes('Trust') || whyTitle.textContent.includes('भरोसा'))) {
+      whyTitle.textContent = dict['why-title'];
+    }
+
+    // Search placeholders
+    const searchInputs = document.querySelectorAll('.search-bar input');
+    searchInputs.forEach(input => {
+      if (input.id === 'catalog-search' || input.placeholder.includes('Search seats')) {
+        input.placeholder = dict['search-placeholder-catalog'];
+      } else {
+        input.placeholder = dict['search-placeholder'];
+      }
+    });
+
+    // Translate specific utility menu items in header
+    const utilItems = document.querySelectorAll('.util-item');
+    utilItems.forEach(item => {
+      const textEl = item.querySelector('span');
+      if (textEl) {
+        const text = textEl.textContent.trim();
+        if (text.includes('Location') || text.includes('स्थान') || item.dataset.isLocation) {
+          var loc = {};
+          try { loc = JSON.parse(localStorage.getItem('bp_location') || '{}') || {}; }catch(e){}
+          textEl.textContent = loc.pincode || loc.state || dict['header-location'];
+          item.dataset.isLocation = '1';
+        } else if (text.includes('Track') || text.includes('ट्रेक') || text.includes('ट्रैक') || item.dataset.isTrack) {
+          textEl.textContent = dict['header-track'];
+          item.dataset.isTrack = '1';
+        }
+      }
+    });
+
+    // Update language toggle text in header
+    utilItems.forEach(item => {
+      const textEl = item.querySelector('span');
+      if (textEl && (textEl.textContent.includes('हिं') || textEl.textContent.includes('EN') || textEl.textContent.includes('हिन्दी') || item.dataset.isLang)) {
+        textEl.textContent = lang === 'en' ? 'हिं / EN' : 'हिन्दी / EN';
+        item.dataset.isLang = '1';
+      }
+    });
+
+    // Update mobile menu language text if present
+    const mobileLangVal = document.querySelector('.mobile-lang-val');
+    if (mobileLangVal) {
+      mobileLangVal.textContent = lang === 'en' ? 'English' : 'हिन्दी';
+    }
+  }
+
+  window.toggleLanguage = toggleLanguage;
+  window.applyTranslations = applyTranslations;
+  window.updateLocationUI = updateLocationUI;
 
   // expose auth helpers
   window.showAuth = showAuth; window.hideAuth = hideAuth; window.sendOTP = sendOTP; window.verifyOTP = verifyOTP; window.emailSignup = emailSignup; window.logout = logout; window.updateAuthUI = updateAuthUI; window.getStoredUser = getStoredUser; window.handleAuthButtonClick = function(e){ if(e) e.preventDefault(); var u=getStoredUser(); if(u){ openProfileEditor(); } else { showAuth(); } };
-
-
 
   // expose
   window.addToCart = addToCart;
