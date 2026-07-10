@@ -367,7 +367,7 @@
   function getCartCount(){ const arr = getCart(); return arr.reduce((s,i)=>s+(i.qty||1),0); }
   function updateCartBadge(){
     const cnt = getCartCount();
-    const els = Array.from(document.querySelectorAll('#cart-badge-top, .cart-badge'));
+    const els = Array.from(document.querySelectorAll('#cart-badge-top, .cart-badge, #cart-badge-mobile'));
     els.forEach(el => {
       el.textContent = cnt||0;
       el.classList.remove('cart-bounce');
@@ -822,26 +822,28 @@
     });
 
     // main search bar handlers
-    const mainSearchInput = document.querySelector('.search-bar input');
-    const mainSearchBtn = document.querySelector('.search-btn');
-    if (mainSearchInput && !mainSearchInput.dataset.bpSearchAttached) {
-      mainSearchInput.dataset.bpSearchAttached = '1';
-      mainSearchInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && this.value.trim()) {
-          window.location.href = 'bhumiputra_catalog_truck_seats.html?q=' + encodeURIComponent(this.value.trim());
-        }
-      });
-    }
-    if (mainSearchBtn && !mainSearchBtn.dataset.bpSearchAttached) {
-      mainSearchBtn.dataset.bpSearchAttached = '1';
-      mainSearchBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const val = mainSearchInput ? mainSearchInput.value.trim() : '';
-        if (val) {
-          window.location.href = 'bhumiputra_catalog_truck_seats.html?q=' + encodeURIComponent(val);
-        }
-      });
-    }
+    document.querySelectorAll('.search-bar').forEach(bar => {
+      const input = bar.querySelector('input');
+      const btn = bar.querySelector('.search-btn') || bar.querySelector('#catalog-search-btn') || bar.querySelector('button');
+      if (input && !input.dataset.bpSearchAttached) {
+        input.dataset.bpSearchAttached = '1';
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' && this.value.trim()) {
+            window.location.href = 'bhumiputra_catalog_truck_seats.html?q=' + encodeURIComponent(this.value.trim());
+          }
+        });
+      }
+      if (btn && !btn.dataset.bpSearchAttached) {
+        btn.dataset.bpSearchAttached = '1';
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const val = input ? input.value.trim() : '';
+          if (val) {
+            window.location.href = 'bhumiputra_catalog_truck_seats.html?q=' + encodeURIComponent(val);
+          }
+        });
+      }
+    });
   }
 
   // checkout prefill
@@ -1327,7 +1329,7 @@
       mobileCart.style.background = 'transparent';
       mobileCart.style.cursor = 'pointer';
       mobileCart.style.color = 'inherit';
-      mobileCart.innerHTML = '<span style="position:relative;display:inline-block;font-size:20px;">🛒<span id="cart-badge-mobile" class="cart-badge" style="position:absolute;top:-8px;right:-10px;background:#E85D04;color:#fff;border-radius:999px;padding:2px 6px;font-size:10px;min-width:18px;text-align:center;">0</span></span>';
+      mobileCart.innerHTML = '<span style="position:relative;display:inline-flex;align-items:center;font-size:22px;color:inherit;"><i class="ti ti-shopping-cart"></i><span id="cart-badge-mobile" class="cart-badge" style="position:absolute;top:-6px;right:-10px;background:#E85D04;color:#fff;border-radius:999px;padding:2px 6px;font-size:10.5px;min-width:18px;text-align:center;font-family:\'Rajdhani\',sans-serif;font-weight:700;">0</span></span>';
       mobileCart.addEventListener('click', function(e){ e.preventDefault(); toggleCartDrawer(); });
       
       mobileActions.appendChild(mobileCart);

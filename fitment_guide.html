@@ -218,9 +218,22 @@
 <body>
 
   <header class="page-header" id="fitment-header">
-    <a class="brand-link" href="index.html" aria-label="Bhumiputra home">
+    <a class="brand-link" href="index.html" aria-label="Bhumiputra home" style="display: flex; align-items: center; height: 100%;">
       <img src="assets/logo.png" alt="Bhumiputra Logo" class="brand-logo">
     </a>
+
+    <div class="search-bar" style="flex: 1; max-width: 400px; display: flex; align-items: center; background: #f3fbf7; border-radius: 8px; overflow: hidden; border: 1.5px solid var(--eg); margin: 0 20px;">
+      <input type="text" placeholder="Search seats, silencers..." style="flex: 1; border: none; outline: none; padding: 10px 14px; font-size: 14px; background: transparent; color: var(--text);" />
+      <button class="search-btn" style="background: var(--eg); border: none; padding: 10px 16px; cursor: pointer; color: #fff; display: flex; align-items: center;" type="button"><i class="ti ti-search" style="font-size: 16px;"></i></button>
+    </div>
+
+    <div class="header-actions" style="display: flex; align-items: center; gap: 10px;">
+      <button id="auth-btn-top" class="btn-pill" type="button" style="padding: 8px 16px; border-radius: 20px; font-weight: 700; cursor: pointer; border: none; font-family: inherit;">Login / Sign up</button>
+      <button id="cart-btn-top" class="btn-pill secondary" type="button" title="Cart" style="padding: 8px 16px; border-radius: 20px; font-weight: 700; cursor: pointer; border: none; font-family: inherit;">
+        <i class="ti ti-shopping-cart" aria-hidden="true"></i>
+        <span id="cart-badge-top" class="cart-badge">0</span>
+      </button>
+    </div>
   </header>
 
   <main class="container">
