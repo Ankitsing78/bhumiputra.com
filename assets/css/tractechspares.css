@@ -238,7 +238,7 @@ button { font: inherit; cursor: pointer; }
 .detail-shell { grid-template-columns: 1fr 1fr; }
 
 .product-grid, .cat-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.p-card, .cat-card { display: flex; flex-direction: column; height: 100%; }
+.p-card, .cat-card { display: flex; flex-direction: column; height: auto; }
 .p-body { display: flex; flex-direction: column; gap: 12px; flex: 1; }
 .btn-cart { width: 100%; margin-top: auto; }
 
@@ -260,7 +260,7 @@ button { font: inherit; cursor: pointer; }
   .page-header { padding: 12px 14px; }
   .header-actions { width: 100%; justify-content: space-between; }
   .header-utils { display: none; }
-  .p-card, .cat-card { min-height: 100%; }
+  .p-card, .cat-card { min-height: auto; }
   .product-grid { gap: 12px; }
   .cat-grid { gap: 12px; }
   .filters { padding: 14px 12px; }
