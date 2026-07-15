@@ -359,6 +359,117 @@
   };
   window.BP_PRODUCTS = BP_PRODUCTS;
 
+  function initDynamicData() {
+    if (window.location.protocol === 'file:') {
+      console.warn('TracTechSpares loaded via file:// protocol. Dynamic database connections disabled. Please run the server and open http://localhost:8080');
+      return;
+    }
+    fetch('/api/products')
+      .then(res => res.json())
+      .then(data => {
+        for (const key in BP_PRODUCTS) {
+          delete BP_PRODUCTS[key];
+        }
+        Object.assign(BP_PRODUCTS, data);
+        window.BP_PRODUCTS = BP_PRODUCTS;
+
+        if (typeof renderCatalog === 'function') {
+          try { renderCatalog(); } catch(e){}
+          if (typeof applyFilters === 'function') {
+            try { applyFilters(); } catch(e){}
+          }
+        }
+        if (typeof initDynamicProduct === 'function') {
+          try { initDynamicProduct(); } catch(e){}
+        }
+        if (typeof checkPaymentOptions === 'function') {
+          try { checkPaymentOptions(); } catch(e){}
+        }
+        try { updateCartBadge(); renderCartDrawer(false); } catch(e){}
+      })
+      .catch(err => console.error('Error fetching dynamic products:', err));
+
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(settings => {
+        window.BP_SETTINGS = settings;
+        applySettingsToDOM(settings);
+      })
+      .catch(err => console.error('Error fetching site settings:', err));
+  }
+
+  function applySettingsToDOM(settings) {
+    if (!settings) return;
+    try {
+      const promoEls = document.querySelectorAll('.promo-banner, .top-bar-text, .promo-text, #top-promo-bar');
+      promoEls.forEach(el => {
+        if (settings.promoBanner) el.textContent = settings.promoBanner;
+      });
+
+      const titleEls = document.querySelectorAll('#hero-title, .hero-title');
+      titleEls.forEach(el => {
+        if (settings.heroTitle) {
+          el.innerHTML = settings.heroTitle.replace(/\n/g, '<br>');
+        }
+      });
+
+      const subEls = document.querySelectorAll('#hero-subtitle, .hero-sub');
+      subEls.forEach(el => {
+        if (settings.heroSubtitle) el.textContent = settings.heroSubtitle;
+      });
+
+      if (settings.contactPhone) {
+        const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+        phoneLinks.forEach(link => {
+          if (link.href.includes('7818870265') || link.textContent.includes('78188')) {
+            link.href = 'tel:' + settings.contactPhone.replace(/[^0-9+]/g, '');
+            const txtNode = Array.from(link.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+            if (txtNode) {
+              txtNode.textContent = ' ' + settings.contactPhone;
+            } else {
+              link.textContent = settings.contactPhone;
+            }
+          }
+        });
+      }
+
+      if (settings.contactEmail) {
+        const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+        emailLinks.forEach(link => {
+          if (link.href.includes('tractechspares@gmail.com') || link.textContent.includes('tractechspares@gmail.com')) {
+            link.href = 'mailto:' + settings.contactEmail;
+            const txtNode = Array.from(link.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+            if (txtNode) {
+              txtNode.textContent = ' ' + settings.contactEmail;
+            } else {
+              link.textContent = settings.contactEmail;
+            }
+          }
+        });
+      }
+
+      if (settings.footerText) {
+        const footerEls = document.querySelectorAll('footer p, .footer-bottom p');
+        footerEls.forEach(el => {
+          if (el.textContent.includes('©') || el.textContent.includes('All rights reserved')) {
+            el.textContent = settings.footerText;
+          }
+        });
+      }
+    } catch (e) {
+      console.error('Error applying settings to DOM:', e);
+    }
+  }
+
+  // Start loading data immediately
+  initDynamicData();
+
+  document.addEventListener('DOMContentLoaded', function(){
+    if (window.BP_SETTINGS) {
+      applySettingsToDOM(window.BP_SETTINGS);
+    }
+  });
+
   function slugify(text){ return (text||'').toString().toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
 
   function getCart(){ try{ return JSON.parse(localStorage.getItem('bp_cart')||'[]')||[] }catch(e){ return []; } }
@@ -976,6 +1087,16 @@
         payment: { method: (payMethod||'COD').trim() }
       };
       localStorage.setItem('bp_last_order', JSON.stringify(order));
+      
+      // Save order to backend database
+      fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(order)
+      })
+      .then(res => res.json())
+      .catch(err => console.error('Failed to sync order to database:', err));
+
       try{
         var cid = document.getElementById('order-id'); if(cid) cid.textContent = '#'+order.id;
         var cname = document.getElementById('order-customer'); if(cname) cname.textContent = order.customer.name;
@@ -1319,6 +1440,24 @@
   function updateAuthUI(){
     var btn=document.getElementById('auth-btn-top') || document.querySelector('.auth-btn');
     var raw=localStorage.getItem('bp_user');
+    
+    if (raw) {
+      try {
+        var u = JSON.parse(raw);
+        if (u.id && !sessionStorage.getItem('bp_user_synced_' + u.id)) {
+          fetch('/api/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(u)
+          })
+          .then(res => res.json())
+          .then(() => {
+            sessionStorage.setItem('bp_user_synced_' + u.id, '1');
+          })
+          .catch(e => console.error('Failed to sync user to database:', e));
+        }
+      } catch(e) {}
+    }
     
     // Sync mobile nav auth section if it exists
     var mobAuth = document.querySelector('.mobile-nav-auth');

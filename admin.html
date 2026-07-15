@@ -1,0 +1,1916 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TracTechSpares — Admin Console</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-dark-bg: #090e0c;
+      --color-panel-bg: #121815;
+      --color-border: rgba(255, 255, 255, 0.08);
+      --color-border-hover: rgba(255, 255, 255, 0.16);
+      --color-green: #2d6a4f;
+      --color-green-light: #40916c;
+      --color-green-neon: #52b788;
+      --color-saffron: #e85d04;
+      --color-saffron-bright: #f48c06;
+      --color-text-primary: #f8f6f1;
+      --color-text-secondary: #9cb09d;
+      --font-display: 'Rajdhani', sans-serif;
+      --font-sans: 'Noto Sans', sans-serif;
+      --transition-fast: 0.18s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-dark-bg);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      display: flex;
+      overflow-x: hidden;
+    }
+
+    /* UTILITIES */
+    .display-font {
+      font-family: var(--font-display);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+    }
+    .badge.green {
+      background-color: rgba(45, 106, 79, 0.2);
+      color: var(--color-green-neon);
+      border: 1px solid rgba(82, 183, 136, 0.3);
+    }
+    .badge.saffron {
+      background-color: rgba(232, 93, 4, 0.2);
+      color: var(--color-saffron-bright);
+      border: 1px solid rgba(244, 140, 6, 0.3);
+    }
+    .badge.grey {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #ccc;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* AUTH SCREEN */
+    #auth-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(18, 24, 21, 0.95), rgba(9, 14, 12, 0.99));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      padding: 20px;
+      opacity: 1;
+      transition: opacity var(--transition-fast);
+    }
+    #auth-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .auth-card {
+      background: var(--color-panel-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      text-align: center;
+    }
+    .auth-logo {
+      height: 48px;
+      margin-bottom: 20px;
+    }
+    .auth-card h2 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--color-green-neon);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .auth-card p {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      margin-bottom: 24px;
+    }
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1.5px solid var(--color-border);
+      border-radius: 8px;
+      padding: 12px;
+      color: var(--color-text-primary);
+      font-family: inherit;
+      outline: none;
+      transition: border-color var(--transition-fast);
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--color-green-light);
+    }
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--color-green), var(--color-green-light));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 14px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(45, 106, 79, 0.3);
+      transition: transform 0.1s, opacity var(--transition-fast);
+    }
+    .btn-submit:hover {
+      opacity: 0.95;
+    }
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    /* MAIN SYSTEM LAYOUT */
+    .sidebar {
+      width: 260px;
+      background-color: var(--color-panel-bg);
+      border-right: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      flex-shrink: 0;
+    }
+    .sidebar-header {
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .sidebar-logo {
+      height: 36px;
+    }
+    .sidebar-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--color-text-primary);
+    }
+    .sidebar-menu {
+      padding: 20px 14px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .menu-item button {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      color: var(--color-text-secondary);
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: color var(--transition-fast), background-color var(--transition-fast);
+    }
+    .menu-item button i {
+      font-size: 18px;
+    }
+    .menu-item button:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+      color: var(--color-text-primary);
+    }
+    .menu-item.active button {
+      background-color: rgba(45, 106, 79, 0.15);
+      color: var(--color-green-neon);
+      border-left: 3px solid var(--color-green-neon);
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+    .sidebar-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--color-border);
+    }
+    .admin-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .admin-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-green-light), var(--color-saffron));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      font-family: var(--font-display);
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* KPI CARDS */
+    .kpis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .kpi-card {
+      background-color: var(--color-panel-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: transform var(--transition-fast), border-color var(--transition-fast);
+    }
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-border-hover);
+    }
+    .kpi-value {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+    .kpi-label {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .kpi-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .kpi-icon.sales { background-color: rgba(82, 183, 136, 0.1); color: var(--color-green-neon); }
+    .kpi-icon.orders { background-color: rgba(244, 140, 6, 0.1); color: var(--color-saffron-bright); }
+    .kpi-icon.users { background-color: rgba(0, 150, 255, 0.1); color: #0096ff; }
+    .kpi-icon.products { background-color: rgba(200, 50, 255, 0.1); color: #c832ff; }
+
+    /* SECTION CONTAINERS */
+    .section-tab {
+      display: none;
+    }
+    .section-tab.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .data-card {
+      background-color: var(--color-panel-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-green-neon);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: opacity var(--transition-fast), transform 0.1s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn.primary {
+      background-color: var(--color-green);
+      color: white;
+    }
+    .btn.primary:hover { background-color: var(--color-green-light); }
+    .btn.secondary {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border);
+    }
+    .btn.secondary:hover { background-color: rgba(255, 255, 255, 0.12); }
+    .btn.saffron {
+      background-color: var(--color-saffron);
+      color: white;
+    }
+    .btn.saffron:hover { background-color: var(--color-saffron-bright); }
+    .btn-action {
+      background: transparent;
+      border: none;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 4px;
+      font-size: 18px;
+      line-height: 1;
+      transition: color var(--transition-fast), background-color var(--transition-fast);
+    }
+    .btn-action:hover {
+      background-color: rgba(255,255,255,0.05);
+    }
+    .btn-action.edit:hover { color: #0096ff; }
+    .btn-action.delete:hover { color: #f25f5c; }
+
+    /* TABLES */
+    .table-container {
+      overflow-x: auto;
+      width: 100%;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 14px;
+    }
+    th {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.5px;
+      background-color: rgba(255, 255, 255, 0.01);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background-color: rgba(255,255,255,0.01);
+    }
+
+    /* SEARCH/FILTER BLOCK */
+    .filter-search-input {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-primary);
+      padding: 8px 12px;
+      border-radius: 6px;
+      outline: none;
+      font-size: 13.5px;
+      max-width: 250px;
+      width: 100%;
+    }
+
+    /* DIALOG MODALS */
+    dialog {
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      background-color: var(--color-panel-bg);
+      color: var(--color-text-primary);
+      padding: 0;
+      width: 92%;
+      max-width: 650px;
+      margin: auto;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      outline: none;
+    }
+    dialog::backdrop {
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+    }
+    .dialog-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .dialog-header h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-green-neon);
+      text-transform: uppercase;
+    }
+    .dialog-close {
+      background: transparent;
+      border: none;
+      color: var(--color-text-secondary);
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .dialog-close:hover { color: white; }
+    .dialog-body {
+      padding: 24px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .dialog-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* IMAGE UPLOADER PREVIEW */
+    .image-upload-wrapper {
+      border: 2px dashed var(--color-border);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      background: rgba(255,255,255,0.01);
+      margin-bottom: 14px;
+      transition: border-color var(--transition-fast);
+    }
+    .image-upload-wrapper:hover {
+      border-color: var(--color-green-light);
+    }
+    .image-upload-wrapper input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .image-upload-preview {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 10px auto 0 auto;
+      border-radius: 6px;
+      border: 1px solid var(--color-border);
+      display: none;
+      background: #fff;
+    }
+
+    /* SPECS BUILDER */
+    .specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .spec-item {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .spec-item input {
+      flex: 1;
+      padding: 8px;
+      font-size: 13px;
+    }
+
+    /* ORDER DETAILS DIALOG VIEW */
+    .order-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 20px;
+    }
+    .order-details-col h4 {
+      font-family: var(--font-display);
+      font-size: 15px;
+      text-transform: uppercase;
+      color: var(--color-green-neon);
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 4px;
+    }
+    .order-details-block {
+      background-color: rgba(255,255,255,0.02);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .order-details-block strong {
+      color: white;
+    }
+    .order-items-list {
+      list-style: none;
+      font-size: 13.5px;
+    }
+    .order-items-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .order-items-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* TOAST NOTIFICATION */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--color-panel-bg);
+      border: 1px solid var(--color-green-neon);
+      border-radius: 8px;
+      padding: 16px 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 11000;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+    }
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    #toast i {
+      color: var(--color-green-neon);
+      font-size: 20px;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .sidebar-menu {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px 20px;
+        gap: 6px;
+      }
+      .menu-item button {
+        padding: 8px 12px;
+        white-space: nowrap;
+      }
+      .sidebar-footer {
+        display: none;
+      }
+      .main-content {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOAST SYSTEM -->
+  <div id="toast">
+    <i class="ti ti-circle-check"></i>
+    <span id="toast-message">Action successful!</span>
+  </div>
+
+  <!-- ADMIN AUTHENTICATION CARD OVERLAY -->
+  <div id="auth-overlay">
+    <div class="auth-card">
+      <h1 class="display-font" style="color:var(--color-text-primary); margin-bottom: 6px;"><i class="ti ti-settings" style="color:var(--color-green-neon);"></i> ADMIN PANEL</h1>
+      <p style="margin-bottom: 24px;">Please authenticate to access site controls</p>
+      
+      <div id="login-error-msg" style="color:#ff6b6b; font-size:13px; margin-bottom:16px; display:none; font-weight:600;"></div>
+      
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" value="admin" required placeholder="Enter username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" value="admin123" required placeholder="Enter password">
+        </div>
+        <button type="submit" class="btn-submit">Verify Credentials</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div style="background:var(--color-saffron); width:32px; height:32px; border-radius:6px; display:flex; align-items:center; justify-content:center;">
+        <i class="ti ti-settings" style="color:white; font-size:18px;"></i>
+      </div>
+      <span class="sidebar-title">Bhumiputra Admin</span>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="menu-item active" id="tab-btn-dash">
+        <button onclick="switchTab('dash')"><i class="ti ti-dashboard"></i> Dashboard</button>
+      </li>
+      <li class="menu-item" id="tab-btn-products">
+        <button onclick="switchTab('products')"><i class="ti ti-archive"></i> Products</button>
+      </li>
+      <li class="menu-item" id="tab-btn-users">
+        <button onclick="switchTab('users')"><i class="ti ti-users"></i> User Database</button>
+      </li>
+      <li class="menu-item" id="tab-btn-orders">
+        <button onclick="switchTab('orders')"><i class="ti ti-receipt"></i> Orders List</button>
+      </li>
+      <li class="menu-item" id="tab-btn-settings">
+        <button onclick="switchTab('settings')"><i class="ti ti-adjustments"></i> Site Text Settings</button>
+      </li>
+    </ul>
+    <div class="sidebar-footer">
+      <div class="admin-profile">
+        <div class="admin-avatar">A</div>
+        <div style="flex:1;">
+          <div style="font-size:13px; font-weight:700; color:white;">Administrator</div>
+          <a href="#" onclick="handleLogout(event)" style="font-size:11.5px; color:var(--color-saffron-bright); text-decoration:none; font-weight:600;">Sign out</a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN VIEWPORT -->
+  <main class="main-content">
+    
+    <!-- DASHBOARD VIEW -->
+    <div id="tab-dash" class="section-tab active">
+      <div class="page-title">
+        <span>Dashboard Overview</span>
+        <a href="index.html" class="btn secondary" style="font-size:12.5px;"><i class="ti ti-arrow-left"></i> View Live Site</a>
+      </div>
+      
+      <!-- KPI COUNTERS -->
+      <div class="kpis-grid">
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-value" id="kpi-sales">₹0</div>
+            <div class="kpi-label">Sales Revenue</div>
+          </div>
+          <div class="kpi-icon sales"><i class="ti ti-cash"></i></div>
+        </div>
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-value" id="kpi-orders">0</div>
+            <div class="kpi-label">Total Orders</div>
+          </div>
+          <div class="kpi-icon orders"><i class="ti ti-receipt"></i></div>
+        </div>
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-value" id="kpi-users">0</div>
+            <div class="kpi-label">Registered Users</div>
+          </div>
+          <div class="kpi-icon users"><i class="ti ti-users"></i></div>
+        </div>
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-value" id="kpi-products">0</div>
+            <div class="kpi-label">Total Products</div>
+          </div>
+          <div class="kpi-icon products"><i class="ti ti-archive"></i></div>
+        </div>
+      </div>
+
+      <!-- RECENT ACTIVITY -->
+      <div class="data-card">
+        <div class="card-header-row">
+          <div class="card-title"><i class="ti ti-activity"></i> Recent Orders Overview</div>
+          <button class="btn secondary" onclick="switchTab('orders')">View All Orders</button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Payment</th>
+                <th>Items Ordered</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="recent-orders-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS VIEW -->
+    <div id="tab-products" class="section-tab">
+      <div class="page-title">
+        <span>Catalog Products</span>
+        <button class="btn primary" onclick="openProductModal()"><i class="ti ti-plus"></i> Add New Product</button>
+      </div>
+      
+      <div class="data-card">
+        <div class="card-header-row">
+          <div class="card-title"><i class="ti ti-building-factory-2"></i> Catalog List</div>
+          <input type="text" class="filter-search-input" id="search-products" placeholder="Search catalog items..." oninput="renderProductsTable()">
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 80px;">Thumbnail</th>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Series category</th>
+                <th>Price / MRP</th>
+                <th>Badge</th>
+                <th>Seller</th>
+                <th style="width: 100px; text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="products-table-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- USERS DATABASE VIEW -->
+    <div id="tab-users" class="section-tab">
+      <div class="page-title">
+        <span>User Accounts Database</span>
+        <button class="btn primary" onclick="openUserModal()"><i class="ti ti-user-plus"></i> Add Customer Profile</button>
+      </div>
+      
+      <div class="data-card">
+        <div class="card-header-row">
+          <div class="card-title"><i class="ti ti-users"></i> Customer Profiles</div>
+          <input type="text" class="filter-search-input" id="search-users" placeholder="Search customers..." oninput="renderUsersTable()">
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer ID / Username</th>
+                <th>Display Name</th>
+                <th>Mobile Contact</th>
+                <th>Email Address</th>
+                <th>Access Role</th>
+                <th style="width: 100px; text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS VIEW -->
+    <div id="tab-orders" class="section-tab">
+      <div class="page-title">
+        <span>Customer Checkouts &amp; Orders</span>
+      </div>
+      
+      <div class="data-card">
+        <div class="card-header-row">
+          <div class="card-title"><i class="ti ti-receipt"></i> Orders Audit Log</div>
+          <input type="text" class="filter-search-input" id="search-orders" placeholder="Search order log..." oninput="renderOrdersTable()">
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Client Name</th>
+                <th>Mobile</th>
+                <th>Payment Method</th>
+                <th>Total Value</th>
+                <th>Shipping Status</th>
+                <th style="width: 120px; text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="orders-table-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEBSITE TEXT SETTINGS VIEW -->
+    <div id="tab-settings" class="section-tab">
+      <div class="page-title">
+        <span>Site Content Configurations</span>
+      </div>
+      
+      <div class="data-card">
+        <div class="card-title" style="margin-bottom: 24px;"><i class="ti ti-adjustments"></i> Edit Homepage &amp; Footer Text</div>
+        
+        <form id="settings-form" onsubmit="handleSaveSettings(event)">
+          <div class="form-group">
+            <label for="set-banner">Promo Announcement Banner</label>
+            <input type="text" id="set-banner" required>
+          </div>
+          <div class="form-group">
+            <label for="set-title">Hero Title Text (Line break using enter)</label>
+            <textarea id="set-title" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="set-sub">Hero Subtitle Text</label>
+            <textarea id="set-sub" rows="3" required></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="set-phone">Support Contact Number</label>
+              <input type="text" id="set-phone" required>
+            </div>
+            <div class="form-group">
+              <label for="set-email">Support Contact Email</label>
+              <input type="email" id="set-email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="set-footer">Copyright Footer Info</label>
+            <input type="text" id="set-footer" required>
+          </div>
+          <button type="submit" class="btn primary display-font" style="padding:12px 24px; font-size:14px;"><i class="ti ti-device-floppy"></i> Save Website Text Configurations</button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ---------------------------------------------------- -->
+  <!-- MODAL DIALOGS -->
+  <!-- ---------------------------------------------------- -->
+
+  <!-- PRODUCT EDIT/ADD DIALOG -->
+  <dialog id="productDialog" closedby="any" aria-labelledby="prodModalTitle">
+    <div class="dialog-header">
+      <h3 id="prodModalTitle">Add Catalog Product</h3>
+      <button class="dialog-close" onclick="closeProductModal()">✕</button>
+    </div>
+    <form id="productForm" onsubmit="handleSaveProduct(event)">
+      <div class="dialog-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prod-id">Product ID / Key (slug, e.g. mech-suspension)</label>
+            <input type="text" id="prod-id" required placeholder="e.g. lcv-spring-seat">
+          </div>
+          <div class="form-group">
+            <label for="prod-name">Product Name</label>
+            <input type="text" id="prod-name" required placeholder="e.g. Heavy Duty Springs Seat">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prod-series">Product Series (Category descriptor)</label>
+            <input type="text" id="prod-series" required placeholder="e.g. Tractor Suspension Seat">
+          </div>
+          <div class="form-group">
+            <label for="prod-badge">Product Promo Badge (Optional)</label>
+            <input type="text" id="prod-badge" placeholder="e.g. Best Seller, Popular">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prod-price">Sale Price (Formatted, e.g. ₹3,600)</label>
+            <input type="text" id="prod-price" required placeholder="₹3,600">
+          </div>
+          <div class="form-group">
+            <label for="prod-mrp">MRP Value (Formatted, e.g. ₹5,100)</label>
+            <input type="text" id="prod-mrp" required placeholder="₹5,100">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prod-discount">Discount Tag (e.g. -29%)</label>
+            <input type="text" id="prod-discount" required placeholder="-29%">
+          </div>
+          <div class="form-group">
+            <label for="prod-sellertype">Seller Channel Type</label>
+            <select id="prod-sellertype">
+              <option value="direct">TracTechSpares Direct</option>
+              <option value="vendor">Partner Vendor</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prod-rating">Rating score (0.0 to 5.0)</label>
+            <input type="text" id="prod-rating" required placeholder="4.7">
+          </div>
+          <div class="form-group">
+            <label for="prod-soldcount">Sold Count descriptor</label>
+            <input type="text" id="prod-soldcount" required placeholder="340+ sold">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="prod-compattext">Compatibility Text (Fits: ...)</label>
+          <input type="text" id="prod-compattext" required placeholder="Fits: Eicher 380, Mahindra 575 DI">
+        </div>
+
+        <div class="form-group">
+          <label for="prod-description">Full Product Description</label>
+          <textarea id="prod-description" rows="4" required placeholder="Details about cushion material, design, adjustment ranges..."></textarea>
+        </div>
+
+        <!-- PICTURE UPLOAD AREA -->
+        <div class="form-group">
+          <label>Product Pictures (Select/Upload image file)</label>
+          <div class="image-upload-wrapper">
+            <i class="ti ti-cloud-upload" style="font-size:32px; color:var(--color-text-secondary); margin-bottom:8px; display:block;"></i>
+            <span style="font-size:12.5px; color:var(--color-text-secondary);">Click to choose file or drop here</span>
+            <input type="file" id="prod-file" accept="image/*" onchange="handleImageUpload(event)">
+            <img id="image-preview" class="image-upload-preview" alt="Preview">
+          </div>
+          <input type="text" id="prod-image-path" required placeholder="Image File Path (Automatically populated by upload)" readonly style="background:rgba(255,255,255,0.01); cursor:not-allowed;">
+        </div>
+
+        <!-- FITMENT SEARCH TAGS -->
+        <div class="form-group">
+          <label for="prod-fitment">Search Filter Fitment Tags (Comma separated)</label>
+          <input type="text" id="prod-fitment" placeholder="Mahindra, Eicher, Tractor, Seat">
+        </div>
+
+        <!-- DYNAMIC SPECIFICATIONS BUILDER -->
+        <div class="form-group">
+          <label style="display:flex; justify-content:space-between; align-items:center;">
+            <span>Specifications Attributes</span>
+            <button type="button" class="btn secondary" style="padding:4px 8px; font-size:11px;" onclick="addSpecRow()"><i class="ti ti-plus"></i> Add Spec Attribute</button>
+          </label>
+          <div id="specs-rows-container" class="specs-list" style="margin-top:10px;">
+            <!-- Dynamic Key-Value Rows -->
+          </div>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <button type="button" class="btn secondary" onclick="closeProductModal()">Cancel</button>
+        <button type="submit" class="btn primary">Save Product</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- USER FORM DIALOG -->
+  <dialog id="userDialog" closedby="any" aria-labelledby="userModalTitle">
+    <div class="dialog-header">
+      <h3 id="userModalTitle">Add Customer profile</h3>
+      <button class="dialog-close" onclick="closeUserModal()">✕</button>
+    </div>
+    <form id="userForm" onsubmit="handleSaveUser(event)">
+      <div class="dialog-body">
+        <div class="form-group">
+          <label for="user-id">Customer Username / ID (Unique, e.g. 7818870265)</label>
+          <input type="text" id="user-id" required placeholder="Mobile number or username">
+        </div>
+        <div class="form-group">
+          <label for="user-name">Display Name</label>
+          <input type="text" id="user-name" required placeholder="e.g. Ramji Yadav">
+        </div>
+        <div class="form-group">
+          <label for="user-phone">Mobile Contact</label>
+          <input type="text" id="user-phone" placeholder="e.g. 7818870265">
+        </div>
+        <div class="form-group">
+          <label for="user-email">Email Address</label>
+          <input type="email" id="user-email" placeholder="e.g. you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="user-role">Access Role</label>
+          <select id="user-role">
+            <option value="user">Standard User (Customer)</option>
+            <option value="admin">System Admin</option>
+          </select>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <button type="button" class="btn secondary" onclick="closeUserModal()">Cancel</button>
+        <button type="submit" class="btn primary">Save Profile</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ORDER DETAIL DIALOG -->
+  <dialog id="orderDialog" closedby="any" aria-labelledby="orderModalTitle" style="max-width:800px;">
+    <div class="dialog-header">
+      <h3 id="orderModalTitle">Order Audit Details</h3>
+      <button class="dialog-close" onclick="closeOrderModal()">✕</button>
+    </div>
+    <div class="dialog-body">
+      <div class="order-details-grid">
+        <div class="order-details-col">
+          <h4>Customer Details</h4>
+          <div class="order-details-block" id="ord-customer-block">
+            <!-- Loaded dynamically -->
+          </div>
+          
+          <h4>Shipping Address</h4>
+          <div class="order-details-block" id="ord-address-block">
+            <!-- Loaded dynamically -->
+          </div>
+
+          <h4>Transaction Details</h4>
+          <div class="order-details-block" id="ord-tx-block">
+            <!-- Loaded dynamically -->
+          </div>
+        </div>
+
+        <div class="order-details-col">
+          <h4>Ordered Items</h4>
+          <div class="order-details-block" style="padding: 4px 14px;">
+            <ul class="order-items-list" id="ord-items-list">
+              <!-- Loaded dynamically -->
+            </ul>
+          </div>
+
+          <h4>Shipping Status Control</h4>
+          <div class="order-details-block" style="display:flex; flex-direction:column; gap:10px;">
+            <label for="ord-status-select" style="font-size:12px; font-weight:600; color:var(--color-text-secondary);">Change Status:</label>
+            <select id="ord-status-select" class="form-group" style="padding: 8px; margin:0;" onchange="updateSelectedOrderStatus()">
+              <option value="Pending">Pending Validation</option>
+              <option value="Shipped">Shipped from Factory</option>
+              <option value="Completed">Completed / Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dialog-footer">
+      <button type="button" class="btn secondary" onclick="closeOrderModal()">Close</button>
+    </div>
+  </dialog>
+
+  <!-- ---------------------------------------------------- -->
+  <!-- CONTROL SCRIPTS -->
+  <!-- ---------------------------------------------------- -->
+  <script>
+    // State Store
+    let products = {};
+    let users = [];
+    let orders = [];
+    let settings = {};
+    let currentTab = 'dash';
+    let editProductId = null;
+    let editUserId = null;
+    let selectedOrderId = null;
+
+    // Run Auth Verification on Load
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+      setupDialogLightDismiss();
+    });
+
+    // Setup Dialog Light Dismiss (with fallback for unsupported browsers)
+    function setupDialogLightDismiss() {
+      const dialogs = document.querySelectorAll('dialog');
+      dialogs.forEach(dialog => {
+        // Fallback for browsers without closedby support
+        if (!('closedBy' in HTMLDialogElement.prototype)) {
+          dialog.addEventListener('click', (event) => {
+            if (event.target !== dialog) return;
+            const rect = dialog.getBoundingClientRect();
+            const isDialogContent = (
+              rect.top <= event.clientY &&
+              event.clientY <= rect.top + rect.height &&
+              rect.left <= event.clientX &&
+              event.clientX <= rect.left + rect.width
+            );
+            if (isDialogContent) return;
+            dialog.close();
+          });
+        }
+      });
+    }
+
+    // Auth Validation API
+    function checkAuth() {
+      if (window.location.protocol === 'file:') {
+        const errEl = document.getElementById('login-error-msg');
+        errEl.innerHTML = '⚠️ Protocol Warning: You opened this page via <code>file://</code>.<br>To connect to the backend server, please open:<br><a href="http://localhost:8080/admin.html" style="color:var(--color-saffron-bright); text-decoration:underline; font-weight:700;">http://localhost:8080/admin.html</a>';
+        errEl.style.display = 'block';
+        return;
+      }
+      fetch('/api/admin/check')
+        .then(res => res.json())
+        .then(data => {
+          if (data.loggedIn) {
+            document.getElementById('auth-overlay').classList.add('hidden');
+            loadSystemData();
+          } else {
+            document.getElementById('auth-overlay').classList.remove('hidden');
+          }
+        })
+        .catch(err => {
+          console.error('Session check failed:', err);
+          showToast('Server connection error. Retry.', true);
+        });
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value.trim();
+      const errEl = document.getElementById('login-error-msg');
+      errEl.style.display = 'none';
+
+      fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u, password: p })
+      })
+      .then(async res => {
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast('Login authorized!');
+          checkAuth();
+        } else {
+          errEl.textContent = data.error || 'Authentication rejected.';
+          errEl.style.display = 'block';
+        }
+      })
+      .catch(err => {
+        console.error('Login action failed:', err);
+        errEl.textContent = 'Server connection failed.';
+        errEl.style.display = 'block';
+      });
+    }
+
+    function handleLogout(event) {
+      if(event) event.preventDefault();
+      fetch('/api/admin/logout', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          showToast('Logged out of admin panel');
+          checkAuth();
+        })
+        .catch(err => console.error('Logout failed:', err));
+    }
+
+    // Load Data Arrays
+    function loadSystemData() {
+      // Products
+      fetch('/api/products')
+        .then(res => res.json())
+        .then(data => {
+          products = data;
+          renderProductsTable();
+          updateKPIs();
+        });
+
+      // Users
+      fetch('/api/users')
+        .then(res => res.json())
+        .then(data => {
+          users = data;
+          renderUsersTable();
+          updateKPIs();
+        });
+
+      // Orders
+      fetch('/api/orders')
+        .then(res => res.json())
+        .then(data => {
+          orders = data.sort((a,b) => new Date(b.created) - new Date(a.created));
+          renderOrdersTable();
+          renderRecentOrders();
+          updateKPIs();
+        });
+
+      // Settings
+      fetch('/api/settings')
+        .then(res => res.json())
+        .then(data => {
+          settings = data;
+          prefillSettingsForm();
+        });
+    }
+
+    // Update KPI UI counters
+    function updateKPIs() {
+      // Products Counter
+      document.getElementById('kpi-products').textContent = Object.keys(products).length;
+      
+      // Users Counter
+      document.getElementById('kpi-users').textContent = users.length;
+      
+      // Orders Counter
+      document.getElementById('kpi-orders').textContent = orders.length;
+
+      // Revenue Calculator
+      let revenue = 0;
+      orders.forEach(o => {
+        if (o.totals && o.totals.total && o.status !== 'Cancelled') {
+          revenue += Number(o.totals.total);
+        }
+      });
+      document.getElementById('kpi-sales').textContent = '₹' + revenue.toLocaleString('en-IN');
+    }
+
+    // Navigation Tabs Controller
+    function switchTab(tabId) {
+      currentTab = tabId;
+      document.querySelectorAll('.section-tab').forEach(el => {
+        el.classList.remove('active');
+      });
+      document.querySelectorAll('.menu-item').forEach(el => {
+        el.classList.remove('active');
+      });
+
+      document.getElementById('tab-' + tabId).classList.add('active');
+      const tabMenuEl = document.getElementById('tab-btn-' + tabId);
+      if (tabMenuEl) tabMenuEl.classList.add('active');
+
+      if (tabId === 'dash') {
+        renderRecentOrders();
+        updateKPIs();
+      }
+    }
+
+    // Toast Notice Helper
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-message');
+      const icon = toast.querySelector('i');
+
+      msgEl.textContent = message;
+      if (isError) {
+        toast.style.borderColor = '#ff6b6b';
+        icon.className = 'ti ti-alert-triangle';
+        icon.style.color = '#ff6b6b';
+      } else {
+        toast.style.borderColor = 'var(--color-green-neon)';
+        icon.className = 'ti ti-circle-check';
+        icon.style.color = 'var(--color-green-neon)';
+      }
+
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    // ----------------------------------------------------
+    // PRODUCTS LOGICS
+    // ----------------------------------------------------
+    function renderProductsTable() {
+      const tbody = document.getElementById('products-table-tbody');
+      tbody.innerHTML = '';
+      const filter = document.getElementById('search-products').value.toLowerCase().trim();
+
+      Object.values(products).forEach(p => {
+        if (filter && !p.name.toLowerCase().includes(filter) && !p.id.toLowerCase().includes(filter) && !p.series.toLowerCase().includes(filter)) {
+          return;
+        }
+
+        const tr = document.createElement('tr');
+        const img = p.images && p.images[0] ? p.images[0] : 'assets/images/mahindra_seat.jpeg';
+        
+        tr.innerHTML = `
+          <td><img src="${img}" style="width:50px; height:40px; object-fit:contain; border-radius:4px; border:1px solid var(--color-border); background:#fff; padding:2px;"></td>
+          <td style="font-family:monospace; font-weight:700; color:var(--color-text-secondary);">${p.id}</td>
+          <td style="font-weight:700; color:white;">${p.name}</td>
+          <td>${p.series}</td>
+          <td>
+            <div style="font-weight:700; color:var(--color-green-neon);">${p.price}</div>
+            <div style="font-size:11px; text-decoration:line-through; color:var(--color-text-secondary);">${p.mrp}</div>
+          </td>
+          <td>${p.badge ? `<span class="badge saffron">${p.badge}</span>` : '<span style="color:#666;">-</span>'}</td>
+          <td><span class="badge ${p.sellerType === 'direct' ? 'green' : 'grey'}">${p.sellerType === 'direct' ? 'Direct' : 'Partner'}</span></td>
+          <td style="text-align:center;">
+            <div style="display:flex; justify-content:center; gap:6px;">
+              <button class="btn-action edit" onclick="openProductModal('${p.id}')" title="Edit Item"><i class="ti ti-edit"></i></button>
+              <button class="btn-action delete" onclick="handleDeleteProduct('${p.id}')" title="Delete Item"><i class="ti ti-trash"></i></button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      if (tbody.children.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--color-text-secondary); padding: 30px;">No matching catalog items found.</td></tr>`;
+      }
+    }
+
+    // Modal forms populator
+    function openProductModal(prodId = null) {
+      const dialog = document.getElementById('productDialog');
+      const title = document.getElementById('prodModalTitle');
+      const form = document.getElementById('productForm');
+      
+      form.reset();
+      document.getElementById('specs-rows-container').innerHTML = '';
+      document.getElementById('image-preview').style.display = 'none';
+      editProductId = prodId;
+
+      if (prodId) {
+        title.textContent = 'Edit Catalog Product';
+        const p = products[prodId];
+        
+        document.getElementById('prod-id').value = p.id;
+        document.getElementById('prod-id').readOnly = true;
+        document.getElementById('prod-id').style.cursor = 'not-allowed';
+        document.getElementById('prod-id').style.background = 'rgba(255,255,255,0.01)';
+        
+        document.getElementById('prod-name').value = p.name;
+        document.getElementById('prod-series').value = p.series;
+        document.getElementById('prod-badge').value = p.badge || '';
+        document.getElementById('prod-price').value = p.price;
+        document.getElementById('prod-mrp').value = p.mrp;
+        document.getElementById('prod-discount').value = p.discount;
+        document.getElementById('prod-sellertype').value = p.sellerType || 'direct';
+        document.getElementById('prod-rating').value = p.rating || '4.7';
+        document.getElementById('prod-soldcount').value = p.soldCount || '100+ sold';
+        document.getElementById('prod-compattext').value = p.compatText || '';
+        document.getElementById('prod-description').value = p.description;
+        document.getElementById('prod-fitment').value = p.fitment ? p.fitment.join(', ') : '';
+        
+        const img = p.images && p.images[0] ? p.images[0] : '';
+        document.getElementById('prod-image-path').value = img;
+        if (img) {
+          const preview = document.getElementById('image-preview');
+          preview.src = img;
+          preview.style.display = 'block';
+        }
+
+        // Specs Loader
+        if (p.specs) {
+          Object.entries(p.specs).forEach(([k, v]) => {
+            addSpecRow(k, v);
+          });
+        }
+      } else {
+        title.textContent = 'Add Catalog Product';
+        document.getElementById('prod-id').readOnly = false;
+        document.getElementById('prod-id').style.cursor = 'text';
+        document.getElementById('prod-id').style.background = 'rgba(255,255,255,0.03)';
+        addSpecRow('Cushion Material', 'Contoured Foam');
+        addSpecRow('Cover Material', 'Heavy-duty Vinyl');
+      }
+
+      dialog.showModal();
+    }
+
+    function closeProductModal() {
+      document.getElementById('productDialog').close();
+    }
+
+    // Dynamic Specifications Rows
+    function addSpecRow(key = '', val = '') {
+      const container = document.getElementById('specs-rows-container');
+      const row = document.createElement('div');
+      row.className = 'spec-item';
+      row.innerHTML = `
+        <input type="text" class="spec-key" placeholder="Key (e.g. Dimensions)" value="${key}" required>
+        <input type="text" class="spec-val" placeholder="Value (e.g. 810mm x 500mm)" value="${val}" required>
+        <button type="button" class="btn-action delete" style="padding:8px;" onclick="this.parentNode.remove()"><i class="ti ti-trash"></i></button>
+      `;
+      container.appendChild(row);
+    }
+
+    // Handles AJAX file upload via server endpoint
+    function handleImageUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      showToast('Uploading image file...');
+
+      fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      })
+      .then(async res => {
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast('Image uploaded successfully!');
+          document.getElementById('prod-image-path').value = data.filepath;
+          const preview = document.getElementById('image-preview');
+          preview.src = data.filepath;
+          preview.style.display = 'block';
+        } else {
+          showToast(data.error || 'Upload failed.', true);
+        }
+      })
+      .catch(err => {
+        console.error('File upload failed:', err);
+        showToast('Image upload crashed.', true);
+      });
+    }
+
+    // Product form submission
+    function handleSaveProduct(event) {
+      event.preventDefault();
+      const id = document.getElementById('prod-id').value.trim();
+      const name = document.getElementById('prod-name').value.trim();
+      const series = document.getElementById('prod-series').value.trim();
+      const badge = document.getElementById('prod-badge').value.trim();
+      const price = document.getElementById('prod-price').value.trim();
+      const mrp = document.getElementById('prod-mrp').value.trim();
+      const discount = document.getElementById('prod-discount').value.trim();
+      const sellerType = document.getElementById('prod-sellertype').value;
+      const rating = document.getElementById('prod-rating').value.trim();
+      const soldCount = document.getElementById('prod-soldcount').value.trim();
+      const compatText = document.getElementById('prod-compattext').value.trim();
+      const description = document.getElementById('prod-description').value.trim();
+      
+      const imagePath = document.getElementById('prod-image-path').value.trim();
+      const fitmentVal = document.getElementById('prod-fitment').value.trim();
+      const fitment = fitmentVal ? fitmentVal.split(',').map(t => t.trim()) : [];
+
+      // Compile Specs key-value list
+      const specs = {};
+      document.querySelectorAll('.spec-item').forEach(item => {
+        const k = item.querySelector('.spec-key').value.trim();
+        const v = item.querySelector('.spec-val').value.trim();
+        if (k && v) specs[k] = v;
+      });
+
+      const payload = {
+        id, name, series, badge, price, mrp, discount, sellerType, rating, 
+        soldCount, compatText, description, specs, fitment,
+        images: imagePath ? [imagePath] : ['assets/images/mahindra_seat.jpeg']
+      };
+
+      const url = editProductId ? `/api/products/${id}` : '/api/products';
+      const method = editProductId ? 'PUT' : 'POST';
+
+      fetch(url, {
+        method: method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(async res => {
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast(`Product saved successfully!`);
+          closeProductModal();
+          loadSystemData();
+        } else {
+          showToast(data.error || 'Failed to save product details.', true);
+        }
+      })
+      .catch(err => {
+        console.error('Save product request failed:', err);
+        showToast('Server error.', true);
+      });
+    }
+
+    function handleDeleteProduct(id) {
+      if (!confirm(`Are you absolutely sure you want to delete product "${id}" from the database?`)) {
+        return;
+      }
+
+      fetch(`/api/products/${id}`, { method: 'DELETE' })
+        .then(async res => {
+          const data = await res.json();
+          if (res.ok && data.success) {
+            showToast('Product deleted successfully');
+            loadSystemData();
+          } else {
+            showToast(data.error || 'Failed to delete product', true);
+          }
+        })
+        .catch(err => {
+          console.error('Delete request failed:', err);
+          showToast('Server error.', true);
+        });
+    }
+
+    // ----------------------------------------------------
+    // USERS DATABASE LOGICS
+    // ----------------------------------------------------
+    function renderUsersTable() {
+      const tbody = document.getElementById('users-table-tbody');
+      tbody.innerHTML = '';
+      const filter = document.getElementById('search-users').value.toLowerCase().trim();
+
+      users.forEach(u => {
+        if (filter && !u.name.toLowerCase().includes(filter) && !u.id.toLowerCase().includes(filter) && !(u.email && u.email.toLowerCase().includes(filter))) {
+          return;
+        }
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-family:monospace; font-weight:700; color:var(--color-text-secondary);">${u.id}</td>
+          <td style="font-weight:700; color:white;">${u.name || 'User'}</td>
+          <td>${u.phone || '<span style="color:#666;">-</span>'}</td>
+          <td>${u.email || '<span style="color:#666;">-</span>'}</td>
+          <td><span class="badge ${u.role === 'admin' ? 'saffron' : 'green'}">${u.role || 'user'}</span></td>
+          <td style="text-align:center;">
+            <div style="display:flex; justify-content:center; gap:6px;">
+              <button class="btn-action edit" onclick="openUserModal('${u.id}')" title="Edit Customer"><i class="ti ti-edit"></i></button>
+              <button class="btn-action delete" onclick="handleDeleteUser('${u.id}')" title="Remove Customer"><i class="ti ti-trash"></i></button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      if (tbody.children.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--color-text-secondary); padding: 30px;">No matching customer records found.</td></tr>`;
+      }
+    }
+
+    function openUserModal(userId = null) {
+      const dialog = document.getElementById('userDialog');
+      const title = document.getElementById('userModalTitle');
+      const form = document.getElementById('userForm');
+      
+      form.reset();
+      editUserId = userId;
+
+      if (userId) {
+        title.textContent = 'Edit Customer Profile';
+        const u = users.find(x => x.id === userId);
+        document.getElementById('user-id').value = u.id;
+        document.getElementById('user-id').readOnly = true;
+        document.getElementById('user-id').style.cursor = 'not-allowed';
+        document.getElementById('user-id').style.background = 'rgba(255,255,255,0.01)';
+        
+        document.getElementById('user-name').value = u.name || '';
+        document.getElementById('user-phone').value = u.phone || '';
+        document.getElementById('user-email').value = u.email || '';
+        document.getElementById('user-role').value = u.role || 'user';
+      } else {
+        title.textContent = 'Add Customer Profile';
+        document.getElementById('user-id').readOnly = false;
+        document.getElementById('user-id').style.cursor = 'text';
+        document.getElementById('user-id').style.background = 'rgba(255,255,255,0.03)';
+      }
+
+      dialog.showModal();
+    }
+
+    function closeUserModal() {
+      document.getElementById('userDialog').close();
+    }
+
+    function handleSaveUser(event) {
+      event.preventDefault();
+      const id = document.getElementById('user-id').value.trim();
+      const name = document.getElementById('user-name').value.trim();
+      const phone = document.getElementById('user-phone').value.trim();
+      const email = document.getElementById('user-email').value.trim();
+      const role = document.getElementById('user-role').value;
+
+      const payload = { id, name, phone, email, role };
+      const url = editUserId ? `/api/users/${id}` : '/api/users';
+      const method = editUserId ? 'PUT' : 'POST';
+
+      fetch(url, {
+        method: method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(async res => {
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast('Customer profile saved successfully!');
+          closeUserModal();
+          loadSystemData();
+        } else {
+          showToast(data.error || 'Failed to save customer.', true);
+        }
+      })
+      .catch(err => {
+        console.error('Save customer error:', err);
+        showToast('Server error.', true);
+      });
+    }
+
+    function handleDeleteUser(id) {
+      if (id === 'admin') {
+        alert('Security Block: You cannot delete the default root admin user.');
+        return;
+      }
+      if (!confirm(`Remove user "${id}"? This deletes their account and details.`)) {
+        return;
+      }
+
+      fetch(`/api/users/${id}`, { method: 'DELETE' })
+        .then(async res => {
+          const data = await res.json();
+          if (res.ok && data.success) {
+            showToast('User profile removed.');
+            loadSystemData();
+          } else {
+            showToast(data.error || 'Failed to remove user', true);
+          }
+        })
+        .catch(err => {
+          console.error('Delete user failed:', err);
+          showToast('Server error.', true);
+        });
+    }
+
+    // ----------------------------------------------------
+    // ORDERS AUDIT LOGICS
+    // ----------------------------------------------------
+    function getStatusClass(status) {
+      switch (status) {
+        case 'Completed': return 'green';
+        case 'Shipped': return 'saffron';
+        case 'Cancelled': return 'grey';
+        default: return 'saffron';
+      }
+    }
+
+    function renderOrdersTable() {
+      const tbody = document.getElementById('orders-table-tbody');
+      tbody.innerHTML = '';
+      const filter = document.getElementById('search-orders').value.toLowerCase().trim();
+
+      orders.forEach(o => {
+        const custName = o.customer ? o.customer.name || '' : '';
+        const phone = o.customer ? o.customer.phone || '' : '';
+        const status = o.status || 'Pending';
+
+        if (filter && !o.id.toLowerCase().includes(filter) && !custName.toLowerCase().includes(filter) && !phone.toLowerCase().includes(filter)) {
+          return;
+        }
+
+        const date = new Date(o.created).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+        const tr = document.createElement('tr');
+        
+        tr.innerHTML = `
+          <td style="font-family:monospace; font-weight:700; color:var(--color-green-neon);">${o.id}</td>
+          <td>${date}</td>
+          <td style="font-weight:700; color:white;">${custName}</td>
+          <td>${phone}</td>
+          <td style="font-family:var(--font-display); font-weight:600;">${o.payment ? o.payment.method : 'COD'}</td>
+          <td style="font-weight:700; color:white;">₹${o.totals ? o.totals.total.toLocaleString('en-IN') : '0'}</td>
+          <td><span class="badge ${getStatusClass(status)}">${status}</span></td>
+          <td style="text-align:center;">
+            <button class="btn secondary" style="padding: 4px 8px; font-size:11px;" onclick="openOrderModal('${o.id}')"><i class="ti ti-file-description"></i> Manage</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      if (tbody.children.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--color-text-secondary); padding: 30px;">No client orders logged.</td></tr>`;
+      }
+    }
+
+    function renderRecentOrders() {
+      const tbody = document.getElementById('recent-orders-tbody');
+      tbody.innerHTML = '';
+      
+      const recent = orders.slice(0, 5);
+      recent.forEach(o => {
+        const custName = o.customer ? o.customer.name || 'Client' : 'Client';
+        const date = new Date(o.created).toLocaleDateString('en-IN', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+        const itemsList = o.items ? o.items.map(i => `${i.name} × ${i.qty || 1}`).join(', ') : '-';
+        const status = o.status || 'Pending';
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-family:monospace; font-weight:700; color:var(--color-green-neon);">${o.id}</td>
+          <td>${date}</td>
+          <td style="font-weight:700; color:white;">${custName}</td>
+          <td>${o.payment ? o.payment.method : 'COD'}</td>
+          <td style="font-size:12px; max-width: 250px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${itemsList}">${itemsList}</td>
+          <td style="font-weight:700; color:white;">₹${o.totals ? o.totals.total.toLocaleString('en-IN') : '0'}</td>
+          <td><span class="badge ${getStatusClass(status)}">${status}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      if (tbody.children.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--color-text-secondary); padding: 30px;">No client orders logged yet.</td></tr>`;
+      }
+    }
+
+    function openOrderModal(orderId) {
+      selectedOrderId = orderId;
+      const o = orders.find(x => x.id === orderId);
+      if (!o) return;
+
+      const custEl = document.getElementById('ord-customer-block');
+      const addrEl = document.getElementById('ord-address-block');
+      const txEl = document.getElementById('ord-tx-block');
+      const itemsEl = document.getElementById('ord-items-list');
+      const statusSelect = document.getElementById('ord-status-select');
+
+      custEl.innerHTML = `
+        <strong>Name:</strong> ${o.customer ? o.customer.name || 'N/A' : 'N/A'}<br>
+        <strong>Phone:</strong> ${o.customer ? o.customer.phone || 'N/A' : 'N/A'}<br>
+        <strong>Registered User ID:</strong> ${o.address ? o.address.id || 'Guest' : 'Guest'}
+      `;
+
+      const addr = o.address || {};
+      addrEl.innerHTML = `
+        <strong>Recipient:</strong> ${addr.name || 'N/A'}<br>
+        <strong>Address Line:</strong> ${addr.line || 'N/A'}<br>
+        <strong>District &amp; Pincode:</strong> ${addr.district || ''} - ${addr.pincode || ''}<br>
+        <strong>State:</strong> ${addr.state || 'N/A'}
+      `;
+
+      const totals = o.totals || { subtotal: 0, gst: 0, delivery: 0, total: 0 };
+      txEl.innerHTML = `
+        <strong>Payment Method:</strong> ${o.payment ? o.payment.method : 'COD'}<br>
+        <strong>Subtotal:</strong> ₹${totals.subtotal.toLocaleString('en-IN')}<br>
+        <strong>GST (18%):</strong> ₹${totals.gst.toLocaleString('en-IN')}<br>
+        <strong>Delivery Charges:</strong> ₹${totals.delivery.toLocaleString('en-IN')}<br>
+        <strong style="color:var(--color-green-neon); font-size:15px;">Total Price Paid:</strong> ₹${totals.total.toLocaleString('en-IN')}
+      `;
+
+      itemsEl.innerHTML = '';
+      if (o.items) {
+        o.items.forEach(i => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <div>
+              <strong style="color:white;">${i.name}</strong>
+              <div style="font-size:11px; color:var(--color-text-secondary);">ID: ${i.id} | Series: ${i.series || '-'}</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-weight:700;">${i.price} × ${i.qty || 1}</div>
+            </div>
+          `;
+          itemsEl.appendChild(li);
+        });
+      }
+
+      statusSelect.value = o.status || 'Pending';
+
+      document.getElementById('orderDialog').showModal();
+    }
+
+    function closeOrderModal() {
+      document.getElementById('orderDialog').close();
+    }
+
+    function updateSelectedOrderStatus() {
+      if (!selectedOrderId) return;
+      const select = document.getElementById('ord-status-select');
+      const newStatus = select.value;
+
+      fetch(`/api/orders/${selectedOrderId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      })
+      .then(async res => {
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast(`Order status updated to "${newStatus}"`);
+          loadSystemData();
+        } else {
+          showToast(data.error || 'Failed to update order status.', true);
+        }
+      })
+      .catch(err => {
+        console.error('Update status error:', err);
+        showToast('Server connection failed.', true);
+      });
+    }
+
+    // ----------------------------------------------------
+    // WEBSITE SETTINGS LOGICS
+    // ----------------------------------------------------
+    function prefillSettingsForm() {
+      if (!settings) return;
+      document.getElementById('set-banner').value = settings.promoBanner || '';
+      document.getElementById('set-title').value = settings.heroTitle || '';
+      document.getElementById('set-sub').value = settings.heroSubtitle || '';
+      document.getElementById('set-phone').value = settings.contactPhone || '';
+      document.getElementById('set-email').value = settings.contactEmail || '';
+      document.getElementById('set-footer').value = settings.footerText || '';
+    }
+
+    function handleSaveSettings(event) {
+      event.preventDefault();
+      const promoBanner = document.getElementById('set-banner').value.trim();
+      const heroTitle = document.getElementById('set-title').value.trim();
+      const heroSubtitle = document.getElementById('set-sub').value.trim();
+      const contactPhone = document.getElementById('set-phone').value.trim();
+      const contactEmail = document.getElementById('set-email').value.trim();
+      const footerText = document.getElementById('set-footer').value.trim();
+
+      const payload = { promoBanner, heroTitle, heroSubtitle, contactPhone, contactEmail, footerText };
+
+      fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(async res => {
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast('Website configurations updated successfully!');
+          loadSystemData();
+        } else {
+          showToast(data.error || 'Failed to save settings.', true);
+        }
+      })
+      .catch(err => {
+        console.error('Save settings failed:', err);
+        showToast('Server error.', true);
+      });
+    }
+  </script>
+</body>
+</html>

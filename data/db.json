@@ -1,0 +1,483 @@
+{
+  "products": {
+    "mech-suspension": {
+      "id": "mech-suspension",
+      "name": "Mechanical Suspension Seat — Heavy Duty",
+      "series": "Tractor & LCV Suspension Seat",
+      "price": "₹3,600",
+      "mrp": "₹5,100",
+      "discount": "-29%",
+      "rating": "4.7",
+      "ratingCount": "109 reviews",
+      "soldCount": "340+ sold",
+      "badge": "Popular",
+      "description": "High-comfort universal mechanical suspension driver's seat designed for agricultural tractors and Light Commercial Vehicles (LCVs). Featuring premium contoured polyurethane foam, adjustable mechanical spring suspension, and a heavy-duty sliding rail. Protects the driver from spinal fatigue and road shocks. Perfect fit for Mahindra, Eicher, Massey Ferguson, Swaraj, and John Deere tractors.",
+      "compatText": "Fits: Eicher 380, 485, 242 · Mahindra 475, 575 DI · John Deere · Massey Ferguson · Tata Ace Gold · Bolero Pickup",
+      "specs": {
+        "Suspension Type": "Mechanical Spring with Shock Absorber",
+        "Cushion Material": "Contoured Polyurethane Foam (50mm)",
+        "Cover Material": "Heavy-duty Water-resistant Black Vinyl",
+        "Base Adjustment": "Fore-aft sliding range: 150mm",
+        "Weight Capacity": "Adjustable up to 130 kg",
+        "Dimensions": "810mm x 500mm x 560mm"
+      },
+      "images": [
+        "assets/images/mahindra_seat.jpeg",
+        "assets/images/mahindra_seat_side.png",
+        "assets/images/seat_drawing_ribbed.png",
+        "assets/images/compliance_certificate.png"
+      ],
+      "video": "assets/videos/suspension_demo_7.mp4",
+      "fitment": [
+        "Mahindra Bolero Pickup",
+        "Tata Ace Gold",
+        "Ashok Leyland Dost",
+        "Force Traveller",
+        "Eicher 380",
+        "Mahindra 575 DI",
+        "John Deere",
+        "Massey Ferguson",
+        "Swaraj",
+        "Tractor",
+        "Seat"
+      ],
+      "sellerType": "direct"
+    },
+    "silencer-short": {
+      "id": "silencer-short",
+      "name": "Short Silencer — Heavy Duty Agri Grade",
+      "series": "Silencer · Short Series",
+      "price": "₹1,650",
+      "mrp": "₹2,500",
+      "discount": "-34%",
+      "rating": "4.6",
+      "ratingCount": "142 reviews",
+      "soldCount": "290+ sold",
+      "badge": "Best Seller",
+      "description": "Heavy-duty short-body agricultural exhaust silencer. Precision manufactured with high-gauge carbon steel for superior heat dissipation. Offers original tractor exhaust rhythm with minimized backpressure.",
+      "compatText": "Fits: Massey Ferguson 1035 · Swaraj 735 DI · Mahindra 275 DI DI",
+      "specs": {
+        "Exhaust Type": "Short Body Vertical Silencer",
+        "Material": "High-Gauge Carbon Steel",
+        "Coating": "Anti-rust protective paint",
+        "Inlet Diameter": "48mm vertical slip-on",
+        "Mounting": "Single clamp vertical mount",
+        "Dimensions": "520mm x 140mm x 100mm"
+      },
+      "images": [
+        "assets/images/short_silencer.jpeg",
+        "assets/images/silencer_stock.jpeg"
+      ],
+      "video": "assets/videos/suspension_demo_12.mp4",
+      "fitment": [
+        "Massey Ferguson 1035",
+        "Swaraj 735 DI",
+        "Mahindra 275 DI"
+      ],
+      "sellerType": "direct"
+    },
+    "silencer-long": {
+      "id": "silencer-long",
+      "name": "Long Silencer — Premium Chrome Guard",
+      "series": "Silencer · Long Series",
+      "price": "₹2,350",
+      "mrp": "₹3,500",
+      "discount": "-32%",
+      "rating": "4.8",
+      "ratingCount": "175 reviews",
+      "soldCount": "480+ sold",
+      "badge": "Top Choice",
+      "description": "Premium long-body tractor silencer equipped with a chrome-plated outer heat shield. Double-insulated core ensures quiet operation and long structural life. Highly recommended for commercial tractor operations.",
+      "compatText": "Fits: Swaraj 744 FE · Mahindra 575 DI · Eicher 380 · Sonalika DI 750",
+      "specs": {
+        "Exhaust Type": "Long Body Insulated Silencer",
+        "Material": "Aluminized Steel with Chrome Shield",
+        "Coating": "High-Temp Silver / Chrome Coating",
+        "Inlet Diameter": "50mm",
+        "Heat Shield": "Full length perforated chrome guard",
+        "Dimensions": "720mm x 160mm x 110mm"
+      },
+      "images": [
+        "assets/images/long_silencer.jpeg",
+        "assets/images/long_silencer_2.jpeg",
+        "assets/images/silenders_stock.jpeg"
+      ],
+      "video": "assets/videos/suspension_demo_2.mp4",
+      "fitment": [
+        "Swaraj 744 FE",
+        "Mahindra 575 DI",
+        "Eicher 380",
+        "Sonalika DI 750"
+      ],
+      "sellerType": "direct"
+    },
+    "silencer-netted": {
+      "id": "silencer-netted",
+      "name": "Matte Black Netted Silencer — Heat Shield",
+      "series": "Silencer · Netted Series",
+      "price": "₹2,150",
+      "mrp": "₹3,200",
+      "discount": "-32%",
+      "rating": "4.7",
+      "ratingCount": "89 reviews",
+      "soldCount": "150+ sold",
+      "badge": "Safety Pick",
+      "description": "Modern matte-black exhaust silencer wrapped in an outer protective steel wire mesh. The netted mesh prevents direct accidental skin contact with the hot silencer body, making it ideal for agricultural workers.",
+      "compatText": "Fits: John Deere 5050D · Swaraj 855 FE · New Holland 3630",
+      "specs": {
+        "Exhaust Type": "Netted Safety Mesh Silencer",
+        "Material": "Gauge 16 Steel with Protective Wire Mesh",
+        "Coating": "Matte Black heat-resistant powder (up to 650°C)",
+        "Inlet Diameter": "50mm vertical clamp",
+        "Safety Feature": "Outer cool-touch wire grid",
+        "Dimensions": "650mm x 150mm x 150mm"
+      },
+      "images": [
+        "assets/images/silencer_matte_netted.jpeg",
+        "assets/images/types_of_silencer.jpeg"
+      ],
+      "video": "assets/videos/suspension_demo_3.mp4",
+      "fitment": [
+        "John Deere 5050D",
+        "Swaraj 855 FE",
+        "New Holland 3630"
+      ],
+      "sellerType": "direct"
+    },
+    "silencer-wide": {
+      "id": "silencer-wide",
+      "name": "Wide Body Silencer — Maximum Baffle",
+      "series": "Silencer · Wide Series",
+      "price": "₹2,550",
+      "mrp": "₹3,800",
+      "discount": "-33%",
+      "rating": "4.6",
+      "ratingCount": "63 reviews",
+      "soldCount": "110+ sold",
+      "badge": "High Performance",
+      "description": "Extra-wide chamber agricultural exhaust silencer. Built with a high-capacity internal multi-baffle system that minimizes tractor engine noise while maintaining high airflow and combustion efficiency.",
+      "compatText": "Fits: Sonalika Rx 750 · John Deere 5310 · Farmtrac 60 Powermaxx",
+      "specs": {
+        "Exhaust Type": "Wide Chamber Multi-Baffle Silencer",
+        "Material": "Double-walled Aluminized Steel",
+        "Coating": "Heat-treated Silver Finish",
+        "Inlet Diameter": "52mm slip joint",
+        "Internal Structure": "4-stage baffle acoustic core",
+        "Dimensions": "680mm x 200mm x 150mm"
+      },
+      "images": [
+        "assets/images/wide_silencer.jpeg",
+        "assets/images/width_silencer.jpeg"
+      ],
+      "video": "assets/videos/suspension_demo_4.mp4",
+      "fitment": [
+        "Sonalika Rx 750",
+        "John Deere 5310",
+        "Farmtrac 60"
+      ],
+      "sellerType": "direct"
+    },
+    "silencer-oval": {
+      "id": "silencer-oval",
+      "name": "Oval Silencer — Matte Black Finish",
+      "series": "Silencer · Oval Body Series",
+      "price": "₹2,100",
+      "mrp": "₹3,200",
+      "discount": "-34%",
+      "rating": "4.7",
+      "ratingCount": "198 reviews",
+      "soldCount": "410+ sold",
+      "badge": "Factory Spec",
+      "description": "Matte black premium exhaust silencer designed for modern tractors and utility trucks. Built using high-gauge aluminized steel with high-temperature resistance coating. Engineered for exact backpressure match and noise-reduction specs.",
+      "compatText": "Fits: John Deere 5045D, 5050D · Mahindra 575 DI · Eicher 333",
+      "specs": {
+        "Exhaust Type": "Oval Chambered Silencer",
+        "Material": "High-Gauge Aluminized Steel",
+        "Coating": "Heat-resistant Matte Black (up to 600°C)",
+        "Connection Dia": "50mm Inlet / Outlet",
+        "Bolt pattern": "Standard vertical/horizontal bolt clamp",
+        "Dimensions": "620mm x 180mm x 120mm"
+      },
+      "images": [
+        "assets/images/oval_silencer_matte_black.png",
+        "assets/images/silencer_standard.jpeg"
+      ],
+      "video": "assets/videos/suspension_demo_1.mp4",
+      "fitment": [
+        "John Deere 5045D",
+        "Mahindra 575 DI",
+        "Eicher 333"
+      ],
+      "sellerType": "direct"
+    },
+    "long-haul": {
+      "id": "long-haul",
+      "name": "Long-Haul Cabin Seat — Foam Core",
+      "series": "Cabin Series · Long Haul",
+      "price": "₹4,200",
+      "mrp": "₹6,000",
+      "discount": "-30%",
+      "rating": "4.5",
+      "ratingCount": "87 reviews",
+      "soldCount": "210+ sold",
+      "badge": "Best Seller",
+      "description": "Premium static cabin driver's seat featuring a high-density 60mm contoured foam core. Designed for heavy commercial vehicles and long-haul operations. Features premium breathable leatherette cover, integrated lumbar support, and adjustable slide rails for maximum ergonomic comfort.",
+      "compatText": "Fits: Tata 407, 608, 709 · Ashok Leyland Dost · Eicher Pro",
+      "specs": {
+        "Base Type": "Static Rigid Base on Slider Rails",
+        "Cushion Material": "Premium High-Density Molded Foam (60mm)",
+        "Cover Material": "Premium Breathable Black Leatherette",
+        "Slide Range": "Fore-aft adjustable: 180mm",
+        "Ergonomics": "High-back profile with lumbar contours",
+        "Dimensions": "810mm x 500mm x 560mm"
+      },
+      "images": [
+        "assets/images/long_haul_front.png",
+        "assets/images/long_haul_side.png",
+        "assets/images/compliance_certificate.png"
+      ],
+      "video": "assets/videos/suspension_demo_7.mp4",
+      "fitment": [
+        "Tata 407",
+        "Ashok Leyland Dost",
+        "Eicher Pro series",
+        "Force Traveller"
+      ],
+      "sellerType": "vendor"
+    },
+    "truck-cabin": {
+      "id": "truck-cabin",
+      "name": "Long-Haul Cabin Seat — Foam Core",
+      "series": "Cabin Series · Long Haul",
+      "price": "₹4,200",
+      "mrp": "₹6,000",
+      "discount": "-30%",
+      "rating": "4.5",
+      "ratingCount": "87 reviews",
+      "soldCount": "210+ sold",
+      "badge": "Best Seller",
+      "description": "Premium static cabin driver's seat featuring a high-density 60mm contoured foam core. Designed for heavy commercial vehicles and long-haul operations. Features premium breathable leatherette cover, integrated lumbar support, and adjustable slide rails for maximum ergonomic comfort.",
+      "compatText": "Fits: Tata 407, 608, 709 · Ashok Leyland Dost · Eicher Pro",
+      "specs": {
+        "Base Type": "Static Rigid Base on Slider Rails",
+        "Cushion Material": "Premium High-Density Molded Foam (60mm)",
+        "Cover Material": "Premium Breathable Black Leatherette",
+        "Slide Range": "Fore-aft adjustable: 180mm",
+        "Ergonomics": "High-back profile with lumbar contours",
+        "Dimensions": "810mm x 500mm x 560mm"
+      },
+      "images": [
+        "assets/images/long_haul_front.png",
+        "assets/images/long_haul_side.png",
+        "assets/images/compliance_certificate.png"
+      ],
+      "video": "assets/videos/suspension_demo_7.mp4",
+      "fitment": [
+        "Tata 407",
+        "Ashok Leyland Dost",
+        "Eicher Pro series",
+        "Force Traveller"
+      ],
+      "sellerType": "vendor"
+    },
+    "air-ride": {
+      "id": "air-ride",
+      "name": "Air-Ride Suspension Cabin Seat",
+      "series": "Suspension Series · HCV",
+      "price": "₹6,800",
+      "mrp": "₹9,500",
+      "discount": "-28%",
+      "rating": "4.9",
+      "ratingCount": "34 reviews",
+      "soldCount": "90+ sold",
+      "badge": "New",
+      "description": "Top-of-the-line pneumatic air-ride suspension driver's seat for Heavy Commercial Vehicles (HCVs). Features dynamic weight-adjusting air suspension, dual armrests, adjustable integrated headrest, and comprehensive lumbar adjustment. The ultimate seat for premium fleet operations.",
+      "compatText": "Fits: Tata Prima · Leyland Boss · Eicher Pro 3015",
+      "specs": {
+        "Suspension Type": "Pneumatic Air Suspension (Dynamic Weight-Adjust)",
+        "Cushion Material": "Contoured Memory Foam Core",
+        "Cover Material": "Premium Perforated Breathable Fabric",
+        "Armrests": "Dual adjustable folding armrests",
+        "Lumbar Control": "Pneumatic 3-way adjustable support",
+        "Dimensions": "850mm x 520mm x 580mm"
+      },
+      "images": [
+        "assets/images/air_ride_front.png",
+        "assets/images/air_ride_side.png",
+        "assets/images/seat_drawing_seamed.png",
+        "assets/images/compliance_certificate.png"
+      ],
+      "video": "assets/videos/suspension_demo_7.mp4",
+      "fitment": [
+        "Tata Prima",
+        "Ashok Leyland Boss",
+        "Eicher Pro HCVs"
+      ],
+      "sellerType": "vendor"
+    },
+    "mini-flat": {
+      "id": "mini-flat",
+      "name": "Mini Truck Flat Seat — Standard",
+      "series": "LCV Series · Mini Truck",
+      "price": "₹1,850",
+      "mrp": "₹2,800",
+      "discount": "-34%",
+      "rating": "4.3",
+      "ratingCount": "152 reviews",
+      "soldCount": "800+ sold",
+      "badge": "Value Pick",
+      "description": "Affordable, heavy-duty replacement driver's seat for mini-trucks. Standard 40mm density foam core on a flat base. Simple, durable construction designed to fit small cabins and withstand rough daily wear.",
+      "compatText": "Fits: Tata Ace, Ace Gold · Mahindra Jeeto · Maruti Super Carry",
+      "specs": {
+        "Base Type": "Fixed Flat Metal Base",
+        "Cushion Material": "Standard Polyurethane Foam (40mm)",
+        "Cover Material": "Durable Utility Vinyl",
+        "Backrest": "Low-back flat design for tight cabin space",
+        "Installation": "Direct bolt-on replacement",
+        "Dimensions": "650mm x 460mm x 480mm"
+      },
+      "images": [
+        "assets/images/mini_flat_seat.png",
+        "assets/images/mini_flat_seat_side.png"
+      ],
+      "video": "assets/videos/suspension_demo_7.mp4",
+      "fitment": [
+        "Tata Ace",
+        "Mahindra Jeeto",
+        "Maruti Suzuki Super Carry"
+      ],
+      "sellerType": "vendor"
+    },
+    "van-bench": {
+      "id": "van-bench",
+      "name": "Passenger Van Bench Seat — 3-Seater",
+      "series": "Van Series · Passenger",
+      "price": "₹5,400",
+      "mrp": "₹7,200",
+      "discount": "-25%",
+      "rating": "4.4",
+      "ratingCount": "61 reviews",
+      "soldCount": "120+ sold",
+      "badge": "Fleet Pick",
+      "description": "3-passenger bench seat for commercial transport vans and travellers. Includes fold-flat capability, premium water-resistant leatherette covers, and high-back seating with integrated headrests. Ideal for passenger fleets.",
+      "compatText": "Fits: Force Traveller · Tempo 407 Van · Tata Winger",
+      "specs": {
+        "Seating Capacity": "3 Passengers",
+        "Base Type": "Rigid Bench Frame with Folding Hinge",
+        "Cushion Material": "High-density molded foam core",
+        "Cover Material": "Water-resistant, flame-retardant leatherette",
+        "Safety": "Integrated seatbelt mounting points",
+        "Dimensions": "800mm x 1350mm x 520mm"
+      },
+      "images": [
+        "assets/images/van_bench_seat.png",
+        "assets/images/van_bench_seat_side.png"
+      ],
+      "video": "assets/videos/suspension_demo_7.mp4",
+      "fitment": [
+        "Force Traveller",
+        "Tata Winger",
+        "Tempo 407 Van"
+      ],
+      "sellerType": "vendor"
+    },
+    "co-driver": {
+      "id": "co-driver",
+      "name": "High-Back Co-Driver Seat — Folding",
+      "series": "Cabin Series · Co-Driver",
+      "price": "₹2,900",
+      "mrp": "₹4,200",
+      "discount": "-31%",
+      "rating": "4.2",
+      "ratingCount": "73 reviews",
+      "soldCount": "180+ sold",
+      "badge": "Co-Driver",
+      "description": "Comfortable, space-saving co-driver cabin seat with folding backrest. Designed for heavy commercial vehicles to allow easy passage inside the cabin. High-back profile provides excellent neck and head support.",
+      "compatText": "Fits: Tata LPT 1613, 2518 · Leyland 2518 · Eicher Pro",
+      "specs": {
+        "Base Type": "Fixed Mounting Frame with Folding Backrest Hinge",
+        "Cushion Material": "Standard molded foam core (50mm)",
+        "Cover Material": "Water-resistant Black Vinyl",
+        "Backrest": "High-back with integrated headrest, folds flat",
+        "Installation": "Standard vehicle mount pattern",
+        "Dimensions": "780mm x 480mm x 520mm"
+      },
+      "images": [
+        "assets/images/co_driver_seat.png",
+        "assets/images/co_driver_seat_side.png"
+      ],
+      "video": "assets/videos/suspension_demo_7.mp4",
+      "fitment": [
+        "Tata LPT 1613",
+        "Ashok Leyland 2518",
+        "Eicher Pro Cabin Trucks"
+      ],
+      "sellerType": "vendor"
+    }
+  },
+  "users": [
+    {
+      "id": "7818870265",
+      "phone": "7818870265",
+      "email": "ramji@gmail.com",
+      "name": "Ramji Yadav",
+      "role": "user"
+    },
+    {
+      "id": "9876543210",
+      "phone": "9876543210",
+      "email": "driver@gmail.com",
+      "name": "Harpreet Singh",
+      "role": "user"
+    },
+    {
+      "id": "admin",
+      "phone": "admin",
+      "email": "admin@tractechspares.com",
+      "name": "System Admin",
+      "role": "admin"
+    }
+  ],
+  "settings": {
+    "heroTitle": "Premium Seats & Silencers.\nFactory to Your Field.",
+    "heroSubtitle": "OEM-engineered mechanical suspension seats and heavy-duty silencers for every major Indian tractor and truck. Pan-India Delivery.",
+    "promoBanner": "🔥 FACTORY DIRECT SALE: 18% GST invoice available + FREE shipping on orders above ₹3,000! 🔥",
+    "contactPhone": "+91 78188 70265",
+    "contactEmail": "tractechspares@gmail.com",
+    "footerText": "© 2026 Tractechspares.com — Ground-Zero Factory Direct. All rights reserved."
+  },
+  "orders": [
+    {
+      "id": "BPT-999999",
+      "created": "2026-07-15T17:20:14.562Z",
+      "customer": {
+        "name": "Verification Bot",
+        "phone": "9999999999"
+      },
+      "address": {
+        "name": "Bot",
+        "line": "Main Lab",
+        "district": "Ghaziabad",
+        "state": "Uttar Pradesh",
+        "pincode": "201001"
+      },
+      "items": [
+        {
+          "id": "test-seat",
+          "name": "Heavy Duty Test Seat",
+          "qty": 2,
+          "price": "₹2,500"
+        }
+      ],
+      "totals": {
+        "subtotal": 5000,
+        "gst": 900,
+        "delivery": 0,
+        "total": 5900
+      },
+      "payment": {
+        "method": "COD"
+      }
+    }
+  ]
+}
