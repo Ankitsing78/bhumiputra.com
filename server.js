@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const multer = require('multer');
 const fs = require('fs');
+const nodemailer = require('nodemailer');
 const db = require('./db');
 
 const app = express();
@@ -115,6 +116,61 @@ app.post('/api/orders', (req, res) => {
   }
   const saved = db.saveOrder(orderData);
   res.json({ success: true, order: saved });
+});
+
+app.post('/api/auth/send-email-otp', async (req, res) => {
+  const { email, otp } = req.body;
+  if (!email || !otp) {
+    return res.status(400).json({ error: 'Email and OTP are required' });
+  }
+
+  const settings = db.getSettings();
+  console.log(`[Email OTP Request] Sending code ${otp} to ${email}. SMTP Enabled: ${settings.smtpEnabled}`);
+
+  if (settings.smtpEnabled && settings.smtpHost && settings.smtpUser && settings.smtpPass) {
+    try {
+      const transporter = nodemailer.createTransport({
+        host: settings.smtpHost,
+        port: parseInt(settings.smtpPort || '465'),
+        secure: parseInt(settings.smtpPort) === 465,
+        auth: {
+          user: settings.smtpUser,
+          pass: settings.smtpPass
+        }
+      });
+
+      const sender = settings.smtpSender || `TracTechSpares <${settings.smtpUser}>`;
+
+      const mailOptions = {
+        from: sender,
+        to: email,
+        subject: `[TracTechSpares] Your Login Verification Code: ${otp}`,
+        text: `Hello! Your verification code is: ${otp}\n\nThis code is valid for 10 minutes. Please do not share it.`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
+            <h2 style="color: #1B4332; font-family: 'Rajdhani', sans-serif;">TracTechSpares Verification</h2>
+            <p>Namaste! 🙏 You requested a verification code to log in to your TracTechSpares account.</p>
+            <div style="background-color: #f4fbf7; border: 1px solid #d8f3dc; padding: 15px; text-align: center; border-radius: 8px; margin: 20px 0;">
+              <span style="font-size: 24px; font-weight: bold; color: #1B4332; letter-spacing: 2px;">${otp}</span>
+            </div>
+            <p style="font-size: 13px; color: #666;">This verification code is valid for 10 minutes. If you did not request this code, please ignore this email.</p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+            <p style="font-size: 11px; color: #999; text-align: center;">© 2026 TracTechSpares. Ground-Zero Factory Direct. All rights reserved.</p>
+          </div>
+        `
+      };
+
+      await transporter.sendMail(mailOptions);
+      console.log(`[Email OTP] Successfully sent email to ${email}`);
+      return res.json({ success: true, message: 'Email sent successfully' });
+    } catch (error) {
+      console.error('[Email OTP Error] Failed to send email via SMTP:', error);
+      return res.status(500).json({ error: 'SMTP connection failed. Check your credentials in Admin settings.', details: error.message });
+    }
+  } else {
+    console.log(`[Email OTP Simulation] SMTP is disabled/unconfigured. Falling back to log verification. OTP: ${otp}`);
+    return res.json({ success: true, simulated: true, message: 'Simulated email output in server logs' });
+  }
 });
 
 // ----------------------------------------------------

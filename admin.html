@@ -927,6 +927,48 @@
             <label for="set-footer">Copyright Footer Info</label>
             <input type="text" id="set-footer" required>
           </div>
+
+          <!-- SMTP SETTINGS SECTION -->
+          <div style="margin: 30px 0 20px 0; border-top: 1px dashed var(--color-border); padding-top: 20px;">
+            <h4 class="display-font" style="color:var(--color-green-neon); font-size:16px; text-transform:uppercase; margin-bottom:15px;"><i class="ti ti-mail"></i> SMTP Email Verification Settings</h4>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="set-smtphost">SMTP Outgoing Server Host</label>
+                <input type="text" id="set-smtphost" placeholder="e.g. smtp.gmail.com">
+              </div>
+              <div class="form-group">
+                <label for="set-smtpport">SMTP Server Port</label>
+                <input type="text" id="set-smtpport" placeholder="e.g. 465 or 587">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="set-smtpuser">SMTP Username / Email</label>
+                <input type="text" id="set-smtpuser" placeholder="e.g. business@gmail.com">
+              </div>
+              <div class="form-group">
+                <label for="set-smtppass">SMTP Password / App Secret</label>
+                <input type="password" id="set-smtppass" placeholder="Google App Password or secret key">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="set-smtpsender">Sender Header Address</label>
+                <input type="text" id="set-smtpsender" placeholder="e.g. TracTechSpares <business@gmail.com>">
+              </div>
+              <div class="form-group">
+                <label for="set-smtpenabled">Verification Email OTP Service</label>
+                <select id="set-smtpenabled">
+                  <option value="false">Simulation Mode (Show on-screen only)</option>
+                  <option value="true">Live Mode (Send real verification emails)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
           <button type="submit" class="btn primary display-font" style="padding:12px 24px; font-size:14px;"><i class="ti ti-device-floppy"></i> Save Website Text Configurations</button>
         </form>
       </div>
@@ -1879,6 +1921,14 @@
       document.getElementById('set-phone').value = settings.contactPhone || '';
       document.getElementById('set-email').value = settings.contactEmail || '';
       document.getElementById('set-footer').value = settings.footerText || '';
+      
+      // SMTP fields
+      document.getElementById('set-smtphost').value = settings.smtpHost || '';
+      document.getElementById('set-smtpport').value = settings.smtpPort || '465';
+      document.getElementById('set-smtpuser').value = settings.smtpUser || '';
+      document.getElementById('set-smtppass').value = settings.smtpPass || '';
+      document.getElementById('set-smtpsender').value = settings.smtpSender || '';
+      document.getElementById('set-smtpenabled').value = settings.smtpEnabled === true || settings.smtpEnabled === 'true' ? 'true' : 'false';
     }
 
     function handleSaveSettings(event) {
@@ -1890,7 +1940,18 @@
       const contactEmail = document.getElementById('set-email').value.trim();
       const footerText = document.getElementById('set-footer').value.trim();
 
-      const payload = { promoBanner, heroTitle, heroSubtitle, contactPhone, contactEmail, footerText };
+      // SMTP fields
+      const smtpHost = document.getElementById('set-smtphost').value.trim();
+      const smtpPort = document.getElementById('set-smtpport').value.trim();
+      const smtpUser = document.getElementById('set-smtpuser').value.trim();
+      const smtpPass = document.getElementById('set-smtppass').value.trim();
+      const smtpSender = document.getElementById('set-smtpsender').value.trim();
+      const smtpEnabled = document.getElementById('set-smtpenabled').value === 'true';
+
+      const payload = { 
+        promoBanner, heroTitle, heroSubtitle, contactPhone, contactEmail, footerText,
+        smtpHost, smtpPort, smtpUser, smtpPass, smtpSender, smtpEnabled
+      };
 
       fetch('/api/settings', {
         method: 'POST',

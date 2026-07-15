@@ -412,6 +412,14 @@
         }
         document.getElementById('otpSentLabel').textContent = 'Sent via secure Email to ' + email;
         showSimulatedNotification(email, otp);
+        
+        fetch('/api/auth/send-email-otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, otp: otp })
+        })
+        .then(res => res.json())
+        .catch(err => console.error('Failed to send real email OTP:', err));
       }
 
       document.getElementById('stage-input').style.display = 'none';

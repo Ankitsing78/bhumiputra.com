@@ -73,7 +73,13 @@ function getInitialDb() {
       promoBanner: "🔥 FACTORY DIRECT SALE: 18% GST invoice available + FREE shipping on orders above ₹3,000! 🔥",
       contactPhone: "+91 78188 70265",
       contactEmail: "tractechspares@gmail.com",
-      footerText: "© 2026 Tractechspares.com — Ground-Zero Factory Direct. All rights reserved."
+      footerText: "© 2026 Tractechspares.com — Ground-Zero Factory Direct. All rights reserved.",
+      smtpHost: '',
+      smtpPort: '465',
+      smtpUser: '',
+      smtpPass: '',
+      smtpSender: '',
+      smtpEnabled: false
     },
     orders: []
   };
@@ -157,7 +163,23 @@ module.exports = {
   },
 
   // Settings
-  getSettings: () => readDb().settings,
+  getSettings: () => {
+    const defaults = {
+      heroTitle: "Premium Seats & Silencers.\nFactory to Your Field.",
+      heroSubtitle: "OEM-engineered mechanical suspension seats and heavy-duty silencers for every major Indian tractor and truck. Pan-India Delivery.",
+      promoBanner: "🔥 FACTORY DIRECT SALE: 18% GST invoice available + FREE shipping on orders above ₹3,000! 🔥",
+      contactPhone: "+91 78188 70265",
+      contactEmail: "tractechspares@gmail.com",
+      footerText: "© 2026 Tractechspares.com — Ground-Zero Factory Direct. All rights reserved.",
+      smtpHost: '',
+      smtpPort: '465',
+      smtpUser: '',
+      smtpPass: '',
+      smtpSender: '',
+      smtpEnabled: false
+    };
+    return { ...defaults, ...readDb().settings };
+  },
   saveSettings: (settingsData) => {
     const db = readDb();
     db.settings = { ...db.settings, ...settingsData };
