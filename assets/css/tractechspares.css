@@ -686,6 +686,9 @@ button { font: inherit; cursor: pointer; }
 }
 
 @media (max-width: 600px) {
+  .page-header, .header-top {
+    flex-wrap: wrap !important;
+  }
   .page-header .search-bar,
   .header-top .search-bar {
     width: 100% !important;
